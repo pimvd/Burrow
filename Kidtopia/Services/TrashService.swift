@@ -45,6 +45,25 @@ enum TrashService {
         }
     }
 
+    /// Removes tiles that were started in the editor but never saved, which can
+    /// only happen if the app was killed with the create sheet open. A tile
+    /// cannot be saved without a title, so an untitled and empty tile is always
+    /// an abandoned draft.
+    static func purgeAbandonedDrafts(in context: ModelContext) {
+        let descriptor = FetchDescriptor<Tile>(predicate: #Predicate { $0.title.isEmpty })
+
+        do {
+            let drafts = try context.fetch(descriptor).filter { $0.mediaItemCount == 0 }
+            guard !drafts.isEmpty else { return }
+            for draft in drafts {
+                permanentlyDelete(draft, in: context)
+            }
+            ModelSaver.save(context, describing: "removing abandoned tile drafts")
+        } catch {
+            logger.error("Could not look for drafts: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
     /// Removes a tile for good: its media items, its local files, its statistics
     /// and every reference other profiles had to it.
     static func permanentlyDelete(_ tile: Tile, in context: ModelContext) {

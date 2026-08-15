@@ -91,6 +91,7 @@ struct NowPlayingView: View {
                             onStartedPlaying: { playback.youTubeDidStartPlaying() },
                             onPaused: { playback.youTubeDidPause() }
                         )
+                        .id(playback.playToken)
                         .aspectRatio(16 / 9, contentMode: .fit)
                     } else {
                         artwork
@@ -105,6 +106,7 @@ struct NowPlayingView: View {
                                         onStartedPlaying: { playback.youTubeDidStartPlaying() },
                                         onPaused: { playback.youTubeDidPause() }
                                     )
+                                    .id(playback.playToken)
                                     .frame(width: 1, height: 1)
                                     .opacity(0.01)
                                     .allowsHitTesting(false)

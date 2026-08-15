@@ -28,6 +28,11 @@ final class MediaPlaybackService {
     /// "nothing to play" state instead of spinning forever.
     private(set) var hasExhaustedPlaylist = false
 
+    /// Changes every time an entry starts, including when the same entry comes
+    /// round again. Views key their YouTube web view on it so a repeat actually
+    /// restarts the embed instead of leaving a finished player on screen.
+    private(set) var playToken = UUID()
+
     /// Called with the entry identifier whenever a new entry starts.
     @ObservationIgnored var onEntryChanged: ((UUID) -> Void)?
 
@@ -263,6 +268,7 @@ final class MediaPlaybackService {
         }
 
         currentEntry = entry
+        playToken = UUID()
         onEntryChanged?(entry.id)
 
         switch entry.type {

@@ -45,6 +45,7 @@ struct RootView: View {
             // Tiles whose 14 days in the trash have passed are removed on every
             // launch, together with their statistics and media files.
             TrashService.purgeExpiredTiles(in: modelContext)
+            TrashService.purgeAbandonedDrafts(in: modelContext)
             await store.refresh()
             await BackupReminderService.shared.scheduleMonthlyReminderIfAuthorized()
         }
