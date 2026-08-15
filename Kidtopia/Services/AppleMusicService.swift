@@ -152,7 +152,14 @@ final class AppleMusicService {
         let id: String
         let title: String
         let artistName: String
+
+        /// The sleeve, at thumbnail size. `nil` when the song has no artwork.
+        let artworkURL: URL?
     }
+
+    /// Pixel size the search thumbnails are requested at. Small enough that a
+    /// full page of results is cheap to load over a phone connection.
+    private static let searchThumbnailSide = 150
 
     /// Searches the Apple Music catalogue so the parent can add a song to a
     /// music tile.
@@ -173,7 +180,11 @@ final class AppleMusicService {
                 SongSearchResult(
                     id: song.id.rawValue,
                     title: song.title,
-                    artistName: song.artistName
+                    artistName: song.artistName,
+                    artworkURL: song.artwork?.url(
+                        width: Self.searchThumbnailSide,
+                        height: Self.searchThumbnailSide
+                    )
                 )
             }
         } catch {

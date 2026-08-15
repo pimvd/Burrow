@@ -316,7 +316,9 @@ private struct AppleMusicSearchView: View {
                 selection = result
                 onSelect(result)
             } label: {
-                HStack {
+                HStack(spacing: 12) {
+                    sleeve(for: result)
+
                     VStack(alignment: .leading, spacing: 2) {
                         Text(result.title)
                             .foregroundStyle(.primary)
@@ -333,6 +335,28 @@ private struct AppleMusicSearchView: View {
             }
             .buttonStyle(.plain)
         }
+    }
+
+    /// The song's sleeve. The placeholder keeps the same footprint, so the rows
+    /// do not shuffle about as the images arrive, and stands in for the songs
+    /// that have no artwork at all. The title and artist already name the song,
+    /// so the picture is decoration as far as VoiceOver is concerned.
+    private func sleeve(for result: AppleMusicService.SongSearchResult) -> some View {
+        AsyncImage(url: result.artworkURL) { image in
+            image
+                .resizable()
+                .scaledToFill()
+        } placeholder: {
+            ZStack {
+                Color(.secondarySystemBackground)
+                Image(systemName: "music.note")
+                    .font(.system(size: 16, weight: .light))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(width: 44, height: 44)
+        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .accessibilityHidden(true)
     }
 
     private func search() {
