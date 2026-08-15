@@ -3,6 +3,7 @@ import Foundation
 import MediaPlayer
 import Observation
 import OSLog
+import UIKit
 
 /// Drives playback for all four media source types.
 ///
@@ -28,6 +29,11 @@ final class MediaPlaybackService {
     /// "nothing to play" state instead of spinning forever.
     private(set) var hasExhaustedPlaylist = false
 
+    /// Cover art belonging to the entry itself, for sources that carry their
+    /// own. Apple Music songs do; every other source leaves this `nil` and the
+    /// player falls back to the tile picture.
+    private(set) var currentArtwork: UIImage?
+
     /// Changes every time an entry starts, including when the same entry comes
     /// round again. Views key their YouTube web view on it so a repeat actually
     /// restarts the embed instead of leaving a finished player on screen.
@@ -50,6 +56,7 @@ final class MediaPlaybackService {
     @ObservationIgnored private var endObserver: NSObjectProtocol?
     @ObservationIgnored private var failureObserver: NSObjectProtocol?
     @ObservationIgnored private var appleMusicWatchdog: Task<Void, Never>?
+    @ObservationIgnored private var artworkTask: Task<Void, Never>?
     @ObservationIgnored private var remoteCommandsRegistered = false
 
     /// Exposed so `VideoPlayer` can render local video with the same player.
@@ -85,6 +92,7 @@ final class MediaPlaybackService {
             NotificationCenter.default.removeObserver(failureObserver)
         }
         appleMusicWatchdog?.cancel()
+        artworkTask?.cancel()
     }
 
     // MARK: - Starting and stopping
@@ -339,10 +347,11 @@ final class MediaPlaybackService {
         Task { [weak self] in
             guard let self else { return }
             do {
-                try await AppleMusicService.shared.play(catalogID: catalogID)
+                let artworkURL = try await AppleMusicService.shared.play(catalogID: catalogID)
                 guard self.currentEntry?.id == entryID else { return }
                 self.isPlaying = true
                 self.updateNowPlayingInfo()
+                self.loadArtwork(from: artworkURL, for: entryID)
                 self.startAppleMusicWatchdog(for: entryID)
             } catch {
                 guard self.currentEntry?.id == entryID else { return }
@@ -376,6 +385,32 @@ final class MediaPlaybackService {
                 }
                 try? await Task.sleep(for: .seconds(1))
             }
+        }
+    }
+
+    // MARK: - Cover art
+
+    /// Fetches the entry's own cover art in the background.
+    ///
+    /// A slow or missing image never holds up playback: the tile picture stays
+    /// on screen until the sleeve arrives, and stays for good if it never does.
+    private func loadArtwork(from url: URL?, for entryID: UUID) {
+        artworkTask?.cancel()
+        artworkTask = nil
+        guard let url else { return }
+
+        artworkTask = Task { [weak self] in
+            let downloaded = try? await URLSession.shared.data(from: url)
+            guard !Task.isCancelled,
+                  let data = downloaded?.0,
+                  let image = UIImage(data: data),
+                  let self,
+                  // The playlist may have moved on while the image was loading.
+                  self.currentEntry?.id == entryID else {
+                return
+            }
+            self.currentArtwork = image
+            self.updateNowPlayingInfo()
         }
     }
 
@@ -417,6 +452,10 @@ final class MediaPlaybackService {
         queuePlayer.removeAllItems()
         appleMusicWatchdog?.cancel()
         appleMusicWatchdog = nil
+        artworkTask?.cancel()
+        artworkTask = nil
+        // The sleeve belongs to the entry that just stopped, so it goes with it.
+        currentArtwork = nil
         AppleMusicService.shared.stop()
         isPlaying = false
     }
@@ -505,6 +544,10 @@ final class MediaPlaybackService {
             MPMediaItemPropertyAlbumTitle: playlist.tileTitle,
             MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0
         ]
+
+        if let artwork = currentArtwork {
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artwork.size) { _ in artwork }
+        }
 
         if entry.type == .localAudio || entry.type == .localVideo,
            let item = queuePlayer.currentItem {

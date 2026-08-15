@@ -66,8 +66,16 @@ final class AppleMusicService {
         }
     }
 
+    /// Pixel size the cover art is requested at. Matches the size a tile
+    /// picture is stored at, so both fill the player equally sharply.
+    private static let artworkSide = 600
+
     /// Looks up the catalog song and starts it from the beginning.
-    func play(catalogID: String) async throws {
+    ///
+    /// Returns the song's cover art URL, so the player can show the sleeve
+    /// instead of the tile picture. `nil` when the song carries no artwork.
+    @discardableResult
+    func play(catalogID: String) async throws -> URL? {
         guard await requestAuthorization() else {
             throw AppleMusicError.notAuthorized
         }
@@ -102,6 +110,8 @@ final class AppleMusicService {
             logger.error("Playback failed: \(error.localizedDescription, privacy: .public)")
             throw AppleMusicError.playbackFailed(error.localizedDescription)
         }
+
+        return song.artwork?.url(width: Self.artworkSide, height: Self.artworkSide)
     }
 
     func pause() {

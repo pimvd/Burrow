@@ -170,15 +170,29 @@ struct NowPlayingView: View {
         .gesture(swipeGesture)
     }
 
+    /// The picture shown for anything without a moving image: the sleeve of the
+    /// entry that is playing when it has one — an Apple Music song does — and
+    /// the tile picture otherwise. The tile picture stays underneath, so it
+    /// covers the moment before a sleeve has been fetched.
     private var artwork: some View {
-        TileImageView(
-            tileID: tile.id,
-            imageData: tile.imageData,
-            category: tile.category,
-            tint: profile.theme.tint
-        )
+        ZStack {
+            TileImageView(
+                tileID: tile.id,
+                imageData: tile.imageData,
+                category: tile.category,
+                tint: profile.theme.tint
+            )
+
+            if let cover = playback.currentArtwork {
+                Image(uiImage: cover)
+                    .resizable()
+                    .scaledToFill()
+                    .transition(.opacity)
+            }
+        }
         .aspectRatio(1, contentMode: .fit)
         .frame(maxWidth: 420)
+        .animation(CalmStyle.transition, value: playback.currentArtwork)
     }
 
     private var emptyStage: some View {
