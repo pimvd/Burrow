@@ -38,36 +38,26 @@ struct NowPlayingView: View {
     }
 
     var body: some View {
-        ZStack {
-            profile.theme.wash.ignoresSafeArea()
-
-            if isImmersive {
-                stage
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .ignoresSafeArea()
-
-                VStack(spacing: 0) {
-                    header
-                    Spacer(minLength: 0)
-                    footer
-                }
-            } else {
-                VStack(spacing: 0) {
-                    header
-
-                    stage
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(.horizontal, 20)
-
-                    footer
-                }
-            }
-        }
-        .animation(CalmStyle.transition, value: isImmersive)
-        .background(Color(.systemBackground).ignoresSafeArea())
-        .statusBarHidden()
-        .onAppear(perform: startPlayback)
-        .onDisappear(perform: stopPlayback)
+        // Both orientations use the same view tree. Rotating only changes
+        // modifier values on it — never which branch of an `if` is taken —
+        // because a new branch would give the player a new identity, tearing
+        // down the video view and restarting the video from the beginning.
+        stage
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, isImmersive ? 0 : 20)
+            // Landscape video runs edge to edge, under the floating controls.
+            .ignoresSafeArea(edges: isImmersive ? .all : [])
+            // In portrait these reserve their own space above and below the
+            // stage; in landscape the stage reaches past them, so they float
+            // on top of the picture instead.
+            .safeAreaInset(edge: .top, spacing: 0) { header }
+            .safeAreaInset(edge: .bottom, spacing: 0) { footer }
+            .animation(CalmStyle.transition, value: isImmersive)
+            .background(profile.theme.wash.ignoresSafeArea())
+            .background(Color(.systemBackground).ignoresSafeArea())
+            .statusBarHidden()
+            .onAppear(perform: startPlayback)
+            .onDisappear(perform: stopPlayback)
     }
 
     // MARK: - Sections
