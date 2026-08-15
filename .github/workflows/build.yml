@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches: [master, "claude/**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build (iOS Simulator)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_16.2.app
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Resolve Swift package dependencies
+        run: xcodebuild -resolvePackageDependencies -project Kidtopia.xcodeproj -scheme Kidtopia
+
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Kidtopia.xcodeproj \
+            -scheme Kidtopia \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -skipMacroValidation \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            ONLY_ACTIVE_ARCH=YES
