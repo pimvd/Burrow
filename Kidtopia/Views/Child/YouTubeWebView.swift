@@ -18,6 +18,10 @@ struct YouTubeWebView: UIViewRepresentable {
     let onStartedPlaying: () -> Void
     let onPaused: () -> Void
 
+    /// Drives the embed. The IFrame player can only be paused by calling into
+    /// its JavaScript API, so the transport state has to be pushed in here.
+    let isPlaying: Bool
+
     func makeCoordinator() -> Coordinator {
         Coordinator(
             onFinished: onFinished,
@@ -50,6 +54,7 @@ struct YouTubeWebView: UIViewRepresentable {
 
     func updateUIView(_ webView: WKWebView, context: Context) {
         context.coordinator.load(videoID: videoID, into: webView)
+        context.coordinator.apply(isPlaying: isPlaying, to: webView)
     }
 
     static func dismantleUIView(_ webView: WKWebView, coordinator: Coordinator) {
@@ -70,6 +75,11 @@ struct YouTubeWebView: UIViewRepresentable {
         private let onPaused: () -> Void
         private var loadedVideoID: String?
 
+        /// The transport state last pushed into the embed, so a command is only
+        /// sent when it actually changes. The player also reports its own state
+        /// back, and without this every report would bounce a command back at it.
+        private var appliedIsPlaying: Bool?
+
         init(
             onFinished: @escaping () -> Void,
             onFailed: @escaping (String) -> Void,
@@ -82,10 +92,32 @@ struct YouTubeWebView: UIViewRepresentable {
             self.onPaused = onPaused
         }
 
+        /// Pushes the transport state into the embed's JavaScript player.
+        func apply(isPlaying: Bool, to webView: WKWebView) {
+            guard appliedIsPlaying != isPlaying else { return }
+            appliedIsPlaying = isPlaying
+            // `player` only exists once the IFrame API has finished loading; a
+            // command that arrives before then is dropped rather than throwing.
+            let call = isPlaying ? "playVideo" : "pauseVideo"
+            webView.evaluateJavaScript(
+                "if (window.player && window.player.\(call)) { window.player.\(call)(); }"
+            )
+        }
+
         func load(videoID: String, into webView: WKWebView) {
             guard loadedVideoID != videoID else { return }
             loadedVideoID = videoID
-            webView.loadHTMLString(Self.playerHTML(videoID: videoID), baseURL: URL(string: "https://www.youtube.com"))
+            // A fresh page autoplays, so whatever was pushed into the previous
+            // one no longer describes this player.
+            appliedIsPlaying = nil
+            // The page must claim an origin of its own. Loading it as
+            // youtube.com made the embed look like it was framed by YouTube
+            // itself, which the player rejects with a 15x error for every
+            // video. `localhost` is a legitimate secure origin.
+            webView.loadHTMLString(
+                Self.playerHTML(videoID: videoID),
+                baseURL: URL(string: Self.playerOrigin)
+            )
         }
 
         func userContentController(
@@ -156,6 +188,14 @@ struct YouTubeWebView: UIViewRepresentable {
             }
         }
 
+        /// The origin the player page is served under. Must not be a YouTube
+        /// domain, or the embed is treated as framed by YouTube itself.
+        private static let playerOrigin = "https://localhost"
+
+        /// Privacy-enhanced host: no cookies are set until the child actually
+        /// plays something.
+        private static let playerHost = "https://www.youtube-nocookie.com"
+
         private static func playerHTML(videoID: String) -> String {
             // The identifier is validated by `YouTubeLink` before it is stored,
             // so only the 11 unreserved characters can reach this template.
@@ -178,8 +218,32 @@ struct YouTubeWebView: UIViewRepresentable {
                 window.webkit.messageHandlers.\(messageHandlerName).postMessage(payload);
               }
               var player;
+
+              // Clearing the caption track is the only thing that actually
+              // removes subtitles. `cc_load_policy` does not suppress
+              // auto-generated ones, and `unloadModule` leaves them running.
+              function hideCaptions() {
+                if (!player) { return; }
+                try { player.setOption('captions', 'track', {}); } catch (e) {}
+                try { player.setOption('cc', 'track', {}); } catch (e) {}
+              }
+
+              // The captions module only loads a second or two after playback
+              // starts, so one call at that moment is too early to catch it.
+              var captionSweep;
+              function startCaptionSweep() {
+                if (captionSweep) { return; }
+                var ticks = 0;
+                captionSweep = setInterval(function () {
+                  hideCaptions();
+                  ticks += 1;
+                  if (ticks >= 10) { clearInterval(captionSweep); captionSweep = null; }
+                }, 700);
+              }
+
               function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
+                  host: '\(playerHost)',
                   videoId: '\(safeID)',
                   playerVars: {
                     playsinline: 1,
@@ -189,13 +253,19 @@ struct YouTubeWebView: UIViewRepresentable {
                     fs: 0,
                     rel: 0,
                     modestbranding: 1,
-                    iv_load_policy: 3
+                    iv_load_policy: 3,
+                    cc_load_policy: 0,
+                    origin: '\(playerOrigin)'
                   },
                   events: {
                     onReady: function (event) { event.target.playVideo(); },
                     onStateChange: function (event) {
+                      hideCaptions();
                       if (event.data === YT.PlayerState.ENDED) { post({ event: 'ended' }); }
-                      else if (event.data === YT.PlayerState.PLAYING) { post({ event: 'playing' }); }
+                      else if (event.data === YT.PlayerState.PLAYING) {
+                        startCaptionSweep();
+                        post({ event: 'playing' });
+                      }
                       else if (event.data === YT.PlayerState.PAUSED) { post({ event: 'paused' }); }
                     },
                     onError: function (event) { post({ event: 'error', code: event.data }); }

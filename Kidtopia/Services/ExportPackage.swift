@@ -63,7 +63,10 @@ struct ExportPackage: Codable, Equatable {
         var sortOrder: Int
         var shufflePlaylist: Bool
         var loopPlaylist: Bool
-        var showYouTubeAsVideo: Bool
+        /// Legacy: packages written before YouTube audio-only became a property
+        /// of the tile category still carry this. Decoded so old files import,
+        /// never written and never read.
+        var showYouTubeAsVideo: Bool?
         var isHidden: Bool
         var mediaItems: [MediaItemRecord]
 
@@ -76,7 +79,7 @@ struct ExportPackage: Codable, Equatable {
             sortOrder = tile.sortOrder
             shufflePlaylist = tile.shufflePlaylist
             loopPlaylist = tile.loopPlaylist
-            showYouTubeAsVideo = tile.showYouTubeAsVideo
+            showYouTubeAsVideo = nil
             isHidden = tile.isHidden
             mediaItems = tile.orderedMediaItems.map(MediaItemRecord.init(item:))
         }

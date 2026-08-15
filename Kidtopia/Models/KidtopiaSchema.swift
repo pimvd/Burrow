@@ -22,5 +22,10 @@ enum KidtopiaMigrationPlan: SchemaMigrationPlan {
 
     /// Empty for now: there is only one schema version. Lightweight stages get
     /// appended here as the model evolves.
+    ///
+    /// A second version cannot simply re-list the same model types — SwiftData
+    /// checksums them and rejects duplicates. Each version needs its own copies
+    /// of the model classes, so the ceremony is only worth it once the app has
+    /// shipped and there are real stores to migrate.
     static var stages: [MigrationStage] { [] }
 }

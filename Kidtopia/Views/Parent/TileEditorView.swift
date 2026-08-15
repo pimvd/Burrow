@@ -25,7 +25,6 @@ struct TileEditorView: View {
     @State private var imageData = Data()
     @State private var shufflePlaylist = false
     @State private var loopPlaylist = true
-    @State private var showYouTubeAsVideo = true
     @State private var isHidden = false
 
     @State private var photoSelection: PhotosPickerItem?
@@ -88,12 +87,17 @@ struct TileEditorView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 
                     VStack(alignment: .leading, spacing: 10) {
+                        // Both controls share one Form row. Without an explicit
+                        // button style the row is a single tap target and fires
+                        // both actions, so choosing a photo also opened the icon
+                        // sheet and the two presentations cancelled each other.
                         PhotosPicker(selection: $photoSelection, matching: .images) {
                             Label(
                                 String(localized: "Choose a photo", comment: "Tile image option"),
                                 systemImage: "photo"
                             )
                         }
+                        .buttonStyle(.borderless)
 
                         Button {
                             isShowingIconPicker = true
@@ -103,6 +107,7 @@ struct TileEditorView: View {
                                 systemImage: "square.grid.2x2"
                             )
                         }
+                        .buttonStyle(.borderless)
                     }
                 }
                 .padding(.vertical, 4)
@@ -117,20 +122,15 @@ struct TileEditorView: View {
                 Toggle(isOn: $loopPlaylist) {
                     Text("Repeat", comment: "Tile playback setting")
                 }
-                if category == .video {
-                    Toggle(isOn: $showYouTubeAsVideo) {
-                        Text("Show YouTube video", comment: "Tile playback setting")
-                    }
-                }
                 Toggle(isOn: $isHidden) {
                     Text("Hide from the child", comment: "Tile visibility setting")
                 }
             } header: {
                 Text("Playback", comment: "Tile editor section")
             } footer: {
-                if category == .video {
+                if category == .music {
                     Text(
-                        "With this off, a YouTube item plays sound only and the picture stays hidden.",
+                        "A YouTube item in a music tile plays sound only; its picture stays hidden.",
                         comment: "YouTube audio-only explanation"
                     )
                 }
@@ -291,7 +291,6 @@ struct TileEditorView: View {
             modelContext.insert(created)
             tile = created
             loopPlaylist = created.loopPlaylist
-            showYouTubeAsVideo = created.showYouTubeAsVideo
 
         case .edit(let existing):
             guard tile == nil else { return }
@@ -300,7 +299,6 @@ struct TileEditorView: View {
             imageData = existing.imageData
             shufflePlaylist = existing.shufflePlaylist
             loopPlaylist = existing.loopPlaylist
-            showYouTubeAsVideo = existing.showYouTubeAsVideo
             isHidden = existing.isHidden
             conflictGuard = EditConflictGuard(expectedLastModified: existing.lastModified)
         }
@@ -405,7 +403,6 @@ struct TileEditorView: View {
             imageData = existing.imageData
             shufflePlaylist = existing.shufflePlaylist
             loopPlaylist = existing.loopPlaylist
-            showYouTubeAsVideo = existing.showYouTubeAsVideo
             isHidden = existing.isHidden
             conflictGuard = EditConflictGuard(expectedLastModified: existing.lastModified)
         case .cancel:
@@ -422,7 +419,6 @@ struct TileEditorView: View {
         tile.imageData = imageData
         tile.shufflePlaylist = shufflePlaylist
         tile.loopPlaylist = loopPlaylist
-        tile.showYouTubeAsVideo = showYouTubeAsVideo
         tile.isHidden = isHidden
         tile.lastModified = Date()
 

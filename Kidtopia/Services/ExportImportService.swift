@@ -232,7 +232,6 @@ enum ExportImportService {
                 sortOrder: record.sortOrder,
                 shufflePlaylist: record.shufflePlaylist,
                 loopPlaylist: record.loopPlaylist,
-                showYouTubeAsVideo: record.showYouTubeAsVideo,
                 isHidden: record.isHidden
             )
             context.insert(tile)

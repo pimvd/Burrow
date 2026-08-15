@@ -27,10 +27,6 @@ final class Tile {
     var shufflePlaylist: Bool = false
     var loopPlaylist: Bool = true
 
-    /// Only meaningful for `.video` tiles containing YouTube items. When `false`
-    /// the web view is kept off screen so only the audio is heard.
-    var showYouTubeAsVideo: Bool = true
-
     /// The parent can temporarily hide a tile from the child view.
     var isHidden: Bool = false
 
@@ -55,7 +51,6 @@ final class Tile {
         sortOrder: Int = 0,
         shufflePlaylist: Bool = false,
         loopPlaylist: Bool = true,
-        showYouTubeAsVideo: Bool = true,
         isHidden: Bool = false,
         isTrashed: Bool = false,
         trashedAt: Date? = nil,
@@ -71,7 +66,6 @@ final class Tile {
         self.sortOrder = sortOrder
         self.shufflePlaylist = shufflePlaylist
         self.loopPlaylist = loopPlaylist
-        self.showYouTubeAsVideo = showYouTubeAsVideo
         self.isHidden = isHidden
         self.isTrashed = isTrashed
         self.trashedAt = trashedAt

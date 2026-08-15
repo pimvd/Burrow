@@ -11,25 +11,59 @@ struct NowPlayingView: View {
     @Environment(MediaPlaybackService.self) private var playback
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     @State private var recorder = UsageRecorder()
 
     private var scale: AgeLayoutScale { profile.layoutScale }
 
+    /// `true` when the current entry actually shows a picture. Audio entries
+    /// keep the normal layout in every orientation.
+    private var isShowingVideo: Bool {
+        guard let entry = playback.currentEntry else { return false }
+        switch entry.type {
+        case .localVideo:
+            return true
+        case .youtube:
+            return tile.category.showsYouTubeVideo && entry.youtubeVideoID != nil
+        case .localAudio, .appleMusic:
+            return false
+        }
+    }
+
+    /// Landscape with a video playing: the picture takes the whole screen and
+    /// the controls sit on top of it instead of beside it.
+    private var isImmersive: Bool {
+        verticalSizeClass == .compact && isShowingVideo
+    }
+
     var body: some View {
         ZStack {
             profile.theme.wash.ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                header
-
+            if isImmersive {
                 stage
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding(.horizontal, 20)
+                    .ignoresSafeArea()
 
-                footer
+                VStack(spacing: 0) {
+                    header
+                    Spacer(minLength: 0)
+                    footer
+                }
+            } else {
+                VStack(spacing: 0) {
+                    header
+
+                    stage
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.horizontal, 20)
+
+                    footer
+                }
             }
         }
+        .animation(CalmStyle.transition, value: isImmersive)
         .background(Color(.systemBackground).ignoresSafeArea())
         .statusBarHidden()
         .onAppear(perform: startPlayback)
@@ -75,7 +109,7 @@ struct NowPlayingView: View {
 
     @ViewBuilder
     private func currentEntryStage(_ entry: PlaybackEntry) -> some View {
-        VStack(spacing: 20) {
+        VStack(spacing: isImmersive ? 0 : 20) {
             Group {
                 switch entry.type {
                 case .localVideo:
@@ -83,13 +117,14 @@ struct NowPlayingView: View {
                         .aspectRatio(16 / 9, contentMode: .fit)
 
                 case .youtube:
-                    if tile.showYouTubeAsVideo, let videoID = entry.youtubeVideoID {
+                    if tile.category.showsYouTubeVideo, let videoID = entry.youtubeVideoID {
                         YouTubeWebView(
                             videoID: videoID,
                             onFinished: { playback.youTubeDidFinish() },
                             onFailed: { playback.youTubeDidFail($0) },
                             onStartedPlaying: { playback.youTubeDidStartPlaying() },
-                            onPaused: { playback.youTubeDidPause() }
+                            onPaused: { playback.youTubeDidPause() },
+                            isPlaying: playback.isPlaying
                         )
                         .id(playback.playToken)
                         .aspectRatio(16 / 9, contentMode: .fit)
@@ -104,7 +139,8 @@ struct NowPlayingView: View {
                                         onFinished: { playback.youTubeDidFinish() },
                                         onFailed: { playback.youTubeDidFail($0) },
                                         onStartedPlaying: { playback.youTubeDidStartPlaying() },
-                                        onPaused: { playback.youTubeDidPause() }
+                                        onPaused: { playback.youTubeDidPause() },
+                                        isPlaying: playback.isPlaying
                                     )
                                     .id(playback.playToken)
                                     .frame(width: 1, height: 1)
@@ -119,22 +155,26 @@ struct NowPlayingView: View {
                     artwork
                 }
             }
-            .calmCard(cornerRadius: 28)
+            .calmCard(cornerRadius: isImmersive ? 0 : 28)
 
-            VStack(spacing: 6) {
-                Text(entry.title.isEmpty ? tile.title : entry.title)
-                    .font(.title2.weight(.semibold))
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-
-                if let message = playback.childFacingMessage {
-                    Text(message)
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
+            // In landscape the picture gets the whole screen, so the title and
+            // any status line step aside.
+            if !isImmersive {
+                VStack(spacing: 6) {
+                    Text(entry.title.isEmpty ? tile.title : entry.title)
+                        .font(.title2.weight(.semibold))
                         .multilineTextAlignment(.center)
+                        .lineLimit(2)
+
+                    if let message = playback.childFacingMessage {
+                        Text(message)
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
+                .padding(.horizontal, 12)
             }
-            .padding(.horizontal, 12)
         }
         .contentShape(Rectangle())
         .gesture(swipeGesture)

@@ -47,7 +47,7 @@ struct PlaybackPlaylist: Equatable, Sendable {
         entries = tile.orderedMediaItems.map(PlaybackEntry.init(mediaItem:))
         shuffle = tile.shufflePlaylist
         loop = tile.loopPlaylist
-        showYouTubeAsVideo = tile.showYouTubeAsVideo
+        showYouTubeAsVideo = tile.category.showsYouTubeVideo
         startEntryID = tile.lastPlayedItemID
         allowsLockScreenPlayback = profile.lockScreenPlaybackEnabled
         profileID = profile.id

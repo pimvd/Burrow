@@ -9,12 +9,19 @@ enum TileCategory: String, Codable, CaseIterable, Identifiable, Sendable {
     var id: String { rawValue }
 
     /// The media source types that may be added to a tile of this category.
+    ///
+    /// YouTube appears in both: a video tile plays the embed, a music tile keeps
+    /// it off screen and plays only its sound.
     var allowedSourceTypes: [MediaSourceType] {
         switch self {
-        case .music: return [.localAudio, .appleMusic]
+        case .music: return [.localAudio, .appleMusic, .youtube]
         case .video: return [.localVideo, .youtube]
         }
     }
+
+    /// Whether a YouTube entry in a tile of this category shows its picture.
+    /// Replaces the former per-tile `showYouTubeAsVideo` setting.
+    var showsYouTubeVideo: Bool { self == .video }
 
     func allows(_ sourceType: MediaSourceType) -> Bool {
         allowedSourceTypes.contains(sourceType)
@@ -49,13 +56,6 @@ enum MediaSourceType: String, Codable, CaseIterable, Identifiable, Sendable {
         switch self {
         case .localAudio, .localVideo: return false
         case .appleMusic, .youtube: return true
-        }
-    }
-
-    var category: TileCategory {
-        switch self {
-        case .localAudio, .appleMusic: return .music
-        case .localVideo, .youtube: return .video
         }
     }
 
