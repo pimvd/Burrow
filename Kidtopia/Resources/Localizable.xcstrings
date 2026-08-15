@@ -6106,31 +6106,31 @@
         }
       }
     },
-    "The free version holds three items per playlist. Unlock Kidtopia for up to 50." : {
+    "The free version holds seven items per playlist. Unlock Kidtopia for up to 50." : {
       "comment" : "Free tier media item limit reached",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die kostenlose Version fasst drei Einträge pro Wiedergabeliste. Schalte Kidtopia frei für bis zu 50."
+            "value" : "Die kostenlose Version fasst sieben Einträge pro Wiedergabeliste. Schalte Kidtopia frei für bis zu 50."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La versión gratuita permite tres elementos por lista. Desbloquea Kidtopia para hasta 50."
+            "value" : "La versión gratuita permite siete elementos por lista. Desbloquea Kidtopia para hasta 50."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La version gratuite contient trois éléments par liste. Débloquez Kidtopia pour en avoir jusqu’à 50."
+            "value" : "La version gratuite contient sept éléments par liste. Débloquez Kidtopia pour en avoir jusqu’à 50."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De gratis versie bevat drie onderdelen per afspeellijst. Ontgrendel Kidtopia voor maximaal 50."
+            "value" : "De gratis versie bevat zeven onderdelen per afspeellijst. Ontgrendel Kidtopia voor maximaal 50."
           }
         }
       }

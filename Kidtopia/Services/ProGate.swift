@@ -16,7 +16,7 @@ enum ProGate {
             case .tilesPerProfile:
                 return isPro ? Int.max : 5
             case .mediaItemsPerTile:
-                return isPro ? 50 : 3
+                return isPro ? 50 : 7
             }
         }
     }
@@ -60,7 +60,7 @@ enum ProGate {
             )
         case .mediaItemsPerTile:
             return String(
-                localized: "The free version holds three items per playlist. Unlock Kidtopia for up to 50.",
+                localized: "The free version holds seven items per playlist. Unlock Kidtopia for up to 50.",
                 comment: "Free tier media item limit reached"
             )
         }

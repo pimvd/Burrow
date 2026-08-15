@@ -15,6 +15,15 @@ struct NowPlayingView: View {
 
     @State private var recorder = UsageRecorder()
 
+    /// Landscape only: the controls sit on top of the picture, so they step
+    /// back out of the way once the child has settled into watching.
+    @State private var controlsVisible = true
+
+    /// Bumped on every reveal so the auto-hide countdown starts again.
+    @State private var revealToken = 0
+
+    private static let controlsLinger = Duration.seconds(5)
+
     private var scale: AgeLayoutScale { profile.layoutScale }
 
     /// `true` when the current entry actually shows a picture. Audio entries
@@ -37,6 +46,18 @@ struct NowPlayingView: View {
         verticalSizeClass == .compact && isShowingVideo
     }
 
+    /// Only landscape ever hides anything. Portrait keeps the controls on
+    /// screen, where they have their own space and nothing to obscure.
+    private var controlsHidden: Bool {
+        isImmersive && !controlsVisible
+    }
+
+    /// Brings the overlaid controls back and restarts their countdown.
+    private func revealControls() {
+        controlsVisible = true
+        revealToken += 1
+    }
+
     var body: some View {
         // Both orientations use the same view tree. Rotating only changes
         // modifier values on it — never which branch of an `if` is taken —
@@ -49,10 +70,33 @@ struct NowPlayingView: View {
             .ignoresSafeArea(edges: isImmersive ? .all : [])
             // In portrait these reserve their own space above and below the
             // stage; in landscape the stage reaches past them, so they float
-            // on top of the picture instead.
-            .safeAreaInset(edge: .top, spacing: 0) { header }
-            .safeAreaInset(edge: .bottom, spacing: 0) { footer }
+            // on top of the picture instead — and fade out with it. Hidden
+            // controls stop taking touches, so an invisible close button
+            // cannot be hit by accident.
+            .safeAreaInset(edge: .top, spacing: 0) {
+                header
+                    .opacity(controlsHidden ? 0 : 1)
+                    .allowsHitTesting(!controlsHidden)
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                footer
+                    .opacity(controlsHidden ? 0 : 1)
+                    .allowsHitTesting(!controlsHidden)
+            }
             .animation(CalmStyle.transition, value: isImmersive)
+            .animation(CalmStyle.transition, value: controlsVisible)
+            .task(id: revealToken) {
+                guard isImmersive else { return }
+                try? await Task.sleep(for: Self.controlsLinger)
+                guard !Task.isCancelled else { return }
+                controlsVisible = false
+            }
+            .onChange(of: isImmersive) { _, immersive in
+                // Rotating either way brings the controls back, so the child
+                // is never left on a screen with nothing to touch.
+                controlsVisible = true
+                if immersive { revealToken += 1 }
+            }
             .background(profile.theme.wash.ignoresSafeArea())
             .background(Color(.systemBackground).ignoresSafeArea())
             .statusBarHidden()
@@ -118,6 +162,15 @@ struct NowPlayingView: View {
                         )
                         .id(playback.playToken)
                         .aspectRatio(16 / 9, contentMode: .fit)
+                        // The child must never reach the embed itself: a tap
+                        // on it would pause YouTube behind the app's back, and
+                        // a long press opens YouTube's own menu. This layer
+                        // swallows every touch and gives the controls back.
+                        .overlay {
+                            Color.clear
+                                .contentShape(Rectangle())
+                                .onTapGesture { revealControls() }
+                        }
                     } else {
                         artwork
                             .overlay(alignment: .bottom) {
