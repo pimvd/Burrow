@@ -32,10 +32,11 @@ Kidtopia/
   App/          Entry point, navigation router, parental session state
   Models/       SwiftData models, versioned schema, container factory
   Design/       Colour palette, avatars, age-driven layout scale, calm styling
+  Games/        The built-in game catalog and the games themselves
   Services/     Playback, store, statistics, export/import, trash, notifications
   ViewModels/   @Observable view models
   Views/
-    Child/      Profile picker, Music and Video tabs, tile grid, now playing
+    Child/      Profile picker, Music, Video and Games tabs, grids, now playing
     Parent/     Everything behind the birth-year gate
     Common/     Shared small views
   Resources/    Asset catalog and the String Catalog
@@ -48,6 +49,14 @@ Config/         Info.plist, entitlements, StoreKit configuration
 Apple Music) or a video playlist (local video and YouTube). The category is
 fixed at creation; `Tile.canAdd(sourceType:)` enforces it on every path,
 including import.
+
+**Games are code, not content.** `GameCatalog` is a fixed list compiled into
+the app, in the shape of `AvatarCatalog`. The only thing stored per child is
+which games the parent switched on, in `ChildProfile.enabledGameIDs`. Each game
+carries a stable hardcoded UUID and stands in as its own tile in usage rows, so
+the statistics screens count game time without knowing games exist. Screen time
+needs no special handling either: `ScreenTimeCoordinator` times the whole
+session, not individual activities.
 
 **Everything a parent can change sits behind the gate.** `ParentalGateView` asks
 for a birth year and accepts `1900 ... currentYear - 16`. Every failure shows the
@@ -101,7 +110,18 @@ xcodebuild build \
   -destination 'generic/platform=iOS Simulator'
 ```
 
-The same command runs in CI on every push (`.github/workflows/build.yml`).
+Tests use the same scheme, but need a booted simulator rather than a generic
+destination:
+
+```sh
+xcodebuild test \
+  -project Kidtopia.xcodeproj \
+  -scheme Kidtopia \
+  -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+```
+
+Both commands run in CI on every push (`.github/workflows/build.yml`), where
+the simulator is looked up with `simctl` rather than named.
 
 ## Localization
 
