@@ -7,7 +7,7 @@ import SwiftData
 /// `KidtopiaMigrationPlan`. Lightweight migrations run silently at container
 /// creation; nothing is surfaced to the parent unless a migration fails.
 enum KidtopiaSchemaV1: VersionedSchema {
-    static var versionIdentifier: Schema.Version { Schema.Version(1, 0, 0) }
+    static var versionIdentifier: Schema.Version { Schema.Version(1, 1, 0) }
 
     static var models: [any PersistentModel.Type] {
         [ChildProfile.self, Tile.self, MediaItem.self, UsageSession.self]

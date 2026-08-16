@@ -31,6 +31,12 @@ final class ChildProfile {
     /// Tiles owned by *other* profiles that the parent made visible here.
     var visibleSharedTileIDs: [UUID] = []
 
+    /// Identifiers from `GameCatalog` that the parent switched on for this
+    /// profile. Stored as strings rather than UUIDs so a game dropped from a
+    /// later build leaves an inert value behind rather than a dangling
+    /// reference.
+    var enabledGameIDs: [String] = []
+
     /// Bumped on every parent-side edit, used for the manual conflict check.
     var lastModified: Date = Date()
 
@@ -44,6 +50,7 @@ final class ChildProfile {
         dailyScreenTimeLimitMinutes: Int? = nil,
         lockScreenPlaybackEnabled: Bool = true,
         visibleSharedTileIDs: [UUID] = [],
+        enabledGameIDs: [String] = [],
         lastModified: Date = Date()
     ) {
         self.id = id
@@ -55,6 +62,7 @@ final class ChildProfile {
         self.dailyScreenTimeLimitMinutes = dailyScreenTimeLimitMinutes
         self.lockScreenPlaybackEnabled = lockScreenPlaybackEnabled
         self.visibleSharedTileIDs = visibleSharedTileIDs
+        self.enabledGameIDs = enabledGameIDs
         self.lastModified = lastModified
     }
 }
@@ -77,6 +85,17 @@ extension ChildProfile {
             ids.remove(tileID)
         }
         visibleSharedTileIDs = Array(ids)
+        lastModified = Date()
+    }
+
+    func setGame(_ identifier: String, enabled: Bool) {
+        var ids = Set(enabledGameIDs)
+        if enabled {
+            ids.insert(identifier)
+        } else {
+            ids.remove(identifier)
+        }
+        enabledGameIDs = Array(ids)
         lastModified = Date()
     }
 }
