@@ -15,6 +15,7 @@ enum AppScreen: Equatable {
 enum ParentDestination: Hashable {
     case profiles
     case tiles
+    case games
     case statistics
     case tileStatistics(tileID: UUID)
     case trash

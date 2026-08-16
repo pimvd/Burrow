@@ -43,6 +43,14 @@ struct ParentSettingsView: View {
                     }
                 }
 
+                NavigationLink(value: ParentDestination.games) {
+                    Label {
+                        Text("Games", comment: "Parent settings row")
+                    } icon: {
+                        Image(systemName: "gamecontroller")
+                    }
+                }
+
                 NavigationLink(value: ParentDestination.trash) {
                     Label {
                         LabeledContent {

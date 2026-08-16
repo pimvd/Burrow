@@ -36,6 +36,8 @@ struct ParentAreaView: View {
             ProfileListView()
         case .tiles:
             TileListView()
+        case .games:
+            ParentGamesView()
         case .statistics:
             StatisticsView()
         case .tileStatistics(let tileID):
