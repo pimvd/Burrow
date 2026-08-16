@@ -35,3 +35,25 @@ jobs:
             -skipMacroValidation \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_ENTITLEMENTS=""
+
+      # Tests need a booted runtime, so unlike the build they cannot use a
+      # generic destination. The device name is looked up rather than hardcoded,
+      # because which iPhone models a runner image ships changes with Xcode.
+      - name: Test
+        run: |
+          set -o pipefail
+          UDID=$(xcrun simctl list devices available --json | python3 -c "
+          import json, sys
+          devices = json.load(sys.stdin)['devices']
+          names = [d for runtime in devices.values() for d in runtime if 'iPhone' in d['name']]
+          if not names:
+              sys.exit('No iPhone simulator available on this runner')
+          print(names[0]['udid'])
+          ")
+          echo "Testing on simulator $UDID"
+          xcodebuild test \
+            -project Kidtopia.xcodeproj \
+            -scheme Kidtopia \
+            -configuration Debug \
+            -destination "id=$UDID" \
+            -skipMacroValidation
