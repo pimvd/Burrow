@@ -113,8 +113,14 @@ struct StatisticsView: View {
     }
 
     private func tileTitle(for tileID: UUID) -> String {
-        tiles.first { $0.id == tileID }?.title
-            ?? String(localized: "Removed tile", comment: "Deleted tile in statistics")
+        if let tile = tiles.first(where: { $0.id == tileID }) {
+            return tile.title
+        }
+        // Game rows carry the game's catalog UUID in place of a tile ID.
+        if let game = GameCatalog.game(id: tileID) {
+            return game.localizedTitle
+        }
+        return String(localized: "Removed tile", comment: "Deleted tile in statistics")
     }
 }
 

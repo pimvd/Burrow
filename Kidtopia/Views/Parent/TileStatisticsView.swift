@@ -21,11 +21,17 @@ struct TileStatisticsView: View {
     }
 
     private var itemTitles: [UUID: String] {
-        guard let tile else { return [:] }
-        return Dictionary(
-            tile.orderedMediaItems.map { ($0.id, $0.title) },
-            uniquingKeysWith: { first, _ in first }
-        )
+        if let tile {
+            return Dictionary(
+                tile.orderedMediaItems.map { ($0.id, $0.title) },
+                uniquingKeysWith: { first, _ in first }
+            )
+        }
+        // A game's play rows use the game's own UUID as the media item ID.
+        if let game = GameCatalog.game(id: tileID) {
+            return [game.id: game.localizedTitle]
+        }
+        return [:]
     }
 
     var body: some View {
@@ -99,7 +105,9 @@ struct TileStatisticsView: View {
             }
         }
         .navigationTitle(
-            Text(tile?.title ?? String(localized: "Tile", comment: "Fallback tile title"))
+            Text(tile?.title
+                ?? GameCatalog.game(id: tileID)?.localizedTitle
+                ?? String(localized: "Tile", comment: "Fallback tile title"))
         )
         .navigationBarTitleDisplayMode(.inline)
     }
