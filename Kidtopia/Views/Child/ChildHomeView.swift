@@ -10,6 +10,7 @@ struct ChildHomeView: View {
     @Environment(ConnectivityMonitor.self) private var connectivity
     @Environment(ScreenTimeCoordinator.self) private var screenTime
     @Environment(MediaPlaybackService.self) private var playback
+    @Environment(StoreManager.self) private var store
 
     @Query(sort: \Tile.sortOrder) private var allTiles: [Tile]
 
@@ -36,10 +37,22 @@ struct ChildHomeView: View {
                     )
                 }
                 .tag(ChildTab.video)
+
+            gameGrid
+                .tabItem {
+                    Label(
+                        String(localized: "Games", comment: "Child tab"),
+                        systemImage: "gamecontroller"
+                    )
+                }
+                .tag(ChildTab.games)
         }
         .background(profile.theme.wash.ignoresSafeArea())
         .fullScreenCover(item: $viewModel.presentedTile) { tile in
             NowPlayingView(tile: tile, profile: profile)
+        }
+        .fullScreenCover(item: $viewModel.presentedGame) { game in
+            GameHostView(game: game, profile: profile)
         }
         .fullScreenCover(isPresented: Binding(
             get: { screenTime.hasExpired },
@@ -53,6 +66,21 @@ struct ChildHomeView: View {
             guard expired else { return }
             playback.stop()
             viewModel.presentedTile = nil
+            viewModel.presentedGame = nil
+        }
+    }
+
+    @ViewBuilder
+    private var gameGrid: some View {
+        ZStack(alignment: .top) {
+            GameGridView(
+                games: viewModel.visibleGames(profile: profile, isPro: store.isPro),
+                profile: profile
+            ) { game in
+                viewModel.presentedGame = game
+            }
+
+            floatingControls
         }
     }
 
@@ -70,30 +98,35 @@ struct ChildHomeView: View {
                 viewModel.presentedTile = tile
             }
 
-            HStack(alignment: .top) {
-                Button {
-                    endSession()
-                } label: {
-                    Image(systemName: "person.crop.circle")
-                        .font(.system(size: 20))
-                        .foregroundStyle(.secondary)
-                        .frame(width: 44, height: 44)
-                        .background(.thinMaterial, in: Circle())
-                }
-                .buttonStyle(.calm)
-                .accessibilityLabel(Text("Choose another profile", comment: "Back to profile picker"))
-
-                Spacer(minLength: 0)
-
-                if screenTime.progress != nil {
-                    ScreenTimeIndicator()
-                }
-
-                ParentEntryButton()
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
+            floatingControls
         }
+    }
+
+    /// The small controls that float over every tab's grid.
+    private var floatingControls: some View {
+        HStack(alignment: .top) {
+            Button {
+                endSession()
+            } label: {
+                Image(systemName: "person.crop.circle")
+                    .font(.system(size: 20))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 44, height: 44)
+                    .background(.thinMaterial, in: Circle())
+            }
+            .buttonStyle(.calm)
+            .accessibilityLabel(Text("Choose another profile", comment: "Back to profile picker"))
+
+            Spacer(minLength: 0)
+
+            if screenTime.progress != nil {
+                ScreenTimeIndicator()
+            }
+
+            ParentEntryButton()
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
 
     private func endSession() {
