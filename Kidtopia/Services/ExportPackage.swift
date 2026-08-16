@@ -25,6 +25,7 @@ struct ExportPackage: Codable, Equatable {
         var dailyScreenTimeLimitMinutes: Int?
         var lockScreenPlaybackEnabled: Bool
         var visibleSharedTileIDs: [UUID]
+        var enabledGameIDs: [String] = []
 
         init(profile: ChildProfile) {
             id = profile.id
@@ -36,6 +37,40 @@ struct ExportPackage: Codable, Equatable {
             dailyScreenTimeLimitMinutes = profile.dailyScreenTimeLimitMinutes
             lockScreenPlaybackEnabled = profile.lockScreenPlaybackEnabled
             visibleSharedTileIDs = profile.visibleSharedTileIDs
+            enabledGameIDs = profile.enabledGameIDs
+        }
+
+        /// `Codable` is otherwise synthesized. A synthesized `init(from:)` does
+        /// not fall back to a property's default when the key is missing — it
+        /// throws — so a package exported before games existed would fail to
+        /// import. Only the decoder is written out; `encode(to:)` stays
+        /// synthesized and uses the same `CodingKeys`.
+        enum CodingKeys: String, CodingKey {
+            case id, name, avatarIconName, colorThemeName, sortOrder, ageYears
+            case dailyScreenTimeLimitMinutes, lockScreenPlaybackEnabled
+            case visibleSharedTileIDs, enabledGameIDs
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(UUID.self, forKey: .id)
+            name = try container.decode(String.self, forKey: .name)
+            avatarIconName = try container.decode(String.self, forKey: .avatarIconName)
+            colorThemeName = try container.decode(String.self, forKey: .colorThemeName)
+            sortOrder = try container.decode(Int.self, forKey: .sortOrder)
+            ageYears = try container.decode(Int.self, forKey: .ageYears)
+            dailyScreenTimeLimitMinutes = try container.decodeIfPresent(
+                Int.self, forKey: .dailyScreenTimeLimitMinutes
+            )
+            lockScreenPlaybackEnabled = try container.decode(
+                Bool.self, forKey: .lockScreenPlaybackEnabled
+            )
+            visibleSharedTileIDs = try container.decode(
+                [UUID].self, forKey: .visibleSharedTileIDs
+            )
+            enabledGameIDs = try container.decodeIfPresent(
+                [String].self, forKey: .enabledGameIDs
+            ) ?? []
         }
 
         func makeModel() -> ChildProfile {
@@ -48,7 +83,10 @@ struct ExportPackage: Codable, Equatable {
                 ageYears: ageYears,
                 dailyScreenTimeLimitMinutes: dailyScreenTimeLimitMinutes,
                 lockScreenPlaybackEnabled: lockScreenPlaybackEnabled,
-                visibleSharedTileIDs: visibleSharedTileIDs
+                visibleSharedTileIDs: visibleSharedTileIDs,
+                // Dropped rather than kept, so a package from a newer build
+                // cannot switch on a game this build does not have.
+                enabledGameIDs: enabledGameIDs.filter { GameCatalog.game(identifier: $0) != nil }
             )
         }
     }
