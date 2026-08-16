@@ -14,11 +14,7 @@ struct MatchingPairsGame: View {
     @State private var board = MatchingPairsBoard(symbols: [])
     @State private var mismatchToken = 0
 
-    private var scale: AgeLayoutScale { profile.layoutScale }
-
-    /// Four pairs for the youngest, six for everyone else, so a board stays
-    /// finishable. Layout comfort only — it is not an availability rule.
-    private var pairCount: Int { scale.ageYears <= 4 ? 4 : 6 }
+    private static let pairCount = 6
 
     var body: some View {
         VStack(spacing: 24) {
@@ -85,7 +81,7 @@ struct MatchingPairsGame: View {
     }
 
     private func startRound() {
-        var fresh = MatchingPairsBoard(symbols: Array(Self.symbols.prefix(pairCount)))
+        var fresh = MatchingPairsBoard(symbols: Array(Self.symbols.prefix(Self.pairCount)))
         fresh.shuffle()
         board = fresh
     }

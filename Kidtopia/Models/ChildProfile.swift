@@ -19,9 +19,6 @@ final class ChildProfile {
 
     var sortOrder: Int = 0
 
-    /// Drives tile size, label visibility and playback controls. Range 2...12.
-    var ageYears: Int = 5
-
     /// `nil` means no screen time limit for this profile.
     var dailyScreenTimeLimitMinutes: Int?
 
@@ -46,7 +43,6 @@ final class ChildProfile {
         avatarIconName: String = AvatarCatalog.fallbackIdentifier,
         colorThemeName: String = ThemePalette.fallbackIdentifier,
         sortOrder: Int = 0,
-        ageYears: Int = 5,
         dailyScreenTimeLimitMinutes: Int? = nil,
         lockScreenPlaybackEnabled: Bool = true,
         visibleSharedTileIDs: [UUID] = [],
@@ -58,7 +54,6 @@ final class ChildProfile {
         self.avatarIconName = avatarIconName
         self.colorThemeName = colorThemeName
         self.sortOrder = sortOrder
-        self.ageYears = ageYears
         self.dailyScreenTimeLimitMinutes = dailyScreenTimeLimitMinutes
         self.lockScreenPlaybackEnabled = lockScreenPlaybackEnabled
         self.visibleSharedTileIDs = visibleSharedTileIDs
@@ -70,7 +65,6 @@ final class ChildProfile {
 extension ChildProfile {
     var theme: ThemePalette { ThemePalette.palette(named: colorThemeName) }
     var avatar: AvatarCatalog.Avatar { AvatarCatalog.avatar(named: avatarIconName) }
-    var layoutScale: AgeLayoutScale { AgeLayoutScale(ageYears: ageYears) }
 
     func canSee(tile: Tile) -> Bool {
         guard !tile.isTrashed, !tile.isHidden else { return false }

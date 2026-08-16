@@ -183,8 +183,8 @@ private struct ProfileRow: View {
                     .foregroundStyle(.primary)
 
                 Text(
-                    "\(profile.ageYears) years · \(tileCount) tiles",
-                    comment: "Profile row subtitle: age and tile count"
+                    "\(tileCount) tiles",
+                    comment: "Profile row subtitle: tile count"
                 )
                 .font(.subheadline)
                 .foregroundStyle(.secondary)

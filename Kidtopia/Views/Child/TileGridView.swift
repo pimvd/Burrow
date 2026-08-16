@@ -9,13 +9,11 @@ struct TileGridView: View {
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
-    private var scale: AgeLayoutScale { profile.layoutScale }
-
     var body: some View {
         ScrollView {
             LazyVGrid(
-                columns: [scale.gridItem(forRegularWidth: horizontalSizeClass == .regular)],
-                spacing: scale.gridSpacing
+                columns: [CalmStyle.gridItem(forRegularWidth: horizontalSizeClass == .regular)],
+                spacing: CalmStyle.gridSpacing
             ) {
                 ForEach(tiles) { tile in
                     Button {
@@ -28,8 +26,8 @@ struct TileGridView: View {
                     .accessibilityHint(Text("Opens this playlist", comment: "Tile accessibility hint"))
                 }
             }
-            .padding(.horizontal, scale.gridPadding)
-            .padding(.bottom, scale.gridPadding)
+            .padding(.horizontal, CalmStyle.gridPadding)
+            .padding(.bottom, CalmStyle.gridPadding)
             // Leaves room for the small controls floating at the top.
             .padding(.top, 64)
             .animation(CalmStyle.transition, value: tiles.map(\.id))

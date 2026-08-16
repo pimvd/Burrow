@@ -31,7 +31,7 @@ device.
 Kidtopia/
   App/          Entry point, navigation router, parental session state
   Models/       SwiftData models, versioned schema, container factory
-  Design/       Colour palette, avatars, age-driven layout scale, calm styling
+  Design/       Colour palette, avatars, calm styling and layout constants
   Games/        The built-in game catalog and the games themselves
   Services/     Playback, store, statistics, export/import, trash, notifications
   ViewModels/   @Observable view models
@@ -64,9 +64,10 @@ same message, so a child cannot learn the rule by trying. The unlock lasts until
 the parent leaves the parent area or the app is backgrounded.
 
 **The child interface is deliberately quiet.** Muted palettes, no sound effects,
-one `easeInOut` animation shared through `CalmStyle`. `AgeLayoutScale` turns a
-profile's age (2–12) into tile size, whether captions appear and whether
-playback shows transport buttons or expects a swipe.
+one `easeInOut` animation shared through `CalmStyle`. The same file holds the
+tile grid's measurements — width, corner radius, spacing, padding, title font.
+Every child gets that one layout: captions always show and playback always has
+its transport buttons.
 
 **Playback never shows a playlist.** `MediaPlaybackService` owns the play order
 (honouring shuffle and loop), drives `AVQueuePlayer`, MusicKit and the YouTube

@@ -12,6 +12,25 @@ enum CalmStyle {
     static let cardShadowRadius: CGFloat = 6
     static let cardShadowOpacity: Double = 0.08
     static let sectionSpacing: CGFloat = 24
+
+    // MARK: - Tile grid
+    //
+    // One layout for every child. These were previously derived from a
+    // profile's age; the values here are the ones a five-year-old got, which
+    // was the default, so no profile set up with the default age changes.
+
+    static let tileMinimumWidth: CGFloat = 210
+    static let tileCornerRadius: CGFloat = 28
+    static let gridSpacing: CGFloat = 24
+    static let gridPadding: CGFloat = 20
+    static let tileTitleFont: Font = .title3.weight(.semibold)
+
+    /// Tiles are laid out with an adaptive grid, so a wider window (iPad, or an
+    /// iPhone in landscape) simply fits more columns of the same size.
+    static func gridItem(forRegularWidth isRegularWidth: Bool) -> GridItem {
+        let minimum = isRegularWidth ? tileMinimumWidth * 1.1 : tileMinimumWidth
+        return GridItem(.adaptive(minimum: minimum), spacing: gridSpacing)
+    }
 }
 
 extension View {

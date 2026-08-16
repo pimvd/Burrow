@@ -146,35 +146,6 @@
         }
       }
     },
-    "%1$lld years · %2$lld tiles": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld Jahre · %2$lld Kacheln"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld años · %2$lld mosaicos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld ans · %2$lld tuiles"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld jaar · %2$lld tegels"
-          }
-        }
-      }
-    },
     "%@ was also changed somewhere else while you were editing. Which version should Kidtopia keep?": {
       "comment": "Conflict dialog explanation",
       "localizations": {
@@ -379,6 +350,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld procent"
+          }
+        }
+      }
+    },
+    "%lld tiles": {
+      "comment": "Profile row subtitle: tile count",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Kacheln"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld mosaicos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld tuiles"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld tegels"
           }
         }
       }
@@ -784,35 +784,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Vliegtuig"
-          }
-        }
-      }
-    },
-    "Age": {
-      "comment": "Profile age slider accessibility label\nProfile age slider label\nProfile editor section",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alter"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edad"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Âge"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leeftijd"
           }
         }
       }
@@ -6121,35 +6092,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die afbeelding kon niet worden gebruikt."
-          }
-        }
-      }
-    },
-    "The age sets how large the tiles are, whether captions are shown and whether there are next and previous buttons during playback.": {
-      "comment": "Age slider explanation",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Das Alter bestimmt, wie groß die Kacheln sind, ob Beschriftungen erscheinen und ob es beim Abspielen Vor- und Zurück-Tasten gibt."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La edad define el tamaño de los mosaicos, si se muestran textos y si hay botones de anterior y siguiente durante la reproducción."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L’âge détermine la taille des tuiles, l’affichage des légendes et la présence des boutons précédent et suivant pendant la lecture."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De leeftijd bepaalt hoe groot de tegels zijn, of er tekst onder staat en of er knoppen voor vorige en volgende zijn tijdens het afspelen."
           }
         }
       }

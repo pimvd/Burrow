@@ -21,7 +21,6 @@ struct ExportPackage: Codable, Equatable {
         var avatarIconName: String
         var colorThemeName: String
         var sortOrder: Int
-        var ageYears: Int
         var dailyScreenTimeLimitMinutes: Int?
         var lockScreenPlaybackEnabled: Bool
         var visibleSharedTileIDs: [UUID]
@@ -33,7 +32,6 @@ struct ExportPackage: Codable, Equatable {
             avatarIconName = profile.avatarIconName
             colorThemeName = profile.colorThemeName
             sortOrder = profile.sortOrder
-            ageYears = profile.ageYears
             dailyScreenTimeLimitMinutes = profile.dailyScreenTimeLimitMinutes
             lockScreenPlaybackEnabled = profile.lockScreenPlaybackEnabled
             visibleSharedTileIDs = profile.visibleSharedTileIDs
@@ -46,7 +44,7 @@ struct ExportPackage: Codable, Equatable {
         /// import. Only the decoder is written out; `encode(to:)` stays
         /// synthesized and uses the same `CodingKeys`.
         enum CodingKeys: String, CodingKey {
-            case id, name, avatarIconName, colorThemeName, sortOrder, ageYears
+            case id, name, avatarIconName, colorThemeName, sortOrder
             case dailyScreenTimeLimitMinutes, lockScreenPlaybackEnabled
             case visibleSharedTileIDs, enabledGameIDs
         }
@@ -58,7 +56,6 @@ struct ExportPackage: Codable, Equatable {
             avatarIconName = try container.decode(String.self, forKey: .avatarIconName)
             colorThemeName = try container.decode(String.self, forKey: .colorThemeName)
             sortOrder = try container.decode(Int.self, forKey: .sortOrder)
-            ageYears = try container.decode(Int.self, forKey: .ageYears)
             dailyScreenTimeLimitMinutes = try container.decodeIfPresent(
                 Int.self, forKey: .dailyScreenTimeLimitMinutes
             )
@@ -80,7 +77,6 @@ struct ExportPackage: Codable, Equatable {
                 avatarIconName: avatarIconName,
                 colorThemeName: colorThemeName,
                 sortOrder: sortOrder,
-                ageYears: ageYears,
                 dailyScreenTimeLimitMinutes: dailyScreenTimeLimitMinutes,
                 lockScreenPlaybackEnabled: lockScreenPlaybackEnabled,
                 visibleSharedTileIDs: visibleSharedTileIDs,

@@ -18,7 +18,6 @@ struct ProfileEditorView: View {
     @State private var name = ""
     @State private var avatarIconName = AvatarCatalog.fallbackIdentifier
     @State private var colorThemeName = ThemePalette.fallbackIdentifier
-    @State private var ageYears = 5.0
     @State private var hasScreenTimeLimit = false
     @State private var screenTimeLimitMinutes = 30
     @State private var lockScreenPlaybackEnabled = true
@@ -61,32 +60,6 @@ struct ProfileEditorView: View {
                 ThemePickerRow(selection: $colorThemeName)
             } header: {
                 Text("Colour", comment: "Profile editor section")
-            }
-
-            Section {
-                VStack(alignment: .leading, spacing: 8) {
-                    LabeledContent {
-                        Text("\(Int(ageYears))")
-                            .monospacedDigit()
-                    } label: {
-                        Text("Age", comment: "Profile age slider label")
-                    }
-
-                    Slider(
-                        value: $ageYears,
-                        in: Double(AgeLayoutScale.minimumAge)...Double(AgeLayoutScale.maximumAge),
-                        step: 1
-                    ) {
-                        Text("Age", comment: "Profile age slider accessibility label")
-                    }
-                }
-            } header: {
-                Text("Age", comment: "Profile editor section")
-            } footer: {
-                Text(
-                    "The age sets how large the tiles are, whether captions are shown and whether there are next and previous buttons during playback.",
-                    comment: "Age slider explanation"
-                )
             }
 
             Section {
@@ -205,7 +178,6 @@ struct ProfileEditorView: View {
         name = profile.name
         avatarIconName = profile.avatarIconName
         colorThemeName = profile.colorThemeName
-        ageYears = Double(profile.ageYears)
         hasScreenTimeLimit = profile.dailyScreenTimeLimitMinutes != nil
         screenTimeLimitMinutes = profile.dailyScreenTimeLimitMinutes ?? 30
         lockScreenPlaybackEnabled = profile.lockScreenPlaybackEnabled
@@ -252,7 +224,6 @@ struct ProfileEditorView: View {
         target.name = trimmedName
         target.avatarIconName = avatarIconName
         target.colorThemeName = colorThemeName
-        target.ageYears = Int(ageYears)
         target.dailyScreenTimeLimitMinutes = hasScreenTimeLimit ? screenTimeLimitMinutes : nil
         target.lockScreenPlaybackEnabled = lockScreenPlaybackEnabled
         target.visibleSharedTileIDs = Array(visibleSharedTileIDs)

@@ -6,8 +6,6 @@ struct GameCardView: View {
     let game: GameCatalog.Game
     let profile: ChildProfile
 
-    private var scale: AgeLayoutScale { profile.layoutScale }
-
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -20,19 +18,17 @@ struct GameCardView: View {
             .frame(maxWidth: .infinity)
             .clipped()
 
-            if scale.showsTileLabels {
-                Text(game.localizedTitle)
-                    .font(scale.tileTitleFont)
-                    .foregroundStyle(.primary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 12)
-            }
+            Text(game.localizedTitle)
+                .font(CalmStyle.tileTitleFont)
+                .foregroundStyle(.primary)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 12)
         }
         .background(Color(.secondarySystemBackground))
-        .calmCard(cornerRadius: scale.tileCornerRadius)
-        .contentShape(RoundedRectangle(cornerRadius: scale.tileCornerRadius, style: .continuous))
+        .calmCard(cornerRadius: CalmStyle.tileCornerRadius)
+        .contentShape(RoundedRectangle(cornerRadius: CalmStyle.tileCornerRadius, style: .continuous))
     }
 }

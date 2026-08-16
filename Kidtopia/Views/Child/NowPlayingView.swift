@@ -24,8 +24,6 @@ struct NowPlayingView: View {
 
     private static let controlsLinger = Duration.seconds(5)
 
-    private var scale: AgeLayoutScale { profile.layoutScale }
-
     /// `true` when the current entry actually shows a picture. Audio entries
     /// keep the normal layout in every orientation.
     private var isShowingVideo: Bool {
@@ -220,7 +218,6 @@ struct NowPlayingView: View {
             }
         }
         .contentShape(Rectangle())
-        .gesture(swipeGesture)
     }
 
     /// The picture shown for anything without a moving image: the sleeve of the
@@ -261,33 +258,28 @@ struct NowPlayingView: View {
         }
     }
 
-    @ViewBuilder
     private var footer: some View {
-        if scale.showsTransportButtons {
-            HStack(spacing: 36) {
-                transportButton(systemImage: "backward.fill", label: String(localized: "Previous", comment: "Transport button")) {
-                    playback.previous()
-                }
-
-                transportButton(
-                    systemImage: playback.isPlaying ? "pause.fill" : "play.fill",
-                    label: playback.isPlaying
-                        ? String(localized: "Pause", comment: "Transport button")
-                        : String(localized: "Play", comment: "Transport button"),
-                    diameter: 96
-                ) {
-                    playback.togglePlayPause()
-                }
-
-                transportButton(systemImage: "forward.fill", label: String(localized: "Next", comment: "Transport button")) {
-                    playback.next()
-                }
+        HStack(spacing: 36) {
+            transportButton(systemImage: "backward.fill", label: String(localized: "Previous", comment: "Transport button")) {
+                playback.previous()
             }
-            .padding(.bottom, 32)
-            .padding(.top, 12)
-        } else {
-            Color.clear.frame(height: 24)
+
+            transportButton(
+                systemImage: playback.isPlaying ? "pause.fill" : "play.fill",
+                label: playback.isPlaying
+                    ? String(localized: "Pause", comment: "Transport button")
+                    : String(localized: "Play", comment: "Transport button"),
+                diameter: 96
+            ) {
+                playback.togglePlayPause()
+            }
+
+            transportButton(systemImage: "forward.fill", label: String(localized: "Next", comment: "Transport button")) {
+                playback.next()
+            }
         }
+        .padding(.bottom, 32)
+        .padding(.top, 12)
     }
 
     private func transportButton(
@@ -305,19 +297,6 @@ struct NowPlayingView: View {
         }
         .buttonStyle(.calm)
         .accessibilityLabel(Text(label))
-    }
-
-    /// Older children navigate the playlist by swiping instead of with buttons.
-    private var swipeGesture: some Gesture {
-        DragGesture(minimumDistance: 40)
-            .onEnded { value in
-                guard !scale.showsTransportButtons else { return }
-                if value.translation.width < -40 {
-                    playback.next()
-                } else if value.translation.width > 40 {
-                    playback.previous()
-                }
-            }
     }
 
     // MARK: - Lifecycle

@@ -27,7 +27,11 @@ struct ExportGamesTests {
         #expect(decoded.enabledGameIDs.isEmpty)
     }
 
-    @Test("A package written before games decodes with none enabled")
+    /// An older package predates games and still carries `ageYears`, which no
+    /// longer exists on the model. Both have to be tolerated: the missing key
+    /// falls back to empty, and the retired one is ignored rather than failing
+    /// the import.
+    @Test("A package written before games, and before age was removed, still imports")
     func decodesOlderPackages() throws {
         let json = """
         {
@@ -46,6 +50,19 @@ struct ExportGamesTests {
             from: Data(json.utf8)
         )
         #expect(record.enabledGameIDs.isEmpty)
+        #expect(record.name == "Melle")
+        #expect(record.makeModel().name == "Melle")
+    }
+
+    @Test("A freshly written package carries no age field at all")
+    func doesNotWriteAge() throws {
+        let data = try JSONEncoder().encode(
+            ExportPackage.ProfileRecord(profile: ChildProfile(name: "Melle"))
+        )
+        let object = try #require(
+            try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        )
+        #expect(object["ageYears"] == nil)
     }
 
     @Test("Encoding and decoding a record preserves enabled games")

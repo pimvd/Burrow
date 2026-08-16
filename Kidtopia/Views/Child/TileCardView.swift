@@ -5,8 +5,6 @@ struct TileCardView: View {
     let tile: Tile
     let profile: ChildProfile
 
-    private var scale: AgeLayoutScale { profile.layoutScale }
-
     var body: some View {
         VStack(spacing: 0) {
             TileImageView(
@@ -19,19 +17,17 @@ struct TileCardView: View {
             .frame(maxWidth: .infinity)
             .clipped()
 
-            if scale.showsTileLabels {
-                Text(tile.title)
-                    .font(scale.tileTitleFont)
-                    .foregroundStyle(.primary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 12)
-            }
+            Text(tile.title)
+                .font(CalmStyle.tileTitleFont)
+                .foregroundStyle(.primary)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 12)
         }
         .background(Color(.secondarySystemBackground))
-        .calmCard(cornerRadius: scale.tileCornerRadius)
-        .contentShape(RoundedRectangle(cornerRadius: scale.tileCornerRadius, style: .continuous))
+        .calmCard(cornerRadius: CalmStyle.tileCornerRadius)
+        .contentShape(RoundedRectangle(cornerRadius: CalmStyle.tileCornerRadius, style: .continuous))
     }
 }
