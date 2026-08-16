@@ -64,17 +64,30 @@ struct MatchingPairsGame: View {
         }
     }
 
+    private static let cardCornerRadius: CGFloat = 20
+    private static let cardBorderWidth: CGFloat = 2
+
     @ViewBuilder
     private func cardFace(_ card: MatchingPairsBoard.Card) -> some View {
+        let shape = RoundedRectangle(cornerRadius: Self.cardCornerRadius, style: .continuous)
+
         ZStack {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(card.isFaceUp ? profile.theme.wash : Color(.secondarySystemBackground))
+            shape.fill(card.isFaceUp ? profile.theme.wash : Color(.secondarySystemBackground))
 
             if card.isFaceUp {
                 Image(systemName: card.symbolName)
                     .font(.system(size: 40, weight: .light))
                     .foregroundStyle(profile.theme.tint)
             }
+        }
+        // Every card needs an edge of its own. A face-up card is filled with
+        // the profile's wash, which is exactly the colour behind the board, so
+        // without this it has no visible outline at all.
+        .overlay {
+            shape.strokeBorder(
+                profile.theme.tint.opacity(card.isFaceUp ? 0.55 : 0.3),
+                lineWidth: Self.cardBorderWidth
+            )
         }
         .aspectRatio(1, contentMode: .fit)
         .opacity(card.isMatched ? 0.45 : 1)
