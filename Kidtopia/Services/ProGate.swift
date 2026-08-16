@@ -8,6 +8,7 @@ enum ProGate {
         case profiles
         case tilesPerProfile
         case mediaItemsPerTile
+        case gamesPerProfile
 
         func maximum(isPro: Bool) -> Int {
             switch self {
@@ -17,6 +18,8 @@ enum ProGate {
                 return isPro ? Int.max : 5
             case .mediaItemsPerTile:
                 return isPro ? 50 : 7
+            case .gamesPerProfile:
+                return isPro ? Int.max : 2
             }
         }
     }
@@ -42,7 +45,7 @@ enum ProGate {
                     localized: "A playlist can hold up to 50 items.",
                     comment: "Paid tier media item limit reached"
                 )
-            case .profiles, .tilesPerProfile:
+            case .profiles, .tilesPerProfile, .gamesPerProfile:
                 return ""
             }
         }
@@ -62,6 +65,11 @@ enum ProGate {
             return String(
                 localized: "The free version holds seven items per playlist. Unlock Kidtopia for up to 50.",
                 comment: "Free tier media item limit reached"
+            )
+        case .gamesPerProfile:
+            return String(
+                localized: "The free version includes two games per profile. Unlock Kidtopia for all of them.",
+                comment: "Free tier game limit reached"
             )
         }
     }
