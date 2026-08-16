@@ -18,7 +18,7 @@ struct ChildHomeView: View {
     var body: some View {
         @Bindable var viewModel = viewModel
 
-        TabView(selection: $viewModel.selectedCategory) {
+        TabView(selection: $viewModel.selectedTab) {
             tileGrid(for: .music)
                 .tabItem {
                     Label(
@@ -26,7 +26,7 @@ struct ChildHomeView: View {
                         systemImage: "music.note"
                     )
                 }
-                .tag(TileCategory.music)
+                .tag(ChildTab.music)
 
             tileGrid(for: .video)
                 .tabItem {
@@ -35,7 +35,7 @@ struct ChildHomeView: View {
                         systemImage: "film"
                     )
                 }
-                .tag(TileCategory.video)
+                .tag(ChildTab.video)
         }
         .background(profile.theme.wash.ignoresSafeArea())
         .fullScreenCover(item: $viewModel.presentedTile) { tile in
