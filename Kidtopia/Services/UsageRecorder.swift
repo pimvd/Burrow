@@ -16,6 +16,7 @@ import SwiftData
 final class UsageRecorder {
     private var profileID: UUID?
     private var tileID: UUID?
+    private var gameIdentifier: String?
     private var currentEntryID: UUID?
     private var currentEntryStart: Date?
 
@@ -66,6 +67,7 @@ final class UsageRecorder {
             profileID: profileID,
             tileID: tileID,
             mediaItemID: entryID,
+            gameIdentifier: gameIdentifier,
             startTime: start,
             durationSeconds: seconds
         )
@@ -78,5 +80,44 @@ final class UsageRecorder {
         finishCurrentEntry(in: context, now: now)
         profileID = nil
         tileID = nil
+        gameIdentifier = nil
+    }
+
+    /// Records that a game was opened and starts timing it.
+    ///
+    /// A game has no playlist, so the visit is both the opening and the single
+    /// entry: the game's stable UUID stands in for the tile *and* for the
+    /// media item. That is what lets `StatisticsService` sum game time without
+    /// knowing games exist — a play row is recognised by a non-nil
+    /// `mediaItemID`, and a game row has one.
+    func beginGame(
+        profileID: UUID,
+        game: GameCatalog.Game,
+        in context: ModelContext,
+        now: Date = Date()
+    ) {
+        finishCurrentEntry(in: context, now: now)
+        self.profileID = profileID
+        self.tileID = game.id
+        self.gameIdentifier = game.identifier
+
+        let marker = UsageSession(
+            profileID: profileID,
+            tileID: game.id,
+            mediaItemID: nil,
+            gameIdentifier: game.identifier,
+            startTime: now,
+            durationSeconds: 0
+        )
+        context.insert(marker)
+        ModelSaver.save(context, describing: "recording a game opening")
+
+        currentEntryID = game.id
+        currentEntryStart = now
+    }
+
+    /// Ends the whole visit to a game.
+    func endGame(in context: ModelContext, now: Date = Date()) {
+        endTile(in: context, now: now)
     }
 }

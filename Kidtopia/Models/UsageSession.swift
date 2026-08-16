@@ -10,6 +10,11 @@ final class UsageSession {
     var profileID: UUID = UUID()
     var tileID: UUID = UUID()
     var mediaItemID: UUID?
+
+    /// Set on rows written by a game, `nil` on every media row. The row's
+    /// `tileID` is then the game's stable catalog UUID.
+    var gameIdentifier: String?
+
     var startTime: Date = Date()
     var durationSeconds: Int = 0
 
@@ -18,6 +23,7 @@ final class UsageSession {
         profileID: UUID,
         tileID: UUID,
         mediaItemID: UUID? = nil,
+        gameIdentifier: String? = nil,
         startTime: Date = Date(),
         durationSeconds: Int = 0
     ) {
@@ -25,6 +31,7 @@ final class UsageSession {
         self.profileID = profileID
         self.tileID = tileID
         self.mediaItemID = mediaItemID
+        self.gameIdentifier = gameIdentifier
         self.startTime = startTime
         self.durationSeconds = durationSeconds
     }
