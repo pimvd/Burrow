@@ -45,9 +45,13 @@ struct ConnectFourBoardTests {
     @Test("A full column is closed and refuses more discs")
     func fillsUp() {
         var board = ConnectFourBoard()
-        for _ in 0 ..< ConnectFourBoard.rows {
-            board.drop(.child, in: 6)
+        // Two of each in turn, or the fourth disc would win the game and the
+        // column would never fill.
+        for drop in 0 ..< ConnectFourBoard.rows {
+            board.drop(drop % 4 < 2 ? .child : .computer, in: 6)
         }
+
+        #expect(board.result == nil)
 
         #expect(board.landingRow(in: 6) == nil)
         #expect(!board.openColumns.contains(6))
