@@ -27,7 +27,8 @@ struct TicTacToeBoardTests {
     @Test("Placing a mark fills the cell")
     func placesMark() {
         var board = TicTacToeBoard()
-        #expect(board.place(.child, at: 4))
+        let placed = board.place(.child, at: 4)
+        #expect(placed)
         #expect(board.cells[4] == .child)
         #expect(board.emptyCells.count == 8)
     }
@@ -36,15 +37,18 @@ struct TicTacToeBoardTests {
     func rejectsTakenCell() {
         var board = TicTacToeBoard()
         board.place(.child, at: 0)
-        #expect(!board.place(.computer, at: 0))
+        let taken = board.place(.computer, at: 0)
+        #expect(!taken)
         #expect(board.cells[0] == .child)
     }
 
     @Test("A cell outside the board is refused")
     func rejectsOutOfRange() {
         var board = TicTacToeBoard()
-        #expect(!board.place(.child, at: 9))
-        #expect(!board.place(.child, at: -1))
+        let past = board.place(.child, at: 9)
+        let before = board.place(.child, at: -1)
+        #expect(!past)
+        #expect(!before)
     }
 
     @Test("Three in a row wins and reports the line")
@@ -73,7 +77,8 @@ struct TicTacToeBoardTests {
     func refusesMovesAfterTheEnd() {
         var board = TicTacToeBoard()
         for cell in [0, 1, 2] { board.place(.child, at: cell) }
-        #expect(!board.place(.computer, at: 5))
+        let late = board.place(.computer, at: 5)
+        #expect(!late)
     }
 
     @Test("A full board with no line is a draw")

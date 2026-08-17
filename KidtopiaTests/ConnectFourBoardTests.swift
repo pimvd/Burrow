@@ -25,7 +25,8 @@ struct ConnectFourBoardTests {
     @Test("A disc falls to the bottom row")
     func fallsToTheBottom() {
         var board = ConnectFourBoard()
-        #expect(board.drop(.child, in: 3))
+        let dropped = board.drop(.child, in: 3)
+        #expect(dropped)
         #expect(board.disc(row: ConnectFourBoard.rows - 1, column: 3) == .child)
         #expect(board.disc(row: 0, column: 3) == nil)
     }
@@ -50,14 +51,17 @@ struct ConnectFourBoardTests {
 
         #expect(board.landingRow(in: 6) == nil)
         #expect(!board.openColumns.contains(6))
-        #expect(!board.drop(.computer, in: 6))
+        let onAFullColumn = board.drop(.computer, in: 6)
+        #expect(!onAFullColumn)
     }
 
     @Test("A column outside the board is refused")
     func rejectsOutOfRange() {
         var board = ConnectFourBoard()
-        #expect(!board.drop(.child, in: ConnectFourBoard.columns))
-        #expect(!board.drop(.child, in: -1))
+        let past = board.drop(.child, in: ConnectFourBoard.columns)
+        let before = board.drop(.child, in: -1)
+        #expect(!past)
+        #expect(!before)
         #expect(board.landingRow(in: 99) == nil)
     }
 
@@ -106,7 +110,8 @@ struct ConnectFourBoardTests {
     func refusesDropsAfterTheEnd() {
         var board = ConnectFourBoard()
         for column in 0 ..< 4 { board.drop(.child, in: column) }
-        #expect(!board.drop(.computer, in: 5))
+        let late = board.drop(.computer, in: 5)
+        #expect(!late)
     }
 
     @Test("Immediate wins name the columns that finish a run")
