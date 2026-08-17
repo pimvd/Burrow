@@ -33,6 +33,16 @@ struct GameHostView: View {
         switch game.identifier {
         case GameCatalog.matchingPairs:
             MatchingPairsGame(profile: profile)
+        case GameCatalog.oddOneOut:
+            OddOneOutGame(profile: profile)
+        case GameCatalog.patternMemory:
+            PatternMemoryGame(profile: profile)
+        case GameCatalog.ticTacToe:
+            TicTacToeGame(profile: profile)
+        case GameCatalog.connectFour:
+            ConnectFourGame(profile: profile)
+        case GameCatalog.hangman:
+            HangmanGame(profile: profile)
         default:
             // Unreachable: every catalog entry is handled above, and the
             // catalog is the only source of games.

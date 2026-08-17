@@ -383,6 +383,35 @@
         }
       }
     },
+    "%lld tries left": {
+      "comment": "Remaining Hangman guesses",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %lld Versuche"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quedan %lld intentos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %lld essais"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog %lld pogingen"
+          }
+        }
+      }
+    },
     "%lld:00": {
       "comment": "Hour of day axis label",
       "localizations": {
@@ -581,6 +610,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Een tegel is een grote afbeelding waar je kind op tikt. Kies muziek of video en voeg daarna de nummers of video’s toe."
+          }
+        }
+      }
+    },
+    "APPLE": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "APFEL"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MANZANA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "POMME"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "APPEL"
           }
         }
       }
@@ -991,6 +1049,93 @@
         }
       }
     },
+    "BALLOON": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BALLON"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GLOBO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BALLON"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BALLON"
+          }
+        }
+      }
+    },
+    "BIRD": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOGEL"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PAJARO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OISEAU"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOGEL"
+          }
+        }
+      }
+    },
+    "BOAT": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BOOT"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BARCO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BATEAU"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BOOT"
+          }
+        }
+      }
+    },
     "Back": {
       "comment": "Leave the parental gate",
       "localizations": {
@@ -1194,6 +1339,35 @@
         }
       }
     },
+    "Blue": {
+      "comment": "Colour of a pattern pad",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blau"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azul"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blauw"
+          }
+        }
+      }
+    },
     "Book": {
       "comment": "Tile icon",
       "localizations": {
@@ -1219,6 +1393,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Boek"
+          }
+        }
+      }
+    },
+    "CAR": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AUTO"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "COCHE"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VOITURE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AUTO"
+          }
+        }
+      }
+    },
+    "CAT": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KATZE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GATO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CHAT"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KAT"
           }
         }
       }
@@ -1600,6 +1832,35 @@
         }
       }
     },
+    "Column %lld": {
+      "comment": "A column of the Four in a Row board",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spalte %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Columna %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colonne %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolom %lld"
+          }
+        }
+      }
+    },
     "Content": {
       "comment": "Parent settings section",
       "localizations": {
@@ -1654,6 +1915,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ga verder"
+          }
+        }
+      }
+    },
+    "Copy the Pattern": {
+      "comment": "Game name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muster merken"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repite el patrón"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répète le motif"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Patroon onthouden"
           }
         }
       }
@@ -1799,6 +2089,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aangepast"
+          }
+        }
+      }
+    },
+    "DOG": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HUND"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PERRO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CHIEN"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HOND"
           }
         }
       }
@@ -2064,6 +2383,35 @@
         }
       }
     },
+    "Drops a disc": {
+      "comment": "Four in a Row hint",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wirft einen Stein ein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deja caer una ficha"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fait tomber un jeton"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laat een schijf vallen"
+          }
+        }
+      }
+    },
     "Edit profile": {
       "comment": "Profile editor title, editing",
       "localizations": {
@@ -2147,6 +2495,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Leegmaken"
+          }
+        }
+      }
+    },
+    "Empty square": {
+      "comment": "Free Tic Tac Toe square",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leeres Feld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casilla vacía"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Case vide"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leeg vakje"
           }
         }
       }
@@ -2354,6 +2731,64 @@
         }
       }
     },
+    "FISH": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FISCH"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PEZ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "POISSON"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VIS"
+          }
+        }
+      }
+    },
+    "FLOWER": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BLUME"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FLOR"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FLEUR"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BLOEM"
+          }
+        }
+      }
+    },
     "Face down card": {
       "comment": "Face down game card",
       "localizations": {
@@ -2528,6 +2963,35 @@
         }
       }
     },
+    "Four in a Row": {
+      "comment": "Game name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vier gewinnt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuatro en raya"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puissance 4"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vier op een rij"
+          }
+        }
+      }
+    },
     "From": {
       "comment": "Custom range start",
       "localizations": {
@@ -2615,6 +3079,64 @@
         }
       }
     },
+    "Green": {
+      "comment": "Colour of a pattern pad",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grün"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vert"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groen"
+          }
+        }
+      }
+    },
+    "Guess the word": {
+      "comment": "Hangman instruction",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rate das Wort"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adivina la palabra"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Devine le mot"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raad het woord"
+          }
+        }
+      }
+    },
     "Guitars": {
       "comment": "Tile icon",
       "localizations": {
@@ -2640,6 +3162,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gitaren"
+          }
+        }
+      }
+    },
+    "HOUSE": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HAUS"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CASA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MAISON"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HUIS"
+          }
+        }
+      }
+    },
+    "Hangman": {
+      "comment": "Game name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galgenmännchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El ahorcado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le pendu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Galgje"
           }
         }
       }
@@ -2760,6 +3340,35 @@
         }
       }
     },
+    "Hidden letter": {
+      "comment": "A letter not yet guessed",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verdeckter Buchstabe"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letra oculta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettre cachée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verborgen letter"
+          }
+        }
+      }
+    },
     "Hide": {
       "comment": "Swipe action",
       "localizations": {
@@ -2843,6 +3452,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Uur"
+          }
+        }
+      }
+    },
+    "I won this one.": {
+      "comment": "The computer won a game",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die habe ich gewonnen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta la he ganado yo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "J'ai gagné celle-ci."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze heb ik gewonnen."
           }
         }
       }
@@ -3369,6 +4007,64 @@
         }
       }
     },
+    "Letter %lld": {
+      "comment": "Position in the word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buchstabe %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letra %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettre %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter %lld"
+          }
+        }
+      }
+    },
+    "Level %lld": {
+      "comment": "How far the child has got",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level %lld"
+          }
+        }
+      }
+    },
     "Limit session length": {
       "comment": "Screen time toggle",
       "localizations": {
@@ -3423,6 +4119,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Link"
+          }
+        }
+      }
+    },
+    "MOON": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MOND"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LUNE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MAAN"
           }
         }
       }
@@ -3717,6 +4442,64 @@
         }
       }
     },
+    "My cross": {
+      "comment": "Occupied Tic Tac Toe square",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mein Kreuz"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mi cruz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ma croix"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mijn kruisje"
+          }
+        }
+      }
+    },
+    "My turn…": {
+      "comment": "The computer is about to play",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich bin dran …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me toca a mí…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À moi de jouer…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ik ben aan de beurt…"
+          }
+        }
+      }
+    },
     "Name": {
       "comment": "Profile editor section\nProfile name field",
       "localizations": {
@@ -3920,6 +4703,35 @@
         }
       }
     },
+    "Nobody won. Try again?": {
+      "comment": "A game ended in a draw",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unentschieden. Noch mal?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadie ha ganado. ¿Otra vez?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personne n'a gagné. On rejoue ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niemand heeft gewonnen. Nog een keer?"
+          }
+        }
+      }
+    },
     "Not available yet": {
       "comment": "Freemium limit alert title",
       "localizations": {
@@ -3974,6 +4786,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Niet nu"
+          }
+        }
+      }
+    },
+    "Not quite. Watch again.": {
+      "comment": "A wrong tap in Copy the Pattern",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fast! Schau noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casi. Mira otra vez."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presque ! Regarde encore."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bijna! Kijk nog eens."
           }
         }
       }
@@ -4148,6 +4989,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Oké"
+          }
+        }
+      }
+    },
+    "Odd One Out": {
+      "comment": "Game name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was passt nicht?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cuál sobra?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'intrus"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wat hoort er niet bij?"
           }
         }
       }
@@ -4409,6 +5279,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Opent deze afspeellijst"
+          }
+        }
+      }
+    },
+    "Orange": {
+      "comment": "Colour of a pattern pad",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naranja"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oranje"
           }
         }
       }
@@ -4732,6 +5631,35 @@
         }
       }
     },
+    "Picture %lld": {
+      "comment": "A picture to choose",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bild %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagen %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Image %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plaatje %lld"
+          }
+        }
+      }
+    },
     "Play": {
       "comment": "Tile icon\nTransport button",
       "localizations": {
@@ -5051,6 +5979,35 @@
         }
       }
     },
+    "Purple": {
+      "comment": "Colour of a pattern pad",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lila"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Violet"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paars"
+          }
+        }
+      }
+    },
     "Read a backup": {
       "comment": "Import button",
       "localizations": {
@@ -5279,6 +6236,93 @@
           "stringUnit": {
             "state": "translated",
             "value": "Herstellen is niet gelukt. Controleer je internetverbinding."
+          }
+        }
+      }
+    },
+    "Round %lld": {
+      "comment": "How far the child has got",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Runde %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ronda %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tour %lld"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ronde %lld"
+          }
+        }
+      }
+    },
+    "STAR": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "STERN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ESTRELLA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ETOILE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "STER"
+          }
+        }
+      }
+    },
+    "SUN": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SONNE"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SOL"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SOLEIL"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ZON"
           }
         }
       }
@@ -6009,6 +7053,35 @@
         }
       }
     },
+    "TREE": {
+      "comment": "Hangman word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BAUM"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ARBOL"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ARBRE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BOOM"
+          }
+        }
+      }
+    },
     "Teddy bear": {
       "comment": "Avatar name\nTile icon",
       "localizations": {
@@ -6092,6 +7165,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die afbeelding kon niet worden gebruikt."
+          }
+        }
+      }
+    },
+    "That's the one!": {
+      "comment": "The child found the odd picture",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genau der!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Ese es!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C'est bien lui !"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die is het!"
+          }
+        }
+      }
+    },
+    "The board is full. Try again?": {
+      "comment": "Four in a Row ended full",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Feld ist voll. Noch mal?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El tablero está lleno. ¿Otra vez?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La grille est pleine. On rejoue ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het bord is vol. Nog een keer?"
           }
         }
       }
@@ -6585,6 +7716,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Het type ligt vast zodra de tegel is gemaakt en kan later niet veranderen. Wil je wisselen, verwijder deze tegel dan en maak een nieuwe."
+          }
+        }
+      }
+    },
+    "The word was %@": {
+      "comment": "Revealing the answer after a lost round",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Wort war %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La palabra era %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le mot était %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het woord was %@"
           }
         }
       }
@@ -7107,6 +8267,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dit is op een ander apparaat gewijzigd"
+          }
+        }
+      }
+    },
+    "Tic Tac Toe": {
+      "comment": "Game name",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tic Tac Toe"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tres en raya"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morpion"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boter, kaas en eieren"
           }
         }
       }
@@ -7778,6 +8967,35 @@
         }
       }
     },
+    "Watch carefully…": {
+      "comment": "The pattern is playing",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schau genau hin …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira con atención…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regarde bien…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kijk goed…"
+          }
+        }
+      }
+    },
     "Week": {
       "comment": "Statistics range preset",
       "localizations": {
@@ -7923,6 +9141,35 @@
         }
       }
     },
+    "Which one does not belong?": {
+      "comment": "Odd One Out instruction",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was passt nicht dazu?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cuál no encaja?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lequel n'est pas à sa place ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wat hoort er niet bij?"
+          }
+        }
+      }
+    },
     "With this off, a YouTube item plays sound only and the picture stays hidden.": {
       "comment": "YouTube audio-only explanation",
       "extractionState": "stale",
@@ -7978,6 +9225,93 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jaar"
+          }
+        }
+      }
+    },
+    "You did it!": {
+      "comment": "The child solved the word",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geschafft!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Lo has conseguido!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bravo, tu as trouvé !"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het is je gelukt!"
+          }
+        }
+      }
+    },
+    "You found them all!": {
+      "comment": "Every Odd One Out level is done",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast alle gefunden!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Los has encontrado todos!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu les as tous trouvés !"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt ze allemaal gevonden!"
+          }
+        }
+      }
+    },
+    "You won!": {
+      "comment": "The child won a game",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gewonnen!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Has ganado!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as gagné !"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt gewonnen!"
           }
         }
       }
@@ -8040,6 +9374,35 @@
         }
       }
     },
+    "Your circle": {
+      "comment": "Occupied Tic Tac Toe square",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Kreis"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu círculo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton rond"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jouw rondje"
+          }
+        }
+      }
+    },
     "Your content syncs automatically across your own devices through iCloud. An export is an extra copy you keep yourself.": {
       "comment": "iCloud and export explanation",
       "localizations": {
@@ -8065,6 +9428,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Je inhoud synchroniseert automatisch tussen je eigen apparaten via iCloud. Een export is een extra kopie die je zelf bewaart."
+          }
+        }
+      }
+    },
+    "Your turn": {
+      "comment": "The child is about to play",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist dran"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te toca a ti"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À toi de jouer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jij bent aan de beurt"
           }
         }
       }

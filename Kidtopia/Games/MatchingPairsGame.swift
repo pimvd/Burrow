@@ -40,17 +40,7 @@ struct MatchingPairsGame: View {
             .padding(.horizontal, 20)
 
             if board.isComplete {
-                Button {
-                    startRound()
-                } label: {
-                    Text("Play again", comment: "Restart a game")
-                        .font(.title3.weight(.semibold))
-                        .padding(.horizontal, 28)
-                        .padding(.vertical, 14)
-                        .background(.thinMaterial, in: Capsule())
-                }
-                .buttonStyle(.calm)
-                .transition(.opacity)
+                PlayAgainButton(action: startRound)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

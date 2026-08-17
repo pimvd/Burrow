@@ -58,6 +58,16 @@ the statistics screens count game time without knowing games exist. Screen time
 needs no special handling either: `ScreenTimeCoordinator` times the whole
 session, not individual activities.
 
+Six games ship today, listed roughly easiest first: Matching Pairs, Odd One Out
+(pictures, one of which does not belong, in levels that close the gap between
+the two groups), Copy the Pattern (four pads, a sequence that grows by one),
+Tic Tac Toe, Four in a Row and Hangman. Each is a rules type with no SwiftUI in
+it — `TicTacToeBoard`, `HangmanRound` and the rest — beside the view that draws
+it, so the rules are tested directly. The two games with an opponent share
+`GentleOpponent`, which takes a win when it sees one but only notices the
+child's threat half the time; a perfect opponent is one a child can never beat.
+No game keeps a score, and none of them can be lost in a way that ends play.
+
 **Everything a parent can change sits behind the gate.** `ParentalGateView` asks
 for a birth year and accepts `1900 ... currentYear - 16`. Every failure shows the
 same message, so a child cannot learn the rule by trying. The unlock lasts until
