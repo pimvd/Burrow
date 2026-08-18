@@ -130,7 +130,7 @@ struct TileEditorView: View {
             } footer: {
                 if category == .music {
                     Text(
-                        "A YouTube item in a music tile plays sound only; its picture stays hidden.",
+                        "A YouTube item in a music tile plays sound only; its picture stays hidden. Its sound also stops when Kidtopia is minimised, where the rest of the playlist plays on.",
                         comment: "YouTube audio-only explanation"
                     )
                 }

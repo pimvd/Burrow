@@ -469,31 +469,31 @@
         }
       }
     },
-    "A YouTube item in a music tile plays sound only; its picture stays hidden.": {
+    "A YouTube item in a music tile plays sound only; its picture stays hidden. Its sound also stops when Kidtopia is minimised, where the rest of the playlist plays on.": {
       "comment": "YouTube audio-only explanation",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ein YouTube-Eintrag in einer Musikkachel spielt nur den Ton ab; das Bild bleibt verborgen."
+            "value": "Ein YouTube-Eintrag in einer Musikkachel spielt nur Ton ab; das Bild bleibt verborgen. Sein Ton hört auch auf, sobald Kidtopia im Hintergrund ist — der Rest der Wiedergabeliste läuft dort weiter."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un elemento de YouTube en un mosaico de música solo reproduce el sonido; su imagen permanece oculta."
+            "value": "Un elemento de YouTube en un mosaico de música solo reproduce sonido; su imagen queda oculta. Su sonido también se detiene cuando Kidtopia queda en segundo plano, donde el resto de la lista sigue sonando."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un élément YouTube dans une tuile musicale ne joue que le son ; l'image reste masquée."
+            "value": "Un élément YouTube dans une tuile de musique ne joue que le son ; son image reste masquée. Son son s’arrête aussi lorsque Kidtopia passe en arrière-plan, où le reste de la liste continue."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Een YouTube-onderdeel in een muziektegel speelt alleen geluid af; het beeld blijft verborgen."
+            "value": "Een YouTube-onderdeel in een muziektegel speelt alleen geluid af; het beeld blijft verborgen. Het geluid stopt ook zodra Kidtopia op de achtergrond staat; de rest van de afspeellijst speelt daar wel door."
           }
         }
       }
@@ -5370,6 +5370,35 @@
         }
       }
     },
+    "Open what is playing": {
+      "comment": "Now playing bar",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen, was läuft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir lo que suena"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir ce qui joue"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open wat er speelt"
+          }
+        }
+      }
+    },
     "Opens this game": {
       "comment": "Game accessibility hint",
       "localizations": {
@@ -7223,6 +7252,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Statistieken van deze tegel"
+          }
+        }
+      }
+    },
+    "Stop the music": {
+      "comment": "Now playing bar",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Musik anhalten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parar la música"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter la musique"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop de muziek"
           }
         }
       }

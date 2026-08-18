@@ -75,10 +75,17 @@ struct RootView: View {
         case .background:
             // The parental gate always asks again after a full backgrounding.
             parentSession.lock()
-            // Profiles without lock screen playback stop when the app leaves
-            // the foreground.
-            if playback.playlist?.allowsLockScreenPlayback == false {
-                playback.stop()
+            // A video tile never plays on without the app; a music tile does
+            // when the profile allows it.
+            if let playlist = playback.playlist {
+                if BackgroundPlayback.survivesBackgrounding(
+                    category: playlist.category,
+                    allowsLockScreenPlayback: playlist.allowsLockScreenPlayback
+                ) {
+                    playback.continueInBackground()
+                } else {
+                    playback.stop()
+                }
             }
             screenTime.pause()
         case .active:

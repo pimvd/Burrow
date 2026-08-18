@@ -134,6 +134,30 @@ final class MediaPlaybackService {
         configureAudioSession(active: false)
     }
 
+    /// Called when the app leaves the foreground with a playlist that is allowed
+    /// to carry on.
+    ///
+    /// A YouTube entry cannot be heard there, so the playlist moves to one that
+    /// can rather than sitting on silence the child would have to reopen the app
+    /// to clear. A playlist with nothing else left simply stops.
+    func continueInBackground() {
+        guard let playlist, let entry = currentEntry else { return }
+        guard !BackgroundPlayback.playsInBackground(entry.type) else { return }
+
+        let types = playOrder.compactMap { self.entry(withID: $0)?.type }
+        guard let next = BackgroundPlayback.firstBackgroundPlayableIndex(
+            after: orderIndex,
+            in: types,
+            loop: playlist.loop
+        ) else {
+            stop()
+            return
+        }
+
+        orderIndex = next
+        playCurrentEntry()
+    }
+
     // MARK: - Transport
 
     func togglePlayPause() {

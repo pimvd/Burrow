@@ -1,5 +1,4 @@
 import AVKit
-import SwiftData
 import SwiftUI
 
 /// Full screen playback for one tile. Only the current track or video is on
@@ -9,11 +8,8 @@ struct NowPlayingView: View {
     let profile: ChildProfile
 
     @Environment(MediaPlaybackService.self) private var playback
-    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Environment(\.verticalSizeClass) private var verticalSizeClass
-
-    @State private var recorder = UsageRecorder()
 
     /// Landscape only: the controls sit on top of the picture, so they step
     /// back out of the way once the child has settled into watching.
@@ -98,8 +94,6 @@ struct NowPlayingView: View {
             .background(profile.theme.wash.ignoresSafeArea())
             .background(Color(.systemBackground).ignoresSafeArea())
             .statusBarHidden()
-            .onAppear(perform: startPlayback)
-            .onDisappear(perform: stopPlayback)
     }
 
     // MARK: - Sections
@@ -170,26 +164,10 @@ struct NowPlayingView: View {
                                 .onTapGesture { revealControls() }
                         }
                     } else {
+                        // Audio-only mode. The embed itself lives in
+                        // ChildHomeView so its sound survives this view
+                        // closing; here there is only the picture.
                         artwork
-                            .overlay(alignment: .bottom) {
-                                // Audio-only mode: the embed still has to exist
-                                // for sound, but it is kept out of sight.
-                                if let videoID = entry.youtubeVideoID {
-                                    YouTubeWebView(
-                                        videoID: videoID,
-                                        onFinished: { playback.youTubeDidFinish() },
-                                        onFailed: { playback.youTubeDidFail($0) },
-                                        onStartedPlaying: { playback.youTubeDidStartPlaying() },
-                                        onPaused: { playback.youTubeDidPause() },
-                                        isPlaying: playback.isPlaying
-                                    )
-                                    .id(playback.playToken)
-                                    .frame(width: 1, height: 1)
-                                    .opacity(0.01)
-                                    .allowsHitTesting(false)
-                                    .accessibilityHidden(true)
-                                }
-                            }
                     }
 
                 case .localAudio, .appleMusic:
@@ -297,43 +275,5 @@ struct NowPlayingView: View {
         }
         .buttonStyle(.calm)
         .accessibilityLabel(Text(label))
-    }
-
-    // MARK: - Lifecycle
-
-    private func startPlayback() {
-        recorder.beginTile(profileID: profile.id, tileID: tile.id, in: modelContext)
-
-        playback.onEntryChanged = { entryID in
-            // Remember where the playlist is, so reopening the tile continues
-            // from this entry (always from 0:00).
-            tile.lastPlayedItemID = entryID
-            recorder.beginEntry(entryID, in: modelContext)
-            if let item = tile.orderedMediaItems.first(where: { $0.id == entryID }) {
-                item.clearError()
-            }
-            ModelSaver.save(modelContext, describing: "storing the last played item")
-        }
-
-        playback.onEntryFailure = { entryID, message in
-            // Stored for the parent view only; the child sees a silent skip.
-            guard let item = tile.orderedMediaItems.first(where: { $0.id == entryID }) else { return }
-            item.recordError(message)
-            ModelSaver.save(modelContext, describing: "storing a media error")
-        }
-
-        playback.onEntryCompleted = { _ in
-            recorder.finishCurrentEntry(in: modelContext)
-        }
-
-        playback.start(PlaybackPlaylist(tile: tile, profile: profile))
-    }
-
-    private func stopPlayback() {
-        recorder.endTile(in: modelContext)
-        playback.onEntryChanged = nil
-        playback.onEntryFailure = nil
-        playback.onEntryCompleted = nil
-        playback.stop()
     }
 }

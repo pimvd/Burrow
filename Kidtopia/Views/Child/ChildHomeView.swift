@@ -11,10 +11,27 @@ struct ChildHomeView: View {
     @Environment(ScreenTimeCoordinator.self) private var screenTime
     @Environment(MediaPlaybackService.self) private var playback
     @Environment(StoreManager.self) private var store
+    @Environment(\.modelContext) private var modelContext
 
     @Query(sort: \Tile.sortOrder) private var allTiles: [Tile]
 
     @State private var viewModel = ChildHomeViewModel()
+
+    /// Playback outlives the player for a music tile, so both the recorder and
+    /// the service's callbacks belong here, where they last as long as the
+    /// child's session rather than as long as one full screen cover.
+    @State private var recorder = UsageRecorder()
+
+    /// The music still running with the player closed, if any.
+    private var backgroundedPlaylist: PlaybackPlaylist? {
+        guard viewModel.presentedTile == nil,
+              viewModel.presentedGame == nil,
+              let playlist = playback.playlist,
+              playlist.category == .music else {
+            return nil
+        }
+        return playlist
+    }
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -64,9 +81,51 @@ struct ChildHomeView: View {
         }
         .onChange(of: screenTime.hasExpired) { _, expired in
             guard expired else { return }
-            playback.stop()
+            stopPlayback()
             viewModel.presentedTile = nil
             viewModel.presentedGame = nil
+        }
+        .onChange(of: viewModel.presentedTile?.id) { _, tileID in
+            handlePresentedTileChange(to: tileID)
+        }
+        // A music tile's YouTube entry is heard, never seen, so its embed lives
+        // here rather than in the player: closing the player takes the picture
+        // away, and this keeps the sound.
+        .background(hiddenYouTubeHost)
+        .safeAreaInset(edge: .bottom) {
+            if let playlist = backgroundedPlaylist {
+                NowPlayingBar(
+                    tileTitle: playlist.tileTitle,
+                    entryTitle: playback.currentEntry?.title,
+                    tint: profile.theme.tint,
+                    onOpen: { viewModel.presentedTile = allTiles.first { $0.id == playlist.tileID } },
+                    onStop: stopPlayback
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .animation(CalmStyle.transition, value: backgroundedPlaylist?.tileID)
+    }
+
+    @ViewBuilder
+    private var hiddenYouTubeHost: some View {
+        if playback.playlist?.category == .music,
+           let entry = playback.currentEntry,
+           entry.type == .youtube,
+           let videoID = entry.youtubeVideoID {
+            YouTubeWebView(
+                videoID: videoID,
+                onFinished: { playback.youTubeDidFinish() },
+                onFailed: { playback.youTubeDidFail($0) },
+                onStartedPlaying: { playback.youTubeDidStartPlaying() },
+                onPaused: { playback.youTubeDidPause() },
+                isPlaying: playback.isPlaying
+            )
+            .id(playback.playToken)
+            .frame(width: 1, height: 1)
+            .opacity(0.01)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
         }
     }
 
@@ -130,8 +189,63 @@ struct ChildHomeView: View {
     }
 
     private func endSession() {
-        playback.stop()
+        stopPlayback()
         screenTime.stop()
         router.showProfilePicker()
+    }
+
+    // MARK: - Playback
+
+    /// Opening a tile starts it; closing one stops only what may not play on.
+    private func handlePresentedTileChange(to tileID: UUID?) {
+        guard let tileID else {
+            if playback.playlist?.category == .video {
+                stopPlayback()
+            }
+            return
+        }
+        guard let tile = allTiles.first(where: { $0.id == tileID }) else { return }
+        startPlayback(for: tile)
+    }
+
+    private func startPlayback(for tile: Tile) {
+        // Reopening the tile that is already playing shows it where it got to,
+        // rather than starting it over.
+        guard playback.playlist?.tileID != tile.id else { return }
+
+        recorder.endTile(in: modelContext)
+        recorder.beginTile(profileID: profile.id, tileID: tile.id, in: modelContext)
+
+        playback.onEntryChanged = { entryID in
+            // Remember where the playlist is, so reopening the tile continues
+            // from this entry (always from 0:00).
+            tile.lastPlayedItemID = entryID
+            recorder.beginEntry(entryID, in: modelContext)
+            if let item = tile.orderedMediaItems.first(where: { $0.id == entryID }) {
+                item.clearError()
+            }
+            ModelSaver.save(modelContext, describing: "storing the last played item")
+        }
+
+        playback.onEntryFailure = { entryID, message in
+            // Stored for the parent view only; the child sees a silent skip.
+            guard let item = tile.orderedMediaItems.first(where: { $0.id == entryID }) else { return }
+            item.recordError(message)
+            ModelSaver.save(modelContext, describing: "storing a media error")
+        }
+
+        playback.onEntryCompleted = { _ in
+            recorder.finishCurrentEntry(in: modelContext)
+        }
+
+        playback.start(PlaybackPlaylist(tile: tile, profile: profile))
+    }
+
+    private func stopPlayback() {
+        recorder.endTile(in: modelContext)
+        playback.onEntryChanged = nil
+        playback.onEntryFailure = nil
+        playback.onEntryCompleted = nil
+        playback.stop()
     }
 }
