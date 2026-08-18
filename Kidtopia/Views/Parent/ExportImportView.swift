@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 /// Makes a full backup package, or reads one back in.
 struct ExportImportView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(CloudSyncStatus.self) private var cloudSync
 
     @Query(sort: \ChildProfile.sortOrder) private var profiles: [ChildProfile]
     @Query private var tiles: [Tile]
@@ -32,6 +33,34 @@ struct ExportImportView: View {
 
     var body: some View {
         List {
+            Section {
+                LabeledContent {
+                    Text(cloudSyncDescription)
+                        .foregroundStyle(.secondary)
+                } label: {
+                    Label(
+                        String(localized: "iCloud sync", comment: "Cloud status row"),
+                        systemImage: cloudSyncSymbol
+                    )
+                }
+
+                if let lastSyncDate = cloudSync.lastSyncDate {
+                    LabeledContent {
+                        Text(lastSyncDate, format: .relative(presentation: .named))
+                            .foregroundStyle(.secondary)
+                    } label: {
+                        Text("Last change synced", comment: "Cloud last sync row")
+                    }
+                }
+            } header: {
+                Text("iCloud", comment: "Cloud section")
+            } footer: {
+                Text(
+                    "Profiles, tiles and playlists sync to your own iCloud automatically. The audio, video and pictures you added yourself do not: those travel in the iPhone's own iCloud backup, or in a Kidtopia backup file.",
+                    comment: "Cloud explanation"
+                )
+            }
+
             Section {
                 Toggle(isOn: $exportEverything) {
                     Text("Everything", comment: "Export scope toggle")
@@ -93,7 +122,7 @@ struct ExportImportView: View {
                 Text("Import", comment: "Import section")
             } footer: {
                 Text(
-                    "If profiles or tiles already exist, you choose whether to merge them or replace everything.",
+                    "On a new iPhone, sign in with the same Apple Account and open Kidtopia: profiles, tiles and playlists come back on their own. Read a backup file to bring back the audio, video and pictures too, or to move everything to a different Apple Account. If profiles or tiles already exist, you choose whether to merge them or replace everything.",
                     comment: "Import explanation"
                 )
             }
@@ -163,6 +192,39 @@ struct ExportImportView: View {
             if selectedProfileID == nil {
                 selectedProfileID = profiles.first?.id
             }
+        }
+        .task {
+            await cloudSync.refresh()
+        }
+    }
+
+    // MARK: - iCloud
+
+    private var cloudSyncDescription: String {
+        switch cloudSync.state {
+        case .synced:
+            return String(localized: "On", comment: "Cloud state")
+        case .waiting:
+            return String(localized: "Starting up", comment: "Cloud state")
+        case .failed:
+            return String(localized: "Last attempt failed", comment: "Cloud state")
+        case .noAccount:
+            return String(localized: "Not signed in to iCloud", comment: "Cloud state")
+        case .localOnly:
+            return String(localized: "Off, this iPhone only", comment: "Cloud state")
+        }
+    }
+
+    private var cloudSyncSymbol: String {
+        switch cloudSync.state {
+        case .synced:
+            return "checkmark.icloud"
+        case .waiting:
+            return "arrow.triangle.2.circlepath.icloud"
+        case .failed:
+            return "exclamationmark.icloud"
+        case .noAccount, .localOnly:
+            return "icloud.slash"
         }
     }
 

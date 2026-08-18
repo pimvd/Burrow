@@ -9,11 +9,15 @@ struct KidtopiaApp: App {
     @State private var connectivity = ConnectivityMonitor()
     @State private var playback = MediaPlaybackService()
     @State private var screenTime = ScreenTimeCoordinator()
+    @State private var cloudSync: CloudSyncStatus
 
     private let container: ModelContainer
 
     init() {
         container = ModelContainerFactory.makeContainer()
+        // Built after the container, because it reports on the store that was
+        // actually opened.
+        _cloudSync = State(initialValue: CloudSyncStatus())
         MediaLibrary.shared.ensureDirectoryExists()
         BackupReminderService.shared.registerAsDelegate()
     }
@@ -27,6 +31,7 @@ struct KidtopiaApp: App {
                 .environment(connectivity)
                 .environment(playback)
                 .environment(screenTime)
+                .environment(cloudSync)
                 .tint(Color.accentColor)
         }
         .modelContainer(container)

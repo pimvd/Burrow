@@ -3514,35 +3514,6 @@
         }
       }
     },
-    "If profiles or tiles already exist, you choose whether to merge them or replace everything.": {
-      "comment": "Import explanation",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wenn schon Profile oder Kacheln vorhanden sind, wählst du zwischen Zusammenführen und Ersetzen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si ya hay perfiles o mosaicos, eliges si fusionar o reemplazar todo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si des profils ou des tuiles existent déjà, vous choisissez de fusionner ou de tout remplacer."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Als er al profielen of tegels zijn, kies je zelf of je samenvoegt of alles vervangt."
-          }
-        }
-      }
-    },
     "Import": {
       "comment": "Import section",
       "localizations": {
@@ -3974,6 +3945,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Laatste 7 dagen"
+          }
+        }
+      }
+    },
+    "Last attempt failed": {
+      "comment": "Cloud state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzter Versuch fehlgeschlagen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El último intento falló"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernière tentative échouée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laatste poging mislukt"
+          }
+        }
+      }
+    },
+    "Last change synced": {
+      "comment": "Cloud last sync row",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte Änderung synchronisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último cambio sincronizado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dernière modification synchronisée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laatste wijziging gesynchroniseerd"
           }
         }
       }
@@ -4819,6 +4848,35 @@
         }
       }
     },
+    "Not signed in to iCloud": {
+      "comment": "Cloud state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht bei iCloud angemeldet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No has iniciado sesión en iCloud"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non connecté à iCloud"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet aangemeld bij iCloud"
+          }
+        }
+      }
+    },
     "Nothing added yet.": {
       "comment": "Empty playlist",
       "localizations": {
@@ -5022,6 +5080,35 @@
         }
       }
     },
+    "Off, this iPhone only": {
+      "comment": "Cloud state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus, nur auf diesem iPhone"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivada, solo en este iPhone"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivée, sur cet iPhone uniquement"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uit, alleen op deze iPhone"
+          }
+        }
+      }
+    },
     "Older than 30 days": {
       "comment": "Usage cleanup option",
       "localizations": {
@@ -5105,6 +5192,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ouder dan een jaar"
+          }
+        }
+      }
+    },
+    "On": {
+      "comment": "Cloud state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aan"
+          }
+        }
+      }
+    },
+    "On a new iPhone, sign in with the same Apple Account and open Kidtopia: profiles, tiles and playlists come back on their own. Read a backup file to bring back the audio, video and pictures too, or to move everything to a different Apple Account. If profiles or tiles already exist, you choose whether to merge them or replace everything.": {
+      "comment": "Import explanation",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melde dich auf einem neuen iPhone mit demselben Apple-Account an und öffne Kidtopia: Profile, Kacheln und Wiedergabelisten kommen von selbst zurück. Lies ein Backup ein, um auch die Audiodateien, Videos und Bilder zurückzuholen oder um alles in einen anderen Apple-Account zu übertragen. Wenn schon Profile oder Kacheln vorhanden sind, wählst du zwischen Zusammenführen und Ersetzen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En un iPhone nuevo, inicia sesión con la misma cuenta de Apple y abre Kidtopia: los perfiles, los mosaicos y las listas vuelven solos. Lee una copia de seguridad para recuperar también el audio, los vídeos y las imágenes, o para pasarlo todo a otra cuenta de Apple. Si ya hay perfiles o mosaicos, eliges si fusionar o reemplazar todo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur un nouvel iPhone, connectez-vous avec le même compte Apple et ouvrez Kidtopia : les profils, les tuiles et les listes de lecture reviennent d’eux-mêmes. Lisez une sauvegarde pour récupérer aussi l’audio, les vidéos et les images, ou pour tout transférer vers un autre compte Apple. Si des profils ou des tuiles existent déjà, vous choisissez de fusionner ou de tout remplacer."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meld je op een nieuwe iPhone aan met hetzelfde Apple-account en open Kidtopia: profielen, tegels en afspeellijsten komen vanzelf terug. Lees een back-up in om ook de audio, video en afbeeldingen terug te halen, of om alles naar een ander Apple-account te verhuizen. Als er al profielen of tegels zijn, kies je zelf of je samenvoegt of alles vervangt."
           }
         }
       }
@@ -5975,6 +6120,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Profielen"
+          }
+        }
+      }
+    },
+    "Profiles, tiles and playlists sync to your own iCloud automatically. The audio, video and pictures you added yourself do not: those travel in the iPhone's own iCloud backup, or in a Kidtopia backup file.": {
+      "comment": "Cloud explanation",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profile, Kacheln und Wiedergabelisten werden automatisch mit deiner eigenen iCloud synchronisiert. Die Audiodateien, Videos und Bilder, die du selbst hinzugefügt hast, nicht: Die stecken im iCloud-Backup des iPhones oder in einem Kidtopia-Backup."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los perfiles, los mosaicos y las listas se sincronizan automáticamente con tu propia iCloud. El audio, los vídeos y las imágenes que has añadido, no: esos viajan en la copia de seguridad de iCloud del iPhone o en una copia de seguridad de Kidtopia."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les profils, les tuiles et les listes de lecture se synchronisent automatiquement avec votre propre iCloud. L’audio, les vidéos et les images que vous avez ajoutés, non : ceux-là voyagent dans la sauvegarde iCloud de l’iPhone ou dans une sauvegarde Kidtopia."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profielen, tegels en afspeellijsten synchroniseren automatisch met je eigen iCloud. De audio, video en afbeeldingen die je zelf hebt toegevoegd niet: die gaan mee in de iCloud-reservekopie van de iPhone, of in een Kidtopia-back-up."
           }
         }
       }
@@ -6962,6 +7136,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ster"
+          }
+        }
+      }
+    },
+    "Starting up": {
+      "comment": "Cloud state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciando"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrage"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gestart"
           }
         }
       }
@@ -9486,6 +9689,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jij bent aan de beurt"
+          }
+        }
+      }
+    },
+    "iCloud": {
+      "comment": "Cloud section",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud"
+          }
+        }
+      }
+    },
+    "iCloud sync": {
+      "comment": "Cloud status row",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-Sync"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronización con iCloud"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisation iCloud"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-synchronisatie"
           }
         }
       }
