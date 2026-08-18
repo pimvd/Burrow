@@ -6264,6 +6264,93 @@
         }
       }
     },
+    "Repeat all": {
+      "comment": "Playback mode button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle wiederholen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repetir todo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout répéter"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alles herhalen"
+          }
+        }
+      }
+    },
+    "Repeat off": {
+      "comment": "Playback mode button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiederholen aus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No repetir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répétition désactivée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herhalen uit"
+          }
+        }
+      }
+    },
+    "Repeat one": {
+      "comment": "Playback mode button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Titel wiederholen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repetir uno"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Répéter le titre"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herhaal één"
+          }
+        }
+      }
+    },
     "Replace everything": {
       "comment": "Import strategy",
       "localizations": {
@@ -6932,7 +7019,7 @@
       }
     },
     "Shuffle": {
-      "comment": "Tile playback setting",
+      "comment": "Playback mode button",
       "localizations": {
         "de": {
           "stringUnit": {

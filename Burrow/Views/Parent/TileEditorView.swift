@@ -23,7 +23,6 @@ struct TileEditorView: View {
     @State private var tile: Tile?
     @State private var title = ""
     @State private var imageData = Data()
-    @State private var shufflePlaylist = false
     @State private var loopPlaylist = true
     @State private var isHidden = false
 
@@ -119,9 +118,6 @@ struct TileEditorView: View {
             }
 
             Section {
-                Toggle(isOn: $shufflePlaylist) {
-                    Text("Shuffle", comment: "Tile playback setting")
-                }
                 Toggle(isOn: $loopPlaylist) {
                     Text("Repeat", comment: "Tile playback setting")
                 }
@@ -286,7 +282,6 @@ struct TileEditorView: View {
             tile = existing
             title = existing.title
             imageData = existing.imageData
-            shufflePlaylist = existing.shufflePlaylist
             loopPlaylist = existing.loopPlaylist
             isHidden = existing.isHidden
             conflictGuard = EditConflictGuard(expectedLastModified: existing.lastModified)
@@ -393,7 +388,6 @@ struct TileEditorView: View {
             guard case .edit(let existing) = mode else { return }
             title = existing.title
             imageData = existing.imageData
-            shufflePlaylist = existing.shufflePlaylist
             loopPlaylist = existing.loopPlaylist
             isHidden = existing.isHidden
             conflictGuard = EditConflictGuard(expectedLastModified: existing.lastModified)
@@ -409,7 +403,6 @@ struct TileEditorView: View {
 
         tile.title = trimmed
         tile.imageData = imageData
-        tile.shufflePlaylist = shufflePlaylist
         tile.loopPlaylist = loopPlaylist
         tile.isHidden = isHidden
         tile.lastModified = Date()

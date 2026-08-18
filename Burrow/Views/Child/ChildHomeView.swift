@@ -246,6 +246,14 @@ struct ChildHomeView: View {
             recorder.finishCurrentEntry(in: modelContext)
         }
 
+        playback.onPlaybackModeChanged = { shuffle, repeatMode in
+            // The player's shuffle and repeat buttons are sticky per tile.
+            // Repeat-one has no field of its own; it comes back as repeat-all.
+            tile.shufflePlaylist = shuffle
+            tile.loopPlaylist = repeatMode != .off
+            ModelSaver.save(modelContext, describing: "storing playback modes")
+        }
+
         playback.start(PlaybackPlaylist(tile: tile, profile: profile))
     }
 
@@ -254,6 +262,7 @@ struct ChildHomeView: View {
         playback.onEntryChanged = nil
         playback.onEntryFailure = nil
         playback.onEntryCompleted = nil
+        playback.onPlaybackModeChanged = nil
         playback.stop()
     }
 }

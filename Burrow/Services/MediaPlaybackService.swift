@@ -39,6 +39,11 @@ final class MediaPlaybackService {
     /// restarts the embed instead of leaving a finished player on screen.
     private(set) var playToken = UUID()
 
+    /// The playback modes the player's shuffle and repeat buttons control.
+    /// Seeded from the tile when a playlist starts.
+    private(set) var isShuffling = false
+    private(set) var repeatMode: RepeatMode = .off
+
     /// Called with the entry identifier whenever a new entry starts.
     @ObservationIgnored var onEntryChanged: ((UUID) -> Void)?
 
@@ -47,6 +52,10 @@ final class MediaPlaybackService {
 
     /// Called when an entry played to its end, with the elapsed seconds.
     @ObservationIgnored var onEntryCompleted: ((UUID) -> Void)?
+
+    /// Called when shuffle or repeat changes in the player, so the caller can
+    /// persist the choice on the tile.
+    @ObservationIgnored var onPlaybackModeChanged: ((Bool, RepeatMode) -> Void)?
 
     @ObservationIgnored private let queuePlayer = AVQueuePlayer()
     @ObservationIgnored private let logger = Logger(subsystem: "com.pvd.burrow", category: "Playback")
@@ -107,7 +116,9 @@ final class MediaPlaybackService {
         childFacingMessage = nil
         consecutiveFailures = 0
 
-        playOrder = Self.makePlayOrder(for: playlist)
+        isShuffling = playlist.shuffle
+        repeatMode = playlist.loop ? .all : .off
+        playOrder = Self.makePlayOrder(entries: playlist.entries, shuffled: isShuffling)
         orderIndex = Self.startIndex(in: playOrder, preferring: playlist.startEntryID)
 
         configureAudioSession(active: true)
@@ -141,14 +152,14 @@ final class MediaPlaybackService {
     /// can rather than sitting on silence the child would have to reopen the app
     /// to clear. A playlist with nothing else left simply stops.
     func continueInBackground() {
-        guard let playlist, let entry = currentEntry else { return }
+        guard playlist != nil, let entry = currentEntry else { return }
         guard !BackgroundPlayback.playsInBackground(entry.type) else { return }
 
         let types = playOrder.compactMap { self.entry(withID: $0)?.type }
         guard let next = BackgroundPlayback.firstBackgroundPlayableIndex(
             after: orderIndex,
             in: types,
-            loop: playlist.loop
+            loop: repeatMode != .off
         ) else {
             stop()
             return
@@ -200,6 +211,37 @@ final class MediaPlaybackService {
         advance(by: -1, countAsFailure: false)
     }
 
+    // MARK: - Playback modes
+
+    /// Turns shuffle on or off mid-playlist. The entry that is playing carries
+    /// on; only what comes after it changes.
+    func toggleShuffle() {
+        guard let playlist else { return }
+        isShuffling.toggle()
+
+        let currentID = currentEntry?.id
+        if isShuffling {
+            // The current entry moves to the front; the rest follows shuffled.
+            var order = playlist.entries.map(\.id).shuffled()
+            if let currentID {
+                order.removeAll { $0 == currentID }
+                order.insert(currentID, at: 0)
+            }
+            playOrder = order
+            orderIndex = 0
+        } else {
+            playOrder = playlist.entries.map(\.id)
+            orderIndex = currentID.flatMap { playOrder.firstIndex(of: $0) } ?? 0
+        }
+        onPlaybackModeChanged?(isShuffling, repeatMode)
+    }
+
+    /// One tap of the repeat button: off → the whole list → one entry → off.
+    func cycleRepeatMode() {
+        repeatMode = repeatMode.next
+        onPlaybackModeChanged?(isShuffling, repeatMode)
+    }
+
     // MARK: - YouTube callbacks
 
     /// The embedded player reached the end of the video.
@@ -208,7 +250,7 @@ final class MediaPlaybackService {
         if let id = currentEntry?.id {
             onEntryCompleted?(id)
         }
-        advance(by: 1, countAsFailure: false)
+        entryDidFinish()
     }
 
     /// The embedded player could not play the video (removed, private, blocked).
@@ -233,10 +275,9 @@ final class MediaPlaybackService {
 
     // MARK: - Play order
 
-    private static func makePlayOrder(for playlist: PlaybackPlaylist) -> [UUID] {
-        let ids = playlist.entries.map(\.id)
-        guard playlist.shuffle else { return ids }
-        return ids.shuffled()
+    private static func makePlayOrder(entries: [PlaybackEntry], shuffled: Bool) -> [UUID] {
+        let ids = entries.map(\.id)
+        return shuffled ? ids.shuffled() : ids
     }
 
     private static func startIndex(in order: [UUID], preferring entryID: UUID?) -> Int {
@@ -248,7 +289,18 @@ final class MediaPlaybackService {
         playlist?.entries.first { $0.id == id }
     }
 
-    /// Moves through the play order, honouring `loopPlaylist`.
+    /// The current entry ran to its natural end. Repeat-one plays it again;
+    /// every other mode moves forward.
+    private func entryDidFinish() {
+        if repeatMode == .one, currentEntry != nil {
+            consecutiveFailures = 0
+            playCurrentEntry()
+            return
+        }
+        advance(by: 1, countAsFailure: false)
+    }
+
+    /// Moves through the play order, honouring the repeat mode.
     private func advance(by offset: Int, countAsFailure: Bool) {
         guard let playlist, !playOrder.isEmpty else { return }
 
@@ -268,18 +320,18 @@ final class MediaPlaybackService {
         let nextIndex = orderIndex + offset
 
         if nextIndex >= playOrder.count {
-            guard playlist.loop else {
+            guard repeatMode != .off else {
                 stopAllEngines()
                 isPlaying = false
                 return
             }
-            // A looped shuffle reshuffles, so the second pass is not identical.
-            if playlist.shuffle {
-                playOrder = Self.makePlayOrder(for: playlist)
+            // A repeated shuffle reshuffles, so the second pass is not identical.
+            if isShuffling {
+                playOrder = Self.makePlayOrder(entries: playlist.entries, shuffled: true)
             }
             orderIndex = 0
         } else if nextIndex < 0 {
-            orderIndex = playlist.loop ? playOrder.count - 1 : 0
+            orderIndex = repeatMode != .off ? playOrder.count - 1 : 0
         } else {
             orderIndex = nextIndex
         }
@@ -404,7 +456,7 @@ final class MediaPlaybackService {
                 guard self.currentEntry?.id == entryID else { return }
                 if AppleMusicService.shared.hasFinishedPlaying {
                     self.onEntryCompleted?(entryID)
-                    self.advance(by: 1, countAsFailure: false)
+                    self.entryDidFinish()
                     return
                 }
                 try? await Task.sleep(for: .seconds(1))
@@ -453,7 +505,7 @@ final class MediaPlaybackService {
             return
         }
         onEntryCompleted?(entry.id)
-        advance(by: 1, countAsFailure: false)
+        entryDidFinish()
     }
 
     private func handleAVPlayerItemFailed(_ notification: Notification) {

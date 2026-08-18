@@ -21,6 +21,23 @@ struct PlaybackEntry: Identifiable, Equatable, Sendable {
     }
 }
 
+/// What happens when the playlist runs out, cycled by the repeat button in the
+/// player the way Apple Music does it: off, the whole list, one entry.
+enum RepeatMode: Equatable, Sendable {
+    case off
+    case all
+    case one
+
+    /// The mode one tap of the repeat button moves to.
+    var next: RepeatMode {
+        switch self {
+        case .off: return .all
+        case .all: return .one
+        case .one: return .off
+        }
+    }
+}
+
 /// Everything the playback service needs to run one tile.
 struct PlaybackPlaylist: Equatable, Sendable {
     let tileID: UUID

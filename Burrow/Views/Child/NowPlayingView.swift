@@ -237,27 +237,86 @@ struct NowPlayingView: View {
     }
 
     private var footer: some View {
-        HStack(spacing: 36) {
-            transportButton(systemImage: "backward.fill", label: String(localized: "Previous", comment: "Transport button")) {
-                playback.previous()
+        VStack(spacing: 16) {
+            HStack(spacing: 36) {
+                transportButton(systemImage: "backward.fill", label: String(localized: "Previous", comment: "Transport button")) {
+                    playback.previous()
+                }
+
+                transportButton(
+                    systemImage: playback.isPlaying ? "pause.fill" : "play.fill",
+                    label: playback.isPlaying
+                        ? String(localized: "Pause", comment: "Transport button")
+                        : String(localized: "Play", comment: "Transport button"),
+                    diameter: 96
+                ) {
+                    playback.togglePlayPause()
+                }
+
+                transportButton(systemImage: "forward.fill", label: String(localized: "Next", comment: "Transport button")) {
+                    playback.next()
+                }
             }
 
-            transportButton(
-                systemImage: playback.isPlaying ? "pause.fill" : "play.fill",
-                label: playback.isPlaying
-                    ? String(localized: "Pause", comment: "Transport button")
-                    : String(localized: "Play", comment: "Transport button"),
-                diameter: 96
-            ) {
-                playback.togglePlayPause()
-            }
+            // Shuffle and repeat belong to the artwork layout only; a video
+            // keeps the plain transport row.
+            if playback.currentEntry != nil, !isShowingVideo {
+                HStack(spacing: 60) {
+                    modeButton(
+                        systemImage: "shuffle",
+                        isActive: playback.isShuffling,
+                        label: String(localized: "Shuffle", comment: "Playback mode button")
+                    ) {
+                        playback.toggleShuffle()
+                    }
 
-            transportButton(systemImage: "forward.fill", label: String(localized: "Next", comment: "Transport button")) {
-                playback.next()
+                    modeButton(
+                        systemImage: playback.repeatMode == .one ? "repeat.1" : "repeat",
+                        isActive: playback.repeatMode != .off,
+                        label: repeatLabel
+                    ) {
+                        playback.cycleRepeatMode()
+                    }
+                }
             }
         }
-        .padding(.bottom, 32)
+        .padding(.bottom, 24)
         .padding(.top, 12)
+    }
+
+    private var repeatLabel: String {
+        switch playback.repeatMode {
+        case .off:
+            String(localized: "Repeat off", comment: "Playback mode button")
+        case .all:
+            String(localized: "Repeat all", comment: "Playback mode button")
+        case .one:
+            String(localized: "Repeat one", comment: "Playback mode button")
+        }
+    }
+
+    /// A smaller sibling of `transportButton` whose look reflects an on/off
+    /// state, the way Apple Music tints its shuffle and repeat buttons.
+    private func modeButton(
+        systemImage: String,
+        isActive: Bool,
+        label: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Image(systemName: systemImage)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(isActive ? profile.theme.tint : Color.secondary)
+                .frame(width: 56, height: 56)
+                .background(
+                    isActive
+                        ? AnyShapeStyle(profile.theme.tint.opacity(0.18))
+                        : AnyShapeStyle(Color(.secondarySystemBackground)),
+                    in: Circle()
+                )
+        }
+        .buttonStyle(.calm)
+        .accessibilityLabel(Text(label))
     }
 
     private func transportButton(
