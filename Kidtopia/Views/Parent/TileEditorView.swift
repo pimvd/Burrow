@@ -338,6 +338,7 @@ struct TileEditorView: View {
             return
         }
         ModelSaver.save(modelContext, describing: "adding a playlist item")
+        conflictGuard?.recordLocalWrite(at: tile.lastModified)
     }
 
     private func moveMediaItems(from source: IndexSet, to destination: Int) {
@@ -350,6 +351,7 @@ struct TileEditorView: View {
         }
         tile.lastModified = Date()
         ModelSaver.save(modelContext, describing: "reordering playlist items")
+        conflictGuard?.recordLocalWrite(at: tile.lastModified)
     }
 
     private func deleteMediaItems(at offsets: IndexSet) {
@@ -365,6 +367,7 @@ struct TileEditorView: View {
         tile.normalizeMediaItemOrder()
         tile.lastModified = Date()
         ModelSaver.save(modelContext, describing: "removing playlist items")
+        conflictGuard?.recordLocalWrite(at: tile.lastModified)
     }
 
     // MARK: - Saving

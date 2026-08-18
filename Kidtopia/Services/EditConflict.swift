@@ -13,18 +13,29 @@ enum ConflictResolution {
 /// parent had an editor open.
 ///
 /// SwiftData with CloudKit merges silently by default. Kidtopia keeps a
-/// `lastModified` stamp on every model and compares it against the value that
-/// was current when the editor opened. If it moved in the meantime, another
-/// device changed the same record and the parent gets to choose instead of
-/// losing an edit without noticing.
+/// `lastModified` stamp on every model and compares it against the last value
+/// this editor knows about. If it moved on its own, another device changed the
+/// same record and the parent gets to choose instead of losing an edit without
+/// noticing.
+///
+/// The baseline is the last *known* stamp, not the stamp at opening, because an
+/// editor may write to the record it guards before the parent saves. Those
+/// writes have to be recorded, or the editor reports the parent's own change as
+/// someone else's.
 struct EditConflictGuard {
-    private let expectedLastModified: Date
+    private var expectedLastModified: Date
 
     init(expectedLastModified: Date) {
         self.expectedLastModified = expectedLastModified
     }
 
-    /// `true` when the stored record changed since the editor was opened.
+    /// Moves the baseline to a write the editor just made itself, so only
+    /// changes from elsewhere are left to report.
+    mutating func recordLocalWrite(at date: Date) {
+        expectedLastModified = date
+    }
+
+    /// `true` when the stored record changed other than through this editor.
     func hasConflict(currentLastModified: Date) -> Bool {
         // Dates round-trip through CloudKit with sub-millisecond noise, so a
         // small tolerance avoids false positives.
