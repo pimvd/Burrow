@@ -217,21 +217,7 @@ struct TileEditorView: View {
         } message: {
             Text(errorMessage ?? "")
         }
-        .alert(
-            Text("Not available yet", comment: "Freemium limit alert title"),
-            isPresented: Binding(
-                get: { limitMessage != nil },
-                set: { if !$0 { limitMessage = nil } }
-            )
-        ) {
-            Button(role: .cancel) {
-                limitMessage = nil
-            } label: {
-                Text("OK", comment: "Alert dismiss")
-            }
-        } message: {
-            Text(limitMessage ?? "")
-        }
+        .proLimitPrompt($limitMessage)
         .task(id: photoSelection) {
             await loadSelectedPhoto()
         }

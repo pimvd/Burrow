@@ -12,6 +12,11 @@ import SwiftData
 enum ModelContainerFactory {
     private static let logger = Logger(subsystem: "com.pvd.kidtopia", category: "Persistence")
 
+    /// Whether the store that was actually opened mirrors to CloudKit. The
+    /// fallback below is silent by design, so this is the only way a screen can
+    /// tell the parent that their content is staying on this device.
+    private(set) static var isCloudBacked = false
+
     static func makeContainer(inMemory: Bool = false) -> ModelContainer {
         let schema = Schema(versionedSchema: KidtopiaSchemaV1.self)
 
@@ -21,7 +26,12 @@ enum ModelContainerFactory {
                 isStoredInMemoryOnly: true,
                 cloudKitDatabase: .none
             )
-            return makeContainer(schema: schema, configuration: configuration, allowFallback: false)
+            return makeContainer(
+                schema: schema,
+                configuration: configuration,
+                cloudBacked: false,
+                allowFallback: false
+            )
         }
 
         let cloudConfiguration = ModelConfiguration(
@@ -29,22 +39,32 @@ enum ModelContainerFactory {
             isStoredInMemoryOnly: false,
             cloudKitDatabase: .automatic
         )
-        return makeContainer(schema: schema, configuration: cloudConfiguration, allowFallback: true)
+        return makeContainer(
+            schema: schema,
+            configuration: cloudConfiguration,
+            cloudBacked: true,
+            allowFallback: true
+        )
     }
 
     private static func makeContainer(
         schema: Schema,
         configuration: ModelConfiguration,
+        cloudBacked: Bool,
         allowFallback: Bool
     ) -> ModelContainer {
         do {
-            return try ModelContainer(
+            let container = try ModelContainer(
                 for: schema,
                 migrationPlan: KidtopiaMigrationPlan.self,
                 configurations: [configuration]
             )
+            isCloudBacked = cloudBacked
+            return container
         } catch {
             logger.error("Could not open the synced store: \(error.localizedDescription, privacy: .public)")
+
+            isCloudBacked = false
 
             if allowFallback {
                 do {
