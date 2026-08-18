@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Kidtopia</string>
+	<string>Burrow</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,9 +33,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Kidtopia needs access to Apple Music so your child can listen to the songs you added to their tiles.</string>
+	<string>Burrow needs access to Apple Music so your child can listen to the songs you added to their tiles.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Kidtopia lets you pick a picture from your photo library as the image for a tile.</string>
+	<string>Burrow lets you pick a picture from your photo library as the image for a tile.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

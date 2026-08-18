@@ -18,7 +18,7 @@ So games are a fixed catalog in code, following `AvatarCatalog` and
 
 ## Data model
 
-Amend `KidtopiaSchemaV1` in place and bump it to `1.1.0`. No `V2`, no
+Amend `BurrowSchemaV1` in place and bump it to `1.1.0`. No `V2`, no
 duplicate model classes, `stages` stays empty: the app has not shipped, so
 there are no stores to migrate but the author's own. Both additions are
 CloudKit-safe by the rules already followed in this repo — a defaulted array
@@ -91,7 +91,7 @@ matching `presentedGame = nil`.
 
 ## Components
 
-### `GameCatalog` (`Kidtopia/Games/GameCatalog.swift`)
+### `GameCatalog` (`Burrow/Games/GameCatalog.swift`)
 
 The fixed list, in the shape of `AvatarCatalog`.
 
@@ -112,7 +112,7 @@ The view itself is resolved by a separate `@ViewBuilder` switch on
 `identifier` in `GameHostView`, not stored in the struct — keeping `Game` a
 plain `Sendable` value.
 
-### `ChildTab` (`Kidtopia/Views/Child/ChildTab.swift`)
+### `ChildTab` (`Burrow/Views/Child/ChildTab.swift`)
 
 `ChildHomeViewModel.selectedCategory` is typed `TileCategory`
 (`ChildHomeViewModel.swift:9`). A third tab must not become a third
@@ -140,13 +140,13 @@ rather than artwork, since games have no image to store.
 `AgeLayoutScale` still drives *layout* here, as it does in `TileGridView.swift:17`.
 That is visual sizing only and is unrelated to which games are available.
 
-### `GameHostView` (`Kidtopia/Views/Child/GameHostView.swift`)
+### `GameHostView` (`Burrow/Views/Child/GameHostView.swift`)
 
 Full-screen cover, mirroring `NowPlayingView`'s lifecycle: a close button in
 the same position, `.statusBarHidden()`, `onAppear`/`onDisappear` driving the
 recorder. Resolves `identifier` to a concrete game view.
 
-### `MatchingPairsGame` (`Kidtopia/Games/MatchingPairsGame.swift`)
+### `MatchingPairsGame` (`Burrow/Games/MatchingPairsGame.swift`)
 
 The one game. A grid of face-down cards using SF Symbols on the profile's
 theme colours; two taps reveal, a match stays up, a mismatch turns back after
@@ -166,7 +166,7 @@ A fourth `Limit` case: `2` free, `Int.max` paid, plus its localized message
 in the same voice as the existing three (`ProGate.swift:50`). Enforced where
 the parent switches a game on, not where the child plays.
 
-### `ParentGamesView` (`Kidtopia/Views/Parent/ParentGamesView.swift`)
+### `ParentGamesView` (`Burrow/Views/Parent/ParentGamesView.swift`)
 
 Reached from `ParentSettingsView` via a new `ParentDestination.games`
 (`AppRouter.swift:15`), placed in the first section beside Profiles and

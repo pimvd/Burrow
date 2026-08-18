@@ -1,34 +1,34 @@
-# Kidtopia
+# Burrow
 
 A privacy-first, offline-first iOS app that lets a parent build large, tappable
 tiles of music or video for their children. No ads, no subscriptions, no
 tracking — one optional in-app purchase unlocks the limits.
 
 - **Platform:** iOS 17+, iPhone and iPad, portrait and landscape
-- **Bundle identifier:** `com.pvd.kidtopia`
+- **Bundle identifier:** `com.pvd.burrow`
 - **Stack:** SwiftUI, SwiftData (+ CloudKit), Swift Charts, StoreKit 2, MusicKit,
   AVFoundation, WebKit
 
 ## Opening the project
 
 ```sh
-open Kidtopia.xcodeproj
+open Burrow.xcodeproj
 ```
 
 The only third-party dependency is
 [ZIPFoundation](https://github.com/weichsel/ZIPFoundation), resolved through
 Swift Package Manager when the project is first opened.
 
-Debug builds use `Config/Kidtopia.storekit` so the purchase flow can be tried
+Debug builds use `Config/Burrow.storekit` so the purchase flow can be tried
 without App Store Connect. The iCloud entitlement in
-`Config/Kidtopia.entitlements` points at `iCloud.com.pvd.kidtopia`; replace the
+`Config/Burrow.entitlements` points at `iCloud.com.pvd.burrow`; replace the
 container identifier and development team with your own before running on a
 device.
 
 ## Layout
 
 ```
-Kidtopia/
+Burrow/
   App/          Entry point, navigation router, parental session state
   Models/       SwiftData models, versioned schema, container factory
   Design/       Colour palette, avatars, calm styling and layout constants
@@ -116,8 +116,8 @@ inverse, and there are no uniqueness constraints. Two deliberate naming choices:
 
 ```sh
 xcodebuild build \
-  -project Kidtopia.xcodeproj \
-  -scheme Kidtopia \
+  -project Burrow.xcodeproj \
+  -scheme Burrow \
   -destination 'generic/platform=iOS Simulator'
 ```
 
@@ -126,8 +126,8 @@ destination:
 
 ```sh
 xcodebuild test \
-  -project Kidtopia.xcodeproj \
-  -scheme Kidtopia \
+  -project Burrow.xcodeproj \
+  -scheme Burrow \
   -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
 ```
 
@@ -136,7 +136,7 @@ the simulator is looked up with `simctl` rather than named.
 
 ## Localization
 
-`Kidtopia/Resources/Localizable.xcstrings` holds every user-facing string in
+`Burrow/Resources/Localizable.xcstrings` holds every user-facing string in
 English (source), Dutch, German, French and Spanish. Adding a language means
 adding it to the catalog and to `knownRegions` in the project file; nothing in
 the code changes.

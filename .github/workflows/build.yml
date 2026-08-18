@@ -20,7 +20,7 @@ jobs:
           swift --version
 
       - name: Resolve Swift package dependencies
-        run: xcodebuild -resolvePackageDependencies -project Kidtopia.xcodeproj -scheme Kidtopia
+        run: xcodebuild -resolvePackageDependencies -project Burrow.xcodeproj -scheme Burrow
 
       # A generic simulator destination compiles the app without needing a
       # simulator runtime to be installed on the runner image.
@@ -28,8 +28,8 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild build \
-            -project Kidtopia.xcodeproj \
-            -scheme Kidtopia \
+            -project Burrow.xcodeproj \
+            -scheme Burrow \
             -configuration Debug \
             -destination 'generic/platform=iOS Simulator' \
             -skipMacroValidation \
@@ -52,8 +52,8 @@ jobs:
           ")
           echo "Testing on simulator $UDID"
           xcodebuild test \
-            -project Kidtopia.xcodeproj \
-            -scheme Kidtopia \
+            -project Burrow.xcodeproj \
+            -scheme Burrow \
             -configuration Debug \
             -destination "id=$UDID" \
             -skipMacroValidation
