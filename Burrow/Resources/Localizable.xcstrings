@@ -1,151 +1,6 @@
 {
   "sourceLanguage": "en",
   "strings": {
-    "%1$@ · %2$lldx opened": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$lldx geöffnet"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$lld veces abierto"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$lld ouvertures"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@ · %2$lldx geopend"
-          }
-        }
-      }
-    },
-    "%1$lld h %2$lld min": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld Std. %2$lld Min."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld h %2$lld min"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld h %2$lld min"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld u %2$lld min"
-          }
-        }
-      }
-    },
-    "%1$lld of %2$lld items left.": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch %1$lld von %2$lld Einträgen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quedan %1$lld de %2$lld elementos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encore %1$lld éléments sur %2$lld."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog %1$lld van %2$lld onderdelen."
-          }
-        }
-      }
-    },
-    "%1$lld of %2$lld profiles left in the free version.": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch %1$lld von %2$lld Profilen in der kostenlosen Version."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quedan %1$lld de %2$lld perfiles en la versión gratuita."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encore %1$lld profils sur %2$lld dans la version gratuite."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog %1$lld van %2$lld profielen in de gratis versie."
-          }
-        }
-      }
-    },
-    "%1$lld of %2$lld tiles left in the free version.": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Noch %1$lld von %2$lld Kacheln in der kostenlosen Version."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quedan %1$lld de %2$lld mosaicos en la versión gratuita."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encore %1$lld tuiles sur %2$lld dans la version gratuite."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nog %1$lld van %2$lld tegels in de gratis versie."
-          }
-        }
-      }
-    },
     "%@ was also changed somewhere else while you were editing. Which version should Burrow keep?": {
       "comment": "Conflict dialog explanation",
       "localizations": {
@@ -171,6 +26,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ is ook ergens anders gewijzigd terwijl jij aan het bewerken was. Welke versie moet Burrow bewaren?"
+          }
+        }
+      }
+    },
+    "%@ · %lldx opened": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$lldx geöffnet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$lld veces abierto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$lld ouvertures"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$lldx geopend"
           }
         }
       }
@@ -238,6 +121,34 @@
         }
       }
     },
+    "%lld h %lld min": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld Std. %2$lld Min."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld h %2$lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld h %2$lld min"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld u %2$lld min"
+          }
+        }
+      }
+    },
     "%lld min": {
       "comment": "Duration in minutes",
       "localizations": {
@@ -292,6 +203,90 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld minuten"
+          }
+        }
+      }
+    },
+    "%lld of %lld items left.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %1$lld von %2$lld Einträgen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quedan %1$lld de %2$lld elementos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %1$lld éléments sur %2$lld."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog %1$lld van %2$lld onderdelen."
+          }
+        }
+      }
+    },
+    "%lld of %lld profiles left in the free version.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %1$lld von %2$lld Profilen in der kostenlosen Version."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quedan %1$lld de %2$lld perfiles en la versión gratuita."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %1$lld profils sur %2$lld dans la version gratuite."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog %1$lld van %2$lld profielen in de gratis versie."
+          }
+        }
+      }
+    },
+    "%lld of %lld tiles left in the free version.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %1$lld von %2$lld Kacheln in der kostenlosen Version."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quedan %1$lld de %2$lld mosaicos en la versión gratuita."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encore %1$lld tuiles sur %2$lld dans la version gratuite."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nog %1$lld van %2$lld tegels in de gratis versie."
           }
         }
       }
@@ -1422,6 +1417,267 @@
           "stringUnit": {
             "state": "translated",
             "value": "Boek"
+          }
+        }
+      }
+    },
+    "Burrow": {
+      "comment": "Parent settings section\nPurchase screen title",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow"
+          }
+        }
+      }
+    },
+    "Burrow could not open that file.": {
+      "comment": "Media import failure",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow konnte diese Datei nicht öffnen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow no pudo abrir ese archivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas pu ouvrir ce fichier."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow kon dat bestand niet openen."
+          }
+        }
+      }
+    },
+    "Burrow could not prepare the export: %@": {
+      "comment": "Export failure",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow konnte den Export nicht vorbereiten: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow no pudo preparar la exportación: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas pu préparer l’exportation : %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow kon de export niet voorbereiden: %@"
+          }
+        }
+      }
+    },
+    "Burrow could not read this backup: %@": {
+      "comment": "Import failure",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow konnte dieses Backup nicht lesen: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow no pudo leer esta copia de seguridad: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas pu lire cette sauvegarde : %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow kon deze back-up niet lezen: %@"
+          }
+        }
+      }
+    },
+    "Burrow could not save that file: %@": {
+      "comment": "Media import failure with system message",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow konnte diese Datei nicht sichern: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow no pudo guardar ese archivo: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas pu enregistrer ce fichier : %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow kon dat bestand niet bewaren: %@"
+          }
+        }
+      }
+    },
+    "Burrow could not write the backup file: %@": {
+      "comment": "Export failure",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow konnte die Backup-Datei nicht schreiben: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow no pudo escribir el archivo de copia de seguridad: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas pu écrire le fichier de sauvegarde : %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow kon het back-upbestand niet schrijven: %@"
+          }
+        }
+      }
+    },
+    "Burrow does not have permission to use Apple Music yet.": {
+      "comment": "Apple Music authorization missing",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow hat noch keine Berechtigung für Apple Music."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow aún no tiene permiso para usar Apple Music."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow n’a pas encore l’autorisation d’utiliser Apple Music."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow heeft nog geen toestemming om Apple Music te gebruiken."
+          }
+        }
+      }
+    },
+    "Burrow is unlocked": {
+      "comment": "Purchase state",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow ist freigeschaltet"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow está desbloqueado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow est débloqué"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow is ontgrendeld"
+          }
+        }
+      }
+    },
+    "Burrow keeps usage data until you remove it yourself. Tiles you delete take their own statistics with them after 14 days.": {
+      "comment": "Usage cleanup explanation",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow behält Nutzungsdaten, bis du sie selbst löschst. Gelöschte Kacheln nehmen ihre Statistiken nach 14 Tagen mit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow conserva los datos de uso hasta que los borres. Los mosaicos eliminados se llevan sus estadísticas tras 14 días."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow conserve les données d’utilisation jusqu’à ce que vous les effaciez. Les tuiles supprimées emportent leurs statistiques après 14 jours."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burrow bewaart gebruiksgegevens tot je ze zelf wist. Tegels die je verwijdert nemen na 14 dagen hun eigen statistieken mee."
           }
         }
       }
@@ -3626,267 +3882,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "De andere versie behouden"
-          }
-        }
-      }
-    },
-    "Burrow": {
-      "comment": "Parent settings section\nPurchase screen title",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow"
-          }
-        }
-      }
-    },
-    "Burrow could not open that file.": {
-      "comment": "Media import failure",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow konnte diese Datei nicht öffnen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow no pudo abrir ese archivo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas pu ouvrir ce fichier."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow kon dat bestand niet openen."
-          }
-        }
-      }
-    },
-    "Burrow could not prepare the export: %@": {
-      "comment": "Export failure",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow konnte den Export nicht vorbereiten: %@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow no pudo preparar la exportación: %@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas pu préparer l’exportation : %@"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow kon de export niet voorbereiden: %@"
-          }
-        }
-      }
-    },
-    "Burrow could not read this backup: %@": {
-      "comment": "Import failure",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow konnte dieses Backup nicht lesen: %@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow no pudo leer esta copia de seguridad: %@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas pu lire cette sauvegarde : %@"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow kon deze back-up niet lezen: %@"
-          }
-        }
-      }
-    },
-    "Burrow could not save that file: %@": {
-      "comment": "Media import failure with system message",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow konnte diese Datei nicht sichern: %@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow no pudo guardar ese archivo: %@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas pu enregistrer ce fichier : %@"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow kon dat bestand niet bewaren: %@"
-          }
-        }
-      }
-    },
-    "Burrow could not write the backup file: %@": {
-      "comment": "Export failure",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow konnte die Backup-Datei nicht schreiben: %@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow no pudo escribir el archivo de copia de seguridad: %@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas pu écrire le fichier de sauvegarde : %@"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow kon het back-upbestand niet schrijven: %@"
-          }
-        }
-      }
-    },
-    "Burrow does not have permission to use Apple Music yet.": {
-      "comment": "Apple Music authorization missing",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow hat noch keine Berechtigung für Apple Music."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow aún no tiene permiso para usar Apple Music."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow n’a pas encore l’autorisation d’utiliser Apple Music."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow heeft nog geen toestemming om Apple Music te gebruiken."
-          }
-        }
-      }
-    },
-    "Burrow is unlocked": {
-      "comment": "Purchase state",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow ist freigeschaltet"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow está desbloqueado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow est débloqué"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow is ontgrendeld"
-          }
-        }
-      }
-    },
-    "Burrow keeps usage data until you remove it yourself. Tiles you delete take their own statistics with them after 14 days.": {
-      "comment": "Usage cleanup explanation",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow behält Nutzungsdaten, bis du sie selbst löschst. Gelöschte Kacheln nehmen ihre Statistiken nach 14 Tagen mit."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow conserva los datos de uso hasta que los borres. Los mosaicos eliminados se llevan sus estadísticas tras 14 días."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow conserve les données d’utilisation jusqu’à ce que vous les effaciez. Les tuiles supprimées emportent leurs statistiques après 14 jours."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Burrow bewaart gebruiksgegevens tot je ze zelf wist. Tegels die je verwijdert nemen na 14 dagen hun eigen statistieken mee."
           }
         }
       }
@@ -6936,36 +6931,6 @@
         }
       }
     },
-    "Show YouTube video": {
-      "comment": "Tile playback setting",
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "YouTube-Video anzeigen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar el vídeo de YouTube"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher la vidéo YouTube"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "YouTube-video tonen"
-          }
-        }
-      }
-    },
     "Shows at which hours Burrow is used most within the chosen period.": {
       "comment": "Hourly chart explanation",
       "localizations": {
@@ -8126,8 +8091,7 @@
         }
       }
     },
-    "This backup holds %1$lld profiles and %2$lld tiles. Merging adds what is missing; replacing removes everything that is here now.": {
-      "extractionState": "stale",
+    "This backup holds %lld profiles and %lld tiles. Merging adds what is missing; replacing removes everything that is here now.": {
       "localizations": {
         "de": {
           "stringUnit": {
@@ -9456,36 +9420,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wat hoort er niet bij?"
-          }
-        }
-      }
-    },
-    "With this off, a YouTube item plays sound only and the picture stays hidden.": {
-      "comment": "YouTube audio-only explanation",
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ist dies aus, spielt ein YouTube-Eintrag nur den Ton ab und das Bild bleibt verborgen."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Con esto desactivado, un elemento de YouTube solo reproduce el sonido y la imagen queda oculta."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si cette option est désactivée, un élément YouTube ne joue que le son et l’image reste masquée."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Staat dit uit, dan speelt een YouTube-onderdeel alleen geluid af en blijft het beeld verborgen."
           }
         }
       }
