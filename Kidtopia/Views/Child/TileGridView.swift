@@ -12,7 +12,7 @@ struct TileGridView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(
-                columns: [CalmStyle.gridItem(forRegularWidth: horizontalSizeClass == .regular)],
+                columns: CalmStyle.gridColumns(forRegularWidth: horizontalSizeClass == .regular),
                 spacing: CalmStyle.gridSpacing
             ) {
                 ForEach(tiles) { tile in

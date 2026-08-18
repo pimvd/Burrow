@@ -25,11 +25,19 @@ enum CalmStyle {
     static let gridPadding: CGFloat = 20
     static let tileTitleFont: Font = .title3.weight(.semibold)
 
-    /// Tiles are laid out with an adaptive grid, so a wider window (iPad, or an
-    /// iPhone in landscape) simply fits more columns of the same size.
-    static func gridItem(forRegularWidth isRegularWidth: Bool) -> GridItem {
-        let minimum = isRegularWidth ? tileMinimumWidth * 1.1 : tileMinimumWidth
-        return GridItem(.adaptive(minimum: minimum), spacing: gridSpacing)
+    /// Two cards side by side on an iPhone, and as many as fit on anything
+    /// wider.
+    ///
+    /// A compact width asks for two columns outright rather than going through
+    /// `.adaptive`: two cards at `tileMinimumWidth` plus the spacing come to
+    /// more than any iPhone is wide, so an adaptive grid always resolved to a
+    /// single column there. Regular width keeps the adaptive grid, where the
+    /// minimum is a real floor rather than a column count in disguise.
+    static func gridColumns(forRegularWidth isRegularWidth: Bool) -> [GridItem] {
+        guard isRegularWidth else {
+            return Array(repeating: GridItem(.flexible(), spacing: gridSpacing), count: 2)
+        }
+        return [GridItem(.adaptive(minimum: tileMinimumWidth * 1.1), spacing: gridSpacing)]
     }
 }
 
