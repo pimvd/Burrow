@@ -52,12 +52,15 @@ struct TileEditorView: View {
     var body: some View {
         Form {
             Section {
-                LabeledContent {
+                HStack {
+                    Text("Type", comment: "Tile category row")
+
+                    Spacer(minLength: 12)
+
                     Label(category.localizedTitle, systemImage: category.symbolName)
                         .foregroundStyle(.secondary)
-                } label: {
-                    Text("Type", comment: "Tile category row")
                 }
+                .fixedSize(horizontal: false, vertical: true)
             } footer: {
                 Text(
                     "The type is set when the tile is created and cannot be changed later. To switch, delete this tile and make a new one.",

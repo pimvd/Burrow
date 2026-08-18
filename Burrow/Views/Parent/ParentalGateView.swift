@@ -29,40 +29,20 @@ struct ParentalGateView: View {
                     .multilineTextAlignment(.center)
             }
 
-            HStack(spacing: 16) {
-                Button {
-                    viewModel.adjustYear(by: -1)
-                } label: {
-                    Image(systemName: "minus")
-                        .frame(width: 44, height: 44)
-                }
-                .buttonStyle(.bordered)
-                .accessibilityLabel(Text("One year earlier", comment: "Parental gate stepper"))
-
-                TextField(
-                    String(localized: "Year", comment: "Parental gate field placeholder"),
-                    text: $viewModel.enteredYearText
-                )
-                .keyboardType(.numberPad)
-                .textContentType(.none)
-                .multilineTextAlignment(.center)
-                .font(.system(.title, design: .rounded).monospacedDigit())
-                .frame(maxWidth: 160)
-                .padding(.vertical, 8)
-                .background(.quaternary, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .focused($isFieldFocused)
-                .onChange(of: viewModel.enteredYearText) { _, _ in
-                    viewModel.clearFailure()
-                }
-
-                Button {
-                    viewModel.adjustYear(by: 1)
-                } label: {
-                    Image(systemName: "plus")
-                        .frame(width: 44, height: 44)
-                }
-                .buttonStyle(.bordered)
-                .accessibilityLabel(Text("One year later", comment: "Parental gate stepper"))
+            TextField(
+                String(localized: "Year", comment: "Parental gate field placeholder"),
+                text: $viewModel.enteredYearText
+            )
+            .keyboardType(.numberPad)
+            .textContentType(.none)
+            .multilineTextAlignment(.center)
+            .font(.system(.title, design: .rounded).monospacedDigit())
+            .frame(maxWidth: 160)
+            .padding(.vertical, 8)
+            .background(.quaternary, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .focused($isFieldFocused)
+            .onChange(of: viewModel.enteredYearText) { _, _ in
+                viewModel.clearFailure()
             }
 
             // Identical message for every failure reason, on purpose.

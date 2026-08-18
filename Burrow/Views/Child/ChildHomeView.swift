@@ -92,19 +92,23 @@ struct ChildHomeView: View {
         // here rather than in the player: closing the player takes the picture
         // away, and this keeps the sound.
         .background(hiddenYouTubeHost)
-        .safeAreaInset(edge: .bottom) {
-            if let playlist = backgroundedPlaylist {
-                NowPlayingBar(
-                    tileTitle: playlist.tileTitle,
-                    entryTitle: playback.currentEntry?.title,
-                    tint: profile.theme.tint,
-                    onOpen: { viewModel.presentedTile = allTiles.first { $0.id == playlist.tileID } },
-                    onStop: stopPlayback
-                )
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
+    }
+
+    /// The bar for music that plays on with the player closed. It is inset
+    /// into each tab's own content rather than the TabView, so it sits just
+    /// above the tab bar instead of covering it.
+    @ViewBuilder
+    private var nowPlayingInset: some View {
+        if let playlist = backgroundedPlaylist {
+            NowPlayingBar(
+                tileTitle: playlist.tileTitle,
+                entryTitle: playback.currentEntry?.title,
+                tint: profile.theme.tint,
+                onOpen: { viewModel.presentedTile = allTiles.first { $0.id == playlist.tileID } },
+                onStop: stopPlayback
+            )
+            .transition(.move(edge: .bottom).combined(with: .opacity))
         }
-        .animation(CalmStyle.transition, value: backgroundedPlaylist?.tileID)
     }
 
     @ViewBuilder
@@ -141,6 +145,8 @@ struct ChildHomeView: View {
 
             floatingControls
         }
+        .safeAreaInset(edge: .bottom) { nowPlayingInset }
+        .animation(CalmStyle.transition, value: backgroundedPlaylist?.tileID)
     }
 
     @ViewBuilder
@@ -159,6 +165,8 @@ struct ChildHomeView: View {
 
             floatingControls
         }
+        .safeAreaInset(edge: .bottom) { nowPlayingInset }
+        .animation(CalmStyle.transition, value: backgroundedPlaylist?.tileID)
     }
 
     /// The small controls that float over every tab's grid.

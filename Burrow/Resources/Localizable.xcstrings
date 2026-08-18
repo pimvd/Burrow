@@ -5278,64 +5278,6 @@
         }
       }
     },
-    "One year earlier": {
-      "comment": "Parental gate stepper",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ein Jahr früher"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Un año antes"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Un an plus tôt"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Een jaar eerder"
-          }
-        }
-      }
-    },
-    "One year later": {
-      "comment": "Parental gate stepper",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ein Jahr später"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Un año después"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Un an plus tard"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Een jaar later"
-          }
-        }
-      }
-    },
     "One-time purchase. No ads, no subscriptions, and nothing about your family leaves your devices.": {
       "comment": "Privacy promise",
       "localizations": {

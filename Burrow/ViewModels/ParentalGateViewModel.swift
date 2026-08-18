@@ -23,16 +23,6 @@ final class ParentalGateViewModel {
         Int(enteredYearText.trimmingCharacters(in: .whitespaces))
     }
 
-    /// A sensible starting value for the stepper.
-    static var defaultYear: Int { latestValidYear() - 15 }
-
-    func adjustYear(by delta: Int) {
-        let current = enteredYear ?? Self.defaultYear
-        let adjusted = min(max(current + delta, Self.earliestYear), Calendar.current.component(.year, from: Date()))
-        enteredYearText = String(adjusted)
-        showsFailure = false
-    }
-
     func clearFailure() {
         showsFailure = false
     }
