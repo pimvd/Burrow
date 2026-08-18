@@ -846,6 +846,35 @@
         }
       }
     },
+    "All games": {
+      "comment": "Purchase benefit",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Spiele"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los juegos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les jeux"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle spelletjes"
+          }
+        }
+      }
+    },
     "All time": {
       "comment": "Statistics range preset",
       "localizations": {
@@ -1746,7 +1775,7 @@
       }
     },
     "Close": {
-      "comment": "Close the player",
+      "comment": "Close the player\nDismiss the purchase screen",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -4761,35 +4790,6 @@
         }
       }
     },
-    "Not now": {
-      "comment": "Dismiss the purchase prompt",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht jetzt"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ahora no"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas maintenant"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niet nu"
-          }
-        }
-      }
-    },
     "Not quite. Watch again.": {
       "comment": "A wrong tap in Copy the Pattern",
       "localizations": {
@@ -7343,31 +7343,60 @@
         }
       }
     },
-    "The free version has three.": {
+    "The free version has seven.": {
       "comment": "Purchase benefit detail",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die kostenlose Version hat drei."
+            "value": "Die kostenlose Version hat sieben."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La versión gratuita tiene tres."
+            "value": "La versión gratuita tiene siete."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La version gratuite en a trois."
+            "value": "La version gratuite en a sept."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De gratis versie heeft er drie."
+            "value": "De gratis versie heeft er zeven."
+          }
+        }
+      }
+    },
+    "The free version has two per profile.": {
+      "comment": "Purchase benefit detail",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die kostenlose Version hat zwei pro Profil."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La versión gratuita tiene dos por perfil."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La version gratuite en a deux par profil."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De gratis versie heeft er twee per profiel."
           }
         }
       }

@@ -60,21 +60,7 @@ struct ParentGamesView: View {
         .navigationTitle(Text("Games", comment: "Parent games title"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { selectedProfileID = selectedProfile?.id }
-        .alert(
-            Text("Unlock Kidtopia", comment: "Purchase prompt title"),
-            isPresented: Binding(
-                get: { limitMessage != nil },
-                set: { if !$0 { limitMessage = nil } }
-            )
-        ) {
-            Button(role: .cancel) {
-                limitMessage = nil
-            } label: {
-                Text("Not now", comment: "Dismiss the purchase prompt")
-            }
-        } message: {
-            Text(limitMessage ?? "")
-        }
+        .proLimitPrompt($limitMessage)
     }
 
     private func binding(for game: GameCatalog.Game, profile: ChildProfile) -> Binding<Bool> {

@@ -3,12 +3,22 @@ import SwiftUI
 
 /// The single one-time purchase. No subscription, no ads, nothing to track.
 struct PurchaseView: View {
+    /// Why the parent landed here, set when they arrived from a limit rather
+    /// than from the settings list.
+    var reason: String?
+
     @Environment(StoreManager.self) private var store
 
     var body: some View {
         List {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
+                    if let reason {
+                        Label(reason, systemImage: "lock")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                    }
+
                     Text("Unlock Kidtopia", comment: "Purchase title")
                         .font(.title2.weight(.semibold))
 
@@ -35,7 +45,12 @@ struct PurchaseView: View {
                 benefit(
                     systemImage: "music.note.list",
                     title: String(localized: "Up to 50 items per playlist", comment: "Purchase benefit"),
-                    detail: String(localized: "The free version has three.", comment: "Purchase benefit detail")
+                    detail: String(localized: "The free version has seven.", comment: "Purchase benefit detail")
+                )
+                benefit(
+                    systemImage: "gamecontroller",
+                    title: String(localized: "All games", comment: "Purchase benefit"),
+                    detail: String(localized: "The free version has two per profile.", comment: "Purchase benefit detail")
                 )
             } header: {
                 Text("What you get", comment: "Purchase section")
