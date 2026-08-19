@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [master, "claude/**"]
+    branches: [master, "claude/**", "DONT_REMOVE/**"]
   pull_request:
   workflow_dispatch:
 
