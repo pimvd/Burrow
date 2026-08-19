@@ -55,6 +55,8 @@ struct PurchaseView: View {
                 )
             } header: {
                 Text("What you get", comment: "Purchase section")
+            } footer: {
+                Text(YouTubeSupportNotice.full)
             }
 
             if store.isPro {

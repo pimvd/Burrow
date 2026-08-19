@@ -83,8 +83,11 @@ its transport buttons.
 (honouring shuffle and loop), drives `AVQueuePlayer`, MusicKit and the YouTube
 embed, and reports failures upward. A broken YouTube link is skipped silently
 for the child while the reason is stored on the media item and badged in the
-parent list. Items always start at 0:00; only *which* item was playing is
-remembered per tile.
+parent list. YouTube is also the only part of the app that depends on someone
+else's permission, so `YouTubeSupportNotice` holds that caveat once and the add
+screen, the purchase screen and `website/support.html` all say the same thing:
+it works for as long as YouTube allows it, and nothing else rests on it. Items
+always start at 0:00; only *which* item was playing is remembered per tile.
 
 **Statistics come from two kinds of rows.** `UsageRecorder` writes an *open
 marker* (no media item, zero duration) each time a tile is opened, and a *play

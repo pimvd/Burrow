@@ -183,10 +183,13 @@ struct AddMediaItemView: View {
         } header: {
             Text("Link", comment: "Media item section")
         } footer: {
-            Text(
-                "Paste the link to the video. Burrow plays it without recommendations or comments around it.",
-                comment: "YouTube explanation"
-            )
+            VStack(alignment: .leading, spacing: 8) {
+                Text(
+                    "Paste the link to the video. Burrow plays it without recommendations or comments around it.",
+                    comment: "YouTube explanation"
+                )
+                Text(YouTubeSupportNotice.short)
+            }
         }
     }
 

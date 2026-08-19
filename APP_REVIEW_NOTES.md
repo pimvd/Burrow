@@ -5,7 +5,7 @@
 
 Version 1.0.
 
-Burrow is a media player for young children that plays only what a parent puts into it. A parent creates "tiles" — each tile is one playlist, music or video — and fills them with audio/video files from the device, Apple Music songs, or YouTube links. The child sees only those tiles: no search, no browsing, no recommendations, no way to reach anything the parent did not add. There is no account or sign-in, so no demo account applies. Localized in English, German, Spanish, French and Dutch; follows the device language.
+Burrow is a media player for young children that plays only what a parent puts into it. A parent creates "tiles" — each is one playlist, music or video — and fills them with audio/video files from the device, Apple Music songs, or YouTube links. The child sees only those tiles: no search, no browsing, no recommendations, no way to reach anything the parent did not add. There is no account or sign-in, so no demo account applies. Localized in English, German, Spanish, French and Dutch.
 
 Reaching the parent area:
 - Tap the person icon in the top-left of the child screen, then the gear icon.
@@ -14,34 +14,35 @@ Reaching the parent area:
 In-app purchase:
 - One product: `com.pvd.burrow.pro` (Burrow Full), a **non-consumable** one-time purchase at €9.99. No subscriptions.
 - Free: one child profile, five tiles per profile, three items per playlist, two games.
-- Full: unlimited profiles and tiles, up to 50 items per playlist, all six games.
-- Purchase path: hit any of those limits — add a second profile, a sixth tile, a fourth playlist item, or a third game — and the purchase screen opens with the reason shown. It is also reachable from the parent settings list.
-- **Free trial:** the purchase screen offers "Try everything free for 14 days". This is the app's own trial, not a StoreKit introductory offer, because non-consumables do not support one. Tapping it opens every limit for 14 days; no payment is taken and there is nothing to cancel. It starts once; when it ends the app returns to the free limits with the parent's content intact. The start date is kept on the device — no server.
-- To review the paid state without buying: open the parent area → Unlock Burrow → "Try everything free for 14 days".
+- Full: unlimited profiles and tiles, 50 items per playlist, all six games.
+- Purchase path: hit any limit — a second profile, a sixth tile, a fourth playlist item, a third game — and the purchase screen opens with the reason shown. Also reachable from parent settings.
+- **Free trial:** the purchase screen offers "Try everything free for 14 days". This is the app's own trial, not a StoreKit introductory offer, since non-consumables do not support one. It opens every limit for 14 days; no payment is taken and nothing needs cancelling. It starts once, and when it ends the app returns to the free limits with the parent's content intact. The start date is kept on the device — no server.
+- To see the paid state without buying: parent area → Unlock Burrow → "Try everything free for 14 days".
 - Restore: "Restore purchase" on that screen.
-- The entitlement is read from StoreKit 2 current entitlements on each launch. No server component.
+- The entitlement is read from StoreKit 2 current entitlements at launch. No server.
 
 Content and third-party playback:
-- **YouTube:** parent-supplied links only, played through YouTube's embedded player. The child cannot search, browse, or follow links out; the embed is overlaid so taps cannot reach YouTube's own controls. In a music tile the picture stays hidden and only the sound plays.
-- **Apple Music:** requires the parent's own subscription. The Apple Music permission prompt appears only when a parent adds an Apple Music item, not at launch.
+- **YouTube:** parent-supplied links only, played through YouTube's embedded player. The child cannot search, browse, or follow links out; the embed is overlaid so taps cannot reach YouTube's own controls. In a music tile only the sound plays.
+- **Apple Music:** requires the parent's own subscription. Its permission prompt appears only when an Apple Music item is added, not at launch.
 - Because YouTube is involved, the app is **not** submitted under the Kids Category and is not marked "Made for Kids".
+- The app tells the parent — where a link is added, and on the purchase screen — that YouTube playback depends on Google and works only for as long as YouTube allows it, and that unlocking lifts Burrow's own limits rather than paying for YouTube or Apple Music.
 
 Permissions and privacy:
-- No data collected: no analytics, ads, tracking, ATT prompt, or account. There is no server of ours.
-- Profiles, tiles, playlists and usage statistics sync through the user's **own** private CloudKit database (`iCloud.com.pvd.burrow`). The developer has no access.
-- Audio/video/pictures the parent adds stay in the app's own storage on the device.
+- No data collected: no analytics, ads, tracking, ATT prompt, or account. We run no server.
+- Profiles, tiles, playlists and statistics sync through the user's **own** private CloudKit database (`iCloud.com.pvd.burrow`). The developer has no access.
+- Media the parent adds stays in the app's own storage on the device.
 - Local notifications only, for an optional monthly backup reminder the parent turns on.
-- Privacy policy: `https://vandijkcloud.nl/burrow/privacy.html`
+- Privacy policy: `vandijkcloud.nl/burrow/privacy.html`
 
 Suggested reviewer flow:
-1. On first launch, create a child profile, then open a tab (Music / Video / Games).
-2. Parent area: person icon → gear → parental gate (any adult birth year).
-3. Tiles → add a tile → add a playlist item (a local file, or paste a YouTube link).
-4. Back on the child side, tap the tile to play. Closing the player keeps music going and shows a bar to stop it; video stops when its player closes.
+1. On first launch, create a child profile, then open a tab.
+2. Parent area: person icon → gear → gate (any adult birth year).
+3. Tiles → add a tile → add an item (a local file, or a YouTube link).
+4. Back on the child side, tap the tile to play. Closing the player keeps music going and shows a bar to stop it; video stops when closed.
 5. Games: six calm games, two available free.
 6. Trigger the paywall: Profiles → add a second profile.
-6b. Or start the 14-day free trial from that same screen to see the unlocked state.
+6b. Or start the 14-day trial from that screen to see the unlocked state.
 7. Buy Burrow Full, then confirm the limits lift.
-8. Export and import: create a backup, which produces a zip through the share sheet.
+8. Export and import: create a backup — a zip through the share sheet.
 
-Support: `pim@vandijkcloud.nl`. Happy to clarify via the Resolution Center.
+Support: `pim@vandijkcloud.nl`. Happy to clarify in the Resolution Center.

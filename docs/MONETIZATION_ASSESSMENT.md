@@ -112,6 +112,24 @@ Suppressing captions removes the app's only accessibility path for a deaf or
 hard-of-hearing child. That is worth weighing on its own terms, separately from
 the policy question.
 
+### What the disclosure does and does not do
+
+The caveat is now stated in the app where a link is added, again on the purchase
+screen before any money moves, and on the support page — one wording, held in
+`YouTubeSupportNotice`. That is worth doing: it is honest, it sets the
+expectation before a parent builds a playlist on top of YouTube, and on the day
+it matters it is the difference between "this app broke" and "they told me this
+could happen" in a review. It should measurably reduce refund anger and
+one-stars.
+
+What it does not do is remove the obligation. Notices like this set expectations;
+they do not waive a buyer's statutory rights, and in the EU — four of the five
+languages this ships in — paid digital content carries conformity obligations
+regardless of what the app said. Apple also refunds buyers directly, on its own
+judgement, whatever the disclosure says. So treat it as expectation management,
+which is real and valuable, rather than as a shield. The thing that removes the
+exposure is not shipping the dependency.
+
 **Recommendation: ship v1 without YouTube.** If you keep it, the minimum honest
 version is: drop the tap-blocking overlay, stop fighting the captions, register
 an API client, and call `videos.list` for `status.madeForKids` before storing a

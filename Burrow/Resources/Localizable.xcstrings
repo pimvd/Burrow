@@ -9253,6 +9253,34 @@
         }
       }
     },
+    "Unlocking lifts Burrow's own limits: profiles, tiles, playlist length and games. YouTube is not part of it. YouTube videos play through Google's embedded player, and Burrow can offer them only for as long as YouTube permits it. If that changes, YouTube items will stop playing and no update can bring them back. Your own audio and video files, and Apple Music, are not affected.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Freischalten hebt Burrows eigene Grenzen auf: Profile, Kacheln, Länge der Wiedergabelisten und Spiele. YouTube gehört nicht dazu. YouTube-Videos laufen über Googles eingebetteten Player, und Burrow kann sie nur so lange anbieten, wie YouTube es erlaubt. Ändert sich das, spielen YouTube-Einträge nicht mehr, und kein Update kann sie zurückbringen. Deine eigenen Audio- und Videodateien und Apple Music sind davon nicht betroffen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear elimina los límites propios de Burrow: perfiles, mosaicos, longitud de las listas y juegos. YouTube no entra en eso. Los vídeos de YouTube se reproducen con el reproductor incrustado de Google, y Burrow solo puede ofrecerlos mientras YouTube lo permita. Si eso cambia, los elementos de YouTube dejarán de reproducirse y ninguna actualización podrá recuperarlos. Tus propios archivos de audio y vídeo, y Apple Music, no se ven afectados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le déblocage lève les limites propres à Burrow : profils, tuiles, longueur des listes et jeux. YouTube n’en fait pas partie. Les vidéos YouTube sont lues par le lecteur intégré de Google, et Burrow ne peut les proposer que tant que YouTube l’autorise. Si cela change, les éléments YouTube ne seront plus lus et aucune mise à jour ne pourra les rétablir. Vos propres fichiers audio et vidéo, ainsi qu’Apple Music, ne sont pas concernés."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontgrendelen haalt Burrows eigen grenzen weg: profielen, tegels, lengte van afspeellijsten en spelletjes. YouTube hoort daar niet bij. YouTube-video’s spelen via Googles ingesloten speler, en Burrow kan ze alleen aanbieden zolang YouTube dat toestaat. Verandert dat, dan spelen YouTube-onderdelen niet meer en kan geen enkele update ze terugbrengen. Je eigen audio- en videobestanden en Apple Music blijven gewoon werken."
+          }
+        }
+      }
+    },
     "Up to 50 items per playlist": {
       "comment": "Purchase benefit",
       "localizations": {
@@ -9771,6 +9799,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "YouTube-link"
+          }
+        }
+      }
+    },
+    "YouTube videos play through Google's own embedded player. Burrow supports them for as long as YouTube allows it — that is Google's decision, not ours, and it can change. Files you add from your own device never depend on it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YouTube-Videos laufen über Googles eigenen eingebetteten Player. Burrow unterstützt sie so lange, wie YouTube es zulässt — das entscheidet Google, nicht wir, und es kann sich ändern. Dateien von deinem eigenen Gerät hängen nie davon ab."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los vídeos de YouTube se reproducen con el reproductor incrustado de Google. Burrow los admite mientras YouTube lo permita: lo decide Google, no nosotros, y puede cambiar. Los archivos de tu propio dispositivo nunca dependen de ello."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les vidéos YouTube sont lues par le lecteur intégré de Google. Burrow les prend en charge tant que YouTube l’autorise — c’est Google qui en décide, pas nous, et cela peut changer. Les fichiers de votre propre appareil n’en dépendent jamais."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YouTube-video’s spelen via Googles eigen ingesloten speler. Burrow ondersteunt ze zolang YouTube dat toestaat — dat bepaalt Google, niet wij, en het kan veranderen. Bestanden van je eigen toestel zijn er nooit van afhankelijk."
           }
         }
       }

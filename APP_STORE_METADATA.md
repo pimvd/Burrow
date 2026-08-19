@@ -349,6 +349,18 @@ Probeer 14 dagen alles gratis. Niets op te zeggen en geen betaalgegevens nodig.
 
 ---
 
+## The YouTube Caveat
+
+The app, the support page and the review notes all say the same thing, and the
+wording lives once in `YouTubeSupportNotice`: YouTube playback depends on
+Google's permission, Burrow supports it for as long as YouTube allows it, and
+nothing else in the app depends on it. It is disclosed on the screen where a
+parent adds a link and again on the purchase screen, before any money moves.
+
+Whether to repeat it in the store descriptions is a judgement call and has been
+left open: it is the strongest pre-purchase surface there is, and it also costs
+conversion. Recommended if YouTube support is kept.
+
 ## Review Information Reminders
 
 - **Kids Category — decide deliberately.** Burrow plays parent-supplied YouTube links through YouTube's embedded player. Apple's Kids Category rules (Guideline 1.3, and 5.1.4 on data from children) restrict third-party analytics and advertising, and an embedded YouTube player is exactly the kind of third-party content that draws scrutiny. Recommendation: submit under **Education**, not the Kids Category, unless YouTube support is removed. Do not tick "Made for Kids".
