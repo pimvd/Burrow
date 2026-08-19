@@ -36,4 +36,30 @@ enum YouTubeLink {
         guard candidate.count == 11 else { return false }
         return candidate.unicodeScalars.allSatisfy { allowedCharacters.contains($0) }
     }
+
+    // MARK: - The hosted player page
+
+    /// Where the player shell lives. It is served from Burrow's own domain
+    /// rather than built inside the app because YouTube's embedded player
+    /// identifies its host through the HTTP `Referer` header, and only a page
+    /// loaded from a real origin sends one.
+    ///
+    /// Source: `website/player.html`. Republish after editing, and raise
+    /// ``playerPageVersion`` so devices do not keep serving a cached copy.
+    static let playerPageURL = "https://vandijkcloud.nl/burrow/player.html"
+
+    /// Bumped whenever `website/player.html` changes.
+    static let playerPageVersion = 1
+
+    /// The address to load for one video.
+    ///
+    /// The identifier goes in the fragment, which is never sent to the server,
+    /// so no web server log records which video a child watched.
+    static func playerURL(videoID: String) -> URL? {
+        guard isValidIdentifier(videoID) else { return nil }
+        var components = URLComponents(string: playerPageURL)
+        components?.queryItems = [URLQueryItem(name: "v", value: String(playerPageVersion))]
+        components?.fragment = videoID
+        return components?.url
+    }
 }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Burrow player</title>
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; height: 100%; overflow: hidden; }
+  #player { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<!--
+  The shell Burrow loads to play a YouTube item.
+
+  It exists as a hosted page rather than a string built inside the app because
+  YouTube's embedded player identifies its host through the HTTP Referer
+  header, and a page loaded from a real origin sends one. The app keeps a copy
+  of this markup as a fallback for when this file cannot be reached.
+
+  The video identifier arrives in the URL fragment, which browsers do not send
+  to the server, so no web server log here ever records which video a child
+  watched.
+-->
+<div id="player"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player;
+  var captionSweep;
+
+  function post(payload) {
+    // Absent when this page is opened outside the app, which is harmless.
+    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.burrow) {
+      window.webkit.messageHandlers.burrow.postMessage(payload);
+    }
+  }
+
+  // Only the eleven unreserved characters of a YouTube identifier survive.
+  function safeID(raw) {
+    return String(raw || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 11);
+  }
+
+  function videoIDFromHash() {
+    return safeID((window.location.hash || '').replace(/^#/, ''));
+  }
+
+  // Clearing the caption track is the only thing that actually removes
+  // subtitles. `cc_load_policy` does not suppress auto-generated ones, and
+  // `unloadModule` leaves them running.
+  function hideCaptions() {
+    if (!player) { return; }
+    try { player.setOption('captions', 'track', {}); } catch (e) {}
+    try { player.setOption('cc', 'track', {}); } catch (e) {}
+  }
+
+  // The captions module only loads a second or two after playback starts, so
+  // one call at that moment is too early to catch it.
+  function startCaptionSweep() {
+    if (captionSweep) { return; }
+    var ticks = 0;
+    captionSweep = setInterval(function () {
+      hideCaptions();
+      ticks += 1;
+      if (ticks >= 10) { clearInterval(captionSweep); captionSweep = null; }
+    }, 700);
+  }
+
+  // Called by the app to move to the next item without fetching this page
+  // again, so a playlist costs one page load rather than one per video.
+  window.burrowLoad = function (rawID) {
+    var id = safeID(rawID);
+    if (!player || !id) { return; }
+    if (captionSweep) { clearInterval(captionSweep); captionSweep = null; }
+    player.loadVideoById(id);
+  };
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      host: 'https://www.youtube-nocookie.com',
+      videoId: videoIDFromHash(),
+      playerVars: {
+        playsinline: 1,
+        autoplay: 1,
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        rel: 0,
+        iv_load_policy: 3,
+        cc_load_policy: 0,
+        origin: window.location.origin
+      },
+      events: {
+        onReady: function (event) {
+          post({ event: 'ready' });
+          event.target.playVideo();
+        },
+        onStateChange: function (event) {
+          hideCaptions();
+          if (event.data === YT.PlayerState.ENDED) { post({ event: 'ended' }); }
+          else if (event.data === YT.PlayerState.PLAYING) {
+            startCaptionSweep();
+            post({ event: 'playing' });
+          }
+          else if (event.data === YT.PlayerState.PAUSED) { post({ event: 'paused' }); }
+        },
+        onError: function (event) { post({ event: 'error', code: event.data }); }
+      }
+    });
+  }
+
+  window.addEventListener('error', function () { post({ event: 'error', code: -1 }); });
+</script>
+</body>
+</html>

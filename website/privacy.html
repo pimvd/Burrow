@@ -11,9 +11,11 @@
 </head>
 <body>
   <h1>Burrow — Privacy Policy</h1>
-  <p><em>Last updated: 18 August 2026</em></p>
+  <p><em>Last updated: 19 August 2026</em></p>
 
-  <p>Burrow has no accounts, no analytics, no advertising, and no tracking. We do not collect, store, or receive any personal data about you or your child. There is no server of ours for anything to be sent to.</p>
+  <p>Burrow has no accounts, no analytics, no advertising, and no tracking. We do not collect, store, or receive any personal data about you or your child.</p>
+
+  <p>There is one narrow exception, and it applies only if you play a YouTube item: the app fetches a small static page from <code>vandijkcloud.nl</code> to host YouTube's player. That is described under <a href="#youtube">YouTube</a> below. Nothing else in the app ever contacts us.</p>
 
   <h2>Where your content lives</h2>
 
@@ -29,7 +31,13 @@
 
   <p><strong>Apple Music.</strong> If you add an Apple Music song, it plays through Apple Music using your own subscription, and Apple's privacy policy applies to that playback. Burrow asks for Apple Music permission only when you add such an item.</p>
 
-  <p><strong>YouTube.</strong> If you paste a YouTube link, the video is played by YouTube's own embedded player inside the app. That means Google receives the requests any YouTube playback involves. Burrow shows the video without recommendations, comments, or any way for a child to browse onward, but it cannot prevent Google from seeing that the video was played. If you would rather no third party is involved at all, use audio and video files you add yourself.</p>
+  <p id="youtube"><strong>YouTube.</strong> If you paste a YouTube link, the video is played by YouTube's own embedded player inside the app. That means Google receives the requests any YouTube playback involves. Burrow shows the video without recommendations, comments, or any way for a child to browse onward, but it cannot prevent Google from seeing that the video was played.</p>
+
+  <p>YouTube requires the page holding its player to identify itself, so that page is served from our own domain: playing a YouTube item fetches <code>vandijkcloud.nl/burrow/player.html</code>, a static file with no code of ours running behind it. Like any web server, ours records the ordinary request details — an IP address, a timestamp, the file asked for. We do not use those logs for analytics, we do not link them to anything, and there is no account to link them to. <strong>Which video you played is not among them:</strong> the video identifier is put in the part of the address that browsers never send to a server, deliberately, so that our logs cannot show what your child watched.</p>
+
+  <p>If the page cannot be reached, the app falls back to a copy built into it and playback carries on without contacting us at all.</p>
+
+  <p>If you would rather no third party is involved at any point, use audio and video files you add yourself. Those never touch the network.</p>
 
   <h2>Your child</h2>
 

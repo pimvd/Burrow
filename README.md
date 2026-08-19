@@ -81,7 +81,11 @@ its transport buttons.
 
 **Playback never shows a playlist.** `MediaPlaybackService` owns the play order
 (honouring shuffle and loop), drives `AVQueuePlayer`, MusicKit and the YouTube
-embed, and reports failures upward. A broken YouTube link is skipped silently
+embed, and reports failures upward. The page holding the YouTube embed is served
+from Burrow's own domain (`website/player.html`), because YouTube identifies an
+embedder by its `Referer` header and only a real origin sends one; the app keeps
+a copy of that page as a fallback for when it cannot be reached. See
+`docs/YT_EMBEDDING.md`. A broken YouTube link is skipped silently
 for the child while the reason is stored on the media item and badged in the
 parent list. YouTube is also the only part of the app that depends on someone
 else's permission, so `YouTubeSupportNotice` holds that caveat once and the add
