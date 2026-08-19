@@ -79,25 +79,68 @@ The exposure is asymmetric in a way that is easy to miss.
 **The upside of keeping YouTube is small.** It is one of four source types. Local
 files, Apple Music and local video all still work without it.
 
-**The downside is total and retroactive.** Google's stated remedies are
-*"reduction of API quota, revoking API keys and their associated privileges, or
-other actions, including termination of the Google account associated with the
-API service found to be in violation."* If the embed stops being served, it stops
-for every installed copy at once. Not new installs — all of them. Parents who
-paid €9.99 open the app and their child's videos are gone, and there is no
-version you can ship to bring them back, because the capability was never yours.
-The refunds and the one-star reviews arrive in the same week, and the App Store
-rating they leave behind is the asset you cannot rebuild.
+**But Google has no switch pointed at Burrow.** An earlier draft of this document
+quoted the policy's remedies — *"reduction of API quota, revoking API keys and
+their associated privileges, or other actions, including termination of the
+Google account"* — as if they applied here. They do not. The IFrame Player API
+needs no API key, no OAuth client and no Cloud project. Burrow has never
+identified itself to Google and holds nothing Google can take away. There is no
+targeted revocation available, and the account-termination language describes
+registered API clients, which Burrow is not.
 
-**You would not see it coming.** Enforcement here is not a warning letter
-followed by a grace period; it is a compliance audit or a quota action. And
-because Burrow uses no API key, there is no account for Google to contact — the
-first signal would be the app breaking.
+**The real breakage is class-wide, and it has already happened once.** On
+9 July 2025 YouTube tightened embedder identity verification, requiring embedded
+players to identify their host through the HTTP `Referer` header. WebView apps
+broke en masse with error 153 through late 2025, because a WKWebView does not
+send that header the way a browser does. That is exactly this app's
+configuration, and the fingerprints are already in the code: the comment on
+`load(videoID:into:)` records that serving the page as youtube.com produced *"a
+15x error for every video"*, which is the same enforcement. `modestbranding: 1`
+in the playerVars is likewise a dead parameter — YouTube deprecated it in August
+2023 and it has no effect.
 
-**The probability is not the point.** It may well be low. But a low-probability
-event that destroys the paying customer base, retroactively, with no remedy, is
-worth more attention than a high-probability event that costs a week. This is the
-one risk in the project that you cannot engineer your way out of after the fact.
+So the YouTube feature works today because `https://localhost` is currently
+accepted as a legitimate embedder origin. That is an undocumented convenience,
+not a contract, and it sits one policy tick away from the enforcement that
+already broke this pattern once.
+
+**The one targeted route is not technical.** If Google ever did want to act on
+Burrow specifically — the overlay in front of the player is a plain policy
+violation — the lever is a rights-holder complaint to Apple, and the outcome is
+the app being removed from sale rather than the feature degrading. That needs
+somebody to notice a small indie app, so it is unlikely. It is also worse than
+breakage if it happens.
+
+**The impact analysis is unchanged.** Whichever way it arrives, it arrives for
+every installed copy at once — not new installs, all of them. Parents who paid
+€9.99 open the app and their child's videos are gone, and there is no version you
+can ship to bring them back, because the capability was never yours. You would
+not get advance notice, because there is no account for Google to write to. The
+refunds and the one-star reviews land in the same week, and the App Store rating
+they leave behind is the asset you cannot rebuild.
+
+**Revised read on probability.** Lower than I first implied for "Google comes
+after you", and *higher* for "this breaks on its own". Nobody is hunting Burrow.
+But it rides on an embedder configuration that Google has already tightened once
+inside the last eighteen months, and each tightening has broken this exact class
+of app.
+
+### The mitigation, if you keep it
+
+Serve the player page from a real origin you already own rather than from
+`localhost` — the same host as the privacy and support pages. A page loaded from
+`https://vandijkcloud.nl/burrow/player.html` sends a genuine `Referer`, which is
+precisely what the July 2025 enforcement asks for, and turns the most likely
+breakage path into a supported configuration.
+
+The cost is one real dependency on your own hosting, which is worth naming: it
+touches YouTube tiles only, and those already need the network, so local files,
+Apple Music and the games are unaffected. It does slightly complicate the "we
+have no server" line — static hosting is not a server that sees your family's
+data, but the copy would need to be precise about that.
+
+This does not fix the overlay or the missing `madeForKids` check. It fixes the
+failure mode that is actually likely.
 
 ### Apple, separately
 
