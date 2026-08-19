@@ -18,7 +18,9 @@ length-checked.
 - Minimum OS: iOS 17.0
 - Category candidate: Education (secondary: Entertainment) — **see the Kids Category note under Review Information**
 - Availability: worldwide
-- Price: free, with one non-consumable in-app purchase **Burrow Full** (`com.pvd.burrow.pro`, €9.99)
+- Price: free, with a 14-day in-app free trial and one non-consumable in-app purchase
+  **Burrow Full** (`com.pvd.burrow.pro`, €9.99). The trial is the app's own, not a
+  StoreKit introductory offer, which non-consumables do not support
 - Privacy policy URL: `https://vandijkcloud.nl/burrow/privacy.html` (source: `website/privacy.html` — republish after edits)
 - Marketing URL: _TODO (optional)_
 - Support email: `pim@vandijkcloud.nl` (also in the privacy policy)
@@ -38,10 +40,13 @@ First release, so "What's New" is not shown. Kept here for the next version.
 
 `Burrow: Kids Music & Video` (26/30)
 
-**Subtitle options**
+**Subtitle** — recommended
+
+`Your songs, offline, no ads` (27/30)
+
+Alternatives, kept for reference:
 - Only what you choose. No ads. (29/30)
 - The player you fill yourself (28/30)
-- Music and video, nothing else (29/30)
 
 **Promotional text**
 
@@ -81,12 +86,14 @@ BURROW FULL
 One purchase, forever. No subscription:
 - Unlimited child profiles (free: one)
 - Unlimited tiles per profile (free: five)
-- Up to 50 items per playlist (free: seven)
+- Up to 50 items per playlist (free: three)
 - Every game (free: two)
+
+Try everything free for 14 days. Nothing to cancel, no card needed.
 
 **Keywords**
 
-`toddler,preschool,playlist,screentime,parental,safe,offline,nursery,songs,curated,calm,player` (93/100)
+`toddler,preschool,playlist,mp3,audiobook,player,screentime,parental,car,sleep,nursery,wifi` (90/100)
 
 ---
 
@@ -94,12 +101,15 @@ One purchase, forever. No subscription:
 
 **App name**
 
-`Burrow: Musik & Hörspiel` (24/30)
+`Burrow: Musik & Video Player` (28/30)
 
-**Subtitle options**
+**Subtitle** — recommended
+
+`Kindersicher, ohne Werbung` (26/30)
+
+Alternatives, kept for reference:
 - Ohne Werbung, ohne Algorithmus (30/30)
 - Nur was du aussuchst (20/30)
-- Kindersicher, ohne Werbung (26/30)
 
 **Promotional text**
 
@@ -139,12 +149,14 @@ BURROW FULL
 Ein Kauf, für immer. Kein Abo:
 - Unbegrenzt Kinderprofile (kostenlos: eines)
 - Unbegrenzt Kacheln pro Profil (kostenlos: fünf)
-- Bis zu 50 Einträge pro Wiedergabeliste (kostenlos: sieben)
+- Bis zu 50 Einträge pro Wiedergabeliste (kostenlos: drei)
 - Alle Spiele (kostenlos: zwei)
+
+14 Tage lang alles kostenlos testen. Nichts zu kündigen, keine Kartendaten nötig.
 
 **Keywords**
 
-`Kleinkind,Hörspiel,Einschlafen,Kita,Bildschirmzeit,Playlist,werbefrei,offline,Lieder,sicher,Video` (97/100)
+`Kleinkind,Kita,Bildschirmzeit,Playlist,mp3,Hörbuch,offline,Einschlafen,Auto,eigene,Lied` (87/100)
 
 ---
 
@@ -154,8 +166,11 @@ Ein Kauf, für immer. Kein Abo:
 
 `Burrow: Música y Vídeo Niños` (28/30)
 
-**Subtitle options**
-- Sin anuncios ni algoritmos (26/30)
+**Subtitle** — recommended
+
+`Sin anuncios ni algoritmos` (26/30)
+
+Alternatives, kept for reference:
 - Solo lo que tú eliges (21/30)
 - Tranquilo y sin sorpresas (25/30)
 
@@ -197,12 +212,14 @@ BURROW FULL
 Una compra, para siempre. Sin suscripción:
 - Perfiles infantiles ilimitados (gratis: uno)
 - Mosaicos ilimitados por perfil (gratis: cinco)
-- Hasta 50 elementos por lista (gratis: siete)
+- Hasta 50 elementos por lista (gratis: tres)
 - Todos los juegos (gratis: dos)
+
+Prueba todo gratis durante 14 días. No hay nada que cancelar ni hace falta tarjeta.
 
 **Keywords**
 
-`infantil,canciones,cuentos,preescolar,bebé,pantalla,lista,segura,offline,nanas,tiempo` (85/100)
+`infantil,preescolar,bebé,pantalla,lista,mp3,audiolibro,offline,coche,dormir,siesta,propia` (89/100)
 
 ---
 
@@ -210,11 +227,14 @@ Una compra, para siempre. Sin suscripción:
 
 **App name**
 
-`Burrow : Comptines & Vidéo` (26/30)
+`Burrow : Musique & Vidéo` (24/30)
 
-**Subtitle options**
+**Subtitle** — recommended
+
+`Le lecteur des tout-petits` (26/30)
+
+Alternatives, kept for reference:
 - Sans publicité ni algorithme (28/30)
-- Seulement ce que vous choisissez _(30/30 — vérifier)_
 - Calme, sans surprises (21/30)
 
 **Promotional text**
@@ -255,12 +275,14 @@ BURROW FULL
 Un achat, pour toujours. Sans abonnement :
 - Profils enfants illimités (gratuit : un)
 - Tuiles illimitées par profil (gratuit : cinq)
-- Jusqu'à 50 éléments par liste (gratuit : sept)
+- Jusqu'à 50 éléments par liste (gratuit : trois)
 - Tous les jeux (gratuit : deux)
+
+Tout essayer gratuitement pendant 14 jours. Rien à résilier, aucune carte demandée.
 
 **Keywords**
 
-`enfant,bébé,maternelle,berceuse,histoires,écran,playlist,hors-ligne,sûr,musique,dessin` (86/100)
+`enfant,bébé,maternelle,playlist,mp3,livre,audio,hors-ligne,voiture,dormir,sieste,écran,sûr` (90/100)
 
 ---
 
@@ -268,12 +290,15 @@ Un achat, pour toujours. Sans abonnement :
 
 **App name**
 
-`Burrow: Liedjes & Video` (23/30)
+`Burrow: Muziek & Video` (22/30)
 
-**Subtitle options**
+**Subtitle** — recommended
+
+`Kindveilig, zonder reclame` (26/30)
+
+Alternatives, kept for reference:
 - Alleen wat jij kiest (20/30)
 - Zonder reclame of algoritme (27/30)
-- Rustig, zonder verrassingen (28/30)
 
 **Promotional text**
 
@@ -313,12 +338,14 @@ BURROW FULL
 Eén aankoop, voor altijd. Geen abonnement:
 - Onbeperkt kindprofielen (gratis: één)
 - Onbeperkt tegels per profiel (gratis: vijf)
-- Tot 50 onderdelen per afspeellijst (gratis: zeven)
+- Tot 50 onderdelen per afspeellijst (gratis: drie)
 - Alle spelletjes (gratis: twee)
+
+Probeer 14 dagen alles gratis. Niets op te zeggen en geen betaalgegevens nodig.
 
 **Keywords**
 
-`peuter,kleuter,voorlezen,schermtijd,afspeellijst,reclamevrij,offline,veilig,slapen,muziek,kind` (94/100)
+`peuter,kleuter,schermtijd,afspeellijst,mp3,luisterboek,offline,slapen,auto,eigen,veilig,liedje` (94/100)
 
 ---
 
@@ -340,12 +367,27 @@ Answers to give in App Store Connect → App Privacy:
 - Third-party SDKs: none. ZIPFoundation is a local zip library and makes no network requests.
 - Note in the questionnaire that Apple Music playback and embedded YouTube playback are handled by Apple and Google respectively, under their own policies.
 
+## Still Open
+
+- **The brand still leads every name field.** `Burrow` has no search volume and no
+  tie to the category, and the name field is the most heavily weighted input in
+  App Store search. Putting the searched words first — `Kids Music Player: Burrow`
+  — was considered and deliberately not done here; it is a separate decision from
+  the content-promise fix above.
+- The trial length (14 days) is a guess, not a measured number. It is one
+  constant, `Trial.length`.
+
 ## Metadata Checks Before Submission
 
-- [ ] Every name, subtitle and keyword field is inside its limit (checked above; re-check after edits)
-- [ ] No word repeats between name, subtitle and keyword field — Apple combines them
+- [x] Every name, subtitle and keyword field is inside its limit (recomputed after the
+      rewrite; re-check after any further edit)
+- [x] No word repeats between name, subtitle and keyword field — Apple combines them
+- [x] No name promises content the app does not ship. The German name said
+      *Hörspiel* and the French *Comptines*, both of which tell a parent that
+      stories and rhymes are inside; Dutch *Liedjes* did the same. All three now
+      name the container, not the contents
 - [ ] No competitor trademarks in keywords (**Toniebox**, **YouTube**, **Spotify** are all rejection risks)
-- [ ] Keyword field uses singulars, no spaces after commas
+- [x] Keyword field uses singulars, no spaces after commas
 - [ ] Non-English descriptions reviewed by a native speaker — the drafts above are the developer's own and have not been reviewed
 - [ ] `website/privacy.html` and `website/support.html` published at the URLs above and reachable
 - [ ] Screenshots per device size, showing the child grid, a tile editor, and the games grid

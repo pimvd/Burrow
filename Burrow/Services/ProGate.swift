@@ -1,8 +1,11 @@
 import Foundation
 
-/// The single place where the three freemium limits live. Every screen that can
-/// add a profile, a tile or a media item asks this type first, so the free and
-/// paid rules never drift apart.
+/// The single place where the freemium limits live. Every screen that can add a
+/// profile, a tile or a media item asks this type first, so the free and paid
+/// rules never drift apart.
+///
+/// `hasFullAccess` is the answer to "is everything open", which a purchase and a
+/// running trial both produce. Nothing here needs to tell them apart.
 enum ProGate {
     enum Limit: Equatable, Sendable {
         case profiles
@@ -10,35 +13,35 @@ enum ProGate {
         case mediaItemsPerTile
         case gamesPerProfile
 
-        func maximum(isPro: Bool) -> Int {
+        func maximum(hasFullAccess: Bool) -> Int {
             switch self {
             case .profiles:
-                return isPro ? Int.max : 1
+                return hasFullAccess ? Int.max : 1
             case .tilesPerProfile:
-                return isPro ? Int.max : 5
+                return hasFullAccess ? Int.max : 5
             case .mediaItemsPerTile:
-                return isPro ? 50 : 7
+                return hasFullAccess ? 50 : 3
             case .gamesPerProfile:
-                return isPro ? Int.max : 2
+                return hasFullAccess ? Int.max : 2
             }
         }
     }
 
     /// Whether one more item may be added given how many already exist.
-    static func canAdd(_ limit: Limit, currentCount: Int, isPro: Bool) -> Bool {
-        currentCount < limit.maximum(isPro: isPro)
+    static func canAdd(_ limit: Limit, currentCount: Int, hasFullAccess: Bool) -> Bool {
+        currentCount < limit.maximum(hasFullAccess: hasFullAccess)
     }
 
     /// Remaining slots, or `nil` when unlimited.
-    static func remaining(_ limit: Limit, currentCount: Int, isPro: Bool) -> Int? {
-        let maximum = limit.maximum(isPro: isPro)
+    static func remaining(_ limit: Limit, currentCount: Int, hasFullAccess: Bool) -> Int? {
+        let maximum = limit.maximum(hasFullAccess: hasFullAccess)
         guard maximum != Int.max else { return nil }
         return max(0, maximum - currentCount)
     }
 
     /// The message shown when the parent runs into a limit.
-    static func limitMessage(for limit: Limit, isPro: Bool) -> String {
-        if isPro {
+    static func limitMessage(for limit: Limit, hasFullAccess: Bool) -> String {
+        if hasFullAccess {
             switch limit {
             case .mediaItemsPerTile:
                 return String(
@@ -63,7 +66,7 @@ enum ProGate {
             )
         case .mediaItemsPerTile:
             return String(
-                localized: "The free version holds seven items per playlist. Unlock Burrow for up to 50.",
+                localized: "The free version holds three items per playlist. Unlock Burrow for up to 50.",
                 comment: "Free tier media item limit reached"
             )
         case .gamesPerProfile:

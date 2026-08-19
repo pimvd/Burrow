@@ -137,7 +137,7 @@ struct ChildHomeView: View {
     private var gameGrid: some View {
         ZStack(alignment: .top) {
             GameGridView(
-                games: viewModel.visibleGames(profile: profile, isPro: store.isPro),
+                games: viewModel.visibleGames(profile: profile, hasFullAccess: store.hasFullAccess),
                 profile: profile
             ) { game in
                 viewModel.presentedGame = game

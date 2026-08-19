@@ -3,15 +3,20 @@ import Observation
 import OSLog
 import StoreKit
 
-/// Owns the single non-consumable in-app purchase that unlocks Burrow.
+/// Owns everything that decides whether Burrow is open: the single
+/// non-consumable in-app purchase, and the free trial that precedes it.
 ///
 /// There are no subscriptions and no ads. The purchase state is derived from
 /// StoreKit 2's current entitlements, so it restores automatically on a new
-/// device once the parent is signed in to the same App Store account.
+/// device once the parent is signed in to the same App Store account. The trial
+/// is the app's own, because StoreKit has no introductory offer for a
+/// non-consumable.
 @Observable
 @MainActor
 final class StoreManager {
     static let proProductID = "com.pvd.burrow.pro"
+
+    let trial: TrialService
 
     private(set) var product: Product?
     private(set) var isPro = false
@@ -19,10 +24,21 @@ final class StoreManager {
     private(set) var isPurchasing = false
     private(set) var lastErrorMessage: String?
 
+    /// The one question every limit asks. A trial is the whole app, so nothing
+    /// downstream needs to know which of the two is paying for it.
+    var hasFullAccess: Bool { isPro || trial.state.isActive }
+
     @ObservationIgnored private var updatesTask: Task<Void, Never>?
     @ObservationIgnored private let logger = Logger(subsystem: "com.pvd.burrow", category: "Store")
 
-    init() {
+    /// Builds the trial inside an isolated initializer rather than as a default
+    /// argument, which would be evaluated in the caller's context.
+    convenience init() {
+        self.init(trial: TrialService())
+    }
+
+    init(trial: TrialService) {
+        self.trial = trial
         updatesTask = Task { [weak self] in
             for await update in Transaction.updates {
                 guard let self else { return }
@@ -38,8 +54,14 @@ final class StoreManager {
     /// Loads the product metadata and the current entitlement. Safe to call more
     /// than once; it simply refreshes.
     func refresh() async {
+        trial.refresh()
         await loadProduct()
         await refreshEntitlement()
+    }
+
+    /// Opens everything for the length of the trial. Only ever works once.
+    func startTrial() {
+        trial.start()
     }
 
     func loadProduct() async {

@@ -28,9 +28,9 @@ struct ProfileListView: View {
                 .onMove(perform: moveProfiles)
                 .onDelete(perform: requestDeletion)
             } footer: {
-                if let remaining = ProGate.remaining(.profiles, currentCount: profiles.count, isPro: store.isPro) {
+                if let remaining = ProGate.remaining(.profiles, currentCount: profiles.count, hasFullAccess: store.hasFullAccess) {
                     Text(
-                        "\(remaining) of \(ProGate.Limit.profiles.maximum(isPro: store.isPro)) profiles left in the free version.",
+                        "\(remaining) of \(ProGate.Limit.profiles.maximum(hasFullAccess: store.hasFullAccess)) profiles left in the free version.",
                         comment: "Free tier profile counter"
                     )
                 }
@@ -112,8 +112,8 @@ struct ProfileListView: View {
     }
 
     private func addProfile() {
-        guard ProGate.canAdd(.profiles, currentCount: profiles.count, isPro: store.isPro) else {
-            limitMessage = ProGate.limitMessage(for: .profiles, isPro: store.isPro)
+        guard ProGate.canAdd(.profiles, currentCount: profiles.count, hasFullAccess: store.hasFullAccess) else {
+            limitMessage = ProGate.limitMessage(for: .profiles, hasFullAccess: store.hasFullAccess)
             return
         }
         isCreatingProfile = true

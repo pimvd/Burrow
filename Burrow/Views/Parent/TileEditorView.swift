@@ -253,10 +253,10 @@ struct TileEditorView: View {
             if let remaining = ProGate.remaining(
                 .mediaItemsPerTile,
                 currentCount: mediaItems.count,
-                isPro: store.isPro
+                hasFullAccess: store.hasFullAccess
             ) {
                 Text(
-                    "\(remaining) of \(ProGate.Limit.mediaItemsPerTile.maximum(isPro: store.isPro)) items left.",
+                    "\(remaining) of \(ProGate.Limit.mediaItemsPerTile.maximum(hasFullAccess: store.hasFullAccess)) items left.",
                     comment: "Media item counter"
                 )
             }
@@ -317,8 +317,8 @@ struct TileEditorView: View {
     // MARK: - Playlist actions
 
     private func addMediaItem() {
-        guard ProGate.canAdd(.mediaItemsPerTile, currentCount: mediaItems.count, isPro: store.isPro) else {
-            limitMessage = ProGate.limitMessage(for: .mediaItemsPerTile, isPro: store.isPro)
+        guard ProGate.canAdd(.mediaItemsPerTile, currentCount: mediaItems.count, hasFullAccess: store.hasFullAccess) else {
+            limitMessage = ProGate.limitMessage(for: .mediaItemsPerTile, hasFullAccess: store.hasFullAccess)
             return
         }
         isAddingMediaItem = true

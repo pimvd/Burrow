@@ -13,9 +13,11 @@ Reaching the parent area:
 
 In-app purchase:
 - One product: `com.pvd.burrow.pro` (Burrow Full), a **non-consumable** one-time purchase at €9.99. No subscriptions.
-- Free: one child profile, five tiles per profile, seven items per playlist, two games.
+- Free: one child profile, five tiles per profile, three items per playlist, two games.
 - Full: unlimited profiles and tiles, up to 50 items per playlist, all six games.
-- Purchase path: hit any of those limits — add a second profile, a sixth tile, an eighth playlist item, or a third game — and the purchase screen opens with the reason shown. It is also reachable from the parent settings list.
+- Purchase path: hit any of those limits — add a second profile, a sixth tile, a fourth playlist item, or a third game — and the purchase screen opens with the reason shown. It is also reachable from the parent settings list.
+- **Free trial:** the purchase screen offers "Try everything free for 14 days". This is the app's own trial, not a StoreKit introductory offer, because non-consumables do not support one. Tapping it opens every limit for 14 days; no payment is taken and there is nothing to cancel. It starts once; when it ends the app returns to the free limits with the parent's content intact. The start date is kept on the device — no server.
+- To review the paid state without buying: open the parent area → Unlock Burrow → "Try everything free for 14 days".
 - Restore: "Restore purchase" on that screen.
 - The entitlement is read from StoreKit 2 current entitlements on each launch. No server component.
 
@@ -38,6 +40,7 @@ Suggested reviewer flow:
 4. Back on the child side, tap the tile to play. Closing the player keeps music going and shows a bar to stop it; video stops when its player closes.
 5. Games: six calm games, two available free.
 6. Trigger the paywall: Profiles → add a second profile.
+6b. Or start the 14-day free trial from that same screen to see the unlocked state.
 7. Buy Burrow Full, then confirm the limits lift.
 8. Export and import: create a backup, which produces a zip through the share sheet.
 

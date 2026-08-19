@@ -47,32 +47,82 @@ There is also one hard blocker (no app icon exists) and one structural risk
 - `baseURL: https://localhost` to make the page claim a non-YouTube origin,
   because loading it as youtube.com made the player reject every video
 
-Individually each is defensible; together they are a deliberate campaign against
-the player's own UI. YouTube's API Services Terms of Service and Developer
-Policies require that you not modify, obscure or disable parts of the embedded
-player, oblige you to check whether embedded content is "made for kids" via the
-Data API before embedding it, and place extra duties on Child-Directed API
-Clients — including notifying Google of the child-directed nature of the client.
-Burrow does none of the checking and none of the notifying.
+### What the policies actually say
 
-Two consequences, of very different shapes:
+The YouTube API Services Developer Policies are unusually specific here, and two
+clauses land directly on this code.
 
-- **Apple:** probably waved through, but Guideline 5.2.3 (unauthorized
-  third-party audio/video streaming) is exactly the hook reviewers have used on
-  YouTube-playing apps before. Call it a coin flip. A 5.2.3 rejection is a
-  rewrite, not a resubmit.
-- **Google:** can revoke embed access whenever they notice. If they do, every
-  video tile in every installed copy breaks *simultaneously*, after people paid
-  €9.99 for it, and there is nothing you can ship to fix it. That is the tail
-  risk that should decide this.
+**On the overlay.** *"You must not display overlays, frames, or other visual
+elements in front of any part of a YouTube embedded player, including player
+controls."* There is no reading of that under which the tap-blocking overlay is
+allowed. It is not a grey area, and it is described in the app's own review notes
+as a feature.
 
-Suppressing captions also removes the app's only accessibility path for a deaf
-or hard-of-hearing child. Worth saying out loud.
+**On kids content.** *"API Clients must look up the Made For Kids status of each
+YouTube video that it embeds"* — via a `videos.list` call to the Data API,
+reading `status.madeForKids` — and *"for each video that is designated Made For
+Kids, API Clients must turn off tracking and make sure that all data collection
+with respect to that player is compliant with applicable law(s) including
+COPPA and GDPR."* Burrow does not call the Data API at all. Every video a parent
+adds is embedded unchecked. For an app whose entire audience is preschoolers,
+essentially all of that content is Made For Kids, so this obligation is not
+hypothetical — it applies to every tile.
 
-**Recommendation: ship v1 without YouTube.** The cost of keeping it is larger
-than it looks — see §4c.
+There is a third, quieter problem: a Child-Directed API Client is supposed to
+notify Google that it is child-directed. Burrow has never registered as an API
+client at all.
+
+### Why this is a tail risk and not just a compliance chore
+
+The exposure is asymmetric in a way that is easy to miss.
+
+**The upside of keeping YouTube is small.** It is one of four source types. Local
+files, Apple Music and local video all still work without it.
+
+**The downside is total and retroactive.** Google's stated remedies are
+*"reduction of API quota, revoking API keys and their associated privileges, or
+other actions, including termination of the Google account associated with the
+API service found to be in violation."* If the embed stops being served, it stops
+for every installed copy at once. Not new installs — all of them. Parents who
+paid €9.99 open the app and their child's videos are gone, and there is no
+version you can ship to bring them back, because the capability was never yours.
+The refunds and the one-star reviews arrive in the same week, and the App Store
+rating they leave behind is the asset you cannot rebuild.
+
+**You would not see it coming.** Enforcement here is not a warning letter
+followed by a grace period; it is a compliance audit or a quota action. And
+because Burrow uses no API key, there is no account for Google to contact — the
+first signal would be the app breaking.
+
+**The probability is not the point.** It may well be low. But a low-probability
+event that destroys the paying customer base, retroactively, with no remedy, is
+worth more attention than a high-probability event that costs a week. This is the
+one risk in the project that you cannot engineer your way out of after the fact.
+
+### Apple, separately
+
+Guideline 5.2.3 — unauthorized third-party audio/video streaming — is the hook
+reviewers have used on YouTube-playing apps before. Call it a coin flip. A 5.2.3
+rejection costs a rewrite, not a resubmit. And because of the embed you correctly
+rule out the Kids Category, which is the discovery cost in §4c.
+
+### One more thing
+
+Suppressing captions removes the app's only accessibility path for a deaf or
+hard-of-hearing child. That is worth weighing on its own terms, separately from
+the policy question.
+
+**Recommendation: ship v1 without YouTube.** If you keep it, the minimum honest
+version is: drop the tap-blocking overlay, stop fighting the captions, register
+an API client, and call `videos.list` for `status.madeForKids` before storing a
+link. That is real work, and it gets you back to compliant — not to the Kids
+Category, which still needs the embed gone.
 
 ## 3. The monetization design problem
+
+> **Since addressed.** The free playlist limit is now 3 items, and a 14-day
+> full-access trial ships on the purchase screen. The analysis below is kept as
+> the reasoning behind both.
 
 Free tier: 1 profile, 5 tiles, 7 items per playlist, 2 games. That is **35
 tracks for one child** — and for the median target user (one toddler, a dozen
@@ -141,15 +191,18 @@ CRM, Burrow App), and Burrow Inc. holds a US registration on BURROW (reg.
 Put the searched words first: `Kids Music Player: Burrow`, or drop the brand
 from the name field for v1 and let it live in the icon and the app itself.
 
-**b) The localized names promise content the app does not have.** German
+**b) The localized names promise content the app does not have.** *(Fixed.)* German
 `Burrow: Musik & Hörspiel` and French `Burrow : Comptines & Vidéo` tell a parent
 that audio dramas and nursery rhymes are *inside*. They are not — the parent
 supplies everything. The keyword fields repeat the mistake: `Hörspiel`,
 `Einschlafen`, `cuentos`, `nanas`, `berceuse`, `histoires`, `dessin` are all
 content words for a container app. In a category where expectation mismatch is
 already the top complaint, this buys refunds and 1-stars **in your two best
-markets**. Sell the container, not the content: `dein eigener Player`,
-`ton propre lecteur`.
+markets**. Sell the container, not the content.
+
+The names are now `Burrow: Musik & Video Player`, `Burrow : Musique & Vidéo` and
+`Burrow: Muziek & Video`, and every locale's keyword field has been rebuilt
+around the intent in (d) below.
 
 **c) You are on the wrong shelf, and YouTube is why.** Because of the embed you
 correctly rule out the Kids Category and go in under Education — one of the
@@ -222,8 +275,11 @@ product that cannot become a liability, which is worth more than it sounds.
 2. Decide on YouTube. My recommendation is cut it for v1: it costs you the Kids
    Category, it is the one thing that can break the app remotely after people
    have paid, and removing it makes your central claim literally true.
-3. Rewrite the five name/subtitle/keyword sets: searched words first, no content
-   promises, add the offline/own-files/car intent.
-4. Rebalance the paywall — trial, or 3 items per playlist.
+3. ~~Rewrite the name/subtitle/keyword sets~~ — done for all five locales: the
+   content promises are out of the names, and the keyword fields now carry the
+   own-files / offline / car intent. The brand still leads every name field,
+   which is a separate call (see *Still Open* in `APP_STORE_METADATA.md`).
+4. ~~Rebalance the paywall~~ — done: 3 free playlist items, and a 14-day trial.
 5. Screenshots that answer "does it come with songs?" in frame 2.
 6. Get the German descriptions read by a native speaker before submitting.
+7. Decide how long the trial should be. 14 days is a guess; it is one constant.

@@ -93,10 +93,10 @@ struct TileListView: View {
                 if let remaining = ProGate.remaining(
                     .tilesPerProfile,
                     currentCount: ownedTiles.count,
-                    isPro: store.isPro
+                    hasFullAccess: store.hasFullAccess
                 ) {
                     Text(
-                        "\(remaining) of \(ProGate.Limit.tilesPerProfile.maximum(isPro: store.isPro)) tiles left in the free version.",
+                        "\(remaining) of \(ProGate.Limit.tilesPerProfile.maximum(hasFullAccess: store.hasFullAccess)) tiles left in the free version.",
                         comment: "Free tier tile counter"
                     )
                 }
@@ -199,8 +199,8 @@ struct TileListView: View {
     }
 
     private func addTile(category: TileCategory) {
-        guard ProGate.canAdd(.tilesPerProfile, currentCount: ownedTiles.count, isPro: store.isPro) else {
-            limitMessage = ProGate.limitMessage(for: .tilesPerProfile, isPro: store.isPro)
+        guard ProGate.canAdd(.tilesPerProfile, currentCount: ownedTiles.count, hasFullAccess: store.hasFullAccess) else {
+            limitMessage = ProGate.limitMessage(for: .tilesPerProfile, hasFullAccess: store.hasFullAccess)
             return
         }
         newTileCategory = category

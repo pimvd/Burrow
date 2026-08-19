@@ -11,9 +11,9 @@ private struct ProLimitPrompt: Identifiable {
 /// Presents a freemium limit where it can actually be resolved.
 ///
 /// A free parent goes straight to the purchase screen with the reason on top, so
-/// the limit and the way past it are one tap apart. A paid parent can only reach
-/// the hard 50-item playlist cap, which no purchase lifts, so that one stays a
-/// plain alert.
+/// the limit and the way past it are one tap apart. A parent who already has
+/// everything — bought or still trialling — can only reach the hard 50-item
+/// playlist cap, which no purchase lifts, so that one stays a plain alert.
 private struct ProLimitModifier: ViewModifier {
     @Environment(StoreManager.self) private var store
 
@@ -52,7 +52,7 @@ private struct ProLimitModifier: ViewModifier {
     /// Set only while a free parent has a limit to clear.
     private var purchasePrompt: Binding<ProLimitPrompt?> {
         Binding(
-            get: { store.isPro ? nil : message.map(ProLimitPrompt.init(message:)) },
+            get: { store.hasFullAccess ? nil : message.map(ProLimitPrompt.init(message:)) },
             set: { if $0 == nil { message = nil } }
         )
     }
@@ -60,7 +60,7 @@ private struct ProLimitModifier: ViewModifier {
     /// Set only for the paid tier's own ceiling, which buying cannot raise.
     private var capReached: Binding<Bool> {
         Binding(
-            get: { store.isPro && message != nil },
+            get: { store.hasFullAccess && message != nil },
             set: { if !$0 { message = nil } }
         )
     }

@@ -8,7 +8,7 @@ struct VisibleGamesTests {
     func noneEnabled() {
         let model = ChildHomeViewModel()
         let profile = ChildProfile(name: "Melle")
-        #expect(model.visibleGames(profile: profile, isPro: false).isEmpty)
+        #expect(model.visibleGames(profile: profile, hasFullAccess: false).isEmpty)
     }
 
     @Test("An enabled game is visible")
@@ -16,7 +16,7 @@ struct VisibleGamesTests {
         let model = ChildHomeViewModel()
         let profile = ChildProfile(name: "Melle")
         profile.setGame(GameCatalog.matchingPairs, enabled: true)
-        #expect(model.visibleGames(profile: profile, isPro: false).map(\.identifier)
+        #expect(model.visibleGames(profile: profile, hasFullAccess: false).map(\.identifier)
             == [GameCatalog.matchingPairs])
     }
 
@@ -24,7 +24,7 @@ struct VisibleGamesTests {
     func unknownIdentifierIgnored() {
         let model = ChildHomeViewModel()
         let profile = ChildProfile(name: "Melle", enabledGameIDs: ["fromTheFuture"])
-        #expect(model.visibleGames(profile: profile, isPro: false).isEmpty)
+        #expect(model.visibleGames(profile: profile, hasFullAccess: false).isEmpty)
     }
 
     // The parent UI enforces the limit at the toggle, but a package imported
@@ -34,7 +34,7 @@ struct VisibleGamesTests {
         let model = ChildHomeViewModel()
         let all = GameCatalog.all.map(\.identifier)
         let profile = ChildProfile(name: "Melle", enabledGameIDs: all)
-        let visible = model.visibleGames(profile: profile, isPro: false)
+        let visible = model.visibleGames(profile: profile, hasFullAccess: false)
         #expect(visible.count == min(2, all.count))
     }
 
@@ -43,7 +43,7 @@ struct VisibleGamesTests {
         let model = ChildHomeViewModel()
         let all = GameCatalog.all.map(\.identifier)
         let profile = ChildProfile(name: "Melle", enabledGameIDs: all)
-        #expect(model.visibleGames(profile: profile, isPro: true).count == all.count)
+        #expect(model.visibleGames(profile: profile, hasFullAccess: true).count == all.count)
     }
 
     @Test("Games come back in catalog order, not activation order")
@@ -51,7 +51,7 @@ struct VisibleGamesTests {
         let model = ChildHomeViewModel()
         let reversed = GameCatalog.all.map(\.identifier).reversed()
         let profile = ChildProfile(name: "Melle", enabledGameIDs: Array(reversed))
-        let visible = model.visibleGames(profile: profile, isPro: true).map(\.identifier)
+        let visible = model.visibleGames(profile: profile, hasFullAccess: true).map(\.identifier)
         #expect(visible == GameCatalog.all.map(\.identifier))
     }
 }

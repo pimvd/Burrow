@@ -92,6 +92,100 @@
         }
       }
     },
+    "%lld days left in your trial": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day left in your trial"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days left in your trial"
+                }
+              }
+            }
+          }
+        },
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Noch %lld Tag in deiner Testphase"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Noch %lld Tage in deiner Testphase"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Queda %lld día de prueba"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Quedan %lld días de prueba"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Encore %lld jour d’essai"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Encore %lld jours d’essai"
+                }
+              }
+            }
+          }
+        },
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Nog %lld dag in je proefperiode"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Nog %lld dagen in je proefperiode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld entries removed.": {
       "comment": "Usage cleanup result",
       "localizations": {
@@ -4959,6 +5053,34 @@
         }
       }
     },
+    "Nothing to cancel and no card needed. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nichts zu kündigen, keine Kartendaten nötig. Nach den zwei Wochen kehrt Burrow zur kostenlosen Version zurück, und alles, was du angelegt hast, bleibt erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay nada que cancelar ni hace falta tarjeta. Pasadas las dos semanas, Burrow vuelve a la versión gratuita y todo lo que hayas creado se queda donde está."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien à résilier, aucune carte demandée. Au bout de deux semaines, Burrow revient à la version gratuite et tout ce que vous avez créé reste en place."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niets op te zeggen en geen betaalgegevens nodig. Na twee weken gaat Burrow terug naar de gratis versie en blijft alles wat je hebt gemaakt gewoon staan."
+          }
+        }
+      }
+    },
     "Nothing to play right now.": {
       "comment": "Playback empty state",
       "localizations": {
@@ -7598,31 +7720,30 @@
         }
       }
     },
-    "The free version has seven.": {
-      "comment": "Purchase benefit detail",
+    "The free version has three.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die kostenlose Version hat sieben."
+            "value": "Die kostenlose Version hat drei."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La versión gratuita tiene siete."
+            "value": "La versión gratuita tiene tres."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La version gratuite en a sept."
+            "value": "La version gratuite en a trois."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De gratis versie heeft er zeven."
+            "value": "De gratis versie heeft er drie."
           }
         }
       }
@@ -7656,31 +7777,30 @@
         }
       }
     },
-    "The free version holds seven items per playlist. Unlock Burrow for up to 50.": {
-      "comment": "Free tier media item limit reached",
+    "The free version holds three items per playlist. Unlock Burrow for up to 50.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die kostenlose Version fasst sieben Einträge pro Wiedergabeliste. Schalte Burrow frei für bis zu 50."
+            "value": "Die kostenlose Version fasst drei Einträge pro Wiedergabeliste. Schalte Burrow frei für bis zu 50."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La versión gratuita permite siete elementos por lista. Desbloquea Burrow para hasta 50."
+            "value": "La versión gratuita permite tres elementos por lista. Desbloquea Burrow para hasta 50."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La version gratuite contient sept éléments par liste. Débloquez Burrow pour en avoir jusqu’à 50."
+            "value": "La version gratuite contient trois éléments par liste. Débloquez Burrow pour en avoir jusqu’à 50."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "De gratis versie bevat zeven onderdelen per afspeellijst. Ontgrendel Burrow voor maximaal 50."
+            "value": "De gratis versie bevat drie onderdelen per afspeellijst. Ontgrendel Burrow voor maximaal 50."
           }
         }
       }
@@ -8960,6 +9080,34 @@
         }
       }
     },
+    "Try everything free for 14 days": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "14 Tage lang alles kostenlos testen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba todo gratis durante 14 días"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout essayer gratuitement pendant 14 jours"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probeer 14 dagen alles gratis"
+          }
+        }
+      }
+    },
     "Type": {
       "comment": "Tile category row",
       "localizations": {
@@ -9681,6 +9829,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "Je inhoud synchroniseert automatisch tussen je eigen apparaten via iCloud. Een export is een extra kopie die je zelf bewaart."
+          }
+        }
+      }
+    },
+    "Your free trial has ended.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Testphase ist beendet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu prueba gratuita ha terminado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre essai gratuit est terminé."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je proefperiode is afgelopen."
           }
         }
       }

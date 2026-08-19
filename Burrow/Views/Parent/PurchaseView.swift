@@ -1,7 +1,8 @@
 import StoreKit
 import SwiftUI
 
-/// The single one-time purchase. No subscription, no ads, nothing to track.
+/// The free trial and the single one-time purchase. No subscription, no ads,
+/// nothing to track.
 struct PurchaseView: View {
     /// Why the parent landed here, set when they arrived from a limit rather
     /// than from the settings list.
@@ -45,7 +46,7 @@ struct PurchaseView: View {
                 benefit(
                     systemImage: "music.note.list",
                     title: String(localized: "Up to 50 items per playlist", comment: "Purchase benefit"),
-                    detail: String(localized: "The free version has seven.", comment: "Purchase benefit detail")
+                    detail: String(localized: "The free version has three.", comment: "Purchase benefit detail")
                 )
                 benefit(
                     systemImage: "gamecontroller",
@@ -56,14 +57,60 @@ struct PurchaseView: View {
                 Text("What you get", comment: "Purchase section")
             }
 
-            Section {
-                if store.isPro {
+            if store.isPro {
+                Section {
                     Label {
                         Text("Already unlocked", comment: "Purchase state")
                     } icon: {
                         Image(systemName: "checkmark.seal")
                     }
+                }
+            } else {
+                // The trial is its own section so the offer reads as an offer
+                // rather than as one more button under the price.
+                if !store.trial.state.hasStarted {
+                    Section {
+                        Button {
+                            store.startTrial()
+                        } label: {
+                            Label(
+                                String(
+                                    localized: "Try everything free for 14 days",
+                                    comment: "Start the free trial"
+                                ),
+                                systemImage: "gift"
+                            )
+                        }
+                    } footer: {
+                        Text(
+                            "Nothing to cancel and no card needed. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.",
+                            comment: "Free trial explanation"
+                        )
+                    }
+                } else if store.trial.state.isActive {
+                    Section {
+                        Label {
+                            Text(
+                                "\(store.trial.state.daysRemaining) days left in your trial",
+                                comment: "Remaining trial days"
+                            )
+                        } icon: {
+                            Image(systemName: "hourglass")
+                        }
+                        .foregroundStyle(.secondary)
+                    }
                 } else {
+                    Section {
+                        Label {
+                            Text("Your free trial has ended.", comment: "Trial finished")
+                        } icon: {
+                            Image(systemName: "hourglass.bottomhalf.filled")
+                        }
+                        .foregroundStyle(.secondary)
+                    }
+                }
+
+                Section {
                     Button {
                         Task { await store.purchase() }
                     } label: {
@@ -86,8 +133,10 @@ struct PurchaseView: View {
                         Text("Restore purchase", comment: "Restore button")
                     }
                 }
+            }
 
-                if let message = store.lastErrorMessage {
+            if let message = store.lastErrorMessage {
+                Section {
                     Label(message, systemImage: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
                         .font(.callout)

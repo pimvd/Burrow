@@ -47,7 +47,7 @@ struct ParentGamesView: View {
                     if let remaining = ProGate.remaining(
                         .gamesPerProfile,
                         currentCount: profile.enabledGameIDs.count,
-                        isPro: store.isPro
+                        hasFullAccess: store.hasFullAccess
                     ) {
                         Text("\(remaining) of 2 games left", comment: "Remaining free games")
                     }
@@ -71,11 +71,11 @@ struct ParentGamesView: View {
                     guard ProGate.canAdd(
                         .gamesPerProfile,
                         currentCount: profile.enabledGameIDs.count,
-                        isPro: store.isPro
+                        hasFullAccess: store.hasFullAccess
                     ) else {
                         limitMessage = ProGate.limitMessage(
                             for: .gamesPerProfile,
-                            isPro: store.isPro
+                            hasFullAccess: store.hasFullAccess
                         )
                         return
                     }

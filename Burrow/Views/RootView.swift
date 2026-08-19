@@ -89,6 +89,9 @@ struct RootView: View {
             }
             screenTime.pause()
         case .active:
+            // The trial runs down on the wall clock, so it is re-read whenever
+            // the app comes forward rather than only at launch.
+            store.trial.refresh()
             if case .child = router.screen {
                 screenTime.resume()
             }

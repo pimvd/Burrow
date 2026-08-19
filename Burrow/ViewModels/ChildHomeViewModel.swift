@@ -40,10 +40,10 @@ final class ChildHomeViewModel {
     /// package exported from a paid device can carry more enabled games than
     /// the free tier allows, and nothing else would catch that. Extra games
     /// are hidden rather than switched off, so unlocking brings them back.
-    func visibleGames(profile: ChildProfile, isPro: Bool) -> [GameCatalog.Game] {
+    func visibleGames(profile: ChildProfile, hasFullAccess: Bool) -> [GameCatalog.Game] {
         let enabled = Set(profile.enabledGameIDs)
         let games = GameCatalog.all.filter { enabled.contains($0.identifier) }
-        let maximum = ProGate.Limit.gamesPerProfile.maximum(isPro: isPro)
+        let maximum = ProGate.Limit.gamesPerProfile.maximum(hasFullAccess: hasFullAccess)
         guard maximum != Int.max else { return games }
         return Array(games.prefix(maximum))
     }

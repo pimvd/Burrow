@@ -125,6 +125,19 @@ struct ParentSettingsView: View {
                         Image(systemName: "checkmark.seal")
                     }
                     .foregroundStyle(.secondary)
+                } else if store.trial.state.isActive {
+                    // Still a link: a trial that is running is exactly when the
+                    // parent is most likely to want to keep it.
+                    NavigationLink(value: ParentDestination.purchase) {
+                        Label {
+                            Text(
+                                "\(store.trial.state.daysRemaining) days left in your trial",
+                                comment: "Remaining trial days"
+                            )
+                        } icon: {
+                            Image(systemName: "hourglass")
+                        }
+                    }
                 } else {
                     NavigationLink(value: ParentDestination.purchase) {
                         Label(
