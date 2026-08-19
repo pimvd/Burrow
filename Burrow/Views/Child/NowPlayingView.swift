@@ -3,6 +3,10 @@ import SwiftUI
 
 /// Full screen playback for one tile. Only the current track or video is on
 /// screen — the playlist itself is never shown to the child.
+///
+/// While a picture is playing the player can also be locked against touches, so
+/// a parent can hand over a running video and have nothing the child touches
+/// change it. See `TouchLock`.
 struct NowPlayingView: View {
     let tile: Tile
     let profile: ChildProfile
@@ -17,6 +21,12 @@ struct NowPlayingView: View {
 
     /// Bumped on every reveal so the auto-hide countdown starts again.
     @State private var revealToken = 0
+
+    /// Set while the player is locked against touches. It lives here, for as
+    /// long as the player is on screen, and outlasts the video itself: a
+    /// playlist that runs out — or an entry that fails — leaves the lock closed,
+    /// so waiting for the end is not a way out of it.
+    @State private var lock = TouchLock()
 
     private static let controlsLinger = Duration.seconds(5)
 
@@ -40,10 +50,12 @@ struct NowPlayingView: View {
         verticalSizeClass == .compact && isShowingVideo
     }
 
-    /// Only landscape ever hides anything. Portrait keeps the controls on
-    /// screen, where they have their own space and nothing to obscure.
+    /// Landscape hides the controls once the child has settled in; a closed
+    /// lock hides them in either orientation, close button included, and leaves
+    /// only its own way out. Portrait otherwise keeps the controls on screen,
+    /// where they have their own space and nothing to obscure.
     private var controlsHidden: Bool {
-        isImmersive && !controlsVisible
+        lock.isLocked || (isImmersive && !controlsVisible)
     }
 
     /// Brings the overlaid controls back and restarts their countdown.
@@ -58,6 +70,10 @@ struct NowPlayingView: View {
         // because a new branch would give the player a new identity, tearing
         // down the video view and restarting the video from the beginning.
         stage
+            // Belt and braces with the overlay below: the lock also takes the
+            // picture itself out of reach, so a tap can never bring up the
+            // system video controls or reach the YouTube embed.
+            .allowsHitTesting(!lock.isLocked)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.horizontal, isImmersive ? 0 : 20)
             // Landscape video runs edge to edge, under the floating controls.
@@ -93,6 +109,13 @@ struct NowPlayingView: View {
             }
             .background(profile.theme.wash.ignoresSafeArea())
             .background(Color(.systemBackground).ignoresSafeArea())
+            // Above everything else, so a locked player has nothing left that
+            // answers a touch except the hold that opens it again.
+            .overlay {
+                if lock.isLocked {
+                    TouchLockOverlay(lock: $lock, tint: profile.theme.tint)
+                }
+            }
             .statusBarHidden()
     }
 
@@ -115,6 +138,13 @@ struct NowPlayingView: View {
             Spacer(minLength: 0)
 
             ScreenTimeIndicator()
+
+            // Offered for a moving picture only. A song needs its transport
+            // buttons, so locking there would take away the very controls the
+            // child is meant to use.
+            if isShowingVideo {
+                TouchLockButton { lock.lock() }
+            }
         }
         .padding(.horizontal, 16)
         .padding(.top, 12)

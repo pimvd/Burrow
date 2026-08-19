@@ -89,6 +89,21 @@ screen, the purchase screen and `website/support.html` all say the same thing:
 it works for as long as YouTube allows it, and nothing else rests on it. Items
 always start at 0:00; only *which* item was playing is remembered per tile.
 
+**A video can be locked against touches.** A padlock sits in the player's header
+whenever a picture is playing. One tap and the player stops answering touches at
+all: the close button, the transport row and the picture itself all go quiet, so
+a child can hold the device, or pat it, without pausing the video or ending up
+somewhere else — and a tap can no longer reach the system video controls or the
+YouTube embed underneath. The way out is a three second press and hold on the
+padlock in the corner, which no palm and no run of excited taps ever completes,
+and which needs no keyboard, so a parent can do it with the device still in the
+child's hands. `TouchLock` holds the rules and is tested directly. It is
+deliberately *not* the birth-year gate: that one guards what a parent changes,
+and asking for a keyboard over a running video would be the wrong shape. The
+lock also outlasts the video — a playlist that runs out leaves it closed, so
+waiting for the end is not a way out of it. The name keeps it apart from
+`lockScreenPlaybackEnabled`, which is about iOS's own lock screen.
+
 **Statistics come from two kinds of rows.** `UsageRecorder` writes an *open
 marker* (no media item, zero duration) each time a tile is opened, and a *play
 row* per entry with its real seconds. Because the two never overlap,
