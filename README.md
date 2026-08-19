@@ -89,6 +89,22 @@ screen, the purchase screen and `website/support.html` all say the same thing:
 it works for as long as YouTube allows it, and nothing else rests on it. Items
 always start at 0:00; only *which* item was playing is remembered per tile.
 
+**Leaving the app pauses a playlist; it no longer throws it away.** A tile that
+may not carry on in the background used to be *stopped*, and because the player
+screen is not torn down for a backgrounding, the child came back to the "nothing
+to play" state with no way on but backing out of the tile. It is now suspended
+instead: `MediaPlaybackService.suspend()` pauses the engines rather than emptying
+them, so the entry, the playlist and the position all survive the trip. What
+happens on the way back is `BackgroundPlayback.resumption`, which is tested
+directly: music starts itself again exactly where it left off, because
+`AVQueuePlayer` and Apple Music keep their position, while a video comes back
+paused behind the player's one big button — its embed was frozen with the app and
+has to be built again, which restarts it at 0:00, and a long picture doing that
+unasked and out loud is worse than waiting to be pressed. A session whose screen
+time ran out, or a playlist that had already failed its way to the end, is not
+handed back at all. The rebuild rides on the existing `playToken`, the same
+mechanism that lets a repeat restart an embed.
+
 **A video can be locked against touches.** A padlock sits in the player's header
 whenever a picture is playing. One tap and the player stops answering touches at
 all: the close button, the transport row and the picture itself all go quiet, so

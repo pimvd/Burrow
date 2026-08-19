@@ -29,6 +29,13 @@ final class MediaPlaybackService {
     /// "nothing to play" state instead of spinning forever.
     private(set) var hasExhaustedPlaylist = false
 
+    /// Set while the app is away, and stays set until playback actually starts
+    /// again. The player screen is never torn down for a backgrounding, so a
+    /// playlist that was *stopped* left the child looking at the "nothing to
+    /// play" state with no way out of it but backing out of the tile; a playlist
+    /// that is merely paused comes back as they left it.
+    private(set) var isSuspended = false
+
     /// Cover art belonging to the entry itself, for sources that carry their
     /// own. Apple Music songs do; every other source leaves this `nil` and the
     /// player falls back to the tile picture.
@@ -140,6 +147,24 @@ final class MediaPlaybackService {
         isPlaying = false
         childFacingMessage = nil
         hasExhaustedPlaylist = false
+        isSuspended = false
+        configureRemoteCommands(enabled: false)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+        configureAudioSession(active: false)
+    }
+
+    /// Called when the app leaves the foreground with a playlist that cannot
+    /// carry on there.
+    ///
+    /// Everything is *paused*, never stopped: `stopEnginesKeepingSession` empties
+    /// the queue player and stops Apple Music, which would throw away the very
+    /// position the child expects to find again. What does go is the lock screen
+    /// furniture and the audio session, neither of which should linger while
+    /// nothing is playing.
+    func suspend() {
+        guard playlist != nil, currentEntry != nil else { return }
+        pause()
+        isSuspended = true
         configureRemoteCommands(enabled: false)
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
         configureAudioSession(active: false)
@@ -191,6 +216,25 @@ final class MediaPlaybackService {
 
     func resume() {
         guard let entry = currentEntry else { return }
+
+        if isSuspended {
+            isSuspended = false
+            // Both were given up when the app went away.
+            configureAudioSession(active: true)
+            configureRemoteCommands(enabled: playlist?.allowsLockScreenPlayback ?? false)
+
+            // A YouTube embed does not survive the trip. Its web view was frozen
+            // with the app and its `player` object may be gone, so pushing
+            // `playVideo` at it is not dependable — the page has to be built
+            // again. `playCurrentEntry` bumps `playToken`, which is what the
+            // view keys the embed on, and a fresh page autoplays by itself. The
+            // cost is that the entry begins at 0:00.
+            if entry.type == .youtube {
+                playCurrentEntry()
+                return
+            }
+        }
+
         switch entry.type {
         case .localAudio, .localVideo:
             queuePlayer.play()
@@ -353,6 +397,9 @@ final class MediaPlaybackService {
 
         currentEntry = entry
         playToken = UUID()
+        // Whatever the app was away from, this is playback starting for real —
+        // so the suspension is over however we arrived here, `next` included.
+        isSuspended = false
         onEntryChanged?(entry.id)
 
         switch entry.type {

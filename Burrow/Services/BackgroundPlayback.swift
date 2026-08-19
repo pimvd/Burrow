@@ -8,6 +8,41 @@ import Foundation
 /// heard is a platform fact, not a preference — a YouTube entry plays through a
 /// web view, and iOS suspends those along with the app.
 enum BackgroundPlayback {
+    /// What a playlist that was suspended should do when the app comes back.
+    ///
+    /// The split is a platform fact rather than a taste: the music engines keep
+    /// their exact position while the app is away, so starting them again is
+    /// seamless, whereas a YouTube embed has to be rebuilt and therefore begins
+    /// at 0:00. A song coming back from its start is a small thing; a long
+    /// picture doing it, unasked and out loud, is not — so a video comes back
+    /// paused, with the player's one big button waiting.
+    ///
+    /// Keyed on the tile's category, not on the entry: a music tile holding a
+    /// YouTube entry does start that entry over at 0:00, which is the mild end
+    /// of the same trade.
+    enum Resumption: Equatable, Sendable {
+        /// Start playing again by itself.
+        case playAgain
+        /// Stay on screen, paused, and wait to be pressed.
+        case waitForChild
+        /// Nothing worth coming back to; clear the player.
+        case giveUp
+    }
+
+    /// Whether the child finds their playlist playing, waiting, or gone.
+    static func resumption(
+        category: TileCategory,
+        hasExhaustedPlaylist: Bool,
+        screenTimeHasExpired: Bool
+    ) -> Resumption {
+        // A session that ran out while the app was away must not be handed a
+        // fresh picture, and a playlist that had already failed its way to the
+        // end has nothing to give back.
+        if screenTimeHasExpired || hasExhaustedPlaylist { return .giveUp }
+
+        return category == .music ? .playAgain : .waitForChild
+    }
+
     /// Whether a running playlist should survive the app leaving the foreground.
     static func survivesBackgrounding(category: TileCategory, allowsLockScreenPlayback: Bool) -> Bool {
         category == .music && allowsLockScreenPlayback

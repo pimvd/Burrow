@@ -120,7 +120,10 @@ struct RootView: View {
                 ) {
                     playback.continueInBackground()
                 } else {
-                    playback.stop()
+                    // Suspended rather than stopped: the player screen stays up
+                    // while the app is away, so stopping left the child staring
+                    // at "nothing to play" with no way on but backing out.
+                    playback.suspend()
                 }
             }
             screenTime.pause()
@@ -131,10 +134,33 @@ struct RootView: View {
             if case .child = router.screen {
                 screenTime.resume()
             }
+            resumeSuspendedPlayback()
         case .inactive:
             break
         @unknown default:
             break
+        }
+    }
+
+    /// Hands a playlist that was paused for a backgrounding back to the child.
+    ///
+    /// Music starts itself again where it left off; a video waits to be pressed,
+    /// because building its embed again would restart it at 0:00 and nobody asked
+    /// for that out loud. Either way the player keeps what it was showing.
+    private func resumeSuspendedPlayback() {
+        guard let playlist = playback.playlist, playback.isSuspended else { return }
+
+        switch BackgroundPlayback.resumption(
+            category: playlist.category,
+            hasExhaustedPlaylist: playback.hasExhaustedPlaylist,
+            screenTimeHasExpired: screenTime.hasExpired
+        ) {
+        case .playAgain:
+            playback.resume()
+        case .waitForChild:
+            break
+        case .giveUp:
+            playback.stop()
         }
     }
 }

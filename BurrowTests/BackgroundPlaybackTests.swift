@@ -51,4 +51,46 @@ struct BackgroundPlaybackTests {
     func empty() {
         #expect(BackgroundPlayback.firstBackgroundPlayableIndex(after: 0, in: [], loop: true) == nil)
     }
+
+    // MARK: - Coming back
+
+    @Test("A music tile starts itself again, because its position was kept")
+    func musicPlaysAgain() {
+        #expect(BackgroundPlayback.resumption(
+            category: .music,
+            hasExhaustedPlaylist: false,
+            screenTimeHasExpired: false
+        ) == .playAgain)
+    }
+
+    @Test("A video tile comes back paused rather than blaring from 0:00")
+    func videoWaitsForTheChild() {
+        #expect(BackgroundPlayback.resumption(
+            category: .video,
+            hasExhaustedPlaylist: false,
+            screenTimeHasExpired: false
+        ) == .waitForChild)
+    }
+
+    @Test("A playlist that had already run out is not brought back")
+    func exhaustedGivesUp() {
+        for category in TileCategory.allCases {
+            #expect(BackgroundPlayback.resumption(
+                category: category,
+                hasExhaustedPlaylist: true,
+                screenTimeHasExpired: false
+            ) == .giveUp)
+        }
+    }
+
+    @Test("A session whose time ran out is never handed playback back")
+    func expiredSessionGivesUp() {
+        for category in TileCategory.allCases {
+            #expect(BackgroundPlayback.resumption(
+                category: category,
+                hasExhaustedPlaylist: false,
+                screenTimeHasExpired: true
+            ) == .giveUp)
+        }
+    }
 }
