@@ -107,6 +107,11 @@ struct NowPlayingView: View {
                 controlsVisible = true
                 if immersive { revealToken += 1 }
             }
+            .onChange(of: lock.isLocked) { _, isLocked in
+                // Coming out of the lock does the same, so the screen a parent
+                // has just unlocked is one they can use straight away.
+                if !isLocked { revealControls() }
+            }
             .background(profile.theme.wash.ignoresSafeArea())
             .background(Color(.systemBackground).ignoresSafeArea())
             // Above everything else, so a locked player has nothing left that
