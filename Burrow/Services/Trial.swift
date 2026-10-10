@@ -4,8 +4,9 @@ import Foundation
 /// own so they can be tested directly.
 ///
 /// StoreKit only offers introductory offers on subscriptions, and Burrow sells a
-/// non-consumable, so the trial has to be the app's own: one start date, and
-/// everything open until it runs out.
+/// non-consumable. App Review's answer for that case (guideline 3.1.1) is a
+/// free non-consumable named "14-day Trial": its purchase date is the start
+/// date, and everything stays open until the length below runs out.
 enum Trial {
     /// How long a started trial lasts.
     static let length: TimeInterval = 14 * 24 * 60 * 60

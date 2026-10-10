@@ -12,14 +12,15 @@ Reaching the parent area:
 - A parental gate asks for a year of birth. Enter any year that makes the person an adult (for example 1990). This guards all settings, statistics, and the purchase.
 
 In-app purchase:
-- One product: `com.pvd.burrow.pro` (Burrow Full), a **non-consumable** one-time purchase at €9.99. No subscriptions.
+- `com.pvd.burrow.pro` (Burrow Full), a **non-consumable** one-time purchase at €9.99. No subscriptions.
+- `com.pvd.burrow.trial` (14-day Trial), a **free non-consumable** that starts the trial, per guideline 3.1.1.
 - Free: one child profile, five tiles per profile, three items per playlist, two games.
 - Full: unlimited profiles and tiles, 50 items per playlist, all six games.
 - Purchase path: hit any limit — a second profile, a sixth tile, a fourth playlist item, a third game — and the purchase screen opens with the reason shown. Also reachable from parent settings.
-- **Free trial:** the purchase screen offers "Try everything free for 14 days". This is the app's own trial, not a StoreKit introductory offer, since non-consumables do not support one. It opens every limit for 14 days; no payment is taken and nothing needs cancelling. It starts once, and when it ends the app returns to the free limits with the parent's content intact. The start date is kept on the device — no server.
-- To see the paid state without buying: parent area → Unlock Burrow → "Try everything free for 14 days".
+- **Free trial:** the purchase screen offers "Try everything free for 14 days", which buys the free 14-day Trial item. Its purchase date starts the trial; it opens every limit for 14 days, costs nothing and needs no cancelling. When it ends the app returns to the free limits with the parent's content intact.
+- To see the paid state without paying: parent area → Unlock Burrow → "Try everything free for 14 days".
 - Restore: "Restore purchase" on that screen.
-- The entitlement is read from StoreKit 2 current entitlements at launch. No server.
+- Both are read from StoreKit 2 current entitlements at launch. No server.
 
 Content and third-party playback:
 - **YouTube:** parent-supplied links only, played through YouTube's embedded player. The child cannot search, browse, or follow links out; the embed is overlaid so taps cannot reach YouTube's own controls. In a music tile only the sound plays.

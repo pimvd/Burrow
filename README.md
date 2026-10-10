@@ -97,13 +97,14 @@ counting.
 
 **The freemium limits live in one place.** `ProGate` answers every "may I add one
 more?", taking a single `hasFullAccess` flag — true for a bought copy and equally
-true for a running trial, so no screen has to tell the two apart. The trial is
-the app's own, because StoreKit has no introductory offer for a non-consumable:
-`Trial` holds the rules with no storage and no clock so they can be tested
-directly, `TrialService` keeps the one start date in `UserDefaults`, and
-`StoreManager` puts the purchase and the trial behind that single flag. The start
-date is per-installation on purpose — a parent should not find their trial spent
-on a new iPad by a device they no longer own.
+true for a running trial, so no screen has to tell the two apart. StoreKit has
+no introductory offer for a non-consumable, so the trial is a second, free
+non-consumable (`com.pvd.burrow.trial`, "14-day Trial"), which is what App Review
+asks for: `Trial` holds the rules with no storage and no clock so they can be
+tested directly, `TrialService` holds the start date — the purchase date of that
+free item — and `StoreManager` puts the purchase and the trial behind that single
+flag. Because the start date comes from the App Store, the trial belongs to the
+parent's Apple Account: reinstalling does not reset it, and a new device sees it.
 
 **Deleting is reversible for 14 days.** `TrashService` soft-deletes tiles and
 purges expired ones on launch, taking their media files, their usage rows and

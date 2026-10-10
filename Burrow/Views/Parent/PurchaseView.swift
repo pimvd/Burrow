@@ -73,7 +73,7 @@ struct PurchaseView: View {
                 if !store.trial.state.hasStarted {
                     Section {
                         Button {
-                            store.startTrial()
+                            Task { await store.startTrial() }
                         } label: {
                             Label(
                                 String(
@@ -83,9 +83,10 @@ struct PurchaseView: View {
                                 systemImage: "gift"
                             )
                         }
+                        .disabled(store.isPurchasing || store.trialProduct == nil)
                     } footer: {
                         Text(
-                            "Nothing to cancel and no card needed. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.",
+                            "The App Store asks you to confirm, as with any purchase, but the trial costs nothing and there is nothing to cancel. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.",
                             comment: "Free trial explanation"
                         )
                     }

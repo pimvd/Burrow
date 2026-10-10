@@ -18,6 +18,21 @@
       "productID" : "com.pvd.burrow.pro",
       "referenceName" : "Burrow Full",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0",
+      "familyShareable" : false,
+      "internalID" : "KID0000002",
+      "localizations" : [
+        {
+          "description" : "Everything in Burrow Full for 14 days. Free, nothing to cancel.",
+          "displayName" : "14-day Trial",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.pvd.burrow.trial",
+      "referenceName" : "14-day Trial",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

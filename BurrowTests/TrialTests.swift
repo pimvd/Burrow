@@ -59,50 +59,40 @@ struct TrialTests {
     }
 }
 
-@Suite("Trial storage")
+@Suite("Trial state")
 @MainActor
 struct TrialServiceTests {
-    /// A defaults domain of its own, so the tests never touch the real one.
-    private func makeDefaults() -> UserDefaults {
-        let defaults = UserDefaults(suiteName: "burrow.tests.\(UUID().uuidString)")!
-        return defaults
-    }
+    private let begin = Date(timeIntervalSince1970: 1_700_000_000)
 
-    @Test("A fresh install has no trial")
-    func freshInstall() {
-        let service = TrialService(defaults: makeDefaults())
+    @Test("Without a trial purchase there is no trial")
+    func noPurchase() {
+        let service = TrialService(startedAt: nil, now: begin)
         #expect(!service.state.hasStarted)
         #expect(!service.state.isActive)
     }
 
-    @Test("Starting the trial opens everything")
-    func startingOpensEverything() {
-        let service = TrialService(defaults: makeDefaults())
-        service.start()
+    @Test("A trial purchase opens everything")
+    func purchaseOpensEverything() {
+        let service = TrialService()
+        service.record(startedAt: begin, now: begin)
         #expect(service.state.isActive)
         #expect(service.state.daysRemaining == Trial.lengthInDays)
     }
 
-    @Test("The trial cannot be started a second time")
-    func startsOnlyOnce() {
-        let defaults = makeDefaults()
-        let service = TrialService(defaults: defaults)
-        let begin = Date(timeIntervalSince1970: 1_700_000_000)
-        service.start(now: begin)
-
-        // A fortnight later, asking again must not extend anything.
-        service.start(now: begin.addingTimeInterval(Trial.length + 86_400))
+    @Test("The trial runs out on the clock, and stays started")
+    func runsOut() {
+        let service = TrialService(startedAt: begin, now: begin)
         service.refresh(now: begin.addingTimeInterval(Trial.length + 86_400))
         #expect(service.state.hasStarted)
         #expect(!service.state.isActive)
     }
 
-    @Test("The start date survives a new instance")
-    func survivesRelaunch() {
-        let defaults = makeDefaults()
-        TrialService(defaults: defaults).start()
-        let afterRelaunch = TrialService(defaults: defaults)
-        #expect(afterRelaunch.state.isActive)
+    @Test("A refunded trial no longer counts")
+    func refunded() {
+        let service = TrialService(startedAt: begin, now: begin)
+        service.record(startedAt: nil, now: begin)
+        #expect(!service.state.hasStarted)
+        #expect(!service.state.isActive)
     }
 }
 

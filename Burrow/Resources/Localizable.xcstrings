@@ -5053,34 +5053,6 @@
         }
       }
     },
-    "Nothing to cancel and no card needed. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nichts zu kündigen, keine Kartendaten nötig. Nach den zwei Wochen kehrt Burrow zur kostenlosen Version zurück, und alles, was du angelegt hast, bleibt erhalten."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No hay nada que cancelar ni hace falta tarjeta. Pasadas las dos semanas, Burrow vuelve a la versión gratuita y todo lo que hayas creado se queda donde está."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rien à résilier, aucune carte demandée. Au bout de deux semaines, Burrow revient à la version gratuite et tout ce que vous avez créé reste en place."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niets op te zeggen en geen betaalgegevens nodig. Na twee weken gaat Burrow terug naar de gratis versie en blijft alles wat je hebt gemaakt gewoon staan."
-          }
-        }
-      }
-    },
     "Nothing to play right now.": {
       "comment": "Playback empty state",
       "localizations": {
@@ -7571,6 +7543,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die is het!"
+          }
+        }
+      }
+    },
+    "The App Store asks you to confirm, as with any purchase, but the trial costs nothing and there is nothing to cancel. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der App Store fragt wie bei jedem Kauf nach einer Bestätigung, aber die Testphase kostet nichts und es gibt nichts zu kündigen. Nach den zwei Wochen kehrt Burrow zur kostenlosen Version zurück, und alles, was du angelegt hast, bleibt erhalten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El App Store te pide confirmarlo, como en cualquier compra, pero la prueba no cuesta nada y no hay nada que cancelar. Pasadas las dos semanas, Burrow vuelve a la versión gratuita y todo lo que hayas creado se queda donde está."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’App Store vous demande de confirmer, comme pour tout achat, mais l’essai ne coûte rien et il n’y a rien à résilier. Au bout de deux semaines, Burrow revient à la version gratuite et tout ce que vous avez créé reste en place."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De App Store vraagt je te bevestigen, zoals bij elke aankoop, maar de proefperiode kost niets en er is niets op te zeggen. Na twee weken gaat Burrow terug naar de gratis versie en blijft alles wat je hebt gemaakt gewoon staan."
           }
         }
       }

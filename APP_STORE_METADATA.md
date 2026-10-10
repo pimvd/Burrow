@@ -18,9 +18,10 @@ length-checked.
 - Minimum OS: iOS 17.0
 - Category candidate: Education (secondary: Entertainment) — **see the Kids Category note under Review Information**
 - Availability: worldwide
-- Price: free, with a 14-day in-app free trial and one non-consumable in-app purchase
-  **Burrow Full** (`com.pvd.burrow.pro`, €9.99). The trial is the app's own, not a
-  StoreKit introductory offer, which non-consumables do not support
+- Price: free, with a 14-day free trial and one non-consumable in-app purchase
+  **Burrow Full** (`com.pvd.burrow.pro`, €9.99). Non-consumables have no StoreKit
+  introductory offer, so the trial is a second, free non-consumable,
+  **14-day Trial** (`com.pvd.burrow.trial`, €0), as guideline 3.1.1 prescribes
 - Privacy policy URL: `https://vandijkcloud.nl/burrow/privacy.html` (source: `website/privacy.html` — republish after edits)
 - Marketing URL: _TODO (optional)_
 - Support email: `pim@vandijkcloud.nl` (also in the privacy policy)
@@ -89,7 +90,7 @@ One purchase, forever. No subscription:
 - Up to 50 items per playlist (free: three)
 - Every game (free: two)
 
-Try everything free for 14 days. Nothing to cancel, no card needed.
+Try everything free for 14 days. It costs nothing and there is nothing to cancel.
 
 **Keywords**
 
@@ -152,7 +153,7 @@ Ein Kauf, für immer. Kein Abo:
 - Bis zu 50 Einträge pro Wiedergabeliste (kostenlos: drei)
 - Alle Spiele (kostenlos: zwei)
 
-14 Tage lang alles kostenlos testen. Nichts zu kündigen, keine Kartendaten nötig.
+14 Tage lang alles kostenlos testen. Es kostet nichts, und es gibt nichts zu kündigen.
 
 **Keywords**
 
@@ -215,7 +216,7 @@ Una compra, para siempre. Sin suscripción:
 - Hasta 50 elementos por lista (gratis: tres)
 - Todos los juegos (gratis: dos)
 
-Prueba todo gratis durante 14 días. No hay nada que cancelar ni hace falta tarjeta.
+Prueba todo gratis durante 14 días. No cuesta nada y no hay nada que cancelar.
 
 **Keywords**
 
@@ -278,7 +279,7 @@ Un achat, pour toujours. Sans abonnement :
 - Jusqu'à 50 éléments par liste (gratuit : trois)
 - Tous les jeux (gratuit : deux)
 
-Tout essayer gratuitement pendant 14 jours. Rien à résilier, aucune carte demandée.
+Tout essayer gratuitement pendant 14 jours. Cela ne coûte rien et il n'y a rien à résilier.
 
 **Keywords**
 
@@ -341,7 +342,7 @@ Eén aankoop, voor altijd. Geen abonnement:
 - Tot 50 onderdelen per afspeellijst (gratis: drie)
 - Alle spelletjes (gratis: twee)
 
-Probeer 14 dagen alles gratis. Niets op te zeggen en geen betaalgegevens nodig.
+Probeer 14 dagen alles gratis. Het kost niets en er is niets op te zeggen.
 
 **Keywords**
 
@@ -386,8 +387,9 @@ Answers to give in App Store Connect → App Privacy:
   App Store search. Putting the searched words first — `Kids Music Player: Burrow`
   — was considered and deliberately not done here; it is a separate decision from
   the content-promise fix above.
-- The trial length (14 days) is a guess, not a measured number. It is one
-  constant, `Trial.length`.
+- The trial length (14 days) is a guess, not a measured number. Changing it means
+  changing `Trial.length` *and* the name of the `com.pvd.burrow.trial` product,
+  which Apple requires to read "XX-day Trial"
 
 ## Metadata Checks Before Submission
 
@@ -404,4 +406,5 @@ Answers to give in App Store Connect → App Privacy:
 - [ ] `website/privacy.html` and `website/support.html` published at the URLs above and reachable
 - [ ] Screenshots per device size, showing the child grid, a tile editor, and the games grid
 - [ ] IAP `com.pvd.burrow.pro` created, priced, and submitted with the build
+- [ ] IAP `com.pvd.burrow.trial` created as a non-consumable named "14-day Trial" at the free price, and submitted with the build
 - [ ] Build number is the git commit count (stamped automatically — confirm it in App Store Connect, do not set it by hand)

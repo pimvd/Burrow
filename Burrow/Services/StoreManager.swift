@@ -6,19 +6,21 @@ import StoreKit
 /// Owns everything that decides whether Burrow is open: the single
 /// non-consumable in-app purchase, and the free trial that precedes it.
 ///
-/// There are no subscriptions and no ads. The purchase state is derived from
-/// StoreKit 2's current entitlements, so it restores automatically on a new
-/// device once the parent is signed in to the same App Store account. The trial
-/// is the app's own, because StoreKit has no introductory offer for a
-/// non-consumable.
+/// There are no subscriptions and no ads. Both states are derived from StoreKit
+/// 2's current entitlements, so they restore automatically on a new device once
+/// the parent is signed in to the same App Store account. The trial is a second,
+/// free non-consumable, because StoreKit has no introductory offer for a
+/// non-consumable and App Review asks for exactly this instead.
 @Observable
 @MainActor
 final class StoreManager {
     static let proProductID = "com.pvd.burrow.pro"
+    static let trialProductID = "com.pvd.burrow.trial"
 
     let trial: TrialService
 
     private(set) var product: Product?
+    private(set) var trialProduct: Product?
     private(set) var isPro = false
     private(set) var isLoadingProduct = false
     private(set) var isPurchasing = false
@@ -59,9 +61,14 @@ final class StoreManager {
         await refreshEntitlement()
     }
 
-    /// Opens everything for the length of the trial. Only ever works once.
-    func startTrial() {
-        trial.start()
+    /// Opens everything for the length of the trial. The App Store sells a
+    /// non-consumable only once per account, so this only ever works once.
+    @discardableResult
+    func startTrial() async -> Bool {
+        if trialProduct == nil { await loadProduct() }
+        guard let trialProduct else { return false }
+        guard await purchase(trialProduct) else { return false }
+        return trial.state.isActive
     }
 
     func loadProduct() async {
@@ -70,8 +77,9 @@ final class StoreManager {
         defer { isLoadingProduct = false }
 
         do {
-            let products = try await Product.products(for: [Self.proProductID])
-            product = products.first
+            let products = try await Product.products(for: [Self.proProductID, Self.trialProductID])
+            product = products.first { $0.id == Self.proProductID }
+            trialProduct = products.first { $0.id == Self.trialProductID }
         } catch {
             logger.error("Loading the product failed: \(error.localizedDescription, privacy: .public)")
             lastErrorMessage = String(
@@ -83,26 +91,37 @@ final class StoreManager {
 
     func refreshEntitlement() async {
         var entitled = false
+        var trialStartedAt: Date?
         for await result in Transaction.currentEntitlements {
-            guard case .verified(let transaction) = result else { continue }
-            if transaction.productID == Self.proProductID, transaction.revocationDate == nil {
+            guard case .verified(let transaction) = result,
+                  transaction.revocationDate == nil else { continue }
+            switch transaction.productID {
+            case Self.proProductID:
                 entitled = true
+            case Self.trialProductID:
+                trialStartedAt = transaction.originalPurchaseDate
+            default:
+                break
             }
         }
         isPro = entitled
+        trial.record(startedAt: trialStartedAt)
     }
 
     /// Starts the purchase flow. Returns `true` when the unlock is active
     /// afterwards.
     @discardableResult
     func purchase() async -> Bool {
-        guard let product else {
-            await loadProduct()
-            guard product != nil else { return false }
-            return await purchase()
-        }
+        if product == nil { await loadProduct() }
+        guard let product else { return false }
+        guard await purchase(product) else { return false }
+        return isPro
+    }
 
-        guard !isPurchasing else { return isPro }
+    /// Runs one App Store purchase. Returns `true` when it went through and the
+    /// entitlements have been re-read.
+    private func purchase(_ product: Product) async -> Bool {
+        guard !isPurchasing else { return false }
         isPurchasing = true
         lastErrorMessage = nil
         defer { isPurchasing = false }
@@ -112,7 +131,7 @@ final class StoreManager {
             switch result {
             case .success(let verification):
                 await handle(verificationResult: verification)
-                return isPro
+                return true
             case .userCancelled:
                 return false
             case .pending:
