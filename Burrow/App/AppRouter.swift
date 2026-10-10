@@ -21,6 +21,9 @@ enum ParentDestination: Hashable {
     case trash
     case exportImport
     case purchase
+    /// A playlist link was opened. `nil` when the link could not be read, so
+    /// the parent is told rather than left wondering why nothing happened.
+    case playlistLink(PlaylistLink?)
 }
 
 /// Owns the app's navigation state. Views observe it instead of passing bindings

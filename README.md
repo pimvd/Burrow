@@ -105,6 +105,14 @@ directly, `TrialService` keeps the one start date in `UserDefaults`, and
 date is per-installation on purpose — a parent should not find their trial spent
 on a new iPad by a device they no longer own.
 
+**A playlist can travel as a link.** `PlaylistLink` reads and writes a
+magnet-style `burrow://playlist?name=…&type=music&item=yt:<id>:<title>&item=am:<id>`
+link that carries the whole playlist in itself — no server is involved. Only
+YouTube (`yt`) and Apple Music (`am`) items can travel; files from the device stay
+behind. The tile editor shares one, and opening one goes through the parental gate
+to `PlaylistLinkImportView`, which adds nothing until the parent picks a profile and
+confirms. The free limits apply as they do everywhere else.
+
 **Deleting is reversible for 14 days.** `TrashService` soft-deletes tiles and
 purges expired ones on launch, taking their media files, their usage rows and
 any sharing references with them.

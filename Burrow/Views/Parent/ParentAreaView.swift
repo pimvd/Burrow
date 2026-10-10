@@ -22,11 +22,19 @@ struct ParentAreaView: View {
                 view(for: destination)
             }
         }
-        .onChange(of: parentSession.isUnlocked, initial: true) { _, unlocked in
-            guard unlocked, let pending = router.pendingParentDestination else { return }
-            path.append(pending)
-            router.pendingParentDestination = nil
+        .onChange(of: parentSession.isUnlocked, initial: true) { _, _ in
+            openPendingDestination()
         }
+        // A link can arrive while the parent area is already open and unlocked.
+        .onChange(of: router.pendingParentDestination) { _, _ in
+            openPendingDestination()
+        }
+    }
+
+    private func openPendingDestination() {
+        guard parentSession.isUnlocked, let pending = router.pendingParentDestination else { return }
+        path.append(pending)
+        router.pendingParentDestination = nil
     }
 
     @ViewBuilder
@@ -48,6 +56,8 @@ struct ParentAreaView: View {
             ExportImportView()
         case .purchase:
             PurchaseView()
+        case .playlistLink(let link):
+            PlaylistLinkImportView(link: link)
         }
     }
 }

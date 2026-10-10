@@ -55,6 +55,13 @@ struct RootView: View {
         .onChange(of: scenePhase) { _, newPhase in
             handle(scenePhase: newPhase)
         }
+        .onOpenURL { url in
+            // A playlist link only ever proposes a tile. Adding it happens in
+            // the parent area, behind the gate, so a child tapping a link in
+            // Messages cannot change their own tiles.
+            guard url.scheme?.lowercased() == PlaylistLink.scheme else { return }
+            router.openParentArea(at: .playlistLink(PlaylistLink(url: url)))
+        }
         .onReceive(NotificationCenter.default.publisher(for: .burrowOpenExportScreen)) { _ in
             // Tapping the monthly reminder goes straight to the export screen,
             // behind the parental gate as always.
