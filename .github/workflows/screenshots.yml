@@ -6,6 +6,10 @@ name: Screenshots
 on:
   workflow_dispatch:
     inputs:
+      devices:
+        description: Only these devices, space separated (iphone, ipad; empty = both)
+        type: string
+        default: ""
       locales:
         description: Only these locales, space separated (empty = all five)
         type: string
@@ -57,6 +61,7 @@ jobs:
       - name: Take the screenshots
         env:
           LOCALES: ${{ inputs.locales }}
+          DEVICES: ${{ inputs.devices }}
         run: Scripts/screenshots.sh
 
       - name: Remove the alpha channel

@@ -42,11 +42,14 @@ ipad=${IPAD_UDID:-$(newest '^iPad Pro 13')}
 
 prepare() {
   local udid=$1
+  echo "Booting $udid"
   xcrun simctl boot "$udid" 2>/dev/null || true  # already booted is fine
   xcrun simctl bootstatus "$udid" -b
+  echo "Setting light mode and the status bar"
   xcrun simctl ui "$udid" appearance light
   xcrun simctl status_bar "$udid" override --time 9:41 --dataNetwork wifi --wifiMode active \
     --wifiBars 3 --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
+  echo "Installing the app"
   xcrun simctl install "$udid" "$app"
 }
 
@@ -82,8 +85,10 @@ shoot() {  # device-name udid
 
 # One simulator at a time: with both running, the CI runner slowed to minutes
 # per command and the job ran out of time.
+# Restrict with DEVICES=ipad (or iphone).
 for device in "iphone:$iphone" "ipad:$ipad"; do
   name=${device%%:*} udid=${device#*:}
+  if [ -n "${DEVICES:-}" ] && [[ " $DEVICES " != *" $name "* ]]; then continue; fi
   xcrun simctl shutdown all 2>/dev/null || true
   prepare "$udid"
   shoot "$name" "$udid"
