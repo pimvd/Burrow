@@ -43,7 +43,8 @@ GitHub → Settings → Secrets and variables → Actions → *New repository se
   version page under *In-App Purchases* before submitting:
   - `com.pvd.burrow.pro`, *Burrow Full*, €9.99
   - `com.pvd.burrow.trial`, *14-day Trial*, free
-  Each needs a review screenshot of the purchase screen.
+  Each needs a review screenshot of the purchase screen: **Screenshots** takes
+  it as `AppStore/purchase-review.png`, and **Store setup** uploads it.
 - **App Privacy:** Data Not Collected. **Age rating:** answer the questionnaire.
   **Category:** Education / Entertainment (pushed); do **not** tick Made for
   Kids (see the YouTube note in `APP_STORE_METADATA.md`).

@@ -83,7 +83,7 @@ struct PurchaseView: View {
                                 systemImage: "gift"
                             )
                         }
-                        .disabled(store.isPurchasing || store.trialProduct == nil)
+                        .disabled(!ScreenshotMode.isActive && (store.isPurchasing || store.trialProduct == nil))
                     } footer: {
                         Text(
                             "The App Store asks you to confirm, as with any purchase, but the trial costs nothing and there is nothing to cancel. When the fortnight is over Burrow goes back to the free version and everything you made stays where it is.",
@@ -125,10 +125,13 @@ struct PurchaseView: View {
                             } else if let product = store.product {
                                 Text(product.displayPrice)
                                     .foregroundStyle(.secondary)
+                            } else if ScreenshotMode.isActive {
+                                Text(ScreenshotMode.purchasePrice)
+                                    .foregroundStyle(.secondary)
                             }
                         }
                     }
-                    .disabled(store.isPurchasing || store.product == nil)
+                    .disabled(!ScreenshotMode.isActive && (store.isPurchasing || store.product == nil))
 
                     Button {
                         Task { await store.restorePurchases() }
@@ -149,6 +152,9 @@ struct PurchaseView: View {
         .navigationTitle(Text("Burrow", comment: "Purchase screen title"))
         .navigationBarTitleDisplayMode(.inline)
         .task {
+            // The screenshot has no store to reach; asking would only put
+            // "not reachable" on the picture.
+            guard !ScreenshotMode.isActive else { return }
             await store.refresh()
         }
     }

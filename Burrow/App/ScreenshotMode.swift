@@ -21,6 +21,16 @@ enum ScreenshotMode {
         case game
         case tiles
         case statistics
+        /// Not a store screenshot: the purchase screen, which App Store
+        /// Connect asks for with each in-app purchase for its review
+        /// (AppStore/purchase-review.png, uploaded by Scripts/sync_store.py).
+        case purchase
+    }
+
+    /// The simulator has no StoreKit products, so the purchase scene shows the
+    /// price from AppStore/store.json itself, as the store would format it.
+    static var purchasePrice: String {
+        Decimal(string: "9.99")!.formatted(.currency(code: "EUR"))
     }
 
     static let scene: Scene? = UserDefaults.standard.string(forKey: "screenshotScene").flatMap(Scene.init)

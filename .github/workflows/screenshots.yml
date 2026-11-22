@@ -1,5 +1,6 @@
 # Takes the App Store screenshots in the iOS simulator, in all five store
-# languages on iPhone and iPad, and commits them to AppStore/screenshots.
+# languages on iPhone and iPad, and commits them to AppStore/screenshots, with
+# the purchase screen the in-app purchase review needs (AppStore/purchase-review.png).
 # The website deploy picks up the English iPhone ones.
 name: Screenshots
 
@@ -68,14 +69,17 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/venv"
           "$RUNNER_TEMP/venv/bin/pip" install --quiet pillow
-          find AppStore/screenshots -name '*.png' -print0 | xargs -0 "$RUNNER_TEMP/venv/bin/python" Scripts/flatten_png.py
+          find AppStore/screenshots AppStore/purchase-review.png -name '*.png' -print0 2>/dev/null | xargs -0 "$RUNNER_TEMP/venv/bin/python" Scripts/flatten_png.py
 
       - name: Keep them as an artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
-          path: AppStore/screenshots/**/*.png
+          path: |
+            AppStore/screenshots/**/*.png
+            AppStore/purchase-review.png
+          if-no-files-found: warn
           retention-days: 14
 
       - name: Commit them
@@ -83,6 +87,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add AppStore/screenshots
+          if [ -f AppStore/purchase-review.png ]; then git add AppStore/purchase-review.png; fi
           if git diff --cached --quiet; then
             echo "Screenshots unchanged."
             exit 0

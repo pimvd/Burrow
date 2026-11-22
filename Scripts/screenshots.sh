@@ -4,7 +4,8 @@
 #   iPhone 6.9"  1320 x 2868   (the newest "Pro Max")
 #   iPad 13"     2064 x 2752   (the newest "iPad Pro 13-inch")
 # Run after a Release simulator build into ./build (see screenshots.yml).
-# Writes AppStore/screenshots/<locale>/<device>-<nn>-<scene>.png.
+# Writes AppStore/screenshots/<locale>/<device>-<nn>-<scene>.png, and the
+# purchase screen for the in-app purchase review to AppStore/purchase-review.png.
 #
 # Every shot starts the app cold with -screenshotScene, which the app reads as a
 # setting: it opens an in-memory store of made-up children and tiles and goes
@@ -53,6 +54,27 @@ prepare() {
   xcrun simctl install "$udid" "$app"
 }
 
+capture() {  # device-name udid language locale scene n file
+  local name=$1 udid=$2 language=$3 locale=$4 scene=$5 n=$6 file=$7
+  xcrun simctl terminate "$udid" "$bundle" 2>/dev/null || true
+  xcrun simctl launch "$udid" "$bundle" -screenshotScene "$scene" \
+    -AppleLanguages "($language)" -AppleLocale "${locale/-/_}" >/dev/null
+  # The first launch on a fresh simulator is slow, and the parent scenes
+  # wait a second, present and push before they are still.
+  local wait
+  case $scene in
+    tiles|statistics|purchase) wait=9 ;;
+    *) wait=6 ;;
+  esac
+  # The iPad simulator is slower: it once still showed the profiles, or
+  # their fade, after 6 seconds.
+  [ "$name" = ipad ] && wait=$((wait + 6))
+  [ "$n" -le 2 ] && wait=$((wait + 8))
+  sleep $wait
+  xcrun simctl io "$udid" screenshot --type=png "$file" >/dev/null
+  echo "Took $file"
+}
+
 shoot() {  # device-name udid
   local name=$1 udid=$2
   for pair in $locales; do
@@ -64,25 +86,14 @@ shoot() {  # device-name udid
     local n=0
     for scene in $scenes; do
       n=$((n + 1))
-      xcrun simctl terminate "$udid" "$bundle" 2>/dev/null || true
-      xcrun simctl launch "$udid" "$bundle" -screenshotScene "$scene" \
-        -AppleLanguages "($language)" -AppleLocale "${locale/-/_}" >/dev/null
-      # The first launch on a fresh simulator is slow, and the parent scenes
-      # wait a second, present and push before they are still.
-      case $scene in
-        tiles|statistics) wait=9 ;;
-        *) wait=6 ;;
-      esac
-      # The iPad simulator is slower: it once still showed the profiles, or
-      # their fade, after 6 seconds.
-      [ "$name" = ipad ] && wait=$((wait + 6))
-      [ $n -le 2 ] && wait=$((wait + 8))
-      sleep $wait
-      local file
-      file=$(printf '%s/%s-%02d-%s.png' "$out" "$name" "$n" "$scene")
-      xcrun simctl io "$udid" screenshot --type=png "$file" >/dev/null
-      echo "Took $file"
+      capture "$name" "$udid" "$language" "$locale" "$scene" "$n" \
+        "$(printf '%s/%s-%02d-%s.png' "$out" "$name" "$n" "$scene")"
     done
+    # App Store Connect wants one picture of the purchase screen with each
+    # in-app purchase, for its review; Scripts/sync_store.py uploads it.
+    if [ "$name" = iphone ] && [ "$locale" = en-US ]; then
+      capture "$name" "$udid" "$language" "$locale" purchase 99 AppStore/purchase-review.png
+    fi
   done
 }
 

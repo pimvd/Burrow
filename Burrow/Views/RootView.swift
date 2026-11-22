@@ -95,6 +95,9 @@ struct RootView: View {
         case .statistics:
             parentSession.unlock()
             router.openParentArea(at: .statistics)
+        case .purchase:
+            parentSession.unlock()
+            router.openParentArea(at: .purchase)
         }
     }
 
