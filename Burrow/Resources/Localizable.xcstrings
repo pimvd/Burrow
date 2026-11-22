@@ -3806,6 +3806,35 @@
         }
       }
     },
+    "Hold to unlock": {
+      "comment": "Touch lock hint",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zum Entsperren halten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén pulsado para desbloquear"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenir pour déverrouiller"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Houd vast om te ontgrendelen"
+          }
+        }
+      }
+    },
     "Hour": {
       "comment": "Chart axis",
       "localizations": {
@@ -4266,6 +4295,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Link"
+          }
+        }
+      }
+    },
+    "Lock the screen": {
+      "comment": "Touch lock button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirm sperren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear la pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verrouiller l'écran"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scherm vergrendelen"
           }
         }
       }
@@ -6093,6 +6151,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Afspeellijst"
+          }
+        }
+      }
+    },
+    "Press and hold": {
+      "comment": "Touch lock unlock hint",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gedrückt halten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén pulsado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez appuyé"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Houd ingedrukt"
           }
         }
       }
@@ -9249,6 +9336,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ontgrendel Burrow"
+          }
+        }
+      }
+    },
+    "Unlock the screen": {
+      "comment": "Touch lock unlock button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirm entsperren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear la pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouiller l'écran"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scherm ontgrendelen"
           }
         }
       }
