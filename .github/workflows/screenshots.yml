@@ -29,29 +29,9 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      # A fresh simulator takes minutes to boot the first time: start both now,
-      # so they boot while the app compiles.
-      - name: Start booting the simulators
-        run: |
-          pick() {
-            xcrun simctl list devices available --json | python3 -c '
-          import json, re, sys
-          pattern = re.compile(sys.argv[1])
-          devices = json.load(sys.stdin)["devices"]
-          for runtime in sorted((k for k in devices if "iOS" in k), reverse=True):
-              for d in sorted(devices[runtime], key=lambda d: d["name"], reverse=True):
-                  if pattern.search(d["name"]):
-                      print(d["udid"]); sys.exit()
-          sys.exit("No simulator matching " + sys.argv[1])
-          ' "$1"
-          }
-          iphone=$(pick 'iPhone .*Pro Max$')
-          ipad=$(pick '^iPad Pro 13')
-          echo "IPHONE_UDID=$iphone" >> "$GITHUB_ENV"
-          echo "IPAD_UDID=$ipad" >> "$GITHUB_ENV"
-          xcrun simctl boot "$iphone"
-          xcrun simctl boot "$ipad"
-
+      # The simulators are booted by Scripts/screenshots.sh, after the build:
+      # booting two while xcodebuild starts left it waiting on the simulator
+      # service for 13 minutes before it compiled anything.
       # Signed ad hoc, as Xcode does for the simulator, without the iCloud
       # entitlement: the screenshots run on an in-memory store. Only arm64,
       # the runner's own architecture: a generic destination builds Intel too.
