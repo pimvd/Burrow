@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       submit_purchases:
-        description: Also put the in-app purchases up for review (as ticking them on the version page does)
+        description: Also put the in-app purchases up for review (not the app's first ones; those go with the version)
         type: boolean
         default: false
 

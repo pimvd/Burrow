@@ -4,9 +4,13 @@ what ticking them under "In-App Purchases" on the version page does.
 
 Run by the "Store setup" workflow when its submit_purchases input is on. Only a
 purchase in READY_TO_SUBMIT is submitted; any other state is reported and left
-alone, so running it again changes nothing. Apple's answer is printed as given:
-when it insists that a first purchase goes with an app version through the web
-page, that is the one step left to do by hand.
+alone, so running it again changes nothing. Apple's answer is printed as given.
+
+It cannot do an app's first non-consumable: Apple answers
+FIRST_NON_CONSUMABLE_MUST_BE_SUBMITTED_ON_VERSION, and the review submission
+API has no item type for a purchase. Those are ticked under In-App Purchases
+on the version page in App Store Connect and go to review with the version.
+This is for the purchases that come after.
 Needs ASC_KEY_ID, ASC_ISSUER_ID and ASC_KEY_PATH (see Scripts/asc.py).
 """
 import json
