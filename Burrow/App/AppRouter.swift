@@ -49,7 +49,20 @@ final class AppRouter {
         screen = .welcome
     }
 
+    /// Set while the parent area closes only to open again, at this
+    /// destination (which may itself be `nil`: the settings root).
+    private var reopenDestination: ParentDestination??
+
     func openParentArea(at destination: ParentDestination? = nil) {
+        guard !isPresentingParentArea else {
+            // Already open, maybe deep inside a sheet of its own, and locked
+            // again if the app went to the background in between (as it does
+            // when a link is tapped in Safari). Pushing onto that left the
+            // parent on whatever was showing; close it and come back fresh.
+            reopenDestination = destination
+            isPresentingParentArea = false
+            return
+        }
         pendingParentDestination = destination
         isPresentingParentArea = true
     }
@@ -57,5 +70,15 @@ final class AppRouter {
     func closeParentArea() {
         isPresentingParentArea = false
         pendingParentDestination = nil
+        reopenDestination = nil
+    }
+
+    /// Called once the parent area is fully gone.
+    func parentAreaDidClose() {
+        pendingParentDestination = nil
+        if case .some(let destination) = reopenDestination {
+            reopenDestination = nil
+            openParentArea(at: destination)
+        }
     }
 }

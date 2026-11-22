@@ -232,13 +232,38 @@ PLAYLISTS = [
     },
 ]
 
+# The tile picture each playlist gets: one of the icons a parent can pick in
+# the app (TileArtwork.icons), a colour theme (ThemePalette), and an emoji
+# that stands in for the icon on this page (SF Symbols stay in the app).
+ART = {
+    "Efteling": ("crown.fill", "lavender", "👑"),
+    "Efteling rides": ("sparkles", "sage", "✨"),
+    "Jokie & Jet": ("party.popper.fill", "clay", "🎉"),
+    "Julianatoren": ("balloon.2.fill", "sand", "🎈"),
+    "Studio 100 hits": ("music.mic", "slate", "🎤"),
+    "Bumba": ("figure.dance", "moss", "🕺"),
+    "Maya de Bij": ("ladybug.fill", "sand", "🐞"),
+    "nijntje": ("hare.fill", "lavender", "🐰"),
+    "Woezel & Pip": ("dog.fill", "moss", "🐶"),
+    "Juf Roos": ("music.note", "clay", "🎵"),
+    "Kinderen voor Kinderen": ("star.fill", "sage", "⭐"),
+    "Disney": ("wand.and.stars", "slate", "🪄"),
+}
+
+# ThemePalette's tints, for the swatch on this page.
+COLOURS = {
+    "sage": "#67879f", "clay": "#bd8773", "moss": "#7b9679",
+    "lavender": "#988caf", "sand": "#bfaf87", "slate": "#78828e",
+}
+
 # Same set PlaylistLink.swift leaves unescaped: letters, digits, -._~ and the
 # colon that separates an item's parts.
 SAFE = "-._~:"
 
 
 def link(playlist):
-    pairs = [("name", playlist["name"]), ("type", playlist["type"])]
+    icon, colour, _ = ART[playlist["name"]]
+    pairs = [("name", playlist["name"]), ("type", playlist["type"]), ("icon", icon), ("color", colour)]
     pairs += [("item", f"yt:{video_id}:{title}") for video_id, title in playlist["items"]]
     query = "&".join(f"{key}={quote(value, safe=SAFE)}" for key, value in pairs)
     return f"burrow://playlist?{query}"
@@ -246,6 +271,11 @@ def link(playlist):
 
 def anchor(playlist):
     return re.sub(r"[^a-z0-9]+", "-", playlist["name"].lower()).strip("-")
+
+
+def swatch(playlist, size=""):
+    _, colour, emoji = ART[playlist["name"]]
+    return f'<span class="art{size}" style="background:{COLOURS[colour]}" aria-hidden="true">{emoji}</span>'
 
 
 def kind(playlist):
@@ -259,7 +289,7 @@ def count(playlist):
 
 def row(playlist):
     return f"""      <tr>
-        <td><a href="#{anchor(playlist)}">{html.escape(playlist["name"])}</a><span class="sub">{kind(playlist)} tile</span></td>
+        <td><div class="name">{swatch(playlist)}<span><a href="#{anchor(playlist)}">{html.escape(playlist["name"])}</a><span class="sub">{kind(playlist)} tile</span></span></div></td>
         <td>{len(playlist["items"])}</td>
         <td>{html.escape(playlist["ages"])}</td>
         <td><a class="add small" href="{html.escape(link(playlist))}">Add</a></td>
@@ -273,7 +303,7 @@ def section(playlist):
     )
     return f"""
   <section id="{anchor(playlist)}">
-    <h2>{html.escape(playlist["name"])}</h2>
+    <h2>{swatch(playlist, " big")}{html.escape(playlist["name"])}</h2>
     <p class="kind">{kind(playlist)} tile · {count(playlist)} · ages {html.escape(playlist["ages"])} · from {html.escape(playlist["source"])}</p>
     <p>{html.escape(playlist["about"])}</p>
     <a class="add" href="{html.escape(link(playlist))}">Add to Burrow</a>
@@ -310,6 +340,9 @@ PAGE = """<!DOCTYPE html>
     td:first-child a {{ font-weight: 600; text-decoration: none; }}
     ol {{ color: #444; }}
     .note {{ color: #666; font-size: 0.9em; }}
+    .art {{ display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; font-size: 22px; flex: none; }}
+    .art.big {{ width: 48px; height: 48px; border-radius: 12px; font-size: 26px; margin-right: 12px; vertical-align: middle; }}
+    .name {{ display: flex; align-items: center; gap: 10px; }}
     @media (prefers-color-scheme: dark) {{
       body {{ background: #111; color: #ddd; }} a {{ color: #8ab4ff; }}
       section {{ border-color: #333; }} .kind, .note, th, .sub {{ color: #999; }} ol {{ color: #bbb; }}
@@ -321,7 +354,7 @@ PAGE = """<!DOCTYPE html>
 <body>
   <h1>Burrow — Playlists</h1>
 
-  <p>Ready-made playlists for Burrow. Open this page on the iPhone or iPad that has Burrow and tap <em>Add</em>. Burrow asks for the grown-up's year of birth, shows you the playlist, and adds it as a tile only once you choose a profile and tap <em>Add tile</em>.</p>
+  <p>Ready-made playlists for Burrow. Open this page on the iPhone or iPad that has Burrow and tap <em>Add</em>. Burrow asks for the grown-up's year of birth, shows you the playlist, and adds it as a tile, with its own picture, only once you choose one or more profiles and tap <em>Add tile</em>.</p>
 
   <table>
     <thead>

@@ -22,7 +22,12 @@ struct ParentAreaView: View {
                 view(for: destination)
             }
         }
-        .onChange(of: parentSession.isUnlocked, initial: true) { _, _ in
+        .onChange(of: parentSession.isUnlocked, initial: true) { _, isUnlocked in
+            // Locked again (the app went to the background): nothing behind
+            // the gate may stay on screen above it.
+            if !isUnlocked {
+                path = NavigationPath()
+            }
             openPendingDestination()
         }
         // A link can arrive while the parent area is already open and unlocked.

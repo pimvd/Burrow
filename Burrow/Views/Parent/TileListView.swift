@@ -6,6 +6,10 @@ import SwiftUI
 struct TileListView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(StoreManager.self) private var store
+    @Environment(\.openURL) private var openURL
+
+    /// Ready-made playlists, each added with one tap from the web page.
+    static let playlistsPage = URL(string: "https://vandijkcloud.nl/Burrow/playlists.html")!
 
     @Query(sort: \ChildProfile.sortOrder) private var profiles: [ChildProfile]
     @Query(sort: \Tile.sortOrder) private var allTiles: [Tile]
@@ -121,6 +125,22 @@ struct TileListView: View {
                     )
                 }
             }
+
+            if !profiles.isEmpty {
+                Section {
+                    Link(destination: Self.playlistsPage) {
+                        Label(
+                            String(localized: "Ready-made playlists", comment: "Link to the playlists web page"),
+                            systemImage: "safari"
+                        )
+                    }
+                } footer: {
+                    Text(
+                        "Playlists to add with one tap, on the Burrow website.",
+                        comment: "Playlists web page link footer"
+                    )
+                }
+            }
         }
         .navigationTitle(Text("Tiles", comment: "Tile list title"))
         .toolbar {
@@ -135,6 +155,15 @@ struct TileListView: View {
                         } label: {
                             Label(category.localizedTitle, systemImage: category.symbolName)
                         }
+                    }
+                    Divider()
+                    Button {
+                        openURL(Self.playlistsPage)
+                    } label: {
+                        Label(
+                            String(localized: "Ready-made playlists", comment: "Link to the playlists web page"),
+                            systemImage: "safari"
+                        )
                     }
                 } label: {
                     Label(
@@ -171,6 +200,10 @@ struct TileListView: View {
                         "A tile is a big picture your child taps. Choose music or video, then add the songs or videos.",
                         comment: "Empty tile list description"
                     )
+                } actions: {
+                    Link(destination: Self.playlistsPage) {
+                        Text("Ready-made playlists", comment: "Link to the playlists web page")
+                    }
                 }
             }
         }

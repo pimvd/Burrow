@@ -37,7 +37,7 @@ struct RootView: View {
             // Leaving the parent area ends the unlocked session, so coming back
             // always asks for the birth year again.
             parentSession.lock()
-            router.pendingParentDestination = nil
+            router.parentAreaDidClose()
         } content: {
             ParentAreaView()
         }

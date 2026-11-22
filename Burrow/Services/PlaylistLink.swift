@@ -11,6 +11,11 @@ import Foundation
 /// `yt` for a YouTube video and `am` for an Apple Music song. Files from the
 /// device cannot travel this way, so a link only ever holds streamed items.
 ///
+/// A link may also name the tile's picture: `icon` is one of the icons a
+/// parent can pick in the app (`TileArtwork.icons`) and `color` one of the
+/// colour themes (`ThemePalette`), e.g. `&icon=moon.stars.fill&color=sage`.
+/// Anything else is ignored, and the tile gets the plain picture.
+///
 /// The format is meant to be writable by hand, so parsing is forgiving: an item
 /// it cannot read, or one that does not fit the tile type, is left out rather
 /// than failing the whole link.
@@ -32,11 +37,17 @@ struct PlaylistLink: Hashable, Sendable {
     var title: String
     var category: TileCategory
     var items: [Item]
+    /// One of `TileArtwork.icons`, by its symbol name.
+    var icon: String?
+    /// One of `ThemePalette.all`, by its identifier.
+    var color: String?
 
-    init(title: String, category: TileCategory, items: [Item]) {
+    init(title: String, category: TileCategory, items: [Item], icon: String? = nil, color: String? = nil) {
         self.title = title
         self.category = category
         self.items = items
+        self.icon = icon.flatMap { name in TileArtwork.icons.contains { $0.id == name } ? name : nil }
+        self.color = color.flatMap { name in ThemePalette.all.contains { $0.id == name } ? name : nil }
     }
 
     /// The shareable part of a tile. `nil` when nothing in it can travel in a
@@ -84,7 +95,9 @@ struct PlaylistLink: Hashable, Sendable {
         self.init(
             title: Self.clean(name) ?? category.localizedTitle,
             category: category,
-            items: Array(items)
+            items: Array(items),
+            icon: query.first(where: { $0.name == "icon" })?.value,
+            color: query.first(where: { $0.name == "color" })?.value?.lowercased()
         )
     }
 
@@ -93,7 +106,10 @@ struct PlaylistLink: Hashable, Sendable {
         var components = URLComponents()
         components.scheme = Self.scheme
         components.host = Self.host
-        let pairs = [("name", title), ("type", category.rawValue)] + items.map { item in
+        var pairs = [("name", title), ("type", category.rawValue)]
+        if let icon { pairs.append(("icon", icon)) }
+        if let color { pairs.append(("color", color)) }
+        pairs += items.map { item in
             var value = "\(Self.code(for: item.type)):\(item.identifier)"
             if let title = item.title, !title.isEmpty {
                 value += ":\(title)"

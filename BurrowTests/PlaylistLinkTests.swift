@@ -71,4 +71,24 @@ struct PlaylistLinkTests {
         let parsed = try #require(link("burrow://playlist?name=Car&type=video&item=yt:dQw4w9WgXcQ"))
         #expect(parsed.displayTitle(of: parsed.items[0], at: 0) == "Car 1")
     }
+
+    @Test("A link names its tile's picture")
+    func picture() throws {
+        let parsed = try #require(link(
+            "burrow://playlist?name=nijntje&type=video&icon=hare.fill&color=lavender&item=yt:dQw4w9WgXcQ"
+        ))
+        #expect(parsed.icon == "hare.fill")
+        #expect(parsed.color == "lavender")
+        let shared = try #require(PlaylistLink(url: parsed.url))
+        #expect(shared == parsed)
+    }
+
+    @Test("An icon or colour the app does not offer is ignored")
+    func unknownPicture() throws {
+        let parsed = try #require(link(
+            "burrow://playlist?name=Car&type=video&icon=trash.fill&color=neon&item=yt:dQw4w9WgXcQ"
+        ))
+        #expect(parsed.icon == nil)
+        #expect(parsed.color == nil)
+    }
 }

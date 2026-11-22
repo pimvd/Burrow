@@ -34,6 +34,23 @@ final class ChildHomeViewModel {
             .sorted { $0.sortOrder < $1.sortOrder }
     }
 
+    /// The tabs that have something to show, in their usual order. Never empty:
+    /// with nothing anywhere the music tab stays, with its empty state.
+    func visibleTabs(
+        from tiles: [Tile],
+        profile: ChildProfile,
+        isOnline: Bool,
+        hasFullAccess: Bool
+    ) -> [ChildTab] {
+        let tabs = ChildTab.allCases.filter { tab in
+            if let category = tab.tileCategory {
+                return !visibleTiles(from: tiles, profile: profile, category: category, isOnline: isOnline).isEmpty
+            }
+            return !visibleGames(profile: profile, hasFullAccess: hasFullAccess).isEmpty
+        }
+        return tabs.isEmpty ? [.music] : tabs
+    }
+
     /// The games this profile may play, in catalog order.
     ///
     /// The free limit is applied here as well as at the parent's toggle. A

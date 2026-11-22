@@ -22,6 +22,18 @@ struct ChildHomeView: View {
     /// child's session rather than as long as one full screen cover.
     @State private var recorder = UsageRecorder()
 
+    /// The tabs with something in them. A tab without tiles or games is left
+    /// out; when everything is empty the music tab stays, showing its empty
+    /// state.
+    private var visibleTabs: [ChildTab] {
+        viewModel.visibleTabs(
+            from: allTiles,
+            profile: profile,
+            isOnline: connectivity.isOnline,
+            hasFullAccess: store.hasFullAccess
+        )
+    }
+
     /// The music still running with the player closed, if any.
     private var backgroundedPlaylist: PlaybackPlaylist? {
         guard viewModel.presentedTile == nil,
@@ -36,33 +48,48 @@ struct ChildHomeView: View {
     var body: some View {
         @Bindable var viewModel = viewModel
 
+        let tabs = visibleTabs
+
         TabView(selection: $viewModel.selectedTab) {
-            tileGrid(for: .music)
-                .tabItem {
-                    Label(
-                        String(localized: "Music", comment: "Child tab"),
-                        systemImage: "music.note"
-                    )
-                }
-                .tag(ChildTab.music)
+            if tabs.contains(.music) {
+                tileGrid(for: .music)
+                    .tabItem {
+                        Label(
+                            String(localized: "Music", comment: "Child tab"),
+                            systemImage: "music.note"
+                        )
+                    }
+                    .tag(ChildTab.music)
+            }
 
-            tileGrid(for: .video)
-                .tabItem {
-                    Label(
-                        String(localized: "Video", comment: "Child tab"),
-                        systemImage: "film"
-                    )
-                }
-                .tag(ChildTab.video)
+            if tabs.contains(.video) {
+                tileGrid(for: .video)
+                    .tabItem {
+                        Label(
+                            String(localized: "Video", comment: "Child tab"),
+                            systemImage: "film"
+                        )
+                    }
+                    .tag(ChildTab.video)
+            }
 
-            gameGrid
-                .tabItem {
-                    Label(
-                        String(localized: "Games", comment: "Child tab"),
-                        systemImage: "gamecontroller"
-                    )
-                }
-                .tag(ChildTab.games)
+            if tabs.contains(.games) {
+                gameGrid
+                    .tabItem {
+                        Label(
+                            String(localized: "Games", comment: "Child tab"),
+                            systemImage: "gamecontroller"
+                        )
+                    }
+                    .tag(ChildTab.games)
+            }
+        }
+        // One tab left needs no bar to switch with.
+        .toolbar(tabs.count > 1 ? .automatic : .hidden, for: .tabBar)
+        .onChange(of: tabs, initial: true) { _, tabs in
+            if !tabs.contains(viewModel.selectedTab), let first = tabs.first {
+                viewModel.selectedTab = first
+            }
         }
         .background(profile.theme.wash.ignoresSafeArea())
         .fullScreenCover(item: $viewModel.presentedTile) { tile in

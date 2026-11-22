@@ -54,4 +54,19 @@ struct VisibleGamesTests {
         let visible = model.visibleGames(profile: profile, hasFullAccess: true).map(\.identifier)
         #expect(visible == GameCatalog.all.map(\.identifier))
     }
+
+    @Test("With nothing anywhere, only the music tab stays")
+    func emptyProfileKeepsMusicTab() {
+        let model = ChildHomeViewModel()
+        let profile = ChildProfile(name: "Melle")
+        #expect(model.visibleTabs(from: [], profile: profile, isOnline: true, hasFullAccess: false) == [.music])
+    }
+
+    @Test("A profile with games but no tiles sees only the games tab")
+    func gamesOnly() {
+        let model = ChildHomeViewModel()
+        let profile = ChildProfile(name: "Melle")
+        profile.setGame(GameCatalog.matchingPairs, enabled: true)
+        #expect(model.visibleTabs(from: [], profile: profile, isOnline: true, hasFullAccess: false) == [.games])
+    }
 }

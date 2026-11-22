@@ -2,8 +2,12 @@ import SwiftData
 import SwiftUI
 
 /// What a parent sees after opening a playlist link and passing the gate: the
-/// playlist the link carries, the profile it should go to, and one button that
+/// playlist the link carries, the profiles it should go to, and one button that
 /// turns it into a tile. Nothing is added until that button is pressed.
+///
+/// With more than one profile chosen, the tile belongs to the first and is
+/// shared with the others, the same as sharing it from a profile's settings:
+/// one playlist to keep up to date, seen by every child it was added for.
 struct PlaylistLinkImportView: View {
     /// `nil` when the link could not be read.
     let link: PlaylistLink?
@@ -14,13 +18,24 @@ struct PlaylistLinkImportView: View {
     @Query(sort: \ChildProfile.sortOrder) private var profiles: [ChildProfile]
     @Query private var tiles: [Tile]
 
-    @State private var selectedProfileID: UUID?
-    @State private var addedForProfileName: String?
+    /// `nil` until the parent changes it: then the first profile is chosen.
+    @State private var chosenProfileIDs: Set<UUID>?
+    @State private var addedForProfileNames: String?
     @State private var limitMessage: String?
     @State private var errorMessage: String?
 
-    private var selectedProfile: ChildProfile? {
-        profiles.first { $0.id == selectedProfileID } ?? profiles.first
+    private var selectedProfileIDs: Set<UUID> {
+        chosenProfileIDs ?? Set(profiles.prefix(1).map(\.id))
+    }
+
+    /// The chosen profiles, in the order the parent sees them.
+    private var selectedProfiles: [ChildProfile] {
+        profiles.filter { selectedProfileIDs.contains($0.id) }
+    }
+
+    /// The tile's picture, drawn from the icon and colour the link names.
+    private var artwork: Data? {
+        link.flatMap { TileArtwork.render(linkIcon: $0.icon, color: $0.color) }
     }
 
     /// How many of the link's items fit in one playlist right now. The rest is
@@ -71,6 +86,15 @@ struct PlaylistLinkImportView: View {
     private func form(for link: PlaylistLink) -> some View {
         Form {
             Section {
+                if let artwork, let image = UIImage(data: artwork) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 96, height: 96)
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .frame(maxWidth: .infinity)
+                        .accessibilityHidden(true)
+                }
                 LabeledContent {
                     Text(link.title)
                 } label: {
@@ -107,22 +131,24 @@ struct PlaylistLinkImportView: View {
             } else {
                 Section {
                     if profiles.count > 1 {
-                        Picker(selection: Binding(
-                            get: { selectedProfile?.id },
-                            set: { selectedProfileID = $0 }
-                        )) {
-                            ForEach(profiles) { profile in
-                                Text(profile.name).tag(Optional(profile.id))
+                        ForEach(profiles) { profile in
+                            Toggle(isOn: Binding(
+                                get: { selectedProfileIDs.contains(profile.id) },
+                                set: { isOn in
+                                    var ids = selectedProfileIDs
+                                    if isOn { ids.insert(profile.id) } else { ids.remove(profile.id) }
+                                    chosenProfileIDs = ids
+                                }
+                            )) {
+                                Text(profile.name)
                             }
-                        } label: {
-                            Text("Profile", comment: "Tile list profile picker")
+                            .disabled(addedForProfileNames != nil)
                         }
-                        .disabled(addedForProfileName != nil)
                     }
 
-                    if let addedForProfileName {
+                    if let addedForProfileNames {
                         Label {
-                            Text("Added for \(addedForProfileName).", comment: "Playlist link added")
+                            Text("Added for \(addedForProfileNames).", comment: "Playlist link added")
                         } icon: {
                             Image(systemName: "checkmark.circle")
                         }
@@ -136,6 +162,11 @@ struct PlaylistLinkImportView: View {
                                 systemImage: "plus.circle"
                             )
                         }
+                        .disabled(selectedProfiles.isEmpty)
+                    }
+                } header: {
+                    if profiles.count > 1 {
+                        Text("Profiles", comment: "Profile list title")
                     }
                 } footer: {
                     if link.items.contains(where: { $0.type == .youtube }) {
@@ -147,15 +178,21 @@ struct PlaylistLinkImportView: View {
     }
 
     private func add(_ link: PlaylistLink) {
-        guard let profile = selectedProfile else { return }
+        let chosen = selectedProfiles
+        guard let owner = chosen.first else { return }
 
-        let ownedTiles = tiles.filter { $0.ownerProfileID == profile.id && !$0.isTrashed }
+        let ownedTiles = tiles.filter { $0.ownerProfileID == owner.id && !$0.isTrashed }
         guard ProGate.canAdd(.tilesPerProfile, currentCount: ownedTiles.count, hasFullAccess: store.hasFullAccess) else {
             limitMessage = ProGate.limitMessage(for: .tilesPerProfile, hasFullAccess: store.hasFullAccess)
             return
         }
 
-        let tile = Tile(title: link.title, category: link.category, ownerProfileID: profile.id)
+        let tile = Tile(
+            title: link.title,
+            imageData: artwork ?? Data(),
+            category: link.category,
+            ownerProfileID: owner.id
+        )
         tile.sortOrder = (ownedTiles.map(\.sortOrder).max() ?? -1) + 1
         modelContext.insert(tile)
 
@@ -170,10 +207,15 @@ struct PlaylistLinkImportView: View {
             tile.append(item)
         }
 
+        // The other children see the same tile, shared with them.
+        for profile in chosen.dropFirst() {
+            profile.setSharedTile(tile.id, visible: true)
+        }
+
         if let error = ModelSaver.save(modelContext, describing: "adding a tile from a link") {
             errorMessage = error.localizedDescription
             return
         }
-        addedForProfileName = profile.name
+        addedForProfileNames = chosen.map(\.name).formatted(.list(type: .and))
     }
 }

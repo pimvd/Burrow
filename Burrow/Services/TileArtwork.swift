@@ -30,8 +30,32 @@ enum TileArtwork {
         Icon(id: "balloon.fill", displayName: String(localized: "Balloon", comment: "Tile icon")),
         Icon(id: "teddybear.fill", displayName: String(localized: "Teddy bear", comment: "Tile icon")),
         Icon(id: "soccerball", displayName: String(localized: "Ball", comment: "Tile icon")),
-        Icon(id: "paintpalette.fill", displayName: String(localized: "Paint", comment: "Tile icon"))
+        Icon(id: "paintpalette.fill", displayName: String(localized: "Paint", comment: "Tile icon")),
+        Icon(id: "crown.fill", displayName: String(localized: "Crown", comment: "Tile icon")),
+        Icon(id: "sparkles", displayName: String(localized: "Sparkles", comment: "Tile icon")),
+        Icon(id: "wand.and.stars", displayName: String(localized: "Magic wand", comment: "Tile icon")),
+        Icon(id: "balloon.2.fill", displayName: String(localized: "Balloons", comment: "Tile icon")),
+        Icon(id: "party.popper.fill", displayName: String(localized: "Party", comment: "Tile icon")),
+        Icon(id: "figure.dance", displayName: String(localized: "Dancing", comment: "Tile icon")),
+        Icon(id: "music.mic", displayName: String(localized: "Microphone", comment: "Tile icon")),
+        Icon(id: "hare.fill", displayName: String(localized: "Rabbit", comment: "Tile icon")),
+        Icon(id: "dog.fill", displayName: String(localized: "Dog", comment: "Tile icon")),
+        Icon(id: "ladybug.fill", displayName: String(localized: "Ladybird", comment: "Tile icon")),
+        Icon(id: "heart.fill", displayName: String(localized: "Heart", comment: "Tile icon"))
     ]
+
+    /// The picture a playlist link names: its icon in cream on the colour
+    /// theme's tint, the way the ready-made tiles look. `nil` when the link
+    /// names no icon.
+    static func render(linkIcon: String?, color: String?) -> Data? {
+        guard let linkIcon, let icon = icons.first(where: { $0.id == linkIcon }) else { return nil }
+        let palette = ThemePalette.palette(named: color ?? ThemePalette.fallbackIdentifier)
+        return renderIcon(
+            icon,
+            tint: UIColor(red: 0.98, green: 0.97, blue: 0.93, alpha: 1),
+            background: UIColor(palette.tint)
+        )
+    }
 
     /// Side length of the square artwork that gets stored.
     static let renderSize: CGFloat = 600
