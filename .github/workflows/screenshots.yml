@@ -4,11 +4,6 @@
 name: Screenshots
 
 on:
-  # TEMPORARY: one run from the feature branch, until this workflow is on
-  # master (only then can it be started by hand). Remove after merging.
-  push:
-    branches: [claude/keen-goldberg-69eru3]
-    paths: [.github/workflows/screenshots.yml, Scripts/screenshots.sh, Burrow/App/ScreenshotMode.swift]
   workflow_dispatch:
     inputs:
       locales:

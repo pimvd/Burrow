@@ -10,9 +10,7 @@ name: Website
 
 on:
   push:
-    # TEMPORARY: the feature branch too, until this workflow is on master
-    # (only then can it be started by hand). Remove the branch after merging.
-    branches: [master, claude/keen-goldberg-69eru3]
+    branches: [master]
     paths: [website/**, AppStore/screenshots/en-US/**, Burrow/Resources/Assets.xcassets/AppIcon.appiconset/**, .github/workflows/website.yml]
   workflow_run:
     workflows: [Screenshots]
