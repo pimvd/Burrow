@@ -73,7 +73,10 @@ shoot() {  # device-name udid
         tiles|statistics) wait=9 ;;
         *) wait=6 ;;
       esac
-      [ $n -eq 1 ] && wait=12
+      # The iPad simulator is slower: it once still showed the profiles, or
+      # their fade, after 6 seconds.
+      [ "$name" = ipad ] && wait=$((wait + 6))
+      [ $n -le 2 ] && wait=$((wait + 8))
       sleep $wait
       local file
       file=$(printf '%s/%s-%02d-%s.png' "$out" "$name" "$n" "$scene")
