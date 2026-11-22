@@ -1,0 +1,35 @@
+{
+  "bundle_id": "com.pvd.burrow",
+  "app_price": 0,
+  "price_territory": "NLD",
+  "in_app_purchases": [
+    {
+      "product_id": "com.pvd.burrow.pro",
+      "reference_name": "Burrow Full",
+      "price": 9.99,
+      "family_sharable": true,
+      "review_note": "One-time unlock. Lifts the free limits: unlimited child profiles and tiles, up to 50 items per playlist, all six games. Reached from any limit (e.g. adding a second profile) or Parent area > Unlock Burrow. Parental gate: enter any adult birth year, e.g. 1990.",
+      "localizations": {
+        "en-US": ["Burrow Full", "Unlimited profiles, tiles and every game"],
+        "de-DE": ["Burrow Full", "Unbegrenzte Profile, Kacheln, alle Spiele"],
+        "es-ES": ["Burrow Full", "Perfiles, mosaicos y juegos sin límite"],
+        "fr-FR": ["Burrow Full", "Profils, tuiles et jeux sans limite"],
+        "nl-NL": ["Burrow Full", "Onbeperkt profielen, tegels en alle spellen"]
+      }
+    },
+    {
+      "product_id": "com.pvd.burrow.trial",
+      "reference_name": "14-day Trial",
+      "price": 0,
+      "family_sharable": false,
+      "review_note": "Free time-based trial per guideline 3.1.1, named 'XX-day Trial'. Its purchase date starts 14 days of everything in Burrow Full; afterwards the free limits return with the parent's content intact. Parent area > Unlock Burrow > Try everything free for 14 days.",
+      "localizations": {
+        "en-US": ["14-day Trial", "Everything in Burrow Full for 14 days"],
+        "de-DE": ["14-Tage-Testversion", "Alles aus Burrow Full für 14 Tage"],
+        "es-ES": ["Prueba de 14 días", "Todo Burrow Full durante 14 días"],
+        "fr-FR": ["Essai de 14 jours", "Tout Burrow Full pendant 14 jours"],
+        "nl-NL": ["Proefperiode van 14 dagen", "Alles van Burrow Full, 14 dagen lang"]
+      }
+    }
+  ]
+}
