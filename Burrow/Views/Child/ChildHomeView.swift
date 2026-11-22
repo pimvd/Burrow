@@ -92,6 +92,19 @@ struct ChildHomeView: View {
         // here rather than in the player: closing the player takes the picture
         // away, and this keeps the sound.
         .background(hiddenYouTubeHost)
+        .onAppear(perform: openScreenshotScene)
+    }
+
+    /// The App Store screenshots open a tab, or a game, without a tap.
+    private func openScreenshotScene() {
+        switch ScreenshotMode.scene {
+        case .video: viewModel.selectedTab = .video
+        case .games: viewModel.selectedTab = .games
+        case .game:
+            viewModel.selectedTab = .games
+            viewModel.presentedGame = GameCatalog.game(identifier: GameCatalog.matchingPairs)
+        default: break
+        }
     }
 
     /// The bar for music that plays on with the player closed. It is inset

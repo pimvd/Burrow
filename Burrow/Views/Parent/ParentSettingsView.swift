@@ -118,6 +118,27 @@ struct ParentSettingsView: View {
             }
 
             Section {
+                // iOS keeps the per-app language in the Settings app, and only
+                // shows it once the device has more than one preferred
+                // language. This row goes straight there.
+                Button {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    Label(
+                        String(localized: "Language", comment: "Parent settings row that opens the app's page in the Settings app"),
+                        systemImage: "globe"
+                    )
+                }
+            } footer: {
+                Text(
+                    "Opens Burrow in the Settings app, where you can choose its language. If no Language option is shown there, add a second language under General → Language & Region first.",
+                    comment: "Explains the Language row in parent settings"
+                )
+            }
+
+            Section {
                 if store.isPro {
                     Label {
                         Text("Burrow is unlocked", comment: "Purchase state")

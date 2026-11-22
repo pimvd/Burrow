@@ -1,0 +1,59 @@
+# Uploads website/ (plus the app icon and the English iPhone screenshots) to
+# https://vandijkcloud.nl/burrow/ over FTP.
+#
+# Repository secrets: FTP_HOST, FTP_USERNAME, FTP_PASSWORD. Best is an FTP user
+# locked to the folder served at that URL, so its root (/) is the site's root;
+# otherwise set FTP_DIR (a repository variable) to that folder, e.g. /burrow/.
+# FTP-Deploy-Action keeps its sync state there and only ever deletes files it
+# uploaded itself.
+name: Website
+
+on:
+  push:
+    branches: [master]
+    paths: [website/**, AppStore/screenshots/en-US/**, Burrow/Resources/Assets.xcassets/AppIcon.appiconset/**, .github/workflows/website.yml]
+  workflow_run:
+    workflows: [Screenshots]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: website
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # After the Screenshots workflow, take master with its new commit.
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.ref || 'master' }}
+
+      - name: Check the secrets are set
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+        run: |
+          if [ -z "$FTP_HOST" ]; then
+            echo "::error::Missing repository secrets FTP_HOST, FTP_USERNAME and FTP_PASSWORD. See APP_STORE_RELEASE.md."
+            exit 1
+          fi
+
+      - name: Assemble the site
+        run: |
+          mkdir -p site/screenshots
+          cp -R website/. site/
+          cp Burrow/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png site/icon.png
+          cp AppStore/screenshots/en-US/iphone-*.png site/screenshots/ 2>/dev/null || echo "No screenshots yet."
+          find site -type f | sort
+
+      - name: Upload to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./site/
+          server-dir: ${{ vars.FTP_DIR || '/' }}

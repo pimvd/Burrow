@@ -9,9 +9,18 @@ on:
 jobs:
   build:
     name: Build (iOS Simulator)
-    runs-on: macos-15
+    # The same image the release is archived on: the iOS 27 SDK that App
+    # Store Connect requires.
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@v4
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Check the store text
+        run: python3 Scripts/metadata_to_fastlane.py --check
 
       - name: Show toolchain
         run: |

@@ -28,7 +28,8 @@ final class StoreManager {
 
     /// The one question every limit asks. A trial is the whole app, so nothing
     /// downstream needs to know which of the two is paying for it.
-    var hasFullAccess: Bool { isPro || trial.state.isActive }
+    /// The screenshots show the whole app, as a parent who unlocked it sees it.
+    var hasFullAccess: Bool { isPro || trial.state.isActive || ScreenshotMode.isActive }
 
     @ObservationIgnored private var updatesTask: Task<Void, Never>?
     @ObservationIgnored private let logger = Logger(subsystem: "com.pvd.burrow", category: "Store")

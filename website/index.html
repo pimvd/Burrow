@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Burrow — a calm player for young children</title>
+  <meta name="description" content="Burrow plays only what you put in it: your own songs and videos, Apple Music and YouTube links, as big calm tiles for a young child. No ads, no recommendations, no tracking.">
+  <meta property="og:title" content="Burrow — a calm player for young children">
+  <meta property="og:description" content="Only what you put in. No ads, no recommendations, no autoplay into the unknown.">
+  <meta property="og:image" content="https://vandijkcloud.nl/burrow/icon.png">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <style>
+    :root {
+      --bg: #f6f3ea; --card: #fffdf7; --ink: #2f2a25; --muted: #6b645b;
+      --moss: #7b9677; --moss-deep: #4f6b4c; --sky: #9fbcd3; --earth: #5c4a3d; --line: #e4ddcd;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1b1d1a; --card: #242723; --ink: #ece7dc; --muted: #a8a196;
+        --moss: #8faa8a; --moss-deep: #a9c4a4; --sky: #6f8ea7; --earth: #c9b29f; --line: #343832;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6;
+           font-family: ui-rounded, "SF Pro Rounded", -apple-system, system-ui, sans-serif; }
+    a { color: var(--moss-deep); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+    header.hero { background: linear-gradient(180deg, var(--sky) 0%, var(--bg) 100%); padding: 64px 0 40px; text-align: center; }
+    .hero img.icon { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 8px 24px rgba(40, 50, 40, .18); }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 20px 0 8px; letter-spacing: -0.01em; }
+    .hero p.lead { font-size: 1.2rem; max-width: 560px; margin: 0 auto 24px; color: var(--ink); }
+    .badge { display: inline-block; background: var(--ink); color: var(--bg); text-decoration: none; padding: 12px 22px; border-radius: 14px; font-weight: 600; }
+    .badge.soon { opacity: .85; cursor: default; }
+    .hero .small { color: var(--muted); font-size: .9rem; margin-top: 12px; }
+
+    .shots { display: flex; gap: 16px; overflow-x: auto; padding: 8px 20px 24px; scroll-snap-type: x mandatory; max-width: 1100px; margin: 0 auto; }
+    .shots figure { flex: 0 0 auto; margin: 0; scroll-snap-align: center; text-align: center; }
+    .shots img { width: 220px; border-radius: 22px; border: 1px solid var(--line); display: block; }
+    .shots figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+    .shots:not(:has(figure)) { display: none; }
+
+    section { padding: 40px 0; }
+    h2 { font-size: 1.6rem; margin: 0 0 16px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; counter-reset: step; }
+    .steps div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+    .steps div::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center;
+                         width: 32px; height: 32px; border-radius: 50%; background: var(--moss); color: #fff; font-weight: 700; margin-bottom: 8px; }
+    .steps h3, .features h3 { margin: 0 0 6px; font-size: 1.1rem; }
+    .steps p, .features p { margin: 0; color: var(--muted); }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; }
+
+    .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .price > div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+    .price > div.full { border: 2px solid var(--moss); }
+    .price h3 { margin: 0; }
+    .price .amount { font-size: 1.5rem; font-weight: 700; margin: 4px 0 10px; }
+    .price ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .note { color: var(--muted); font-size: .92rem; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: .9rem; }
+    footer nav a { margin-right: 18px; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="icon" src="icon.png" alt="The Burrow app icon: a burrow in a green hill under a soft sky">
+      <h1>Only what you put in.</h1>
+      <p class="lead">Burrow is a calm music and video player for young children. You fill it with your own songs, videos, Apple Music and YouTube links; your child sees big, quiet tiles and nothing else.</p>
+      <span class="badge soon" aria-disabled="true">Coming soon to the App Store</span>
+      <p class="small">iPhone and iPad · iOS 17 or later · English, Nederlands, Deutsch, Français, Español</p>
+    </div>
+  </header>
+
+  <div class="shots" aria-label="Screenshots">
+    <figure><img src="screenshots/iphone-01-profiles.png" alt="The profile picker with three children" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>One profile per child</figcaption></figure>
+    <figure><img src="screenshots/iphone-02-music.png" alt="Big music tiles: bedtime songs, in the car, sing along" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Music tiles you made</figcaption></figure>
+    <figure><img src="screenshots/iphone-03-video.png" alt="Big video tiles: animals, trains, painting" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Video, without the rabbit hole</figcaption></figure>
+    <figure><img src="screenshots/iphone-04-games.png" alt="Six calm games" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Six calm games</figcaption></figure>
+    <figure><img src="screenshots/iphone-06-tiles.png" alt="The parent's list of tiles" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>You decide what is in it</figcaption></figure>
+    <figure><img src="screenshots/iphone-07-statistics.png" alt="A week of listening and watching, as a chart" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>See what was played</figcaption></figure>
+  </div>
+
+  <main class="wrap">
+    <section>
+      <h2>Built to stop, not to keep them watching</h2>
+      <p>Most apps for children are made to hold attention for as long as possible. Burrow has no feed, no search, no recommendations and no autoplay into something you have never seen. When the playlist ends, it ends. When the daily time is up, it stops.</p>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div class="steps">
+        <div><h3>Make a tile</h3><p>One tile is one playlist, music or video, with a picture your child recognises.</p></div>
+        <div><h3>Fill it</h3><p>Add audio and video files from your device, songs from Apple Music, or YouTube links.</p></div>
+        <div><h3>Hand it over</h3><p>Your child taps a tile and it plays. Everything you set up sits behind a grown-ups question.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What is in it</h2>
+      <div class="features">
+        <div><h3>Works offline</h3><p>Your own files play anywhere: in the car, on a plane, in a tent. No Wi-Fi needed.</p></div>
+        <div><h3>A profile per child</h3><p>Each child gets their own tiles, colours and animal. Share a tile between siblings in one tap.</p></div>
+        <div><h3>Screen time per child</h3><p>Set a daily limit. When it is reached, playback stops and Burrow goes back to the profile picker.</p></div>
+        <div><h3>Six calm games</h3><p>Matching Pairs, Odd One Out, Copy the Pattern, Tic Tac Toe, Four in a Row and Hangman without the gallows. No scores, no streaks.</p></div>
+        <div><h3>Lock the screen</h3><p>Lock a playing video against little hands. Unlocking takes a three-second press a toddler will not find.</p></div>
+        <div><h3>Ready-made playlists</h3><p>Open a playlist someone shared as a link, or start from <a href="playlists.html">our page of ready-made playlists</a>.</p></div>
+        <div><h3>Your data stays yours</h3><p>No account, no analytics, no ads, no tracking. Profiles and tiles sync through your own private iCloud. Nothing is sent to us.</p></div>
+        <div><h3>Backups you hold</h3><p>Export everything, your own files included, into one file and read it back on a new device.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>One price, once</h2>
+      <div class="price">
+        <div>
+          <h3>Free</h3>
+          <div class="amount">€0</div>
+          <ul>
+            <li>One child profile</li>
+            <li>Five tiles</li>
+            <li>Three items per playlist</li>
+            <li>Two games</li>
+          </ul>
+        </div>
+        <div class="full">
+          <h3>Burrow Full</h3>
+          <div class="amount">€9.99, one time</div>
+          <ul>
+            <li>Unlimited child profiles and tiles</li>
+            <li>Up to 50 items per playlist</li>
+            <li>All six games</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Try everything free for 14 days. The App Store asks you to confirm, but it costs nothing and there is nothing to cancel. No subscription, ever. Apple Music needs your own Apple Music subscription.</p>
+      <p class="note">YouTube links play through YouTube's own embedded player, and work for as long as YouTube allows that. Everything else in Burrow works without YouTube. Burrow is not made by or affiliated with YouTube, Google or Apple.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="playlists.html">Playlists</a><a href="mailto:pim@vandijkcloud.nl">Contact</a></nav>
+      <p>© 2026 Pim van Dijk</p>
+    </div>
+  </footer>
+</body>
+</html>

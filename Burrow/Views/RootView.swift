@@ -42,6 +42,10 @@ struct RootView: View {
             ParentAreaView()
         }
         .task {
+            if let scene = ScreenshotMode.scene {
+                open(scene)
+                return
+            }
             // Tiles whose 14 days in the trash have passed are removed on every
             // launch, together with their statistics and media files.
             TrashService.purgeExpiredTiles(in: modelContext)
@@ -66,6 +70,24 @@ struct RootView: View {
             // Tapping the monthly reminder goes straight to the export screen,
             // behind the parental gate as always.
             router.openParentArea(at: .exportImport)
+        }
+    }
+
+    /// Goes straight to one screenshot scene. The parent area is opened
+    /// already unlocked: the screenshots show what is behind the gate.
+    private func open(_ scene: ScreenshotMode.Scene) {
+        switch scene {
+        case .profiles:
+            router.showProfilePicker()
+        case .music, .video, .games, .game:
+            screenTime.startSession(limitMinutes: 45)
+            router.showChild(profileID: ScreenshotMode.firstChildID)
+        case .tiles:
+            parentSession.unlock()
+            router.openParentArea(at: .tiles)
+        case .statistics:
+            parentSession.unlock()
+            router.openParentArea(at: .statistics)
         }
     }
 

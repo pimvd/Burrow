@@ -177,3 +177,15 @@ the simulator is looked up with `simctl` rather than named.
 English (source), Dutch, German, French and Spanish. Adding a language means
 adding it to the catalog and to `knownRegions` in the project file; nothing in
 the code changes.
+
+A parent picks Burrow's language in the Settings app (Settings → Burrow →
+Language), as with any iOS app; parent settings has a *Language* row that goes
+there. iOS only shows that option once the device has more than one preferred
+language under General → Language & Region.
+
+## Releasing
+
+`APP_STORE_RELEASE.md`: the Screenshots, Release to TestFlight and Website
+workflows, the secrets they need, and the one-time App Store Connect setup.
+The screenshots run the real app on made-up data, through
+`Burrow/App/ScreenshotMode.swift`.

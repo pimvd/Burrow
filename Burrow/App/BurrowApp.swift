@@ -14,7 +14,11 @@ struct BurrowApp: App {
     private let container: ModelContainer
 
     init() {
-        container = ModelContainerFactory.makeContainer()
+        // The App Store screenshots run on made-up data in memory, never on
+        // the parent's own store (see ScreenshotMode).
+        container = ScreenshotMode.isActive
+            ? ScreenshotMode.makeContainer()
+            : ModelContainerFactory.makeContainer()
         // Built after the container, because it reports on the store that was
         // actually opened.
         _cloudSync = State(initialValue: CloudSyncStatus())

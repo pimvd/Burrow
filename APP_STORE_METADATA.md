@@ -23,7 +23,7 @@ length-checked.
   introductory offer, so the trial is a second, free non-consumable,
   **14-day Trial** (`com.pvd.burrow.trial`, €0), as guideline 3.1.1 prescribes
 - Privacy policy URL: `https://vandijkcloud.nl/burrow/privacy.html` (source: `website/privacy.html` — republish after edits)
-- Marketing URL: _TODO (optional)_
+- Marketing URL: `https://vandijkcloud.nl/burrow/` (source: `website/index.html`)
 - Support email: `pim@vandijkcloud.nl` (also in the privacy policy)
 - Support URL: `https://vandijkcloud.nl/burrow/support.html` (source: `website/support.html`)
 
@@ -403,8 +403,8 @@ Answers to give in App Store Connect → App Privacy:
 - [ ] No competitor trademarks in keywords (**Toniebox**, **YouTube**, **Spotify** are all rejection risks)
 - [x] Keyword field uses singulars, no spaces after commas
 - [ ] Non-English descriptions reviewed by a native speaker — the drafts above are the developer's own and have not been reviewed
-- [ ] `website/privacy.html` and `website/support.html` published at the URLs above and reachable
-- [ ] Screenshots per device size, showing the child grid, a tile editor, and the games grid
+- [ ] `website/index.html`, `privacy.html` and `support.html` published (Website workflow) at the URLs above and reachable
+- [ ] Screenshots per device size and language (Screenshots workflow; see `AppStore/screenshots/README.md`)
 - [ ] IAP `com.pvd.burrow.pro` created, priced, and submitted with the build
 - [ ] IAP `com.pvd.burrow.trial` created as a non-consumable named "14-day Trial" at the free price, and submitted with the build
 - [ ] Build number is the git commit count (stamped automatically — confirm it in App Store Connect, do not set it by hand)

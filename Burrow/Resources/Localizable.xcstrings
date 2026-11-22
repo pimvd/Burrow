@@ -10351,6 +10351,64 @@
           }
         }
       }
+    },
+    "Language": {
+      "comment": "Parent settings row that opens the app's page in the Settings app",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprache"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langue"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taal"
+          }
+        }
+      }
+    },
+    "Opens Burrow in the Settings app, where you can choose its language. If no Language option is shown there, add a second language under General → Language & Region first.": {
+      "comment": "Explains the Language row in parent settings",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnet Burrow in der Einstellungen-App, wo du die Sprache wählst. Fehlt dort die Option „Sprache“, füge zuerst unter Allgemein → Sprache & Region eine zweite Sprache hinzu."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Burrow en la app Ajustes, donde puedes elegir su idioma. Si no aparece la opción Idioma, añade primero un segundo idioma en General → Idioma y región."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvre Burrow dans l’app Réglages, où vous choisissez sa langue. Si l’option Langue n’apparaît pas, ajoutez d’abord une deuxième langue dans Général → Langue et région."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opent Burrow in de app Instellingen, waar je de taal kiest. Zie je daar geen optie Taal, voeg dan eerst een tweede taal toe onder Algemeen → Taal en regio."
+          }
+        }
+      }
     }
   },
   "version": "1.1"
