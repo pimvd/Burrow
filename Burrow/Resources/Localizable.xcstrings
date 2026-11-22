@@ -616,6 +616,35 @@
         }
       }
     },
+    "A link carries the YouTube and Apple Music items in this tile, not files from this device. Whoever opens it in Burrow can add their own copy.": {
+      "comment": "Share as link explanation",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Link enthält die YouTube- und Apple-Music-Einträge dieser Kachel, aber keine Dateien von diesem Gerät. Wer ihn in Burrow öffnet, kann eine eigene Kopie hinzufügen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un enlace lleva los elementos de YouTube y Apple Music de este mosaico, no los archivos de este dispositivo. Quien lo abra en Burrow puede añadir su propia copia."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un lien contient les éléments YouTube et Apple Music de cette tuile, pas les fichiers de cet appareil. La personne qui l’ouvre dans Burrow peut en ajouter sa propre copie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een link bevat de YouTube- en Apple Music-onderdelen van deze tegel, geen bestanden van dit toestel. Wie hem in Burrow opent, kan er een eigen kopie van toevoegen."
+          }
+        }
+      }
+    },
     "A playlist can hold up to 50 items.": {
       "comment": "Paid tier media item limit reached",
       "localizations": {
@@ -790,6 +819,35 @@
         }
       }
     },
+    "Add a playlist": {
+      "comment": "Playlist link import title",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiedergabeliste hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir una lista de reproducción"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une liste de lecture"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afspeellijst toevoegen"
+          }
+        }
+      }
+    },
     "Add a profile for each child. Every profile has its own tiles, colours and screen time.": {
       "comment": "Empty profile list description",
       "localizations": {
@@ -877,6 +935,35 @@
         }
       }
     },
+    "Add tile": {
+      "comment": "Playlist link import button",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kachel hinzufügen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir mosaico"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter la tuile"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tegel toevoegen"
+          }
+        }
+      }
+    },
     "Add your first tile": {
       "comment": "Empty tile list",
       "localizations": {
@@ -902,6 +989,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Voeg je eerste tegel toe"
+          }
+        }
+      }
+    },
+    "Added for %@.": {
+      "comment": "Playlist link added",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Für %@ hinzugefügt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadido para %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouté pour %@."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toegevoegd voor %@."
           }
         }
       }
@@ -3918,6 +4034,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Importeren"
+          }
+        }
+      }
+    },
+    "It may have been cut off when it was copied. Ask for the link again.": {
+      "comment": "Playlist link unreadable description",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vielleicht wurde er beim Kopieren abgeschnitten. Bitte um den Link noch einmal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quizá se cortó al copiarlo. Pide el enlace otra vez."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il a peut-être été tronqué lors de la copie. Redemandez le lien."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misschien is hij bij het kopiëren afgekapt. Vraag de link nog een keer."
           }
         }
       }
@@ -7025,6 +7170,35 @@
         }
       }
     },
+    "Share as link": {
+      "comment": "Tile editor row",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als Link teilen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir como enlace"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partager en lien"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delen als link"
+          }
+        }
+      }
+    },
     "Share backup": {
       "comment": "Share the exported archive",
       "localizations": {
@@ -8525,6 +8699,35 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dit soort onderdeel past niet in deze tegel."
+          }
+        }
+      }
+    },
+    "This link cannot be read": {
+      "comment": "Playlist link unreadable",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Link lässt sich nicht lesen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede leer este enlace"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire ce lien"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze link is niet te lezen"
           }
         }
       }

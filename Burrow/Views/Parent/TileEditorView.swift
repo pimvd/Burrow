@@ -137,6 +137,10 @@ struct TileEditorView: View {
 
             playlistSection
 
+            if !isCreating {
+                shareSection
+            }
+
             if case .edit(let existing) = mode {
                 Section {
                     // Shortcut straight to this tile's own numbers.
@@ -260,6 +264,39 @@ struct TileEditorView: View {
                     comment: "Media item counter"
                 )
             }
+        }
+    }
+
+    // MARK: - Sharing
+
+    @ViewBuilder
+    private var shareSection: some View {
+        let trimmedTitle = title.trimmingCharacters(in: .whitespaces)
+        let link = PlaylistLink(
+            title: trimmedTitle.isEmpty ? category.localizedTitle : trimmedTitle,
+            category: category,
+            mediaItems: mediaItems
+        )
+        Section {
+            if let link {
+                ShareLink(item: link.url) {
+                    Label(
+                        String(localized: "Share as link", comment: "Tile editor row"),
+                        systemImage: "link"
+                    )
+                }
+            } else {
+                Label(
+                    String(localized: "Share as link", comment: "Tile editor row"),
+                    systemImage: "link"
+                )
+                .foregroundStyle(.tertiary)
+            }
+        } footer: {
+            Text(
+                "A link carries the YouTube and Apple Music items in this tile, not files from this device. Whoever opens it in Burrow can add their own copy.",
+                comment: "Share as link explanation"
+            )
         }
     }
 
