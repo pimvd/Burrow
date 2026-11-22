@@ -64,8 +64,14 @@ shoot() {  # device-name udid
       xcrun simctl terminate "$udid" "$bundle" 2>/dev/null || true
       xcrun simctl launch "$udid" "$bundle" -screenshotScene "$scene" \
         -AppleLanguages "($language)" -AppleLocale "${locale/-/_}" >/dev/null
-      # The first launch on a fresh simulator is slow; later ones are not.
-      sleep $([ $n -eq 1 ] && echo 12 || echo 6)
+      # The first launch on a fresh simulator is slow, and the parent scenes
+      # wait a second, present and push before they are still.
+      case $scene in
+        tiles|statistics) wait=9 ;;
+        *) wait=6 ;;
+      esac
+      [ $n -eq 1 ] && wait=12
+      sleep $wait
       local file
       file=$(printf '%s/%s-%02d-%s.png' "$out" "$name" "$n" "$scene")
       xcrun simctl io "$udid" screenshot --type=png "$file" >/dev/null

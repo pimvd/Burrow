@@ -33,7 +33,7 @@ struct RootView: View {
             }
         }
         .animation(CalmStyle.screenTransition, value: router.screen)
-        .sheet(isPresented: $router.isPresentingParentArea) {
+        .sheet(isPresented: ScreenshotMode.isActive ? .constant(false) : $router.isPresentingParentArea) {
             // Leaving the parent area ends the unlocked session, so coming back
             // always asks for the birth year again.
             parentSession.lock()
@@ -41,8 +41,15 @@ struct RootView: View {
         } content: {
             ParentAreaView()
         }
+        // The screenshots show the parent area full screen: on an iPad a
+        // sheet is a small card over the profile picker.
+        .fullScreenCover(isPresented: ScreenshotMode.isActive ? $router.isPresentingParentArea : .constant(false)) {
+            ParentAreaView()
+        }
         .task {
             if let scene = ScreenshotMode.scene {
+                // Let the first screen settle, or a presentation can be lost.
+                try? await Task.sleep(for: .seconds(1))
                 open(scene)
                 return
             }

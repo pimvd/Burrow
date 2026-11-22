@@ -53,7 +53,8 @@ jobs:
           xcrun simctl boot "$ipad"
 
       # Signed ad hoc, as Xcode does for the simulator, without the iCloud
-      # entitlement: the screenshots run on an in-memory store.
+      # entitlement: the screenshots run on an in-memory store. Only arm64,
+      # the runner's own architecture: a generic destination builds Intel too.
       - name: Build for the simulator
         run: |
           xcodebuild build \
@@ -69,6 +70,8 @@ jobs:
             CODE_SIGN_ENTITLEMENTS= \
             DEVELOPMENT_TEAM= \
             PROVISIONING_PROFILE_SPECIFIER= \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=YES \
             -quiet
 
       - name: Take the screenshots

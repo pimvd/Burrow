@@ -102,7 +102,8 @@ struct ChildHomeView: View {
         case .games: viewModel.selectedTab = .games
         case .game:
             viewModel.selectedTab = .games
-            viewModel.presentedGame = GameCatalog.game(identifier: GameCatalog.matchingPairs)
+            // Odd One Out opens on four pictures; Matching Pairs on blank cards.
+            viewModel.presentedGame = GameCatalog.game(identifier: GameCatalog.oddOneOut)
         default: break
         }
     }

@@ -139,22 +139,32 @@ enum ScreenshotMode {
         var generator = SeededGenerator(seed: 7)
         for day in 0..<7 {
             guard let date = calendar.date(byAdding: .day, value: -day, to: today) else { continue }
+            // As UsageRecorder writes them: an "opened" marker without an
+            // item, then one timed row per song, video or game played.
             for slot in 0..<4 {
                 let tile = tiles[Int.random(in: 0..<tiles.count, using: &generator)]
+                let items = tile.orderedMediaItems
+                let item = items[Int.random(in: 0..<items.count, using: &generator)]
                 let start = date.addingTimeInterval(TimeInterval((8 + slot * 3) * 3600))
+                context.insert(UsageSession(profileID: firstChildID, tileID: tile.id, startTime: start))
                 context.insert(UsageSession(
                     profileID: firstChildID,
                     tileID: tile.id,
+                    mediaItemID: item.id,
                     startTime: start,
                     durationSeconds: Int.random(in: 300...1500, using: &generator)
                 ))
             }
             let game = GameCatalog.all[day % GameCatalog.all.count]
+            let start = date.addingTimeInterval(17 * 3600)
+            context.insert(UsageSession(
+                profileID: firstChildID, tileID: game.id, gameIdentifier: game.identifier, startTime: start))
             context.insert(UsageSession(
                 profileID: firstChildID,
                 tileID: game.id,
+                mediaItemID: game.id,
                 gameIdentifier: game.identifier,
-                startTime: date.addingTimeInterval(17 * 3600),
+                startTime: start,
                 durationSeconds: Int.random(in: 240...900, using: &generator)
             ))
         }
