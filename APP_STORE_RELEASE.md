@@ -57,3 +57,13 @@ GitHub → Settings → Secrets and variables → Actions → *New repository se
    ran on.
 3. Run **Release to TestFlight** on that branch.
 4. Test the build in TestFlight, then submit for review in App Store Connect.
+
+## If archiving says the certificate limit is reached
+
+Every run archives on a fresh runner, which makes Apple create an "Apple
+Development: Created via API" certificate. The release workflow revokes the one
+it made at the end of the run (`Scripts/revoke_runner_certificates.py`), so
+they no longer pile up. Certificates left by older runs, here or in another app
+on the same team, have to be revoked once by hand: developer.apple.com →
+Certificates → the "Created via API" development ones. Leave the distribution
+certificate and your own Mac's alone.
