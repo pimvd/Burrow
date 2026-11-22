@@ -16,6 +16,12 @@ time. Needs ASC_KEY_ID, ASC_ISSUER_ID and ASC_KEY_PATH (see Scripts/asc.py).
 
 Never fails the job: the build is already uploaded by now, so a problem here
 is reported as a warning.
+
+With --all-created-via-api instead of fingerprints (the "Revoke stale
+certificates" workflow) it revokes every development certificate named
+"Created via API": the ones older runs left behind, in this app or another on
+the team. A certificate made in Xcode carries its owner's name, not that one,
+and is left alone; so is every distribution certificate.
 """
 import base64
 import hashlib
@@ -26,6 +32,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from asc import SyncError, client_from_environment  # noqa: E402
 
 DEVELOPMENT_TYPES = {"DEVELOPMENT", "IOS_DEVELOPMENT"}
+API_CREATED = "Created via API"
+ALL_FLAG = "--all-created-via-api"
 
 
 def fingerprint(certificate_content):
@@ -47,6 +55,15 @@ def certificates_to_revoke(certificates, runner_fingerprints):
     return chosen
 
 
+def stale_certificates(certificates):
+    """Every development certificate that cloud signing made on some runner."""
+    return [
+        certificate for certificate in certificates
+        if certificate.get("attributes", {}).get("certificateType") in DEVELOPMENT_TYPES
+        and API_CREATED in (certificate.get("attributes", {}).get("name") or "")
+    ]
+
+
 def list_certificates(api):
     certificates, path, params = [], "/v1/certificates", {"limit": 200}
     while path:
@@ -58,22 +75,34 @@ def list_certificates(api):
     return certificates
 
 
-def main(runner_fingerprints):
-    if not runner_fingerprints:
+def main(arguments):
+    revoke_all = arguments == [ALL_FLAG]
+    if not arguments:
         print("No development certificate in the runner's keychain; nothing to revoke.")
         return
     try:
         api = client_from_environment()
-        chosen = certificates_to_revoke(list_certificates(api), runner_fingerprints)
-        if not chosen:
-            print("None of the runner's certificates is on App Store Connect; nothing to revoke.")
+        certificates = list_certificates(api)
+        if revoke_all:
+            chosen = stale_certificates(certificates)
+            print(f"{len(chosen)} development certificate(s) named '{API_CREATED}' to revoke.")
+            if not chosen:
+                for certificate in certificates:
+                    attributes = certificate.get("attributes", {})
+                    print(f"  left alone: {attributes.get('certificateType')} {attributes.get('name')}")
+        else:
+            chosen = certificates_to_revoke(certificates, arguments)
+            if not chosen:
+                print("None of the runner's certificates is on App Store Connect; nothing to revoke.")
         for certificate in chosen:
             attributes = certificate["attributes"]
             api.request("DELETE", f"/v1/certificates/{certificate['id']}")
             print(f"Revoked {attributes.get('name')} ({attributes.get('serialNumber')})")
     except (SyncError, OSError) as error:
+        if revoke_all:
+            sys.exit(f"::error::Revoking failed: {error}")
         print(f"::warning::Could not revoke this run's development certificate: {error}. "
-              "Revoke stale 'Created via API' certificates by hand if archiving reports the limit.")
+              "Run the 'Revoke stale certificates' workflow if archiving reports the limit.")
 
 
 if __name__ == "__main__":

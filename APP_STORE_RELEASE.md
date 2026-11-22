@@ -64,6 +64,6 @@ Every run archives on a fresh runner, which makes Apple create an "Apple
 Development: Created via API" certificate. The release workflow revokes the one
 it made at the end of the run (`Scripts/revoke_runner_certificates.py`), so
 they no longer pile up. Certificates left by older runs, here or in another app
-on the same team, have to be revoked once by hand: developer.apple.com →
-Certificates → the "Created via API" development ones. Leave the distribution
-certificate and your own Mac's alone.
+on the same team, are cleared by running **Revoke stale certificates**: it
+revokes every "Created via API" development certificate and leaves the
+distribution certificate and the ones made in Xcode alone.
