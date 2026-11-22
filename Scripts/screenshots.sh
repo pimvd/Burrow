@@ -80,10 +80,15 @@ shoot() {  # device-name udid
   done
 }
 
-prepare "$iphone"
-prepare "$ipad"
-shoot iphone "$iphone"
-shoot ipad "$ipad"
+# One simulator at a time: with both running, the CI runner slowed to minutes
+# per command and the job ran out of time.
+for device in "iphone:$iphone" "ipad:$ipad"; do
+  name=${device%%:*} udid=${device#*:}
+  xcrun simctl shutdown all 2>/dev/null || true
+  prepare "$udid"
+  shoot "$name" "$udid"
+done
+xcrun simctl shutdown all 2>/dev/null || true
 
 # Identical pictures mean the app never got past one screen (or a system
 # prompt): fail rather than commit them.

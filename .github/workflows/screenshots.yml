@@ -21,7 +21,7 @@ concurrency:
 jobs:
   screenshots:
     runs-on: xcode-27
-    timeout-minutes: 60
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
 
