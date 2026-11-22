@@ -10,7 +10,9 @@ name: Website
 
 on:
   push:
-    branches: [master]
+    # TEMPORARY: the feature branch too, until this workflow is on master
+    # (only then can it be started by hand). Remove the branch after merging.
+    branches: [master, claude/keen-goldberg-69eru3]
     paths: [website/**, AppStore/screenshots/en-US/**, Burrow/Resources/Assets.xcassets/AppIcon.appiconset/**, .github/workflows/website.yml]
   workflow_run:
     workflows: [Screenshots]
@@ -23,14 +25,14 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           # After the Screenshots workflow, take master with its new commit.
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.ref || 'master' }}
+          ref: ${{ github.event_name == 'workflow_run' && 'master' || github.ref }}
 
       - name: Check the secrets are set
         env:
