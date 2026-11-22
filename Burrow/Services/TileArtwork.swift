@@ -89,6 +89,19 @@ enum TileArtwork {
         return image.pngData()
     }
 
+    /// Downloads a playlist link's picture and prepares it like a photo:
+    /// cropped square and scaled down. `nil` when it cannot be had.
+    static func download(_ url: URL) async -> Data? {
+        var request = URLRequest(url: url, timeoutInterval: 15)
+        request.cachePolicy = .returnCacheDataElseLoad
+        guard let (data, response) = try? await URLSession.shared.data(for: request),
+              (response as? HTTPURLResponse)?.statusCode == 200,
+              data.count < 5_000_000 else {
+            return nil
+        }
+        return prepare(photoData: data)
+    }
+
     /// Scales a photo down to the stored artwork size and encodes it as JPEG, so
     /// a full resolution picture never ends up in the synced store.
     static func prepare(photoData: Data) -> Data? {

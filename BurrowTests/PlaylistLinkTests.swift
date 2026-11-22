@@ -91,4 +91,24 @@ struct PlaylistLinkTests {
         #expect(parsed.icon == nil)
         #expect(parsed.color == nil)
     }
+
+    @Test("A link's image is taken only from YouTube's image servers")
+    func officialImage() throws {
+        let thumbnail = "https%3A%2F%2Fi.ytimg.com%2Fvi%2FdQw4w9WgXcQ%2Fhq720.jpg"
+        let parsed = try #require(link(
+            "burrow://playlist?name=Car&type=video&image=\(thumbnail)&item=yt:dQw4w9WgXcQ"
+        ))
+        #expect(parsed.image?.absoluteString == "https://i.ytimg.com/vi/dQw4w9WgXcQ/hq720.jpg")
+        let shared = try #require(PlaylistLink(url: parsed.url))
+        #expect(shared == parsed)
+
+        let elsewhere = try #require(link(
+            "burrow://playlist?name=Car&type=video&image=https%3A%2F%2Fexample.com%2Fa.jpg&item=yt:dQw4w9WgXcQ"
+        ))
+        #expect(elsewhere.image == nil)
+        let plain = try #require(link(
+            "burrow://playlist?name=Car&type=video&image=http%3A%2F%2Fi.ytimg.com%2Fa.jpg&item=yt:dQw4w9WgXcQ"
+        ))
+        #expect(plain.image == nil)
+    }
 }

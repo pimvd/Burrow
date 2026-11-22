@@ -33,9 +33,13 @@ struct PlaylistLinkImportView: View {
         profiles.filter { selectedProfileIDs.contains($0.id) }
     }
 
-    /// The tile's picture, drawn from the icon and colour the link names.
+    /// The link's official picture, once downloaded.
+    @State private var downloadedArtwork: Data?
+
+    /// The tile's picture: the link's own image when it could be downloaded,
+    /// otherwise drawn from the icon and colour the link names.
     private var artwork: Data? {
-        link.flatMap { TileArtwork.render(linkIcon: $0.icon, color: $0.color) }
+        downloadedArtwork ?? link.flatMap { TileArtwork.render(linkIcon: $0.icon, color: $0.color) }
     }
 
     /// How many of the link's items fit in one playlist right now. The rest is
@@ -64,6 +68,11 @@ struct PlaylistLinkImportView: View {
             }
         }
         .navigationTitle(Text("Add a playlist", comment: "Playlist link import title"))
+        .task {
+            if let image = link?.image {
+                downloadedArtwork = await TileArtwork.download(image)
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
         .proLimitPrompt($limitMessage)
         .alert(

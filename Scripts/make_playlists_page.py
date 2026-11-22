@@ -232,23 +232,48 @@ PLAYLISTS = [
     },
 ]
 
-# The tile picture each playlist gets: one of the icons a parent can pick in
-# the app (TileArtwork.icons), a colour theme (ThemePalette), and an emoji
-# that stands in for the icon on this page (SF Symbols stay in the app).
+# The fallback picture each playlist gets when its image cannot be
+# downloaded: one of the icons a parent can pick in the app
+# (TileArtwork.icons) on a colour theme (ThemePalette).
 ART = {
-    "Efteling": ("crown.fill", "lavender", "👑"),
-    "Efteling rides": ("sparkles", "sage", "✨"),
-    "Jokie & Jet": ("party.popper.fill", "clay", "🎉"),
-    "Julianatoren": ("balloon.2.fill", "sand", "🎈"),
-    "Studio 100 hits": ("music.mic", "slate", "🎤"),
-    "Bumba": ("figure.dance", "moss", "🕺"),
-    "Maya de Bij": ("ladybug.fill", "sand", "🐞"),
-    "nijntje": ("hare.fill", "lavender", "🐰"),
-    "Woezel & Pip": ("dog.fill", "moss", "🐶"),
-    "Juf Roos": ("music.note", "clay", "🎵"),
-    "Kinderen voor Kinderen": ("star.fill", "sage", "⭐"),
-    "Disney": ("wand.and.stars", "slate", "🪄"),
+    "Efteling": ("crown.fill", "lavender"),
+    "Efteling rides": ("sparkles", "sage"),
+    "Jokie & Jet": ("party.popper.fill", "clay"),
+    "Julianatoren": ("balloon.2.fill", "sand"),
+    "Studio 100 hits": ("music.mic", "slate"),
+    "Bumba": ("figure.dance", "moss"),
+    "Maya de Bij": ("ladybug.fill", "sand"),
+    "nijntje": ("hare.fill", "lavender"),
+    "Woezel & Pip": ("dog.fill", "moss"),
+    "Juf Roos": ("music.note", "clay"),
+    "Kinderen voor Kinderen": ("star.fill", "sage"),
+    "Disney": ("wand.and.stars", "slate"),
 }
+
+# The official picture of each playlist: the thumbnail of one of its own
+# videos, from the rights holder's channel. The app downloads it when the
+# playlist is added and crops it square; the icon above is only the fallback.
+IMAGES = {
+    "Efteling": "v9hofUN08Gw",
+    "Efteling rides": "ZYvTqDzZcPk",
+    "Jokie & Jet": "zmq1x18-UG0",
+    "Julianatoren": "M6hSJ-HyqqY",
+    "Studio 100 hits": "ZRMTC9Tzj2c",
+    "Bumba": "abfLZW5rqDQ",
+    "Maya de Bij": "rOu7kt5b76M",
+    "nijntje": "20J8DUJMgA4",
+    "Woezel & Pip": "IPWVrWyoHP0",
+    "Juf Roos": "vzvbBIt_r6c",
+    "Kinderen voor Kinderen": "gvHpI_6Bq_4",
+    "Disney": "cPAbx5kgCJo",
+}
+
+
+def image(playlist):
+    video_id = IMAGES[playlist["name"]]
+    assert video_id in [v for v, _ in playlist["items"]], playlist["name"]
+    return f"https://i.ytimg.com/vi/{video_id}/hq720.jpg"
+
 
 # ThemePalette's tints, for the swatch on this page.
 COLOURS = {
@@ -262,8 +287,9 @@ SAFE = "-._~:"
 
 
 def link(playlist):
-    icon, colour, _ = ART[playlist["name"]]
-    pairs = [("name", playlist["name"]), ("type", playlist["type"]), ("icon", icon), ("color", colour)]
+    icon, colour = ART[playlist["name"]]
+    pairs = [("name", playlist["name"]), ("type", playlist["type"]), ("icon", icon), ("color", colour),
+             ("image", image(playlist))]
     pairs += [("item", f"yt:{video_id}:{title}") for video_id, title in playlist["items"]]
     query = "&".join(f"{key}={quote(value, safe=SAFE)}" for key, value in pairs)
     return f"burrow://playlist?{query}"
@@ -274,8 +300,9 @@ def anchor(playlist):
 
 
 def swatch(playlist, size=""):
-    _, colour, emoji = ART[playlist["name"]]
-    return f'<span class="art{size}" style="background:{COLOURS[colour]}" aria-hidden="true">{emoji}</span>'
+    _, colour = ART[playlist["name"]]
+    return (f'<img class="art{size}" src="{image(playlist)}" alt="" loading="lazy" '
+            f'style="background:{COLOURS[colour]}">')
 
 
 def kind(playlist):
@@ -340,8 +367,8 @@ PAGE = """<!DOCTYPE html>
     td:first-child a {{ font-weight: 600; text-decoration: none; }}
     ol {{ color: #444; }}
     .note {{ color: #666; font-size: 0.9em; }}
-    .art {{ display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; font-size: 22px; flex: none; }}
-    .art.big {{ width: 48px; height: 48px; border-radius: 12px; font-size: 26px; margin-right: 12px; vertical-align: middle; }}
+    .art {{ width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }}
+    .art.big {{ width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }}
     .name {{ display: flex; align-items: center; gap: 10px; }}
     @media (prefers-color-scheme: dark) {{
       body {{ background: #111; color: #ddd; }} a {{ color: #8ab4ff; }}

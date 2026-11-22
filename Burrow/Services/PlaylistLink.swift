@@ -16,6 +16,11 @@ import Foundation
 /// colour themes (`ThemePalette`), e.g. `&icon=moon.stars.fill&color=sage`.
 /// Anything else is ignored, and the tile gets the plain picture.
 ///
+/// `image` is the address of an official picture for the tile, such as a
+/// video's thumbnail. It is only taken from YouTube's own image servers, and
+/// only downloaded once the parent adds the playlist; the icon is what the
+/// tile gets when the download fails.
+///
 /// The format is meant to be writable by hand, so parsing is forgiving: an item
 /// it cannot read, or one that does not fit the tile type, is left out rather
 /// than failing the whole link.
@@ -41,13 +46,29 @@ struct PlaylistLink: Hashable, Sendable {
     var icon: String?
     /// One of `ThemePalette.all`, by its identifier.
     var color: String?
+    /// An https address on one of `imageHosts`.
+    var image: URL?
 
-    init(title: String, category: TileCategory, items: [Item], icon: String? = nil, color: String? = nil) {
+    /// Where a link's picture may come from: the thumbnails of the videos a
+    /// link points to, and nothing else.
+    static let imageHosts: Set<String> = ["i.ytimg.com", "img.youtube.com"]
+
+    init(
+        title: String,
+        category: TileCategory,
+        items: [Item],
+        icon: String? = nil,
+        color: String? = nil,
+        image: URL? = nil
+    ) {
         self.title = title
         self.category = category
         self.items = items
         self.icon = icon.flatMap { name in TileArtwork.icons.contains { $0.id == name } ? name : nil }
         self.color = color.flatMap { name in ThemePalette.all.contains { $0.id == name } ? name : nil }
+        self.image = image.flatMap { url in
+            url.scheme == "https" && Self.imageHosts.contains(url.host()?.lowercased() ?? "") ? url : nil
+        }
     }
 
     /// The shareable part of a tile. `nil` when nothing in it can travel in a
@@ -97,7 +118,8 @@ struct PlaylistLink: Hashable, Sendable {
             category: category,
             items: Array(items),
             icon: query.first(where: { $0.name == "icon" })?.value,
-            color: query.first(where: { $0.name == "color" })?.value?.lowercased()
+            color: query.first(where: { $0.name == "color" })?.value?.lowercased(),
+            image: query.first(where: { $0.name == "image" })?.value.flatMap(URL.init(string:))
         )
     }
 
@@ -109,6 +131,7 @@ struct PlaylistLink: Hashable, Sendable {
         var pairs = [("name", title), ("type", category.rawValue)]
         if let icon { pairs.append(("icon", icon)) }
         if let color { pairs.append(("color", color)) }
+        if let image { pairs.append(("image", image.absoluteString)) }
         pairs += items.map { item in
             var value = "\(Self.code(for: item.type)):\(item.identifier)"
             if let title = item.title, !title.isEmpty {
