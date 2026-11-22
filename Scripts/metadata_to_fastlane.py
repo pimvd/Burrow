@@ -34,9 +34,9 @@ PRIMARY = "en-US"
 LIMITS = {"name": 30, "subtitle": 30, "promotional_text": 170, "description": 4000, "keywords": 100}
 
 SHARED = {
-    "privacy_url": "https://vandijkcloud.nl/burrow/privacy.html",
-    "support_url": "https://vandijkcloud.nl/burrow/support.html",
-    "marketing_url": "https://vandijkcloud.nl/burrow/",
+    "privacy_url": "https://vandijkcloud.nl/Burrow/privacy.html",
+    "support_url": "https://vandijkcloud.nl/Burrow/support.html",
+    "marketing_url": "https://vandijkcloud.nl/Burrow/",
 }
 TOP_LEVEL = {
     "copyright": "2026 Pim van Dijk",

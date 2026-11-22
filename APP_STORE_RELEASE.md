@@ -8,7 +8,7 @@ started by hand from the repository's **Actions** tab except where noted:
 | --- | --- | --- |
 | **Screenshots** | Builds for the simulator, takes 7 scenes × 5 languages × iPhone and iPad, commits them to `AppStore/screenshots/` | nothing |
 | **Release to TestFlight** | Archives, signs in the cloud, uploads to TestFlight; pushes the store text and screenshots | `ASC_*` secrets |
-| **Website** | Uploads `website/` with the icon and screenshots to `vandijkcloud.nl/burrow/` (also runs on its own after Screenshots, and on website changes on `master`) | `FTP_*` secrets |
+| **Website** | Uploads `website/` with the icon and screenshots to `vandijkcloud.nl/Burrow/` (also runs on its own after Screenshots, and on website changes on `master`) | `FTP_*` secrets |
 
 The store text lives in `APP_STORE_METADATA.md` and the review notes in
 `APP_REVIEW_NOTES.md`; `Scripts/metadata_to_fastlane.py` reads both, checks the
@@ -25,8 +25,8 @@ GitHub → Settings → Secrets and variables → Actions → *New repository se
   **Admin** role (cloud signing creates the distribution certificate). The same
   key ControlRoom uses works: it is per team, not per app.
 - `FTP_HOST`, `FTP_USERNAME`, `FTP_PASSWORD`: an FTP user for the folder behind
-  `vandijkcloud.nl/burrow/`. If the user's root is not that folder, add a
-  repository **variable** `FTP_DIR` with the path, e.g. `/burrow/`.
+  `vandijkcloud.nl/Burrow/`. If the user's root is not that folder, add a
+  repository **variable** `FTP_DIR` with the path, e.g. `/Burrow/`.
 
 ### 2. App Store Connect
 

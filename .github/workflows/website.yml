@@ -1,5 +1,5 @@
 # Uploads website/ (plus the app icon and the English iPhone screenshots) to
-# https://vandijkcloud.nl/burrow/ over FTP.
+# https://vandijkcloud.nl/Burrow/ over FTP.
 #
 # Repository secrets: FTP_HOST, FTP_USERNAME, FTP_PASSWORD. Best is an FTP user
 # locked to the folder served at that URL, so its root (/) is the site's root;

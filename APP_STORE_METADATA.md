@@ -22,10 +22,10 @@ length-checked.
   **Burrow Full** (`com.pvd.burrow.pro`, €9.99). Non-consumables have no StoreKit
   introductory offer, so the trial is a second, free non-consumable,
   **14-day Trial** (`com.pvd.burrow.trial`, €0), as guideline 3.1.1 prescribes
-- Privacy policy URL: `https://vandijkcloud.nl/burrow/privacy.html` (source: `website/privacy.html` — republish after edits)
-- Marketing URL: `https://vandijkcloud.nl/burrow/` (source: `website/index.html`)
+- Privacy policy URL: `https://vandijkcloud.nl/Burrow/privacy.html` (source: `website/privacy.html` — republish after edits)
+- Marketing URL: `https://vandijkcloud.nl/Burrow/` (source: `website/index.html`)
 - Support email: `pim@vandijkcloud.nl` (also in the privacy policy)
-- Support URL: `https://vandijkcloud.nl/burrow/support.html` (source: `website/support.html`)
+- Support URL: `https://vandijkcloud.nl/Burrow/support.html` (source: `website/support.html`)
 
 ---
 

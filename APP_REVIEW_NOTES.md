@@ -33,7 +33,7 @@ Permissions and privacy:
 - Profiles, tiles, playlists and statistics sync through the user's **own** private CloudKit database (`iCloud.com.pvd.burrow`). The developer has no access.
 - Media the parent adds stays in the app's own storage on the device.
 - Local notifications only, for an optional monthly backup reminder the parent turns on.
-- Privacy policy: `vandijkcloud.nl/burrow/privacy.html`
+- Privacy policy: `vandijkcloud.nl/Burrow/privacy.html`
 
 Suggested reviewer flow:
 1. On first launch, create a child profile, then open a tab.
