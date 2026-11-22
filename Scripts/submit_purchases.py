@@ -45,7 +45,7 @@ def main():
     failed = False
     for pid, purchase, _ in ready:
         try:
-            api.request("POST", "/v1/inAppPurchaseSubmissions", {"data": {
+            api.request("POST", "/v1/inAppPurchaseSubmissions", body={"data": {
                 "type": "inAppPurchaseSubmissions",
                 "relationships": {"inAppPurchaseV2": {"data": {"type": "inAppPurchases", "id": purchase["id"]}}},
             }})
