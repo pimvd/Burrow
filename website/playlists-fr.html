@@ -34,6 +34,8 @@
     .art { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }
     .art.big { width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }
     .name { display: flex; align-items: center; gap: 10px; }
+    p.store a { display: inline-block; line-height: 0; }
+    p.store img { height: 44px; width: auto; }
     @media (max-width: 520px) {
       th:nth-child(2), td:nth-child(2) { display: none; }
       td:nth-child(3) { white-space: normal; }
@@ -64,6 +66,11 @@
   </nav>
 
   <p>Des playlists toutes prêtes pour Burrow, en français. Ouvrez cette page sur l'iPhone ou l'iPad où Burrow est installé et touchez <em>Ajouter</em>. Burrow demande l'année de naissance de l'adulte, vous montre la playlist et ne l'ajoute comme tuile, avec sa propre image, qu'une fois que vous avez choisi un ou plusieurs profils et touché <em>Ajouter la tuile</em>.</p>
+
+  <p class="store"><a href="https://apps.apple.com/app/id6837952478"><picture>
+    <source srcset="badges/app-store-fr-fr-white.svg" media="(prefers-color-scheme: dark)">
+    <img src="badges/app-store-fr-fr-black.svg" alt="Télécharger dans l&#x27;App Store" height="44">
+  </picture></a></p>
 
   <table>
     <thead>

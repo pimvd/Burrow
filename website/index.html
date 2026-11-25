@@ -37,7 +37,8 @@
                     text-decoration: none; padding: 10px 20px; border-radius: 999px; font-weight: 600; }
     .langs a.lang:hover { background: var(--moss); color: #fff; }
     #playlists p.intro { color: var(--muted); margin: 0 0 16px; max-width: 640px; }
-    .badge { display: inline-block; background: var(--ink); color: var(--bg); text-decoration: none; padding: 12px 22px; border-radius: 14px; font-weight: 600; }
+    a.store { display: inline-block; line-height: 0; }
+    a.store img { height: 54px; width: auto; }
     .hero .small { color: var(--muted); font-size: .9rem; margin-top: 12px; }
 
     .shots { display: flex; gap: 16px; overflow-x: auto; padding: 8px 20px 24px; scroll-snap-type: x mandatory; max-width: 1100px; margin: 0 auto; }
@@ -75,7 +76,12 @@
       <img class="icon" src="icon.png" alt="The Burrow app icon: a burrow in a green hill under a soft sky">
       <h1>Only what you put in.</h1>
       <p class="lead">Burrow is a calm music and video player for young children. You fill it with your own songs, videos, Apple Music and YouTube links; your child sees big, quiet tiles and nothing else.</p>
-      <a class="badge" href="https://apps.apple.com/app/id6837952478">Download on the App Store</a>
+      <a class="store" href="https://apps.apple.com/app/id6837952478">
+        <picture>
+          <source srcset="badges/app-store-en-us-white.svg" media="(prefers-color-scheme: dark)">
+          <img src="badges/app-store-en-us-black.svg" alt="Download on the App Store" width="162" height="54">
+        </picture>
+      </a>
       <p class="small">iPhone and iPad · iOS 17 or later · English, Nederlands, Deutsch, Français, Español</p>
     </div>
   </header>

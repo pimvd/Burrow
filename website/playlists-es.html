@@ -34,6 +34,8 @@
     .art { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }
     .art.big { width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }
     .name { display: flex; align-items: center; gap: 10px; }
+    p.store a { display: inline-block; line-height: 0; }
+    p.store img { height: 44px; width: auto; }
     @media (max-width: 520px) {
       th:nth-child(2), td:nth-child(2) { display: none; }
       td:nth-child(3) { white-space: normal; }
@@ -64,6 +66,11 @@
   </nav>
 
   <p>Listas listas para usar en Burrow, en español. Abre esta página en el iPhone o iPad que tiene Burrow y toca <em>Añadir</em>. Burrow pide el año de nacimiento de un adulto, te muestra la lista y solo la añade como mosaico, con su propia imagen, cuando eliges uno o más perfiles y tocas <em>Añadir mosaico</em>.</p>
+
+  <p class="store"><a href="https://apps.apple.com/app/id6837952478"><picture>
+    <source srcset="badges/app-store-es-es-white.svg" media="(prefers-color-scheme: dark)">
+    <img src="badges/app-store-es-es-black.svg" alt="Consíguelo en el App Store" height="44">
+  </picture></a></p>
 
   <table>
     <thead>

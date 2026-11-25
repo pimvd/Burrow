@@ -36,6 +36,13 @@ NATIVE = {
 }
 
 
+# Apple's official "Download on the App Store" badges, from
+# https://toolbox.marketingtools.apple.com, in website/badges/. Black on a light
+# background, white in dark mode, as Apple's guidelines allow.
+BADGE = {"en": "en-us", "nl": "nl-nl", "de": "de-de", "fr": "fr-fr", "es": "es-es", "it": "it-it"}
+STORE = "https://apps.apple.com/app/id6837952478"
+
+
 def filename(lang):
     return "playlists.html" if lang == "nl" else f"playlists-{lang}.html"
 
@@ -46,6 +53,7 @@ def filename(lang):
 # the English button.
 TEXT = {
     "en": {
+        "badge": "Download on the App Store",
         "title": "Playlists",
         "intro": "Ready-made playlists for Burrow, in English. Open this page on the iPhone or iPad that has Burrow and tap <em>Add</em>. Burrow asks for the grown-up's year of birth, shows you the playlist, and adds it as a tile, with its own picture, only once you choose one or more profiles and tap <em>Add tile</em>.",
         "other": "Playlists in other languages",
@@ -58,6 +66,7 @@ TEXT = {
         "or": "or", "home": "Home", "support": "Support", "privacy": "Privacy",
     },
     "nl": {
+        "badge": "Download in de App Store",
         "title": "Playlists",
         "intro": "Kant-en-klare playlists voor Burrow, in het Nederlands. Open deze pagina op de iPhone of iPad met Burrow en tik op <em>Voeg toe</em>. Burrow vraagt naar het geboortejaar van de volwassene, laat de playlist zien en voegt hem pas als tegel toe, met een eigen plaatje, als je een of meer profielen kiest en op <em>Tegel toevoegen</em> tikt.",
         "other": "Playlists in andere talen",
@@ -70,6 +79,7 @@ TEXT = {
         "or": "of", "home": "Home", "support": "Support", "privacy": "Privacy",
     },
     "de": {
+        "badge": "Laden im App Store",
         "title": "Playlists",
         "intro": "Fertige Playlists für Burrow, auf Deutsch. Öffne diese Seite auf dem iPhone oder iPad mit Burrow und tippe auf <em>Hinzufügen</em>. Burrow fragt nach dem Geburtsjahr eines Erwachsenen, zeigt dir die Playlist und fügt sie erst als Kachel mit eigenem Bild hinzu, wenn du ein oder mehrere Profile wählst und auf <em>Kachel hinzufügen</em> tippst.",
         "other": "Playlists in anderen Sprachen",
@@ -82,6 +92,7 @@ TEXT = {
         "or": "oder", "home": "Startseite", "support": "Hilfe", "privacy": "Datenschutz",
     },
     "fr": {
+        "badge": "Télécharger dans l'App Store",
         "title": "Playlists",
         "intro": "Des playlists toutes prêtes pour Burrow, en français. Ouvrez cette page sur l'iPhone ou l'iPad où Burrow est installé et touchez <em>Ajouter</em>. Burrow demande l'année de naissance de l'adulte, vous montre la playlist et ne l'ajoute comme tuile, avec sa propre image, qu'une fois que vous avez choisi un ou plusieurs profils et touché <em>Ajouter la tuile</em>.",
         "other": "Playlists dans d'autres langues",
@@ -94,6 +105,7 @@ TEXT = {
         "or": "ou", "home": "Accueil", "support": "Assistance", "privacy": "Confidentialité",
     },
     "es": {
+        "badge": "Consíguelo en el App Store",
         "title": "Playlists",
         "intro": "Listas listas para usar en Burrow, en español. Abre esta página en el iPhone o iPad que tiene Burrow y toca <em>Añadir</em>. Burrow pide el año de nacimiento de un adulto, te muestra la lista y solo la añade como mosaico, con su propia imagen, cuando eliges uno o más perfiles y tocas <em>Añadir mosaico</em>.",
         "other": "Listas en otros idiomas",
@@ -106,6 +118,7 @@ TEXT = {
         "or": "ni", "home": "Inicio", "support": "Ayuda", "privacy": "Privacidad",
     },
     "it": {
+        "badge": "Scarica su App Store",
         "title": "Playlist",
         "intro": "Playlist pronte per Burrow, in italiano. Apri questa pagina sull'iPhone o sull'iPad con Burrow e tocca <em>Aggiungi</em>. Burrow chiede l'anno di nascita di un adulto, ti mostra la playlist e la aggiunge come riquadro, con la sua immagine, solo dopo che hai scelto uno o più profili e toccato <em>Add tile</em>. Burrow non è ancora tradotto in italiano, quindi l'app appare in inglese.",
         "other": "Playlist in altre lingue",
@@ -266,6 +279,8 @@ PAGE = """<!DOCTYPE html>
     .art {{ width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }}
     .art.big {{ width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }}
     .name {{ display: flex; align-items: center; gap: 10px; }}
+    p.store a {{ display: inline-block; line-height: 0; }}
+    p.store img {{ height: 44px; width: auto; }}
     @media (max-width: 520px) {{
       th:nth-child(2), td:nth-child(2) {{ display: none; }}
       td:nth-child(3) {{ white-space: normal; }}
@@ -291,6 +306,11 @@ PAGE = """<!DOCTYPE html>
   </nav>
 
   <p>{intro}</p>
+
+  <p class="store"><a href="{store}"><picture>
+    <source srcset="badges/app-store-{badge}-white.svg" media="(prefers-color-scheme: dark)">
+    <img src="badges/app-store-{badge}-black.svg" alt="{badge_alt}" height="44">
+  </picture></a></p>
 
   <table>
     <thead>
@@ -323,6 +343,7 @@ def page(lang):
         other=t["other"],
         buttons=language_buttons(lang),
         intro=t["intro"],
+        store=STORE, badge=BADGE[lang], badge_alt=html.escape(t["badge"]),
         th_playlist=t["playlist"], th_items=t["items"], th_ages=t["ages"],
         rows="\n".join(row(p, t) for p in playlists),
         note=t["note"],
