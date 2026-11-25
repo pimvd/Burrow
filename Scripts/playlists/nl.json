@@ -1,0 +1,478 @@
+[
+  {
+    "name": "Efteling",
+    "type": "music",
+    "ages": "Alle leeftijden",
+    "owner": "the Efteling",
+    "about": "De muziek van de attracties, van de eigen soundtrackalbums van de Efteling. Rustig genoeg voor in de auto of bij het slapengaan.",
+    "source": "de soundtrackalbums van de Efteling op YouTube",
+    "icon": "crown.fill",
+    "color": "lavender",
+    "image": "v9hofUN08Gw",
+    "items": [
+      [
+        "v9hofUN08Gw",
+        "Carnaval Festival"
+      ],
+      [
+        "1wa2eEVR6PA",
+        "Menuet in G – Muzikale Paddenstoelen"
+      ],
+      [
+        "uFTBxIglWCY",
+        "Joris en de Draak"
+      ],
+      [
+        "FGA_dT-V_Hw",
+        "De Rode Schoentjes"
+      ],
+      [
+        "HbPWLR0epTs",
+        "De magische Klok"
+      ],
+      [
+        "yjhDUpDPfbY",
+        "Villa Volta"
+      ],
+      [
+        "BGx_MyHJW64",
+        "Vriendenlied"
+      ],
+      [
+        "iu7zMa7Iehg",
+        "Winter Efteling Ouverture"
+      ]
+    ]
+  },
+  {
+    "name": "Efteling rides",
+    "type": "video",
+    "ages": "3+",
+    "owner": "the Efteling",
+    "about": "Een wandeling door het Sprookjesbos en een plekje in de rustige attracties, gefilmd door de Efteling zelf. Geen grote achtbanen.",
+    "source": "het YouTube-kanaal van de Efteling",
+    "icon": "sparkles",
+    "color": "sage",
+    "image": "ZYvTqDzZcPk",
+    "items": [
+      [
+        "40ppGVR5nZQ",
+        "Sprookjesbos"
+      ],
+      [
+        "ZYvTqDzZcPk",
+        "Droomvlucht"
+      ],
+      [
+        "VRHWrWhC6qo",
+        "Carnaval Festival"
+      ],
+      [
+        "mXdXR82IkvQ",
+        "Fata Morgana"
+      ],
+      [
+        "95PBLcebK0M",
+        "Symbolica"
+      ],
+      [
+        "NkGXAFAe3ig",
+        "Max & Moritz"
+      ]
+    ]
+  },
+  {
+    "name": "Jokie & Jet",
+    "type": "video",
+    "ages": "1–5",
+    "owner": "the Efteling",
+    "about": "Korte liedjes en verhaaltjes met Jokie en Jet, de kleintjes van de Efteling, van het kanaal Efteling Kids.",
+    "source": "Efteling Kids op YouTube",
+    "icon": "party.popper.fill",
+    "color": "clay",
+    "image": "zmq1x18-UG0",
+    "items": [
+      [
+        "zmq1x18-UG0",
+        "Spelen in de speeltuin"
+      ],
+      [
+        "LWCkOnZzsqE",
+        "De dierendans"
+      ],
+      [
+        "3N4qBCkeB4o",
+        "Hieperdepiep"
+      ],
+      [
+        "67v7rBPr-MI",
+        "Pretpark"
+      ],
+      [
+        "3vcRyGk2tjc",
+        "Brandweer"
+      ],
+      [
+        "Z_0QoWbEJGA",
+        "Duiken"
+      ],
+      [
+        "piO5cqtfqTI",
+        "Kermis"
+      ]
+    ]
+  },
+  {
+    "name": "Julianatoren",
+    "type": "video",
+    "ages": "2–6",
+    "owner": "Kinderpretpark Julianatoren",
+    "about": "Zing en dans mee met Jul & Julia, uit de muziekvideo's van Kinderpretpark Julianatoren in Apeldoorn.",
+    "source": "Kinderpretpark Julianatoren op YouTube",
+    "icon": "balloon.2.fill",
+    "color": "sand",
+    "image": "M6hSJ-HyqqY",
+    "items": [
+      [
+        "NiG2XOYIJ30",
+        "De Julianatoren is té gek!"
+      ],
+      [
+        "2pnNRBN6orw",
+        "Hieperdepiep Hoera"
+      ],
+      [
+        "7A7yp5qAmUc",
+        "Jul & Julia en de magische Lentebloem"
+      ],
+      [
+        "wfJtPDXU0Oc",
+        "Het is Lente"
+      ],
+      [
+        "M6hSJ-HyqqY",
+        "Cowboydans"
+      ]
+    ]
+  },
+  {
+    "name": "Studio 100 hits",
+    "type": "video",
+    "ages": "3–8",
+    "owner": "Studio 100",
+    "about": "De grote meezingers: K3, Kabouter Plop, Samson & Gert, Piet Piraat, Mega Mindy en Maya, elk van het eigen officiële kanaal.",
+    "source": "de officiële YouTube-kanalen van Studio 100",
+    "icon": "music.mic",
+    "color": "slate",
+    "image": "ZRMTC9Tzj2c",
+    "items": [
+      [
+        "ZRMTC9Tzj2c",
+        "K3 – Alle Kleuren"
+      ],
+      [
+        "6fMwrdWmExg",
+        "K3 – 10.000 luchtballonnen"
+      ],
+      [
+        "_9ZWV6SjzO0",
+        "K3 – Waterval"
+      ],
+      [
+        "qhBVYe5nB54",
+        "Kabouter Plop – Kabouterdans"
+      ],
+      [
+        "xZEMDZSBkZg",
+        "Kabouter Plop – De Regendans"
+      ],
+      [
+        "O_mjKdxkQZk",
+        "Samson & Gert – Wij gaan vliegen"
+      ],
+      [
+        "eVMaFXbYrMk",
+        "Piet Piraat – Wij zijn zeepiraten"
+      ],
+      [
+        "1vVTJbH7HMM",
+        "Mega Mindy – Mega Mindy Tijd"
+      ],
+      [
+        "rOu7kt5b76M",
+        "Maya de Bij – Daar heb je Maya de Bij"
+      ]
+    ]
+  },
+  {
+    "name": "Bumba",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Studio 100",
+    "about": "Dansen, klappen en stampen met Bumba de clown, en eentje om de dag mee af te sluiten.",
+    "source": "Bumba NL op YouTube",
+    "icon": "figure.dance",
+    "color": "moss",
+    "image": "abfLZW5rqDQ",
+    "items": [
+      [
+        "CKslYf-VVho",
+        "Zwaai, spring, stamp, klap"
+      ],
+      [
+        "abfLZW5rqDQ",
+        "De Bumba Dans"
+      ],
+      [
+        "2YAbykYBe74",
+        "Bumba trein"
+      ],
+      [
+        "SnCnDmW08r8",
+        "De Knuffeldans"
+      ],
+      [
+        "5fAZ6iNX0l8",
+        "Het Orkest"
+      ],
+      [
+        "DXFucH5wzOs",
+        "De Bumba stopdans"
+      ],
+      [
+        "pbV98FF1j-M",
+        "Bumba naar bed"
+      ]
+    ]
+  },
+  {
+    "name": "Maya de Bij",
+    "type": "video",
+    "ages": "2–6",
+    "owner": "Studio 100",
+    "about": "Liedjes van Maya de Bij en haar vriendjes, met de Maya Dans stap voor stap.",
+    "source": "Maya de Bij en Studio 100 op YouTube",
+    "icon": "ladybug.fill",
+    "color": "sand",
+    "image": "rOu7kt5b76M",
+    "items": [
+      [
+        "rOu7kt5b76M",
+        "Daar heb je Maya de Bij"
+      ],
+      [
+        "DodTU2nJIOg",
+        "Ik heb een vriend"
+      ],
+      [
+        "GKl9ZcG6eQQ",
+        "De Maya Dans"
+      ],
+      [
+        "JHAUeUbo5oM",
+        "Poesje Mauw"
+      ],
+      [
+        "xjgDiw93tIY",
+        "We stegen met een zucht"
+      ],
+      [
+        "gifUNhTViXA",
+        "Lang zal ze leven"
+      ]
+    ]
+  },
+  {
+    "name": "nijntje",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Mercis (nijntje)",
+    "about": "Zachte liedjes met nijntje en Boris Beer, van het eigen kanaal van nijntje.",
+    "source": "nijntje op YouTube",
+    "icon": "hare.fill",
+    "color": "lavender",
+    "image": "20J8DUJMgA4",
+    "items": [
+      [
+        "20J8DUJMgA4",
+        "Dans mee met nijntje"
+      ],
+      [
+        "KSzKwXPb82c",
+        "nijntje liedje"
+      ],
+      [
+        "FmyZFwJdnzk",
+        "De seizoenen"
+      ],
+      [
+        "zXp5wXoZECs",
+        "Zeg ken jij Boris Beer?"
+      ],
+      [
+        "hhYiTVmZh_8",
+        "Mijn liefste hond"
+      ]
+    ]
+  },
+  {
+    "name": "Woezel & Pip",
+    "type": "video",
+    "ages": "1–5",
+    "owner": "Woezel & Pip",
+    "about": "Liedjes over vriendschap uit de Tovertuin, met een slaapliedje als afsluiter.",
+    "source": "Woezel & Pip TV op YouTube",
+    "icon": "dog.fill",
+    "color": "moss",
+    "image": "IPWVrWyoHP0",
+    "items": [
+      [
+        "FmnnSZrB9lY",
+        "Allerbeste vriendjes"
+      ],
+      [
+        "xKkAwMkE6Fs",
+        "Vriendjesclublied"
+      ],
+      [
+        "GbkLA6nDIFA",
+        "Het Vriendjeslied"
+      ],
+      [
+        "IPWVrWyoHP0",
+        "Tovertuindans"
+      ],
+      [
+        "bdoqrqD3esw",
+        "Liedje van geluk"
+      ],
+      [
+        "GzPb9-Z0hqU",
+        "Land van je ogen dicht"
+      ]
+    ]
+  },
+  {
+    "name": "Juf Roos",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Juf Roos",
+    "about": "De bekende Nederlandse kinderliedjes, langzaam en duidelijk gezongen door Juf Roos. Kort, dus fijn voor een paar minuutjes.",
+    "source": "Juf Roos op YouTube",
+    "icon": "music.note",
+    "color": "clay",
+    "image": "vzvbBIt_r6c",
+    "items": [
+      [
+        "hI8IPM76vrw",
+        "In de Maneschijn"
+      ],
+      [
+        "vzvbBIt_r6c",
+        "Ik zag twee beren broodjes smeren"
+      ],
+      [
+        "YdfbFy9uVrU",
+        "Het regent, het regent"
+      ],
+      [
+        "oRWWJaBHYoY",
+        "Poesje Mauw"
+      ],
+      [
+        "JuqCZxmzJDQ",
+        "Hop paardje hop"
+      ],
+      [
+        "zy1coEWIGSw",
+        "Zo gaat de molen"
+      ],
+      [
+        "t1y0H2hoTvQ",
+        "Helikopter"
+      ],
+      [
+        "o-rrtNC0mSo",
+        "Kleurenlied"
+      ],
+      [
+        "LfSjL_YrTrA",
+        "Hokey Pokey"
+      ]
+    ]
+  },
+  {
+    "name": "Kinderen voor Kinderen",
+    "type": "video",
+    "ages": "5+",
+    "owner": "Kinderen voor Kinderen",
+    "about": "De bekendste liedjes van het kinderkoor, voor de wat oudere kinderen die willen dansen.",
+    "source": "Kinderen voor Kinderen op YouTube",
+    "icon": "star.fill",
+    "color": "sage",
+    "image": "gvHpI_6Bq_4",
+    "items": [
+      [
+        "N2Rl9hEJVKE",
+        "Hupsakee"
+      ],
+      [
+        "fAElk6S2gZg",
+        "Raar maar waar"
+      ],
+      [
+        "xtgl2E7BVPg",
+        "Haai-alarm!"
+      ],
+      [
+        "cPDKS45RhkA",
+        "Red de bij"
+      ],
+      [
+        "Agy0kqdMBDE",
+        "Reis mee!"
+      ],
+      [
+        "iYHe2V-zwkQ",
+        "Baila bailalaa"
+      ],
+      [
+        "gvHpI_6Bq_4",
+        "Lekker eigenwijs"
+      ]
+    ]
+  },
+  {
+    "name": "Disney",
+    "type": "video",
+    "ages": "4+",
+    "owner": "Disney",
+    "about": "Favoriete liedjes uit de films, als officiële muziekvideo's van Disney.",
+    "source": "de officiële YouTube-kanalen van Disney",
+    "icon": "wand.and.stars",
+    "color": "slate",
+    "image": "cPAbx5kgCJo",
+    "items": [
+      [
+        "moSFlvxnbgk",
+        "Let It Go"
+      ],
+      [
+        "cPAbx5kgCJo",
+        "How Far I'll Go"
+      ],
+      [
+        "79DijItQXMM",
+        "You're Welcome"
+      ],
+      [
+        "bvWRMAU6V-c",
+        "We Don't Talk About Bruno"
+      ],
+      [
+        "c6rP-YP4c5I",
+        "Try Everything"
+      ]
+    ]
+  }
+]
