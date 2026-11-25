@@ -197,12 +197,15 @@ def section(playlist, t):
         for video_id, title in playlist["items"]
     )
     noun = t["songs"] if playlist["type"] == "music" else t["videos"]
+    source = f'{t["from"]} {playlist["source"]}'
+    # Spanish contracts "de el" to "del".
+    source = re.sub(r"^de el ", "del ", source)
     ages = playlist["ages"]
     ages = f"{t['ages_label']} {ages}" if re.search(r"\d", ages) else ages
     return f"""
   <section id="{anchor(playlist)}">
     <h2>{swatch(playlist, " big")}{html.escape(playlist["name"])}</h2>
-    <p class="kind">{t[playlist["type"]]} · {len(playlist["items"])} {noun} · {html.escape(ages)} · {t["from"]} {html.escape(playlist["source"])}</p>
+    <p class="kind">{t[playlist["type"]]} · {len(playlist["items"])} {noun} · {html.escape(ages)} · {html.escape(source)}</p>
     <p>{html.escape(playlist["about"])}</p>
     <a class="add" href="{html.escape(link(playlist))}">{t["add_big"]}</a>
     <ol>
@@ -263,6 +266,13 @@ PAGE = """<!DOCTYPE html>
     .art {{ width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }}
     .art.big {{ width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }}
     .name {{ display: flex; align-items: center; gap: 10px; }}
+    @media (max-width: 520px) {{
+      th:nth-child(2), td:nth-child(2) {{ display: none; }}
+      td:nth-child(3) {{ white-space: normal; }}
+      th, td {{ padding: 8px 4px; }}
+      a.add.small {{ padding: 4px 10px; }}
+      .name {{ gap: 8px; }}
+    }}
     @media (prefers-color-scheme: dark) {{
       body {{ background: #111; color: #ddd; }} a {{ color: #8ab4ff; }}
       section {{ border-color: #333; }} .kind, .note, th, .sub {{ color: #999; }} ol {{ color: #bbb; }}
