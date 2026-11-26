@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="apple-itunes-app" content="app-id=6837952478">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Burrow — a calm player for young children</title>
@@ -31,8 +32,13 @@
     .hero img.icon { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 8px 24px rgba(40, 50, 40, .18); }
     .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 20px 0 8px; letter-spacing: -0.01em; }
     .hero p.lead { font-size: 1.2rem; max-width: 560px; margin: 0 auto 24px; color: var(--ink); }
-    .badge { display: inline-block; background: var(--ink); color: var(--bg); text-decoration: none; padding: 12px 22px; border-radius: 14px; font-weight: 600; }
-    .badge.soon { opacity: .85; cursor: default; }
+    .langs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .langs a.lang { display: inline-block; background: var(--card); border: 1.5px solid var(--moss); color: var(--moss-deep);
+                    text-decoration: none; padding: 10px 20px; border-radius: 999px; font-weight: 600; }
+    .langs a.lang:hover { background: var(--moss); color: #fff; }
+    #playlists p.intro { color: var(--muted); margin: 0 0 16px; max-width: 640px; }
+    a.store { display: inline-block; line-height: 0; }
+    a.store img { height: 54px; width: auto; }
     .hero .small { color: var(--muted); font-size: .9rem; margin-top: 12px; }
 
     .shots { display: flex; gap: 16px; overflow-x: auto; padding: 8px 20px 24px; scroll-snap-type: x mandatory; max-width: 1100px; margin: 0 auto; }
@@ -70,7 +76,12 @@
       <img class="icon" src="icon.png" alt="The Burrow app icon: a burrow in a green hill under a soft sky">
       <h1>Only what you put in.</h1>
       <p class="lead">Burrow is a calm music and video player for young children. You fill it with your own songs, videos, Apple Music and YouTube links; your child sees big, quiet tiles and nothing else.</p>
-      <span class="badge soon" aria-disabled="true">Coming soon to the App Store</span>
+      <a class="store" href="https://apps.apple.com/app/id6837952478">
+        <picture>
+          <source srcset="badges/app-store-en-us-white.svg" media="(prefers-color-scheme: dark)">
+          <img src="badges/app-store-en-us-black.svg" alt="Download on the App Store" width="162" height="54">
+        </picture>
+      </a>
       <p class="small">iPhone and iPad · iOS 17 or later · English, Nederlands, Deutsch, Français, Español</p>
     </div>
   </header>
@@ -107,10 +118,23 @@
         <div><h3>Screen time per child</h3><p>Set a daily limit. When it is reached, playback stops and Burrow goes back to the profile picker.</p></div>
         <div><h3>Six calm games</h3><p>Matching Pairs, Odd One Out, Copy the Pattern, Tic Tac Toe, Four in a Row and Hangman without the gallows. No scores, no streaks.</p></div>
         <div><h3>Lock the screen</h3><p>Lock a playing video against little hands. Unlocking takes a three-second press a toddler will not find.</p></div>
-        <div><h3>Ready-made playlists</h3><p>Open a playlist someone shared as a link, or start from <a href="playlists.html">our page of ready-made playlists</a>.</p></div>
+        <div><h3>Ready-made playlists</h3><p>Open a playlist someone shared as a link, or start from <a href="#playlists">our ready-made playlists</a>, in six languages.</p></div>
         <div><h3>Your data stays yours</h3><p>No account, no analytics, no ads, no tracking. Profiles and tiles sync through your own private iCloud. Nothing is sent to us.</p></div>
         <div><h3>Backups you hold</h3><p>Export everything, your own files included, into one file and read it back on a new device.</p></div>
       </div>
+    </section>
+
+    <section id="playlists">
+      <h2>Ready-made playlists</h2>
+      <p class="intro">Songs and videos from official children's channels, ready to add as a tile in one tap. Open the page in your language on the iPhone or iPad that has Burrow.</p>
+      <nav class="langs" aria-label="Playlists by language">
+        <a class="lang" href="playlists-en.html" lang="en" hreflang="en">English</a>
+        <a class="lang" href="playlists.html" lang="nl" hreflang="nl">Nederlands</a>
+        <a class="lang" href="playlists-de.html" lang="de" hreflang="de">Deutsch</a>
+        <a class="lang" href="playlists-fr.html" lang="fr" hreflang="fr">Français</a>
+        <a class="lang" href="playlists-es.html" lang="es" hreflang="es">Español</a>
+        <a class="lang" href="playlists-it.html" lang="it" hreflang="it">Italiano</a>
+      </nav>
     </section>
 
     <section>
@@ -143,7 +167,7 @@
 
   <footer>
     <div class="wrap">
-      <nav><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="playlists.html">Playlists</a><a href="mailto:pim@vandijkcloud.nl">Contact</a></nav>
+      <nav><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="#playlists">Playlists</a><a href="mailto:pim@vandijkcloud.nl">Contact</a></nav>
       <p>© 2026 Pim van Dijk</p>
     </div>
   </footer>

@@ -1,0 +1,256 @@
+[
+ {
+  "name": "Peppa Pig",
+  "type": "video",
+  "ages": "1–5",
+  "owner": "Hasbro (Peppa Pig)",
+  "about": "Songs from Peppa's first album, with Peppa, George and their friends, and a lullaby to end the day.",
+  "source": "the official Peppa Pig channels on YouTube",
+  "icon": "music.note",
+  "color": "clay",
+  "image": "Ddz0PwWUl9w",
+  "items": [
+   [
+    "Ddz0PwWUl9w",
+    "It's Peppa Pig"
+   ],
+   [
+    "vJj3Ch79tNs",
+    "Bing Bong Zoo"
+   ],
+   [
+    "NfyHwt84ouI",
+    "Peppa and Friends"
+   ],
+   [
+    "n7Bb3q8arsY",
+    "Class of Madame Gazelle"
+   ],
+   [
+    "js6sZ8uQGI4",
+    "Festival Fun"
+   ],
+   [
+    "HA5N5NuyJ64",
+    "Traffic"
+   ],
+   [
+    "hy2rA7NnEq4",
+    "Lullaby"
+   ],
+   [
+    "vyo943xvysE",
+    "Time for Bed"
+   ]
+  ]
+ },
+ {
+  "name": "Bluey",
+  "type": "video",
+  "ages": "2–8",
+  "owner": "Ludo Studio and BBC Studios (Bluey)",
+  "about": "Music videos and sing-alongs with Bluey, Bingo and the family, including Keepy Uppy with a real orchestra.",
+  "source": "the official Bluey channel on YouTube",
+  "icon": "dog.fill",
+  "color": "slate",
+  "image": "JXOTmWl5t3A",
+  "items": [
+   [
+    "JXOTmWl5t3A",
+    "Bluey Theme Song"
+   ],
+   [
+    "AKDyau3hadE",
+    "Keepy Uppy"
+   ],
+   [
+    "uxkzq6MmrLg",
+    "Dance Mode"
+   ],
+   [
+    "EspjGsFA1kE",
+    "Burger Dog"
+   ],
+   [
+    "zeZAtpelckU",
+    "Chattermax"
+   ],
+   [
+    "otK1-Is4Xkc",
+    "Cat Squad"
+   ],
+   [
+    "jl7GToe_1aU",
+    "Here Come the Grannies"
+   ],
+   [
+    "guGJu-3vSwY",
+    "Cricket"
+   ]
+  ]
+ },
+ {
+  "name": "Hey Duggee",
+  "type": "video",
+  "ages": "1–5",
+  "owner": "Studio AKA (Hey Duggee)",
+  "about": "Sing along with Duggee and the Squirrels, from the Stick Song to brushing teeth and a song for bedtime.",
+  "source": "Hey Duggee Official on YouTube",
+  "icon": "star.fill",
+  "color": "sand",
+  "image": "W6JE8E_GS6s",
+  "items": [
+   [
+    "W6JE8E_GS6s",
+    "The Stick Song"
+   ],
+   [
+    "PjuXQXrrC50",
+    "The Enid Song"
+   ],
+   [
+    "cMCrQLMCuO8",
+    "The Badges Song"
+   ],
+   [
+    "6YCbHgLwCas",
+    "The Singing Badge"
+   ],
+   [
+    "-rNKzzPulyM",
+    "The Welcome Badge"
+   ],
+   [
+    "f1w7D6Edex4",
+    "Squirrel Club"
+   ],
+   [
+    "oStaJTHgHMU",
+    "The Tooth Brushing Song"
+   ],
+   [
+    "-wHNmbMZcf8",
+    "Duggee's Bedtime Song"
+   ]
+  ]
+ },
+ {
+  "name": "The Wiggles",
+  "type": "video",
+  "ages": "1–5",
+  "owner": "The Wiggles",
+  "about": "The Wiggles' best-loved songs, from Fruit Salad and the Big Red Car to a gentle Twinkle, Twinkle.",
+  "source": "The Wiggles' official channels on YouTube",
+  "icon": "car.fill",
+  "color": "moss",
+  "image": "WdVeON97jxw",
+  "items": [
+   [
+    "WdVeON97jxw",
+    "Fruit Salad"
+   ],
+   [
+    "GvHgU5k47ig",
+    "Hot Potato"
+   ],
+   [
+    "2CD5KiaFXPY",
+    "Big Red Car"
+   ],
+   [
+    "lJ0-90SgZGU",
+    "Wake Up Jeff!"
+   ],
+   [
+    "UlX1IdvMYe4",
+    "Skidamarink"
+   ],
+   [
+    "NmsMcVdQCn8",
+    "Rock-a-Bye Your Bear"
+   ],
+   [
+    "RPJyksECPUU",
+    "Twinkle, Twinkle, Little Star"
+   ]
+  ]
+ },
+ {
+  "name": "Sesame Street",
+  "type": "video",
+  "ages": "2–6",
+  "owner": "Sesame Workshop",
+  "about": "Elmo, Cookie Monster, Ernie and friends sing their classics, with two quiet songs for bedtime.",
+  "source": "the Sesame Street channel on YouTube",
+  "icon": "heart.fill",
+  "color": "lavender",
+  "image": "f9e2vZCZzrU",
+  "items": [
+   [
+    "h83AEMWKuhM",
+    "Hello Song"
+   ],
+   [
+    "f9e2vZCZzrU",
+    "Elmo's Song"
+   ],
+   [
+    "783EsrHchXA",
+    "The Alphabet Song"
+   ],
+   [
+    "Ye8mB6VsUHw",
+    "C is for Cookie"
+   ],
+   [
+    "Mh85R-S-dh8",
+    "Rubber Duckie"
+   ],
+   [
+    "Cmm8VnPaspM",
+    "Natasha's Lullaby"
+   ],
+   [
+    "3LXSI-_q5ck",
+    "Baby Band Bedtime Songs"
+   ]
+  ]
+ },
+ {
+  "name": "Bedtime songs",
+  "type": "video",
+  "ages": "1–4",
+  "owner": "Super Simple",
+  "about": "Soft lullabies and slow songs from Super Simple Songs, for winding down before sleep.",
+  "source": "Super Simple Songs on YouTube",
+  "icon": "moon.stars.fill",
+  "color": "sage",
+  "image": "OKbpLQp509Y",
+  "items": [
+   [
+    "yCjJyiqpAuU",
+    "Twinkle Twinkle Little Star"
+   ],
+   [
+    "LFrKYjrIDs8",
+    "Rain Rain Go Away"
+   ],
+   [
+    "tbbKjDjMDok",
+    "Little Snowflake"
+   ],
+   [
+    "ij_eHTvhIlE",
+    "Beddy-Bye Butterfly"
+   ],
+   [
+    "f_raDpgx_3M",
+    "Hush Little Baby"
+   ],
+   [
+    "OKbpLQp509Y",
+    "Sweet Dreams"
+   ]
+  ]
+ }
+]

@@ -4,6 +4,7 @@ A privacy-first, offline-first iOS app that lets a parent build large, tappable
 tiles of music or video for their children. No ads, no subscriptions, no
 tracking — one optional in-app purchase unlocks the limits.
 
+- **App Store:** [Burrow on the App Store](https://apps.apple.com/app/id6837952478) (Apple ID `6837952478`)
 - **Platform:** iOS 17+, iPhone and iPad, portrait and landscape
 - **Bundle identifier:** `com.pvd.burrow`
 - **Stack:** SwiftUI, SwiftData (+ CloudKit), Swift Charts, StoreKit 2, MusicKit,

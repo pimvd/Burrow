@@ -1,0 +1,264 @@
+[
+  {
+    "name": "Comptines",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Titounis",
+    "about": "Les comptines de toujours, chantées doucement avec Méli et Touni. De quoi chanter, faire les gestes et finir par une berceuse.",
+    "source": "la chaîne Titounis sur YouTube",
+    "icon": "music.note",
+    "color": "sage",
+    "image": "yrLrP1Wxmn0",
+    "items": [
+      [
+        "yrLrP1Wxmn0",
+        "Une souris verte"
+      ],
+      [
+        "TzZgCyBTwso",
+        "Frère Jacques"
+      ],
+      [
+        "BNJcvN1Xlxk",
+        "Ainsi font, font, font"
+      ],
+      [
+        "KQtayWgJXBE",
+        "Pirouette, cacahuète"
+      ],
+      [
+        "O6suWmI7q6E",
+        "Meunier, tu dors"
+      ],
+      [
+        "VAlkFFuOqxw",
+        "Promenons-nous dans les bois"
+      ],
+      [
+        "xC8iY6qzILY",
+        "Il était un petit navire"
+      ],
+      [
+        "hC567xspvOI",
+        "Au clair de la lune"
+      ]
+    ]
+  },
+  {
+    "name": "Henri Dès",
+    "type": "video",
+    "ages": "3–8",
+    "owner": "Henri Dès",
+    "about": "Les chansons d'Henri Dès, de la petite Charlotte à l'escargot, parfois avec son ami Albert le Vert.",
+    "source": "la chaîne officielle d'Henri Dès sur YouTube",
+    "icon": "guitars.fill",
+    "color": "clay",
+    "image": "IOPlbHfQRUs",
+    "items": [
+      [
+        "IOPlbHfQRUs",
+        "La petite Charlotte"
+      ],
+      [
+        "U6Qky_LPM9Y",
+        "Ça pleut"
+      ],
+      [
+        "WlozvEioTGQ",
+        "C'est le printemps"
+      ],
+      [
+        "zq0eRWXaxnE",
+        "Ma forêt"
+      ],
+      [
+        "JrQ0O_HWKCY",
+        "Le petit moteur"
+      ],
+      [
+        "g26Fqxl8CkQ",
+        "Le beau tambour"
+      ],
+      [
+        "0Yv8W11OiL0",
+        "L'escargot"
+      ],
+      [
+        "d-tcdsT8CXM",
+        "Avec les copains"
+      ]
+    ]
+  },
+  {
+    "name": "Petit Ours Brun",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Bayard",
+    "about": "Une petite histoire et une chanson à chaque fois : le bain, la pluie, la mer et la peur du noir avec Petit Ours Brun.",
+    "source": "la chaîne Petit Ours Brun sur YouTube",
+    "icon": "teddybear.fill",
+    "color": "sand",
+    "image": "N-HE6YnSh1I",
+    "items": [
+      [
+        "23EQpLUq6NI",
+        "Petit Ours Brun se lève tôt"
+      ],
+      [
+        "924W0Y3_oQg",
+        "Le réveil du printemps"
+      ],
+      [
+        "OImisuxIGYU",
+        "Jour de pluie"
+      ],
+      [
+        "S87AfeEX4Oc",
+        "C'est beau la mer"
+      ],
+      [
+        "pzgRK-SVVSk",
+        "Oh le gourmand !"
+      ],
+      [
+        "Kz95FDF7IFQ",
+        "C'est mon anniversaire !"
+      ],
+      [
+        "N-HE6YnSh1I",
+        "Les joies du bain"
+      ],
+      [
+        "rq6HC6PVAdM",
+        "La peur du noir"
+      ]
+    ]
+  },
+  {
+    "name": "Trotro",
+    "type": "video",
+    "ages": "1–4",
+    "owner": "Storimages (Trotro)",
+    "about": "De courts épisodes de trois minutes avec Trotro, le petit âne qui joue, dessine et fait des bulles.",
+    "source": "la chaîne officielle de Trotro sur YouTube",
+    "icon": "hare.fill",
+    "color": "lavender",
+    "image": "NhpTK2FkXPc",
+    "items": [
+      [
+        "sl32b53CfUs",
+        "Trotro joue à cache-cache"
+      ],
+      [
+        "VgpxttRgYc8",
+        "Trotro musicien"
+      ],
+      [
+        "Q2e9Hl4roy0",
+        "Trotro fait de la peinture"
+      ],
+      [
+        "NhpTK2FkXPc",
+        "Trotro fait des bulles"
+      ],
+      [
+        "kei9xDoBfDA",
+        "Trotro fait du vélo"
+      ],
+      [
+        "77zBkoezynk",
+        "Trotro et le bonhomme de neige"
+      ],
+      [
+        "lIukfkeFz50",
+        "Trotro et le château de sable"
+      ],
+      [
+        "1wJlHxcRK-A",
+        "Trotro et son lit"
+      ]
+    ]
+  },
+  {
+    "name": "Simon",
+    "type": "video",
+    "ages": "3–6",
+    "owner": "GO-N Productions (Simon)",
+    "about": "Les chansons de Simon le Superlapin et de ses copains, à chanter et à danser.",
+    "source": "la chaîne Simon Super Lapin sur YouTube",
+    "icon": "star.fill",
+    "color": "moss",
+    "image": "K7dyPIeVinw",
+    "items": [
+      [
+        "K7dyPIeVinw",
+        "Ça, ça, c'est Simon"
+      ],
+      [
+        "ZQHMEIVVXRQ",
+        "Superlapin"
+      ],
+      [
+        "BfaQN24OPGw",
+        "Avec les copains"
+      ],
+      [
+        "nPbf1meMK6c",
+        "Vive les vacances"
+      ],
+      [
+        "bTGeOXSCs34",
+        "La bonne note"
+      ],
+      [
+        "qW1uDxzGDYo",
+        "Joyeux anniversaire, Simon"
+      ]
+    ]
+  },
+  {
+    "name": "Disney en français",
+    "type": "music",
+    "ages": "Tous âges",
+    "owner": "Disney",
+    "about": "Les grandes chansons des films Disney dans leur version française, de La Petite Sirène à La Reine des Neiges.",
+    "source": "la chaîne Disney Music France sur YouTube",
+    "icon": "sparkles",
+    "color": "slate",
+    "image": "vzgInDxzyGU",
+    "items": [
+      [
+        "vzgInDxzyGU",
+        "Libérée, délivrée"
+      ],
+      [
+        "J2nMd3r5N_c",
+        "Je voudrais déjà être roi"
+      ],
+      [
+        "wUbekNNtkLU",
+        "Hakuna Matata"
+      ],
+      [
+        "LcdmgftOilM",
+        "Sous l'océan"
+      ],
+      [
+        "BTPTKOoMX24",
+        "Je suis ton ami"
+      ],
+      [
+        "_hunthLxD9g",
+        "Le bleu lumière"
+      ],
+      [
+        "azRcFRhREUo",
+        "Ce rêve bleu"
+      ],
+      [
+        "AJ5SbhJKxu0",
+        "Dans un autre monde"
+      ]
+    ]
+  }
+]

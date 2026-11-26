@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Burrow — Playlists</title>
+  <meta name="apple-itunes-app" content="app-id=6837952478">
+  <title>Burrow — Playlists (Nederlands)</title>
+  <link rel="alternate" hreflang="en" href="playlists-en.html">
+  <link rel="alternate" hreflang="nl" href="playlists.html">
+  <link rel="alternate" hreflang="de" href="playlists-de.html">
+  <link rel="alternate" hreflang="fr" href="playlists-fr.html">
+  <link rel="alternate" hreflang="es" href="playlists-es.html">
+  <link rel="alternate" hreflang="it" href="playlists-it.html">
+  <link rel="icon" href="icon.png">
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
     section { border-top: 1px solid #ddd; padding-top: 8px; margin-top: 28px; scroll-margin-top: 12px; }
     .kind { color: #666; font-size: 0.9em; margin: -8px 0 8px; }
     a.add { display: inline-block; background: #67879f; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 12px; font-weight: 600; }
     a.add.small { padding: 4px 14px; border-radius: 10px; font-size: 0.9em; }
+    nav.langs { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 20px; }
+    a.lang { display: inline-block; padding: 6px 14px; border-radius: 999px; border: 1.5px solid #67879f; color: #4c6a80; text-decoration: none; font-weight: 600; font-size: 0.95em; }
+    a.lang[aria-current] { background: #67879f; color: #fff; }
     table { width: 100%; border-collapse: collapse; margin: 16px 0 8px; font-variant-numeric: tabular-nums; }
     th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #e4e4e4; vertical-align: middle; }
     th { font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.04em; color: #666; font-weight: 600; }
@@ -23,106 +34,131 @@
     .art { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: none; }
     .art.big { width: 96px; height: 96px; border-radius: 20px; margin-right: 14px; vertical-align: middle; }
     .name { display: flex; align-items: center; gap: 10px; }
+    p.store a { display: inline-block; line-height: 0; }
+    p.store img { height: 44px; width: auto; }
+    @media (max-width: 520px) {
+      th:nth-child(2), td:nth-child(2) { display: none; }
+      td:nth-child(3) { white-space: normal; }
+      th, td { padding: 8px 4px; }
+      a.add.small { padding: 4px 10px; }
+      .name { gap: 8px; }
+    }
     @media (prefers-color-scheme: dark) {
       body { background: #111; color: #ddd; } a { color: #8ab4ff; }
       section { border-color: #333; } .kind, .note, th, .sub { color: #999; } ol { color: #bbb; }
       th, td { border-color: #2a2a2a; }
       a.add { background: #92adc4; color: #111; }
+      a.lang { border-color: #92adc4; color: #92adc4; }
+      a.lang[aria-current] { background: #92adc4; color: #111; }
     }
   </style>
 </head>
 <body>
   <h1>Burrow — Playlists</h1>
 
-  <p>Ready-made playlists for Burrow. Open this page on the iPhone or iPad that has Burrow and tap <em>Add</em>. Burrow asks for the grown-up's year of birth, shows you the playlist, and adds it as a tile, with its own picture, only once you choose one or more profiles and tap <em>Add tile</em>.</p>
+  <nav class="langs" aria-label="Playlists in andere talen">
+    <a class="lang" href="playlists-en.html" lang="en" hreflang="en">English</a>
+    <a class="lang" href="playlists.html" lang="nl" aria-current="page">Nederlands</a>
+    <a class="lang" href="playlists-de.html" lang="de" hreflang="de">Deutsch</a>
+    <a class="lang" href="playlists-fr.html" lang="fr" hreflang="fr">Français</a>
+    <a class="lang" href="playlists-es.html" lang="es" hreflang="es">Español</a>
+    <a class="lang" href="playlists-it.html" lang="it" hreflang="it">Italiano</a>
+  </nav>
+
+  <p>Kant-en-klare playlists voor Burrow, in het Nederlands. Open deze pagina op de iPhone of iPad met Burrow en tik op <em>Voeg toe</em>. Burrow vraagt naar het geboortejaar van de volwassene, laat de playlist zien en voegt hem pas als tegel toe, met een eigen plaatje, als je een of meer profielen kiest en op <em>Tegel toevoegen</em> tikt.</p>
+
+  <p class="store"><a href="https://apps.apple.com/app/id6837952478"><picture>
+    <source srcset="badges/app-store-nl-nl-white.svg" media="(prefers-color-scheme: dark)">
+    <img src="badges/app-store-nl-nl-black.svg" alt="Download in de App Store" height="44">
+  </picture></a></p>
 
   <table>
     <thead>
-      <tr><th>Playlist</th><th>Items</th><th>Ages</th><th></th></tr>
+      <tr><th>Playlist</th><th>Items</th><th>Leeftijd</th><th></th></tr>
     </thead>
     <tbody>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/v9hofUN08Gw/hq720.jpg" alt="" loading="lazy" style="background:#988caf"><span><a href="#efteling">Efteling</a><span class="sub">Music tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/v9hofUN08Gw/hq720.jpg" alt="" loading="lazy" style="background:#988caf"><span><a href="#efteling">Efteling</a><span class="sub">Muziektegel</span></span></div></td>
         <td>8</td>
-        <td>All ages</td>
-        <td><a class="add small" href="burrow://playlist?name=Efteling&amp;type=music&amp;icon=crown.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fv9hofUN08Gw%2Fhq720.jpg&amp;item=yt:v9hofUN08Gw:Carnaval%20Festival&amp;item=yt:1wa2eEVR6PA:Menuet%20in%20G%20%E2%80%93%20Muzikale%20Paddenstoelen&amp;item=yt:uFTBxIglWCY:Joris%20en%20de%20Draak&amp;item=yt:FGA_dT-V_Hw:De%20Rode%20Schoentjes&amp;item=yt:HbPWLR0epTs:De%20magische%20Klok&amp;item=yt:yjhDUpDPfbY:Villa%20Volta&amp;item=yt:BGx_MyHJW64:Vriendenlied&amp;item=yt:iu7zMa7Iehg:Winter%20Efteling%20Ouverture">Add</a></td>
+        <td>Alle leeftijden</td>
+        <td><a class="add small" href="burrow://playlist?name=Efteling&amp;type=music&amp;icon=crown.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fv9hofUN08Gw%2Fhq720.jpg&amp;item=yt:v9hofUN08Gw:Carnaval%20Festival&amp;item=yt:1wa2eEVR6PA:Menuet%20in%20G%20%E2%80%93%20Muzikale%20Paddenstoelen&amp;item=yt:uFTBxIglWCY:Joris%20en%20de%20Draak&amp;item=yt:FGA_dT-V_Hw:De%20Rode%20Schoentjes&amp;item=yt:HbPWLR0epTs:De%20magische%20Klok&amp;item=yt:yjhDUpDPfbY:Villa%20Volta&amp;item=yt:BGx_MyHJW64:Vriendenlied&amp;item=yt:iu7zMa7Iehg:Winter%20Efteling%20Ouverture">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/ZYvTqDzZcPk/hq720.jpg" alt="" loading="lazy" style="background:#67879f"><span><a href="#efteling-rides">Efteling rides</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/ZYvTqDzZcPk/hq720.jpg" alt="" loading="lazy" style="background:#67879f"><span><a href="#efteling-rides">Efteling rides</a><span class="sub">Videotegel</span></span></div></td>
         <td>6</td>
         <td>3+</td>
-        <td><a class="add small" href="burrow://playlist?name=Efteling%20rides&amp;type=video&amp;icon=sparkles&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZYvTqDzZcPk%2Fhq720.jpg&amp;item=yt:40ppGVR5nZQ:Sprookjesbos&amp;item=yt:ZYvTqDzZcPk:Droomvlucht&amp;item=yt:VRHWrWhC6qo:Carnaval%20Festival&amp;item=yt:mXdXR82IkvQ:Fata%20Morgana&amp;item=yt:95PBLcebK0M:Symbolica&amp;item=yt:NkGXAFAe3ig:Max%20%26%20Moritz">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Efteling%20rides&amp;type=video&amp;icon=sparkles&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZYvTqDzZcPk%2Fhq720.jpg&amp;item=yt:40ppGVR5nZQ:Sprookjesbos&amp;item=yt:ZYvTqDzZcPk:Droomvlucht&amp;item=yt:VRHWrWhC6qo:Carnaval%20Festival&amp;item=yt:mXdXR82IkvQ:Fata%20Morgana&amp;item=yt:95PBLcebK0M:Symbolica&amp;item=yt:NkGXAFAe3ig:Max%20%26%20Moritz">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/zmq1x18-UG0/hq720.jpg" alt="" loading="lazy" style="background:#bd8773"><span><a href="#jokie-jet">Jokie &amp; Jet</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/zmq1x18-UG0/hq720.jpg" alt="" loading="lazy" style="background:#bd8773"><span><a href="#jokie-jet">Jokie &amp; Jet</a><span class="sub">Videotegel</span></span></div></td>
         <td>7</td>
         <td>1–5</td>
-        <td><a class="add small" href="burrow://playlist?name=Jokie%20%26%20Jet&amp;type=video&amp;icon=party.popper.fill&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fzmq1x18-UG0%2Fhq720.jpg&amp;item=yt:zmq1x18-UG0:Spelen%20in%20de%20speeltuin&amp;item=yt:LWCkOnZzsqE:De%20dierendans&amp;item=yt:3N4qBCkeB4o:Hieperdepiep&amp;item=yt:67v7rBPr-MI:Pretpark&amp;item=yt:3vcRyGk2tjc:Brandweer&amp;item=yt:Z_0QoWbEJGA:Duiken&amp;item=yt:piO5cqtfqTI:Kermis">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Jokie%20%26%20Jet&amp;type=video&amp;icon=party.popper.fill&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fzmq1x18-UG0%2Fhq720.jpg&amp;item=yt:zmq1x18-UG0:Spelen%20in%20de%20speeltuin&amp;item=yt:LWCkOnZzsqE:De%20dierendans&amp;item=yt:3N4qBCkeB4o:Hieperdepiep&amp;item=yt:67v7rBPr-MI:Pretpark&amp;item=yt:3vcRyGk2tjc:Brandweer&amp;item=yt:Z_0QoWbEJGA:Duiken&amp;item=yt:piO5cqtfqTI:Kermis">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/M6hSJ-HyqqY/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87"><span><a href="#julianatoren">Julianatoren</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/M6hSJ-HyqqY/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87"><span><a href="#julianatoren">Julianatoren</a><span class="sub">Videotegel</span></span></div></td>
         <td>5</td>
         <td>2–6</td>
-        <td><a class="add small" href="burrow://playlist?name=Julianatoren&amp;type=video&amp;icon=balloon.2.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FM6hSJ-HyqqY%2Fhq720.jpg&amp;item=yt:NiG2XOYIJ30:De%20Julianatoren%20is%20t%C3%A9%20gek%21&amp;item=yt:2pnNRBN6orw:Hieperdepiep%20Hoera&amp;item=yt:7A7yp5qAmUc:Jul%20%26%20Julia%20en%20de%20magische%20Lentebloem&amp;item=yt:wfJtPDXU0Oc:Het%20is%20Lente&amp;item=yt:M6hSJ-HyqqY:Cowboydans">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Julianatoren&amp;type=video&amp;icon=balloon.2.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FM6hSJ-HyqqY%2Fhq720.jpg&amp;item=yt:NiG2XOYIJ30:De%20Julianatoren%20is%20t%C3%A9%20gek%21&amp;item=yt:2pnNRBN6orw:Hieperdepiep%20Hoera&amp;item=yt:7A7yp5qAmUc:Jul%20%26%20Julia%20en%20de%20magische%20Lentebloem&amp;item=yt:wfJtPDXU0Oc:Het%20is%20Lente&amp;item=yt:M6hSJ-HyqqY:Cowboydans">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/ZRMTC9Tzj2c/hq720.jpg" alt="" loading="lazy" style="background:#78828e"><span><a href="#studio-100-hits">Studio 100 hits</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/ZRMTC9Tzj2c/hq720.jpg" alt="" loading="lazy" style="background:#78828e"><span><a href="#studio-100-hits">Studio 100 hits</a><span class="sub">Videotegel</span></span></div></td>
         <td>9</td>
         <td>3–8</td>
-        <td><a class="add small" href="burrow://playlist?name=Studio%20100%20hits&amp;type=video&amp;icon=music.mic&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZRMTC9Tzj2c%2Fhq720.jpg&amp;item=yt:ZRMTC9Tzj2c:K3%20%E2%80%93%20Alle%20Kleuren&amp;item=yt:6fMwrdWmExg:K3%20%E2%80%93%2010.000%20luchtballonnen&amp;item=yt:_9ZWV6SjzO0:K3%20%E2%80%93%20Waterval&amp;item=yt:qhBVYe5nB54:Kabouter%20Plop%20%E2%80%93%20Kabouterdans&amp;item=yt:xZEMDZSBkZg:Kabouter%20Plop%20%E2%80%93%20De%20Regendans&amp;item=yt:O_mjKdxkQZk:Samson%20%26%20Gert%20%E2%80%93%20Wij%20gaan%20vliegen&amp;item=yt:eVMaFXbYrMk:Piet%20Piraat%20%E2%80%93%20Wij%20zijn%20zeepiraten&amp;item=yt:1vVTJbH7HMM:Mega%20Mindy%20%E2%80%93%20Mega%20Mindy%20Tijd&amp;item=yt:rOu7kt5b76M:Maya%20de%20Bij%20%E2%80%93%20Daar%20heb%20je%20Maya%20de%20Bij">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Studio%20100%20hits&amp;type=video&amp;icon=music.mic&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZRMTC9Tzj2c%2Fhq720.jpg&amp;item=yt:ZRMTC9Tzj2c:K3%20%E2%80%93%20Alle%20Kleuren&amp;item=yt:6fMwrdWmExg:K3%20%E2%80%93%2010.000%20luchtballonnen&amp;item=yt:_9ZWV6SjzO0:K3%20%E2%80%93%20Waterval&amp;item=yt:qhBVYe5nB54:Kabouter%20Plop%20%E2%80%93%20Kabouterdans&amp;item=yt:xZEMDZSBkZg:Kabouter%20Plop%20%E2%80%93%20De%20Regendans&amp;item=yt:O_mjKdxkQZk:Samson%20%26%20Gert%20%E2%80%93%20Wij%20gaan%20vliegen&amp;item=yt:eVMaFXbYrMk:Piet%20Piraat%20%E2%80%93%20Wij%20zijn%20zeepiraten&amp;item=yt:1vVTJbH7HMM:Mega%20Mindy%20%E2%80%93%20Mega%20Mindy%20Tijd&amp;item=yt:rOu7kt5b76M:Maya%20de%20Bij%20%E2%80%93%20Daar%20heb%20je%20Maya%20de%20Bij">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/abfLZW5rqDQ/hq720.jpg" alt="" loading="lazy" style="background:#7b9679"><span><a href="#bumba">Bumba</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/abfLZW5rqDQ/hq720.jpg" alt="" loading="lazy" style="background:#7b9679"><span><a href="#bumba">Bumba</a><span class="sub">Videotegel</span></span></div></td>
         <td>7</td>
         <td>1–4</td>
-        <td><a class="add small" href="burrow://playlist?name=Bumba&amp;type=video&amp;icon=figure.dance&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FabfLZW5rqDQ%2Fhq720.jpg&amp;item=yt:CKslYf-VVho:Zwaai%2C%20spring%2C%20stamp%2C%20klap&amp;item=yt:abfLZW5rqDQ:De%20Bumba%20Dans&amp;item=yt:2YAbykYBe74:Bumba%20trein&amp;item=yt:SnCnDmW08r8:De%20Knuffeldans&amp;item=yt:5fAZ6iNX0l8:Het%20Orkest&amp;item=yt:DXFucH5wzOs:De%20Bumba%20stopdans&amp;item=yt:pbV98FF1j-M:Bumba%20naar%20bed">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Bumba&amp;type=video&amp;icon=figure.dance&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FabfLZW5rqDQ%2Fhq720.jpg&amp;item=yt:CKslYf-VVho:Zwaai%2C%20spring%2C%20stamp%2C%20klap&amp;item=yt:abfLZW5rqDQ:De%20Bumba%20Dans&amp;item=yt:2YAbykYBe74:Bumba%20trein&amp;item=yt:SnCnDmW08r8:De%20Knuffeldans&amp;item=yt:5fAZ6iNX0l8:Het%20Orkest&amp;item=yt:DXFucH5wzOs:De%20Bumba%20stopdans&amp;item=yt:pbV98FF1j-M:Bumba%20naar%20bed">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/rOu7kt5b76M/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87"><span><a href="#maya-de-bij">Maya de Bij</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/rOu7kt5b76M/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87"><span><a href="#maya-de-bij">Maya de Bij</a><span class="sub">Videotegel</span></span></div></td>
         <td>6</td>
         <td>2–6</td>
-        <td><a class="add small" href="burrow://playlist?name=Maya%20de%20Bij&amp;type=video&amp;icon=ladybug.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FrOu7kt5b76M%2Fhq720.jpg&amp;item=yt:rOu7kt5b76M:Daar%20heb%20je%20Maya%20de%20Bij&amp;item=yt:DodTU2nJIOg:Ik%20heb%20een%20vriend&amp;item=yt:GKl9ZcG6eQQ:De%20Maya%20Dans&amp;item=yt:JHAUeUbo5oM:Poesje%20Mauw&amp;item=yt:xjgDiw93tIY:We%20stegen%20met%20een%20zucht&amp;item=yt:gifUNhTViXA:Lang%20zal%20ze%20leven">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Maya%20de%20Bij&amp;type=video&amp;icon=ladybug.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FrOu7kt5b76M%2Fhq720.jpg&amp;item=yt:rOu7kt5b76M:Daar%20heb%20je%20Maya%20de%20Bij&amp;item=yt:DodTU2nJIOg:Ik%20heb%20een%20vriend&amp;item=yt:GKl9ZcG6eQQ:De%20Maya%20Dans&amp;item=yt:JHAUeUbo5oM:Poesje%20Mauw&amp;item=yt:xjgDiw93tIY:We%20stegen%20met%20een%20zucht&amp;item=yt:gifUNhTViXA:Lang%20zal%20ze%20leven">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/20J8DUJMgA4/hq720.jpg" alt="" loading="lazy" style="background:#988caf"><span><a href="#nijntje">nijntje</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/20J8DUJMgA4/hq720.jpg" alt="" loading="lazy" style="background:#988caf"><span><a href="#nijntje">nijntje</a><span class="sub">Videotegel</span></span></div></td>
         <td>5</td>
         <td>1–4</td>
-        <td><a class="add small" href="burrow://playlist?name=nijntje&amp;type=video&amp;icon=hare.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2F20J8DUJMgA4%2Fhq720.jpg&amp;item=yt:20J8DUJMgA4:Dans%20mee%20met%20nijntje&amp;item=yt:KSzKwXPb82c:nijntje%20liedje&amp;item=yt:FmyZFwJdnzk:De%20seizoenen&amp;item=yt:zXp5wXoZECs:Zeg%20ken%20jij%20Boris%20Beer%3F&amp;item=yt:hhYiTVmZh_8:Mijn%20liefste%20hond">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=nijntje&amp;type=video&amp;icon=hare.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2F20J8DUJMgA4%2Fhq720.jpg&amp;item=yt:20J8DUJMgA4:Dans%20mee%20met%20nijntje&amp;item=yt:KSzKwXPb82c:nijntje%20liedje&amp;item=yt:FmyZFwJdnzk:De%20seizoenen&amp;item=yt:zXp5wXoZECs:Zeg%20ken%20jij%20Boris%20Beer%3F&amp;item=yt:hhYiTVmZh_8:Mijn%20liefste%20hond">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/IPWVrWyoHP0/hq720.jpg" alt="" loading="lazy" style="background:#7b9679"><span><a href="#woezel-pip">Woezel &amp; Pip</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/IPWVrWyoHP0/hq720.jpg" alt="" loading="lazy" style="background:#7b9679"><span><a href="#woezel-pip">Woezel &amp; Pip</a><span class="sub">Videotegel</span></span></div></td>
         <td>6</td>
         <td>1–5</td>
-        <td><a class="add small" href="burrow://playlist?name=Woezel%20%26%20Pip&amp;type=video&amp;icon=dog.fill&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FIPWVrWyoHP0%2Fhq720.jpg&amp;item=yt:FmnnSZrB9lY:Allerbeste%20vriendjes&amp;item=yt:xKkAwMkE6Fs:Vriendjesclublied&amp;item=yt:GbkLA6nDIFA:Het%20Vriendjeslied&amp;item=yt:IPWVrWyoHP0:Tovertuindans&amp;item=yt:bdoqrqD3esw:Liedje%20van%20geluk&amp;item=yt:GzPb9-Z0hqU:Land%20van%20je%20ogen%20dicht">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Woezel%20%26%20Pip&amp;type=video&amp;icon=dog.fill&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FIPWVrWyoHP0%2Fhq720.jpg&amp;item=yt:FmnnSZrB9lY:Allerbeste%20vriendjes&amp;item=yt:xKkAwMkE6Fs:Vriendjesclublied&amp;item=yt:GbkLA6nDIFA:Het%20Vriendjeslied&amp;item=yt:IPWVrWyoHP0:Tovertuindans&amp;item=yt:bdoqrqD3esw:Liedje%20van%20geluk&amp;item=yt:GzPb9-Z0hqU:Land%20van%20je%20ogen%20dicht">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/vzvbBIt_r6c/hq720.jpg" alt="" loading="lazy" style="background:#bd8773"><span><a href="#juf-roos">Juf Roos</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/vzvbBIt_r6c/hq720.jpg" alt="" loading="lazy" style="background:#bd8773"><span><a href="#juf-roos">Juf Roos</a><span class="sub">Videotegel</span></span></div></td>
         <td>9</td>
         <td>1–4</td>
-        <td><a class="add small" href="burrow://playlist?name=Juf%20Roos&amp;type=video&amp;icon=music.note&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FvzvbBIt_r6c%2Fhq720.jpg&amp;item=yt:hI8IPM76vrw:In%20de%20Maneschijn&amp;item=yt:vzvbBIt_r6c:Ik%20zag%20twee%20beren%20broodjes%20smeren&amp;item=yt:YdfbFy9uVrU:Het%20regent%2C%20het%20regent&amp;item=yt:oRWWJaBHYoY:Poesje%20Mauw&amp;item=yt:JuqCZxmzJDQ:Hop%20paardje%20hop&amp;item=yt:zy1coEWIGSw:Zo%20gaat%20de%20molen&amp;item=yt:t1y0H2hoTvQ:Helikopter&amp;item=yt:o-rrtNC0mSo:Kleurenlied&amp;item=yt:LfSjL_YrTrA:Hokey%20Pokey">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Juf%20Roos&amp;type=video&amp;icon=music.note&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FvzvbBIt_r6c%2Fhq720.jpg&amp;item=yt:hI8IPM76vrw:In%20de%20Maneschijn&amp;item=yt:vzvbBIt_r6c:Ik%20zag%20twee%20beren%20broodjes%20smeren&amp;item=yt:YdfbFy9uVrU:Het%20regent%2C%20het%20regent&amp;item=yt:oRWWJaBHYoY:Poesje%20Mauw&amp;item=yt:JuqCZxmzJDQ:Hop%20paardje%20hop&amp;item=yt:zy1coEWIGSw:Zo%20gaat%20de%20molen&amp;item=yt:t1y0H2hoTvQ:Helikopter&amp;item=yt:o-rrtNC0mSo:Kleurenlied&amp;item=yt:LfSjL_YrTrA:Hokey%20Pokey">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/gvHpI_6Bq_4/hq720.jpg" alt="" loading="lazy" style="background:#67879f"><span><a href="#kinderen-voor-kinderen">Kinderen voor Kinderen</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/gvHpI_6Bq_4/hq720.jpg" alt="" loading="lazy" style="background:#67879f"><span><a href="#kinderen-voor-kinderen">Kinderen voor Kinderen</a><span class="sub">Videotegel</span></span></div></td>
         <td>7</td>
         <td>5+</td>
-        <td><a class="add small" href="burrow://playlist?name=Kinderen%20voor%20Kinderen&amp;type=video&amp;icon=star.fill&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FgvHpI_6Bq_4%2Fhq720.jpg&amp;item=yt:N2Rl9hEJVKE:Hupsakee&amp;item=yt:fAElk6S2gZg:Raar%20maar%20waar&amp;item=yt:xtgl2E7BVPg:Haai-alarm%21&amp;item=yt:cPDKS45RhkA:Red%20de%20bij&amp;item=yt:Agy0kqdMBDE:Reis%20mee%21&amp;item=yt:iYHe2V-zwkQ:Baila%20bailalaa&amp;item=yt:gvHpI_6Bq_4:Lekker%20eigenwijs">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Kinderen%20voor%20Kinderen&amp;type=video&amp;icon=star.fill&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FgvHpI_6Bq_4%2Fhq720.jpg&amp;item=yt:N2Rl9hEJVKE:Hupsakee&amp;item=yt:fAElk6S2gZg:Raar%20maar%20waar&amp;item=yt:xtgl2E7BVPg:Haai-alarm%21&amp;item=yt:cPDKS45RhkA:Red%20de%20bij&amp;item=yt:Agy0kqdMBDE:Reis%20mee%21&amp;item=yt:iYHe2V-zwkQ:Baila%20bailalaa&amp;item=yt:gvHpI_6Bq_4:Lekker%20eigenwijs">Voeg toe</a></td>
       </tr>
       <tr>
-        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/cPAbx5kgCJo/hq720.jpg" alt="" loading="lazy" style="background:#78828e"><span><a href="#disney">Disney</a><span class="sub">Video tile</span></span></div></td>
+        <td><div class="name"><img class="art" src="https://i.ytimg.com/vi/cPAbx5kgCJo/hq720.jpg" alt="" loading="lazy" style="background:#78828e"><span><a href="#disney">Disney</a><span class="sub">Videotegel</span></span></div></td>
         <td>5</td>
         <td>4+</td>
-        <td><a class="add small" href="burrow://playlist?name=Disney&amp;type=video&amp;icon=wand.and.stars&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FcPAbx5kgCJo%2Fhq720.jpg&amp;item=yt:moSFlvxnbgk:Let%20It%20Go&amp;item=yt:cPAbx5kgCJo:How%20Far%20I%27ll%20Go&amp;item=yt:79DijItQXMM:You%27re%20Welcome&amp;item=yt:bvWRMAU6V-c:We%20Don%27t%20Talk%20About%20Bruno&amp;item=yt:c6rP-YP4c5I:Try%20Everything">Add</a></td>
+        <td><a class="add small" href="burrow://playlist?name=Disney&amp;type=video&amp;icon=wand.and.stars&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FcPAbx5kgCJo%2Fhq720.jpg&amp;item=yt:moSFlvxnbgk:Let%20It%20Go&amp;item=yt:cPAbx5kgCJo:How%20Far%20I%27ll%20Go&amp;item=yt:79DijItQXMM:You%27re%20Welcome&amp;item=yt:bvWRMAU6V-c:We%20Don%27t%20Talk%20About%20Bruno&amp;item=yt:c6rP-YP4c5I:Try%20Everything">Voeg toe</a></td>
       </tr>
     </tbody>
   </table>
 
-  <p class="note">The free version adds the first three items of a playlist; the unlock adds them all. Everything plays from YouTube, so it needs an internet connection and keeps working only for as long as YouTube allows it. The ages are a rough guide.</p>
+  <p class="note">De gratis versie voegt de eerste drie items van een playlist toe; met de ontgrendeling komen ze er allemaal in. Alles speelt af via YouTube, dus er is internet nodig en het werkt zolang YouTube dat toestaat. De leeftijden zijn een ruwe richtlijn.</p>
 
   <section id="efteling">
     <h2><img class="art big" src="https://i.ytimg.com/vi/v9hofUN08Gw/hq720.jpg" alt="" loading="lazy" style="background:#988caf">Efteling</h2>
-    <p class="kind">Music tile · 8 songs · ages All ages · from the Efteling&#x27;s soundtrack albums on YouTube</p>
-    <p>The music of the attractions, from the Efteling&#x27;s own soundtrack albums. Calm enough for the car or for bedtime.</p>
-    <a class="add" href="burrow://playlist?name=Efteling&amp;type=music&amp;icon=crown.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fv9hofUN08Gw%2Fhq720.jpg&amp;item=yt:v9hofUN08Gw:Carnaval%20Festival&amp;item=yt:1wa2eEVR6PA:Menuet%20in%20G%20%E2%80%93%20Muzikale%20Paddenstoelen&amp;item=yt:uFTBxIglWCY:Joris%20en%20de%20Draak&amp;item=yt:FGA_dT-V_Hw:De%20Rode%20Schoentjes&amp;item=yt:HbPWLR0epTs:De%20magische%20Klok&amp;item=yt:yjhDUpDPfbY:Villa%20Volta&amp;item=yt:BGx_MyHJW64:Vriendenlied&amp;item=yt:iu7zMa7Iehg:Winter%20Efteling%20Ouverture">Add to Burrow</a>
+    <p class="kind">Muziektegel · 8 liedjes · Alle leeftijden · van de soundtrackalbums van de Efteling op YouTube</p>
+    <p>De muziek van de attracties, van de eigen soundtrackalbums van de Efteling. Rustig genoeg voor in de auto of bij het slapengaan.</p>
+    <a class="add" href="burrow://playlist?name=Efteling&amp;type=music&amp;icon=crown.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fv9hofUN08Gw%2Fhq720.jpg&amp;item=yt:v9hofUN08Gw:Carnaval%20Festival&amp;item=yt:1wa2eEVR6PA:Menuet%20in%20G%20%E2%80%93%20Muzikale%20Paddenstoelen&amp;item=yt:uFTBxIglWCY:Joris%20en%20de%20Draak&amp;item=yt:FGA_dT-V_Hw:De%20Rode%20Schoentjes&amp;item=yt:HbPWLR0epTs:De%20magische%20Klok&amp;item=yt:yjhDUpDPfbY:Villa%20Volta&amp;item=yt:BGx_MyHJW64:Vriendenlied&amp;item=yt:iu7zMa7Iehg:Winter%20Efteling%20Ouverture">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=v9hofUN08Gw">Carnaval Festival</a></li>
       <li><a href="https://www.youtube.com/watch?v=1wa2eEVR6PA">Menuet in G – Muzikale Paddenstoelen</a></li>
@@ -137,9 +173,9 @@
 
   <section id="efteling-rides">
     <h2><img class="art big" src="https://i.ytimg.com/vi/ZYvTqDzZcPk/hq720.jpg" alt="" loading="lazy" style="background:#67879f">Efteling rides</h2>
-    <p class="kind">Video tile · 6 videos · ages 3+ · from the Efteling&#x27;s YouTube channel</p>
-    <p>A walk through the Fairy Tale Forest and a seat on the gentle rides, filmed by the Efteling itself. No big roller coasters.</p>
-    <a class="add" href="burrow://playlist?name=Efteling%20rides&amp;type=video&amp;icon=sparkles&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZYvTqDzZcPk%2Fhq720.jpg&amp;item=yt:40ppGVR5nZQ:Sprookjesbos&amp;item=yt:ZYvTqDzZcPk:Droomvlucht&amp;item=yt:VRHWrWhC6qo:Carnaval%20Festival&amp;item=yt:mXdXR82IkvQ:Fata%20Morgana&amp;item=yt:95PBLcebK0M:Symbolica&amp;item=yt:NkGXAFAe3ig:Max%20%26%20Moritz">Add to Burrow</a>
+    <p class="kind">Videotegel · 6 video's · leeftijd 3+ · van het YouTube-kanaal van de Efteling</p>
+    <p>Een wandeling door het Sprookjesbos en een plekje in de rustige attracties, gefilmd door de Efteling zelf. Geen grote achtbanen.</p>
+    <a class="add" href="burrow://playlist?name=Efteling%20rides&amp;type=video&amp;icon=sparkles&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZYvTqDzZcPk%2Fhq720.jpg&amp;item=yt:40ppGVR5nZQ:Sprookjesbos&amp;item=yt:ZYvTqDzZcPk:Droomvlucht&amp;item=yt:VRHWrWhC6qo:Carnaval%20Festival&amp;item=yt:mXdXR82IkvQ:Fata%20Morgana&amp;item=yt:95PBLcebK0M:Symbolica&amp;item=yt:NkGXAFAe3ig:Max%20%26%20Moritz">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=40ppGVR5nZQ">Sprookjesbos</a></li>
       <li><a href="https://www.youtube.com/watch?v=ZYvTqDzZcPk">Droomvlucht</a></li>
@@ -152,9 +188,9 @@
 
   <section id="jokie-jet">
     <h2><img class="art big" src="https://i.ytimg.com/vi/zmq1x18-UG0/hq720.jpg" alt="" loading="lazy" style="background:#bd8773">Jokie &amp; Jet</h2>
-    <p class="kind">Video tile · 7 videos · ages 1–5 · from Efteling Kids on YouTube</p>
-    <p>Short songs and stories with Jokie and Jet, the Efteling&#x27;s little ones, from the Efteling Kids channel.</p>
-    <a class="add" href="burrow://playlist?name=Jokie%20%26%20Jet&amp;type=video&amp;icon=party.popper.fill&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fzmq1x18-UG0%2Fhq720.jpg&amp;item=yt:zmq1x18-UG0:Spelen%20in%20de%20speeltuin&amp;item=yt:LWCkOnZzsqE:De%20dierendans&amp;item=yt:3N4qBCkeB4o:Hieperdepiep&amp;item=yt:67v7rBPr-MI:Pretpark&amp;item=yt:3vcRyGk2tjc:Brandweer&amp;item=yt:Z_0QoWbEJGA:Duiken&amp;item=yt:piO5cqtfqTI:Kermis">Add to Burrow</a>
+    <p class="kind">Videotegel · 7 video's · leeftijd 1–5 · van Efteling Kids op YouTube</p>
+    <p>Korte liedjes en verhaaltjes met Jokie en Jet, de kleintjes van de Efteling, van het kanaal Efteling Kids.</p>
+    <a class="add" href="burrow://playlist?name=Jokie%20%26%20Jet&amp;type=video&amp;icon=party.popper.fill&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2Fzmq1x18-UG0%2Fhq720.jpg&amp;item=yt:zmq1x18-UG0:Spelen%20in%20de%20speeltuin&amp;item=yt:LWCkOnZzsqE:De%20dierendans&amp;item=yt:3N4qBCkeB4o:Hieperdepiep&amp;item=yt:67v7rBPr-MI:Pretpark&amp;item=yt:3vcRyGk2tjc:Brandweer&amp;item=yt:Z_0QoWbEJGA:Duiken&amp;item=yt:piO5cqtfqTI:Kermis">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=zmq1x18-UG0">Spelen in de speeltuin</a></li>
       <li><a href="https://www.youtube.com/watch?v=LWCkOnZzsqE">De dierendans</a></li>
@@ -168,9 +204,9 @@
 
   <section id="julianatoren">
     <h2><img class="art big" src="https://i.ytimg.com/vi/M6hSJ-HyqqY/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87">Julianatoren</h2>
-    <p class="kind">Video tile · 5 videos · ages 2–6 · from Kinderpretpark Julianatoren on YouTube</p>
-    <p>Sing and dance along with Jul &amp; Julia, from the music videos of Kinderpretpark Julianatoren in Apeldoorn.</p>
-    <a class="add" href="burrow://playlist?name=Julianatoren&amp;type=video&amp;icon=balloon.2.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FM6hSJ-HyqqY%2Fhq720.jpg&amp;item=yt:NiG2XOYIJ30:De%20Julianatoren%20is%20t%C3%A9%20gek%21&amp;item=yt:2pnNRBN6orw:Hieperdepiep%20Hoera&amp;item=yt:7A7yp5qAmUc:Jul%20%26%20Julia%20en%20de%20magische%20Lentebloem&amp;item=yt:wfJtPDXU0Oc:Het%20is%20Lente&amp;item=yt:M6hSJ-HyqqY:Cowboydans">Add to Burrow</a>
+    <p class="kind">Videotegel · 5 video's · leeftijd 2–6 · van Kinderpretpark Julianatoren op YouTube</p>
+    <p>Zing en dans mee met Jul &amp; Julia, uit de muziekvideo&#x27;s van Kinderpretpark Julianatoren in Apeldoorn.</p>
+    <a class="add" href="burrow://playlist?name=Julianatoren&amp;type=video&amp;icon=balloon.2.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FM6hSJ-HyqqY%2Fhq720.jpg&amp;item=yt:NiG2XOYIJ30:De%20Julianatoren%20is%20t%C3%A9%20gek%21&amp;item=yt:2pnNRBN6orw:Hieperdepiep%20Hoera&amp;item=yt:7A7yp5qAmUc:Jul%20%26%20Julia%20en%20de%20magische%20Lentebloem&amp;item=yt:wfJtPDXU0Oc:Het%20is%20Lente&amp;item=yt:M6hSJ-HyqqY:Cowboydans">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=NiG2XOYIJ30">De Julianatoren is té gek!</a></li>
       <li><a href="https://www.youtube.com/watch?v=2pnNRBN6orw">Hieperdepiep Hoera</a></li>
@@ -182,9 +218,9 @@
 
   <section id="studio-100-hits">
     <h2><img class="art big" src="https://i.ytimg.com/vi/ZRMTC9Tzj2c/hq720.jpg" alt="" loading="lazy" style="background:#78828e">Studio 100 hits</h2>
-    <p class="kind">Video tile · 9 videos · ages 3–8 · from Studio 100&#x27;s official YouTube channels</p>
-    <p>The big sing-alongs: K3, Kabouter Plop, Samson &amp; Gert, Piet Piraat, Mega Mindy and Maya, each from its own official channel.</p>
-    <a class="add" href="burrow://playlist?name=Studio%20100%20hits&amp;type=video&amp;icon=music.mic&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZRMTC9Tzj2c%2Fhq720.jpg&amp;item=yt:ZRMTC9Tzj2c:K3%20%E2%80%93%20Alle%20Kleuren&amp;item=yt:6fMwrdWmExg:K3%20%E2%80%93%2010.000%20luchtballonnen&amp;item=yt:_9ZWV6SjzO0:K3%20%E2%80%93%20Waterval&amp;item=yt:qhBVYe5nB54:Kabouter%20Plop%20%E2%80%93%20Kabouterdans&amp;item=yt:xZEMDZSBkZg:Kabouter%20Plop%20%E2%80%93%20De%20Regendans&amp;item=yt:O_mjKdxkQZk:Samson%20%26%20Gert%20%E2%80%93%20Wij%20gaan%20vliegen&amp;item=yt:eVMaFXbYrMk:Piet%20Piraat%20%E2%80%93%20Wij%20zijn%20zeepiraten&amp;item=yt:1vVTJbH7HMM:Mega%20Mindy%20%E2%80%93%20Mega%20Mindy%20Tijd&amp;item=yt:rOu7kt5b76M:Maya%20de%20Bij%20%E2%80%93%20Daar%20heb%20je%20Maya%20de%20Bij">Add to Burrow</a>
+    <p class="kind">Videotegel · 9 video's · leeftijd 3–8 · van de officiële YouTube-kanalen van Studio 100</p>
+    <p>De grote meezingers: K3, Kabouter Plop, Samson &amp; Gert, Piet Piraat, Mega Mindy en Maya, elk van het eigen officiële kanaal.</p>
+    <a class="add" href="burrow://playlist?name=Studio%20100%20hits&amp;type=video&amp;icon=music.mic&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FZRMTC9Tzj2c%2Fhq720.jpg&amp;item=yt:ZRMTC9Tzj2c:K3%20%E2%80%93%20Alle%20Kleuren&amp;item=yt:6fMwrdWmExg:K3%20%E2%80%93%2010.000%20luchtballonnen&amp;item=yt:_9ZWV6SjzO0:K3%20%E2%80%93%20Waterval&amp;item=yt:qhBVYe5nB54:Kabouter%20Plop%20%E2%80%93%20Kabouterdans&amp;item=yt:xZEMDZSBkZg:Kabouter%20Plop%20%E2%80%93%20De%20Regendans&amp;item=yt:O_mjKdxkQZk:Samson%20%26%20Gert%20%E2%80%93%20Wij%20gaan%20vliegen&amp;item=yt:eVMaFXbYrMk:Piet%20Piraat%20%E2%80%93%20Wij%20zijn%20zeepiraten&amp;item=yt:1vVTJbH7HMM:Mega%20Mindy%20%E2%80%93%20Mega%20Mindy%20Tijd&amp;item=yt:rOu7kt5b76M:Maya%20de%20Bij%20%E2%80%93%20Daar%20heb%20je%20Maya%20de%20Bij">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=ZRMTC9Tzj2c">K3 – Alle Kleuren</a></li>
       <li><a href="https://www.youtube.com/watch?v=6fMwrdWmExg">K3 – 10.000 luchtballonnen</a></li>
@@ -200,9 +236,9 @@
 
   <section id="bumba">
     <h2><img class="art big" src="https://i.ytimg.com/vi/abfLZW5rqDQ/hq720.jpg" alt="" loading="lazy" style="background:#7b9679">Bumba</h2>
-    <p class="kind">Video tile · 7 videos · ages 1–4 · from Bumba NL on YouTube</p>
-    <p>Dance, clap and stamp along with Bumba the clown, and one to end the day with.</p>
-    <a class="add" href="burrow://playlist?name=Bumba&amp;type=video&amp;icon=figure.dance&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FabfLZW5rqDQ%2Fhq720.jpg&amp;item=yt:CKslYf-VVho:Zwaai%2C%20spring%2C%20stamp%2C%20klap&amp;item=yt:abfLZW5rqDQ:De%20Bumba%20Dans&amp;item=yt:2YAbykYBe74:Bumba%20trein&amp;item=yt:SnCnDmW08r8:De%20Knuffeldans&amp;item=yt:5fAZ6iNX0l8:Het%20Orkest&amp;item=yt:DXFucH5wzOs:De%20Bumba%20stopdans&amp;item=yt:pbV98FF1j-M:Bumba%20naar%20bed">Add to Burrow</a>
+    <p class="kind">Videotegel · 7 video's · leeftijd 1–4 · van Bumba NL op YouTube</p>
+    <p>Dansen, klappen en stampen met Bumba de clown, en eentje om de dag mee af te sluiten.</p>
+    <a class="add" href="burrow://playlist?name=Bumba&amp;type=video&amp;icon=figure.dance&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FabfLZW5rqDQ%2Fhq720.jpg&amp;item=yt:CKslYf-VVho:Zwaai%2C%20spring%2C%20stamp%2C%20klap&amp;item=yt:abfLZW5rqDQ:De%20Bumba%20Dans&amp;item=yt:2YAbykYBe74:Bumba%20trein&amp;item=yt:SnCnDmW08r8:De%20Knuffeldans&amp;item=yt:5fAZ6iNX0l8:Het%20Orkest&amp;item=yt:DXFucH5wzOs:De%20Bumba%20stopdans&amp;item=yt:pbV98FF1j-M:Bumba%20naar%20bed">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=CKslYf-VVho">Zwaai, spring, stamp, klap</a></li>
       <li><a href="https://www.youtube.com/watch?v=abfLZW5rqDQ">De Bumba Dans</a></li>
@@ -216,9 +252,9 @@
 
   <section id="maya-de-bij">
     <h2><img class="art big" src="https://i.ytimg.com/vi/rOu7kt5b76M/hq720.jpg" alt="" loading="lazy" style="background:#bfaf87">Maya de Bij</h2>
-    <p class="kind">Video tile · 6 videos · ages 2–6 · from Maya de Bij and Studio 100 on YouTube</p>
-    <p>Songs from Maya the Bee and her friends, with the Maya Dans step by step.</p>
-    <a class="add" href="burrow://playlist?name=Maya%20de%20Bij&amp;type=video&amp;icon=ladybug.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FrOu7kt5b76M%2Fhq720.jpg&amp;item=yt:rOu7kt5b76M:Daar%20heb%20je%20Maya%20de%20Bij&amp;item=yt:DodTU2nJIOg:Ik%20heb%20een%20vriend&amp;item=yt:GKl9ZcG6eQQ:De%20Maya%20Dans&amp;item=yt:JHAUeUbo5oM:Poesje%20Mauw&amp;item=yt:xjgDiw93tIY:We%20stegen%20met%20een%20zucht&amp;item=yt:gifUNhTViXA:Lang%20zal%20ze%20leven">Add to Burrow</a>
+    <p class="kind">Videotegel · 6 video's · leeftijd 2–6 · van Maya de Bij en Studio 100 op YouTube</p>
+    <p>Liedjes van Maya de Bij en haar vriendjes, met de Maya Dans stap voor stap.</p>
+    <a class="add" href="burrow://playlist?name=Maya%20de%20Bij&amp;type=video&amp;icon=ladybug.fill&amp;color=sand&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FrOu7kt5b76M%2Fhq720.jpg&amp;item=yt:rOu7kt5b76M:Daar%20heb%20je%20Maya%20de%20Bij&amp;item=yt:DodTU2nJIOg:Ik%20heb%20een%20vriend&amp;item=yt:GKl9ZcG6eQQ:De%20Maya%20Dans&amp;item=yt:JHAUeUbo5oM:Poesje%20Mauw&amp;item=yt:xjgDiw93tIY:We%20stegen%20met%20een%20zucht&amp;item=yt:gifUNhTViXA:Lang%20zal%20ze%20leven">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=rOu7kt5b76M">Daar heb je Maya de Bij</a></li>
       <li><a href="https://www.youtube.com/watch?v=DodTU2nJIOg">Ik heb een vriend</a></li>
@@ -231,9 +267,9 @@
 
   <section id="nijntje">
     <h2><img class="art big" src="https://i.ytimg.com/vi/20J8DUJMgA4/hq720.jpg" alt="" loading="lazy" style="background:#988caf">nijntje</h2>
-    <p class="kind">Video tile · 5 videos · ages 1–4 · from nijntje on YouTube</p>
-    <p>Gentle songs with Miffy and Boris Bear, from nijntje&#x27;s own channel.</p>
-    <a class="add" href="burrow://playlist?name=nijntje&amp;type=video&amp;icon=hare.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2F20J8DUJMgA4%2Fhq720.jpg&amp;item=yt:20J8DUJMgA4:Dans%20mee%20met%20nijntje&amp;item=yt:KSzKwXPb82c:nijntje%20liedje&amp;item=yt:FmyZFwJdnzk:De%20seizoenen&amp;item=yt:zXp5wXoZECs:Zeg%20ken%20jij%20Boris%20Beer%3F&amp;item=yt:hhYiTVmZh_8:Mijn%20liefste%20hond">Add to Burrow</a>
+    <p class="kind">Videotegel · 5 video's · leeftijd 1–4 · van nijntje op YouTube</p>
+    <p>Zachte liedjes met nijntje en Boris Beer, van het eigen kanaal van nijntje.</p>
+    <a class="add" href="burrow://playlist?name=nijntje&amp;type=video&amp;icon=hare.fill&amp;color=lavender&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2F20J8DUJMgA4%2Fhq720.jpg&amp;item=yt:20J8DUJMgA4:Dans%20mee%20met%20nijntje&amp;item=yt:KSzKwXPb82c:nijntje%20liedje&amp;item=yt:FmyZFwJdnzk:De%20seizoenen&amp;item=yt:zXp5wXoZECs:Zeg%20ken%20jij%20Boris%20Beer%3F&amp;item=yt:hhYiTVmZh_8:Mijn%20liefste%20hond">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=20J8DUJMgA4">Dans mee met nijntje</a></li>
       <li><a href="https://www.youtube.com/watch?v=KSzKwXPb82c">nijntje liedje</a></li>
@@ -245,9 +281,9 @@
 
   <section id="woezel-pip">
     <h2><img class="art big" src="https://i.ytimg.com/vi/IPWVrWyoHP0/hq720.jpg" alt="" loading="lazy" style="background:#7b9679">Woezel &amp; Pip</h2>
-    <p class="kind">Video tile · 6 videos · ages 1–5 · from Woezel &amp; Pip TV on YouTube</p>
-    <p>Songs about friendship from the Tovertuin, ending with a lullaby.</p>
-    <a class="add" href="burrow://playlist?name=Woezel%20%26%20Pip&amp;type=video&amp;icon=dog.fill&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FIPWVrWyoHP0%2Fhq720.jpg&amp;item=yt:FmnnSZrB9lY:Allerbeste%20vriendjes&amp;item=yt:xKkAwMkE6Fs:Vriendjesclublied&amp;item=yt:GbkLA6nDIFA:Het%20Vriendjeslied&amp;item=yt:IPWVrWyoHP0:Tovertuindans&amp;item=yt:bdoqrqD3esw:Liedje%20van%20geluk&amp;item=yt:GzPb9-Z0hqU:Land%20van%20je%20ogen%20dicht">Add to Burrow</a>
+    <p class="kind">Videotegel · 6 video's · leeftijd 1–5 · van Woezel &amp; Pip TV op YouTube</p>
+    <p>Liedjes over vriendschap uit de Tovertuin, met een slaapliedje als afsluiter.</p>
+    <a class="add" href="burrow://playlist?name=Woezel%20%26%20Pip&amp;type=video&amp;icon=dog.fill&amp;color=moss&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FIPWVrWyoHP0%2Fhq720.jpg&amp;item=yt:FmnnSZrB9lY:Allerbeste%20vriendjes&amp;item=yt:xKkAwMkE6Fs:Vriendjesclublied&amp;item=yt:GbkLA6nDIFA:Het%20Vriendjeslied&amp;item=yt:IPWVrWyoHP0:Tovertuindans&amp;item=yt:bdoqrqD3esw:Liedje%20van%20geluk&amp;item=yt:GzPb9-Z0hqU:Land%20van%20je%20ogen%20dicht">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=FmnnSZrB9lY">Allerbeste vriendjes</a></li>
       <li><a href="https://www.youtube.com/watch?v=xKkAwMkE6Fs">Vriendjesclublied</a></li>
@@ -260,9 +296,9 @@
 
   <section id="juf-roos">
     <h2><img class="art big" src="https://i.ytimg.com/vi/vzvbBIt_r6c/hq720.jpg" alt="" loading="lazy" style="background:#bd8773">Juf Roos</h2>
-    <p class="kind">Video tile · 9 videos · ages 1–4 · from Juf Roos on YouTube</p>
-    <p>The classic Dutch nursery rhymes, sung slowly and clearly by Juf Roos. Short, so good for a few minutes at a time.</p>
-    <a class="add" href="burrow://playlist?name=Juf%20Roos&amp;type=video&amp;icon=music.note&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FvzvbBIt_r6c%2Fhq720.jpg&amp;item=yt:hI8IPM76vrw:In%20de%20Maneschijn&amp;item=yt:vzvbBIt_r6c:Ik%20zag%20twee%20beren%20broodjes%20smeren&amp;item=yt:YdfbFy9uVrU:Het%20regent%2C%20het%20regent&amp;item=yt:oRWWJaBHYoY:Poesje%20Mauw&amp;item=yt:JuqCZxmzJDQ:Hop%20paardje%20hop&amp;item=yt:zy1coEWIGSw:Zo%20gaat%20de%20molen&amp;item=yt:t1y0H2hoTvQ:Helikopter&amp;item=yt:o-rrtNC0mSo:Kleurenlied&amp;item=yt:LfSjL_YrTrA:Hokey%20Pokey">Add to Burrow</a>
+    <p class="kind">Videotegel · 9 video's · leeftijd 1–4 · van Juf Roos op YouTube</p>
+    <p>De bekende Nederlandse kinderliedjes, langzaam en duidelijk gezongen door Juf Roos. Kort, dus fijn voor een paar minuutjes.</p>
+    <a class="add" href="burrow://playlist?name=Juf%20Roos&amp;type=video&amp;icon=music.note&amp;color=clay&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FvzvbBIt_r6c%2Fhq720.jpg&amp;item=yt:hI8IPM76vrw:In%20de%20Maneschijn&amp;item=yt:vzvbBIt_r6c:Ik%20zag%20twee%20beren%20broodjes%20smeren&amp;item=yt:YdfbFy9uVrU:Het%20regent%2C%20het%20regent&amp;item=yt:oRWWJaBHYoY:Poesje%20Mauw&amp;item=yt:JuqCZxmzJDQ:Hop%20paardje%20hop&amp;item=yt:zy1coEWIGSw:Zo%20gaat%20de%20molen&amp;item=yt:t1y0H2hoTvQ:Helikopter&amp;item=yt:o-rrtNC0mSo:Kleurenlied&amp;item=yt:LfSjL_YrTrA:Hokey%20Pokey">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=hI8IPM76vrw">In de Maneschijn</a></li>
       <li><a href="https://www.youtube.com/watch?v=vzvbBIt_r6c">Ik zag twee beren broodjes smeren</a></li>
@@ -278,9 +314,9 @@
 
   <section id="kinderen-voor-kinderen">
     <h2><img class="art big" src="https://i.ytimg.com/vi/gvHpI_6Bq_4/hq720.jpg" alt="" loading="lazy" style="background:#67879f">Kinderen voor Kinderen</h2>
-    <p class="kind">Video tile · 7 videos · ages 5+ · from Kinderen voor Kinderen on YouTube</p>
-    <p>The best-known songs of the children&#x27;s choir, for the older ones who want to dance.</p>
-    <a class="add" href="burrow://playlist?name=Kinderen%20voor%20Kinderen&amp;type=video&amp;icon=star.fill&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FgvHpI_6Bq_4%2Fhq720.jpg&amp;item=yt:N2Rl9hEJVKE:Hupsakee&amp;item=yt:fAElk6S2gZg:Raar%20maar%20waar&amp;item=yt:xtgl2E7BVPg:Haai-alarm%21&amp;item=yt:cPDKS45RhkA:Red%20de%20bij&amp;item=yt:Agy0kqdMBDE:Reis%20mee%21&amp;item=yt:iYHe2V-zwkQ:Baila%20bailalaa&amp;item=yt:gvHpI_6Bq_4:Lekker%20eigenwijs">Add to Burrow</a>
+    <p class="kind">Videotegel · 7 video's · leeftijd 5+ · van Kinderen voor Kinderen op YouTube</p>
+    <p>De bekendste liedjes van het kinderkoor, voor de wat oudere kinderen die willen dansen.</p>
+    <a class="add" href="burrow://playlist?name=Kinderen%20voor%20Kinderen&amp;type=video&amp;icon=star.fill&amp;color=sage&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FgvHpI_6Bq_4%2Fhq720.jpg&amp;item=yt:N2Rl9hEJVKE:Hupsakee&amp;item=yt:fAElk6S2gZg:Raar%20maar%20waar&amp;item=yt:xtgl2E7BVPg:Haai-alarm%21&amp;item=yt:cPDKS45RhkA:Red%20de%20bij&amp;item=yt:Agy0kqdMBDE:Reis%20mee%21&amp;item=yt:iYHe2V-zwkQ:Baila%20bailalaa&amp;item=yt:gvHpI_6Bq_4:Lekker%20eigenwijs">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=N2Rl9hEJVKE">Hupsakee</a></li>
       <li><a href="https://www.youtube.com/watch?v=fAElk6S2gZg">Raar maar waar</a></li>
@@ -294,9 +330,9 @@
 
   <section id="disney">
     <h2><img class="art big" src="https://i.ytimg.com/vi/cPAbx5kgCJo/hq720.jpg" alt="" loading="lazy" style="background:#78828e">Disney</h2>
-    <p class="kind">Video tile · 5 videos · ages 4+ · from Disney&#x27;s official YouTube channels</p>
-    <p>Favourite songs from the films, as Disney&#x27;s official music videos.</p>
-    <a class="add" href="burrow://playlist?name=Disney&amp;type=video&amp;icon=wand.and.stars&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FcPAbx5kgCJo%2Fhq720.jpg&amp;item=yt:moSFlvxnbgk:Let%20It%20Go&amp;item=yt:cPAbx5kgCJo:How%20Far%20I%27ll%20Go&amp;item=yt:79DijItQXMM:You%27re%20Welcome&amp;item=yt:bvWRMAU6V-c:We%20Don%27t%20Talk%20About%20Bruno&amp;item=yt:c6rP-YP4c5I:Try%20Everything">Add to Burrow</a>
+    <p class="kind">Videotegel · 5 video's · leeftijd 4+ · van de officiële YouTube-kanalen van Disney</p>
+    <p>Favoriete liedjes uit de films, als officiële muziekvideo&#x27;s van Disney.</p>
+    <a class="add" href="burrow://playlist?name=Disney&amp;type=video&amp;icon=wand.and.stars&amp;color=slate&amp;image=https:%2F%2Fi.ytimg.com%2Fvi%2FcPAbx5kgCJo%2Fhq720.jpg&amp;item=yt:moSFlvxnbgk:Let%20It%20Go&amp;item=yt:cPAbx5kgCJo:How%20Far%20I%27ll%20Go&amp;item=yt:79DijItQXMM:You%27re%20Welcome&amp;item=yt:bvWRMAU6V-c:We%20Don%27t%20Talk%20About%20Bruno&amp;item=yt:c6rP-YP4c5I:Try%20Everything">Voeg toe aan Burrow</a>
     <ol>
       <li><a href="https://www.youtube.com/watch?v=moSFlvxnbgk">Let It Go</a></li>
       <li><a href="https://www.youtube.com/watch?v=cPAbx5kgCJo">How Far I&#x27;ll Go</a></li>
@@ -306,8 +342,8 @@
     </ol>
   </section>
 
-  <p class="note">Burrow is not affiliated with the Efteling, Kinderpretpark Julianatoren, Studio 100, Mercis (nijntje), Woezel &amp; Pip, Juf Roos, Kinderen voor Kinderen or Disney. These playlists only point to videos on their own official YouTube channels; the songs and videos belong to them. Tap a title to see it on YouTube first.</p>
+  <p class="note">Burrow is niet verbonden aan the Efteling, Kinderpretpark Julianatoren, Studio 100, Mercis (nijntje), Woezel &amp; Pip, Juf Roos, Kinderen voor Kinderen of Disney. Deze playlists verwijzen alleen naar video's op hun eigen officiële YouTube-kanalen; de liedjes en video's zijn van hen. Tik op een titel om hem eerst op YouTube te bekijken.</p>
 
-  <p><a href="support.html">Support</a> · <a href="privacy.html">Privacy</a></p>
+  <p><a href="index.html">Home</a> · <a href="support.html">Support</a> · <a href="privacy.html">Privacy</a></p>
 </body>
 </html>
